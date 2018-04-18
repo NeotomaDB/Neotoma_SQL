@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ap.getdeptenvtypesroot() RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ap.getdeptenvtypesroot()
+RETURNS TABLE(depenvtid int, depenvt varchar(255), children bigint)
 AS $$
 WITH
 nodes AS (

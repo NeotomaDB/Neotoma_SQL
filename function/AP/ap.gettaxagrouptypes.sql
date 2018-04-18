@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ap.gettaxagrouptypes() RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ap.gettaxagrouptypes()
+RETURNS TABLE(taxagroupid varchar(3), taxagroup varchar(64))
 AS $$
 SELECT t.taxagroupid, tgt.taxagroup
 FROM ndb.variables AS v INNER JOIN
