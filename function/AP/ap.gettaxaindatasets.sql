@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ap.gettaxaindatasets() RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ap.gettaxaindatasets()
+RETURNS TABLE(taxonid int, taxonname varchar(80), taxagroupid varchar(3), datasettypeid int)  
 AS $$
 SELECT t.taxonid, t.taxonname, t.taxagroupid, dtgt.datasettypeid
 FROM ndb.taxa AS t LEFT JOIN

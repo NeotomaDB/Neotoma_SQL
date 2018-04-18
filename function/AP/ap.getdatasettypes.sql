@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ap.getdatasettypes() RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ap.getdatasettypes()
+RETURNS TABLE(datasettype varchar(64), datasettypeid int)
 AS $$
 SELECT ndb.datasettypes.datasettype, ndb.datasets.datasettypeid
 FROM ndb.datasets INNER JOIN

@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ap.gettaphonomicsystems(datasettypeid int) RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ap.gettaphonomicsystems(datasettypeid int)
+RETURNS TABLE(taphonomicsystemid int, taphonomicsystem varchar(64)) 
 AS $$
 SELECT ts.taphonomicsystemid, ts.taphonomicsystem
 FROM ndb.taphonomicsystems AS ts INNER JOIN
