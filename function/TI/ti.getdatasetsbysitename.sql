@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetsbysitename(_sitename varchar(128)) RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ti.getdatasetsbysitename(_sitename varchar(128))
+RETURNS TABLE(siteid int, sitename varchar(128), datasetid int, datasettype varchar(64))
 AS $$
 SELECT ndb.sites.siteid, ndb.sites.sitename, ndb.datasets.datasetid, ndb.datasettypes.datasettype
 FROM ndb.sites INNER JOIN

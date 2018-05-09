@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetsampleanalysts(_datasetid int) RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ti.getdatasetsampleanalysts(_datasetid int)
+RETURNS TABLE(sampleid int, contactid int)
 AS $$
 SELECT ndb.sampleanalysts.sampleid, ndb.sampleanalysts.contactid
 FROM ndb.samples INNER JOIN

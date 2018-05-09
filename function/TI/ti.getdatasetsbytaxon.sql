@@ -1,4 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetsbytaxon(_taxon varchar(80)) RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ti.getdatasetsbytaxon(_taxon varchar(80))
+RETURNS TABLE(taxonname varchar(80), variableelement varchar(255), datasetid int, datasettype varchar(64), collectionunitid int,
+		siteid int, sitename varchar(128))
 AS $$
 SELECT ndb.taxa.taxonname, ndb.variableelements.variableelement, ndb.datasets.datasetid, ndb.datasettypes.datasettype, ndb.collectionunits.collectionunitid, 
        ndb.sites.siteid, ndb.sites.sitename
