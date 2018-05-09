@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetcitations(_datasetid int) RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ti.getdatasetcitations(_datasetid int)
+RETURNS TABLE(primarypub smallint, publicationid int, citation text)
 AS $$
 SELECT ndb.datasetpublications.primarypub, ndb.publications.publicationid, ndb.publications.citation
 FROM ndb.datasetpublications INNER JOIN

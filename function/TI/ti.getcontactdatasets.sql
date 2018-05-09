@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ti.getcontactdatasets(_contactid int) RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ti.getcontactdatasets(_contactid int)
+RETURNS TABLE(contactid int, datasettype varchar(64), sitename varchar(128), geopol1 varchar(255), geopol2 varchar(255))
 AS $$
 SELECT ndb.datasetpis.contactid, ndb.datasettypes.datasettype, ndb.sites.sitename, ti.geopol1.geopolname1 as geopol1, 
        ti.geopol2.geopolname2 as geopol2

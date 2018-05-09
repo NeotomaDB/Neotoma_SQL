@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetchrons(_datasetid int) RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ti.getdatasetchrons(_datasetid int)
+RETURNS TABLE(chronologyid int, chronologyname varchar(80), shortagetype varchar(32))
 AS $$
 SELECT ndb.chronologies.chronologyid, ndb.chronologies.chronologyname, ndb.agetypes.shortagetype
 FROM ndb.datasets INNER JOIN

@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetsamplekeywords(_datasetid int) RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ti.getdatasetsamplekeywords(_datasetid int)
+RETURNS TABLE(sampleid int, keyword varchar(64))
 AS $$
 SELECT ndb.samplekeywords.sampleid, ndb.keywords.keyword
 FROM ndb.samples inner join

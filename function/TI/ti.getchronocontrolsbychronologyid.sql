@@ -1,4 +1,7 @@
-CREATE OR REPLACE FUNCTION ti.getchronocontrolsbychronologyid(cronid int) RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ti.getchronocontrolsbychronologyid(cronid int)
+RETURNS TABLE(chroncontrolid int, chroncontroltypeid int, chroncontroltype varchar(64), depth double precision, thickness double precision,
+				analysisunitid int, analysisunitname varchar(80), age double precision,	agelimityounger double precision, agelimitolder double precision,
+				notes text, calibrationcurve varchar(24), calibrationprogram varchar(24), version varchar(24))
 AS $$
 SELECT ndb.chroncontrols.chroncontrolid, ndb.chroncontrols.chroncontroltypeid, ndb.chroncontroltypes.chroncontroltype, ndb.chroncontrols.depth, 
        ndb.chroncontrols.thickness, ndb.chroncontrols.analysisunitid, ndb.analysisunits.analysisunitname, ndb.chroncontrols.age, 

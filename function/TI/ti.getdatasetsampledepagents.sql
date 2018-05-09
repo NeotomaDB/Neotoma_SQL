@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetsampledepagents(_datasetid int) RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ti.getdatasetsampledepagents(_datasetid int)
+RETURNS TABLE(sampleid int, depagent varchar(64))
 AS $$
 SELECT ndb.samples.sampleid, ndb.depagenttypes.depagent
 FROM ndb.depagents INNER JOIN

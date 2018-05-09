@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetsbysiteid(_siteid int) RETURNS SETOF record
+CREATE OR REPLACE FUNCTION ti.getdatasetsbysiteid(_siteid int)
+RETURNS TABLE(collectionunitid int, collunitname varchar(255), datasetid int, datasettype varchar(64))
 AS $$
 SELECT ndb.collectionunits.collectionunitid, ndb.collectionunits.collunitname, ndb.datasets.datasetid, ndb.datasettypes.datasettype
 FROM ndb.sites INNER JOIN ndb.collectionunits ON ndb.sites.siteid = ndb.collectionunits.siteid INNER JOIN

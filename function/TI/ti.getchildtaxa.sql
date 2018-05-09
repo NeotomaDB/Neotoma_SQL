@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getchildtaxa(taxonname varchar(80))
-RETURNS SETOF record
+RETURNS TABLE(taxonid int, taxonname varchar(80), author varchar(128), highertaxonid int, level int)
 AS $$
 WITH  RECURSIVE taxacte 
 AS 
