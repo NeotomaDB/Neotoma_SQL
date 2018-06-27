@@ -22,7 +22,13 @@
 --     20 May 2017 - Simon Goring
 --        * Started the function.
 
-CREATE OR REPLACE FUNCTION "getpublication_id"(pubid integer)
+CREATE OR REPLACE FUNCTION "getpublication"(PublicationID integer default null,
+                                            Year integer default null,
+                                            PubType text default null,
+											Authors text default null,
+       										Citation text default null,
+       										DatasetID text default null)
+
 RETURNS TABLE("ArticleTitle" text, "RecDateCreated" text) AS $$
 BEGIN
   SELECT "PublicationID", "Year", "PubType", 
