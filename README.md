@@ -16,6 +16,16 @@ The repository is divided into two main folders, `legacy` and `function`.  The `
 
 This structure is not necessary, but has been implemented to help manage the workflow of rewriting the large number of functions associated with the original database.
 
+### Maintaining the Repository
+
+This repository is currently intended to be **read-only**.  The stored postgres functions can be updated using the Python3 script `connect_remote.py` by calling:
+
+```python
+python3 connect_remote.py
+```
+
+This program checks the `pg_catalog` and pulls each function within a defined set of namespaces, and returns each function as its own `sql` file to a folder in the `function` directory.
+
 ### Standards For New Functions
 
 Functions are expected to follow (as much as possible) [Simon Holywell's SQL Style Guide](http://www.sqlstyle.guide/) and the [Postgres Coding Convention](https://www.postgresql.org/docs/current/static/source.html).
@@ -28,5 +38,3 @@ Functions are expected to follow (as much as possible) [Simon Holywell's SQL Sty
 ## Issues and Bugs
 
 Please feel free to raise issues using the issue tracker on this repository.
-
-
