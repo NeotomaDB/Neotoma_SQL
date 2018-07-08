@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION ti.getvariablestable()
-RETURNS xxxxx
-LANGUAGE SQL
+ RETURNS SETOF ndb.variables
+ LANGUAGE sql
 AS $function$
 SELECT       *
  FROM ndb.variables;
