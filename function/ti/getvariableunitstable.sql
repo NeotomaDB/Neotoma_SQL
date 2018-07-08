@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION ti.getvariableunitstable()
-RETURNS xxxxx
-LANGUAGE SQL
+ RETURNS SETOF ndb.variableunits
+ LANGUAGE sql
 AS $function$
 SELECT       *
  FROM ndb.variableunits;
