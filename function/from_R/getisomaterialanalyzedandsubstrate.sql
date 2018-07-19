@@ -1,12 +1,10 @@
 CREATE OR REPLACE FUNCTION ti.getisomaterialanalyzedandsubstrate()
-RETURNS xxxxx
+RETURNS TABLE(isomaterialanalyzedtype, isosubstratetype)
 LANGUAGE SQL
 AS $function$
-SELECT      top 
-100
- percent ndb.isomaterialanalyzedtypes.isomaterialanalyzedtype, ndb.isosubstratetypes.isosubstratetype
- FROM ndb.isomaterialanalyzedtypes inner join
-                      ndb.isomatanalsubstrate on ndb.isomaterialanalyzedtypes.isomatanaltypeid = ndb.isomatanalsubstrate.isomatanaltypeid inner join
-                      ndb.isosubstratetypes on ndb.isomatanalsubstrate.isosubstratetypeid = ndb.isosubstratetypes.isosubstratetypeid
-order by ndb.isomaterialanalyzedtypes.isomaterialanalyzedtype, ndb.isosubstratetypes.isosubstratetype;
+SELECT  imat.isomaterialanalyzedtype, ist.isosubstratetype
+ FROM ndb.isomaterialanalyzedtypes AS imat
+ INNER JOIN ndb.isomatanalsubstrate AS imas ON imat.isomatanaltypeid = imas.isomatanaltypeid
+ INNER JOIN ndb.isosubstratetypes AS ist ON imas.isosubstratetypeid = ist.isosubstratetypeid
+ORDER BY imat.isomaterialanalyzedtype, ist.isosubstratetype;
 $function$
