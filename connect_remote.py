@@ -50,6 +50,7 @@ for record in cur:
         os.mkdir(testPath)
 
     if os.path.exists(newFile) != True:
+        print(record[0] + '.' + record[1] + ' has been added.')
         file = open(newFile, 'w')
         file.write(record[2])
         file.close()
