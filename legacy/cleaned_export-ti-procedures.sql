@@ -37,24 +37,6 @@ where     (aggregatedatasetname = @name)
 go
 
 -- ----------------------------
--- procedure structure for getaggregateordertypes
--- ----------------------------
-
-
-
-
-create procedure [getaggregateordertypes]
-as
-select     aggregateordertypeid, aggregateordertype
-from       ndb.aggregateordertypes
-
-
-
-
-
-go
-
--- ----------------------------
 -- procedure structure for getanalysisunit
 -- ----------------------------
 
@@ -6268,25 +6250,6 @@ where     (taxagroupid = @taxagroupid)
 
 go
 
--- ----------------------------
--- procedure structure for gettaxagroupcodes
--- ----------------------------
-
-create procedure [gettaxagroupcodes]
-as
-select     top (2147483647) ndb.taxagrouptypes.taxagroupid, ndb.taxagrouptypes.taxagroup, ndb.ecolsettypes.ecolsetid, ndb.ecolsettypes.ecolsetname,
-                      ndb.ecolgrouptypes.ecolgroupid, ndb.ecolgrouptypes.ecolgroup
-from         ndb.taxa inner join
-                      ndb.ecolgroups on ndb.taxa.taxonid = ndb.ecolgroups.taxonid inner join
-                      ndb.ecolgrouptypes on ndb.ecolgroups.ecolgroupid = ndb.ecolgrouptypes.ecolgroupid inner join
-                      ndb.ecolsettypes on ndb.ecolgroups.ecolsetid = ndb.ecolsettypes.ecolsetid right outer join
-                      ndb.taxagrouptypes on ndb.taxa.taxagroupid = ndb.taxagrouptypes.taxagroupid
-group by ndb.taxagrouptypes.taxagroup, ndb.ecolgrouptypes.ecolgroup, ndb.taxagrouptypes.taxagroupid, ndb.ecolgrouptypes.ecolgroupid,
-                      ndb.ecolsettypes.ecolsetid, ndb.ecolsettypes.ecolsetname
-order by ndb.taxagrouptypes.taxagroup, ndb.ecolgrouptypes.ecolgroup
-
-
-go
 
 -- ----------------------------
 -- procedure structure for gettaxagroupecolsetids
@@ -6310,22 +6273,6 @@ having      (ndb.taxa.taxagroupid = @taxagroupid)
 
 go
 
--- ----------------------------
--- procedure structure for gettaxagroupelementtypes
--- ----------------------------
-
-
-
-create procedure [gettaxagroupelementtypes]
-as
-select     ndb.elementtaxagroups.taxagroupid, ndb.elementtypes.elementtype
-from         ndb.elementtaxagroups inner join
-                      ndb.elementtypes on ndb.elementtaxagroups.elementtypeid = ndb.elementtypes.elementtypeid
-
-
-
-
-go
 
 -- ----------------------------
 -- procedure structure for gettaxagroupid
@@ -6397,20 +6344,6 @@ having       (ndb.datasets.datasettypeid = @datasettypeid)
 go
 
 -- ----------------------------
--- procedure structure for gettaxagrouptypes
--- ----------------------------
-
-
-create procedure [gettaxagrouptypes]
-as select      ndb.taxagrouptypes.taxagroupid, ndb.taxagrouptypes.taxagroup
-from          ndb.taxagrouptypes
-
-
-
-
-go
-
--- ----------------------------
 -- procedure structure for gettaxalookupsynonymybytaxagroupidlist
 -- ----------------------------
 
@@ -6434,74 +6367,7 @@ where      (ndb.taxa.valid = 0) and (ndb.taxa.taxagroupid in (
 
 go
 
--- ----------------------------
--- procedure structure for gettaxatable
--- ----------------------------
 
-create procedure [gettaxatable]
-as
-select     taxonid, taxoncode, taxonname, author, valid, highertaxonid, extinct, taxagroupid, publicationid,
-           validatorid, convert(nvarchar(10),validatedate,120) as validatedate, notes
-from          ndb.taxa
-
-
-
-go
-
--- ----------------------------
--- procedure structure for gettaxonbyid
--- ----------------------------
-
-
-
-create procedure [gettaxonbyid](@taxonid int)
-as select      taxonid, taxoncode, taxonname, author, valid, highertaxonid, extinct, taxagroupid, publicationid,
-               validatorid, convert(nvarchar(10),validatedate,120) as validatedate, notes
-from          ndb.taxa
-where      (taxonid = @taxonid)
-
-
-
-
-
-go
-
--- ----------------------------
--- procedure structure for gettaxonbyname
--- ----------------------------
-
-
-
-create procedure [gettaxonbyname](@taxonname nvarchar(80))
-as select      taxonid, taxoncode, taxonname, author, valid, highertaxonid, extinct, taxagroupid, publicationid,
-               validatorid, convert(nvarchar(10),validatedate,120) as validatedate, notes
-from          ndb.taxa
-where      (ndb.taxa.taxonname like @taxonname)
-
-
-
-
-
-go
-
--- ----------------------------
--- procedure structure for gettaxondatarecordscount
--- ----------------------------
-
-
-
-
-create procedure [gettaxondatarecordscount](@taxonid int)
-as
-select     count(ndb.data.variableid) as count
-from         ndb.variables inner join
-                      ndb.data on ndb.variables.variableid = ndb.data.variableid
-where     (ndb.variables.taxonid = @taxonid)
-
-
-
-
-go
 
 -- ----------------------------
 -- procedure structure for gettaxonhierarchy
@@ -6546,82 +6412,8 @@ from    @hierarchy
 
 go
 
--- ----------------------------
--- procedure structure for gettaxonspecimendatescount
--- ----------------------------
 
-
-
-
-create procedure [gettaxonspecimendatescount](@taxonid int)
-as
-select     count(taxonid) as count
-from         ndb.specimendates
-where     (taxonid = @taxonid)
-
-
-
-go
-
--- ----------------------------
--- procedure structure for gettaxonsynonymscount
--- ----------------------------
-
-
-
-
-
-create procedure [gettaxonsynonymscount](@validtaxonid int)
-as
-select     count(validtaxonid) as count
-from         ndb.synonyms
-where     (validtaxonid = @validtaxonid)
-
-
-
-
-go
-
--- ----------------------------
--- procedure structure for gettaxonsynonymycount
--- ----------------------------
-
-
-
-
-
-
-create procedure [gettaxonsynonymycount](@taxonid int)
-as
-select     count(taxonid) as count
-from         ndb.synonymy
-where     (taxonid = @taxonid)
-
-
-
-
-
-go
-
--- ----------------------------
--- procedure structure for gettaxonvarelements
--- ----------------------------
-
-
-create procedure [gettaxonvarelements](@taxonname nvarchar(80))
-as select      ndb.variableelements.variableelement
-from          ndb.variables inner join
-                        ndb.taxa on ndb.variables.taxonid = ndb.taxa.taxonid inner join
-                        ndb.variableelements on ndb.variables.variableelementid = ndb.variableelements.variableelementid
-where      (ndb.taxa.taxonname = @taxonname)
-group by ndb.variableelements.variableelement
-
-
-
-
-go
-
--- ----------------------------
+-----------------------
 -- procedure structure for getvalidtaxabytaxagroupidlist
 -- ----------------------------
 
