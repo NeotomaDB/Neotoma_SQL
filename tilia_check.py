@@ -1,9 +1,12 @@
-import json
-import requests
-from colorama import Fore
-from colorama import Style
+""" Check all newly written functions for the Neotoma postgres DB against
+    the old functions written in SQL Server T-SQL.
+    by: Simon Goring  """
+
 from sys import argv
 from re import sub
+from colorama import Fore
+from colorama import Style
+import requests
 
 tilia_uri = 'http://tilia.neotomadb.org/Retrieve/'
 dev_uri = 'http://tilia-dev.neotomadb.org:3001/retrieve/'
@@ -15,8 +18,10 @@ if len(argv) == 1:
 tilia_ends = requests.get(tilia_uri, headers=headers).json()
 dev_ends = requests.get(dev_uri, headers=headers).json()
 
-print("tilia succeeded, obtained "     + str(len(tilia_ends["data"])) + " SQL Server Tilia functions.")
-print("tilia-dev succeeded, obtained " + str(len(dev_ends["data"])) + " Postgres Tilia functions.")
+print("tilia succeeded, obtained "     + str(len(tilia_ends["data"])) +
+      " SQL Server Tilia functions.")
+print("tilia-dev succeeded, obtained " + str(len(dev_ends["data"])) +
+      " Postgres Tilia functions.")
 
 # Get all the names of the functions curently in the database
 #  remove the schema indicator.
@@ -43,12 +48,14 @@ for i in tilia_ends["data"]:
             dev_params = [x["name"] for x in dev_ends["data"][devIndex]["params"]]
             emptyParam = True
 
-        if ((set(tilia_params) == set(dev_params)) | (bool(tilia_params == []) & emptyParam == True)):
+        if ((set(tilia_params) == set(dev_params)) | (bool(tilia_params == []) & bool(emptyParam is True))):
             if argv[1] == "all":
                 print(f"{Fore.GREEN}Found match{Style.RESET_ALL}: " + i["name"].lower())
         else:
             print(f"{Fore.YELLOW}Match with unmatched parameters{Style.RESET_ALL}: " + i["name"].lower())
-            print("New: " + f"{Fore.RED}" + ', '.join(dev_params) + f"{Style.RESET_ALL} doesn't match {Fore.RED}" + ', '.join(tilia_params))
+            print("New:")
+            print(dev_params)
+            print(tilia_params)
             wrong_param = wrong_param + 1
 
     # Need to match params now too.
