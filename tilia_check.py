@@ -3,6 +3,7 @@ import requests
 from colorama import Fore
 from colorama import Style
 from sys import argv
+from re import sub
 
 tilia_uri = 'http://tilia.neotomadb.org/Retrieve/'
 dev_uri = 'http://tilia-dev.neotomadb.org:3001/retrieve/'
@@ -17,35 +18,37 @@ dev_ends = requests.get(dev_uri, headers=headers).json()
 print("tilia succeeded, obtained "     + str(len(tilia_ends["data"])) + " SQL Server Tilia functions.")
 print("tilia-dev succeeded, obtained " + str(len(dev_ends["data"])) + " Postgres Tilia functions.")
 
-dev_fun = [x["name"] for x in dev_ends["data"]]
-
-index = 35
-
-tilia_params = tilia_ends["data"][index]["params"]
-fun = dev_fun.index(tilia_ends["data"][index]["name"].lower())
-dev_params = dev_ends["data"][fun]["params"]
-
-t_par_names = [x["name"].lower() for x in tilia_params]
-dev_par_names = [x["name"] for x in dev_params]
+# Get all the names of the functions curently in the database
+#  remove the schema indicator.
+dev_fun = [x["name"].split(".")[1] for x in dev_ends["data"]]
 
 matched = 0
 missing = 0
 wrong_param = 0
 
 for i in tilia_ends["data"]:
+
     if i["name"].lower() in dev_fun:
         matched = matched + 1
 
         devIndex = dev_fun.index(i["name"].lower())
 
         tilia_params = [x["name"].lower() for x in i["params"]]
-        dev_params = [x["name"] for x in dev_ends["data"][devIndex]["params"]]
 
-        if ((set(t_par_names) == set(dev_par_names)) | (bool(t_par_names == []) & bool(dev_par_names == [None]))):
-            print(f"{Fore.GREEN}Found match{Style.RESET_ALL}: " + i["name"].lower())
+        # Need to check for `None` values . . .
+        if not dev_ends["data"][devIndex]["params"][0]["name"] is None:
+            dev_params = [sub('_', '', x["name"]) for x in dev_ends["data"][devIndex]["params"]]
+            emptyParam = False
+        else:
+            dev_params = [x["name"] for x in dev_ends["data"][devIndex]["params"]]
+            emptyParam = True
 
+        if ((set(tilia_params) == set(dev_params)) | (bool(tilia_params == []) & emptyParam == True)):
+            if argv[1] == "all":
+                print(f"{Fore.GREEN}Found match{Style.RESET_ALL}: " + i["name"].lower())
         else:
             print(f"{Fore.YELLOW}Match with unmatched parameters{Style.RESET_ALL}: " + i["name"].lower())
+            print("New: " + f"{Fore.RED}" + ', '.join(dev_params) + f"{Style.RESET_ALL} doesn't match {Fore.RED}" + ', '.join(tilia_params))
             wrong_param = wrong_param + 1
 
     # Need to match params now too.
