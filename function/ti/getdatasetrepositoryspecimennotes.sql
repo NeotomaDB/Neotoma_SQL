@@ -1,10 +1,10 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetrepositoryspecimennotes(datasetid integer, publicationid integer)
- RETURNS TABLE(primarypub smallint)
+CREATE OR REPLACE FUNCTION ti.getdatasetrepositoryspecimennotes(datasetid integer)
+ RETURNS TABLE(repositoryid integer, notes text)
  LANGUAGE sql
 AS $function$
 
-select     primarypub
-from       ndb.datasetpublications
-where      (datasetid = $1) and (publicationid = $2)
+select repositoryid, notes
+from   ndb.repositoryspecimens
+where  (datasetid = $1)
 
 $function$
