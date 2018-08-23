@@ -25,7 +25,7 @@ with open('.gitignore') as gi:
             good = True
             break
 
-if good == True:
+if good is True:
     print("Your connect_remote file is not in your .gitignore file.  Please add it!")
 
 with open('connect_remote.json') as f:
