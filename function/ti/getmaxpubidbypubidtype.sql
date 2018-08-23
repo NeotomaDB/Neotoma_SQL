@@ -5,7 +5,7 @@ CREATE OR REPLACE FUNCTION ti.getmaxpubidbypubidtype(_pubtypeid integer)
 
  SELECT     MAX(pub.publicationid) AS maxpubid
  FROM       ndb.publications AS pub
- GROUP BY	pub.pubtypeid
- HAVING     pubtypeid = _pubtypeid
+ GROUP BY	  pub.pubtypeid
+ HAVING     pub.pubtypeid = _pubtypeid
 
 $function$
