@@ -1,6 +1,7 @@
 CREATE OR REPLACE FUNCTION ts.deletecollectors (_collunitid integer)
+ RETURNS void
  LANGUAGE sql
 AS $function$
-delete from ndb.collectors AS cs
-where cs.collectionunitid = _collunitid
+DELETE FROM ndb.collectors AS cs
+WHERE cs.collectionunitid = _collunitid
 $function$
