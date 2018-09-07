@@ -1,5 +1,6 @@
 """ Connect to the Neotoma Dev database and return all the currently scripted
-    queries. """
+    queries. If a sql file exists in one of the local schema directories but
+    does not have an associated function, then create that function. """
 
 # NOTE: This requires the inclusion of a json file in the base directory called
 #       connect_remote.json that uses the format:
@@ -96,7 +97,7 @@ for schema in ['ti', 'ts']:
         data = (schema, functs.split(".")[0])
         cur.execute(SQL, data)
         if cur.rowcount == 0:
-            # Execute the new script if there is one.
+            # Execute the new script if there is one.  Needs the commit.
             cur.execute(open("./function/" + schema + "/" + functs, "r").read())
             conn.commit()
             print("Executing " + schema + "." + functs.split(".")[0])
