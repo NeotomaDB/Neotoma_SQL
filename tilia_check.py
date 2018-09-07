@@ -48,11 +48,13 @@ for i in tilia_ends["data"]:
             dev_params = [x["name"] for x in dev_ends["data"][devIndex]["params"]]
             emptyParam = True
 
-        if ((set(tilia_params) == set(dev_params)) | (bool(tilia_params == []) & bool(emptyParam is True))):
+        if ((set(tilia_params) == set(dev_params)) |
+                (bool(tilia_params == []) & bool(emptyParam is True))):
             if argv[1] == "all":
                 print(f"{Fore.GREEN}Found match{Style.RESET_ALL}: " + i["name"].lower())
         else:
-            print(f"{Fore.YELLOW}Match with unmatched parameters{Style.RESET_ALL}: " + i["name"].lower())
+            print(f"{Fore.YELLOW}Match with unmatched parameters{Style.RESET_ALL}: " +
+                  i["name"].lower())
             print("New:")
             print(dev_params)
             print(tilia_params)
