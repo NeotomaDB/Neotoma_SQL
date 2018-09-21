@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+CREATE OR REPLACE FUNCTION ts.deletedataset(_datasetid integer)
+=======
 CREATE OR REPLACE FUNCTION ts.deletedataset (_datasetid integer)
+>>>>>>> Anna_SQL
  RETURNS void
  LANGUAGE sql
 AS $function$
