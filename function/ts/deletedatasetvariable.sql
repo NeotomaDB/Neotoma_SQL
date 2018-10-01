@@ -1,5 +1,3 @@
-DROP FUNCTION ts.deletedatasetvariable (integer, integer);
-
 CREATE OR REPLACE FUNCTION ts.deletedatasetvariable (_datasetid integer, _variableid integer)
  RETURNS void
  LANGUAGE sql
