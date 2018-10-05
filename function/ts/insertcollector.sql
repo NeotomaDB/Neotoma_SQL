@@ -4,6 +4,5 @@ CREATE OR REPLACE FUNCTION ts.insertcollector(_collunitid integer, _contactid in
 AS $function$
 INSERT INTO ndb.collectors(collectionunitid, contactid, collectororder)
 VALUES (_collunitid, _contactid, _collectororder)
+RETURNING collectorid
 $function$;
----return id
-SELECT scope_identity()

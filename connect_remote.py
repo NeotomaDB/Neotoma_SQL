@@ -54,9 +54,12 @@ cur.execute("""
 # function declaration if the function does not currently exist in the GitHub
 # repo.
 
+print('Running!')
+
 for record in cur:
     # This checks each function in the database and then tests whether there
     # is a file associated with it.
+
     newFile = "./function/" + record[0] + "/" + record[1] + ".sql"
     testPath = "./function/" + record[0]
     if os.path.isdir(testPath) is False:
@@ -95,6 +98,7 @@ for schema in ['ti', 'ts']:
           WHERE
             n.nspname = %s AND proname = %s"""
         data = (schema, functs.split(".")[0])
+        print(data)
         cur.execute(SQL, data)
         if cur.rowcount == 0:
             # Execute the new script if there is one.  Needs the commit.

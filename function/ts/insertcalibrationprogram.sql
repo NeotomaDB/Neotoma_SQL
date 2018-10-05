@@ -4,6 +4,5 @@ CREATE OR REPLACE FUNCTION ts.insertcalibrationprogram(_calibrationprogram chara
 AS $function$
 INSERT INTO ndb.calibrationprograms (calibrationprogram, version)
 VALUES (_calibrationprogram, _version)
+RETURNING calibrationprogramid
 $function$;
----return id
-select scope_identity()
