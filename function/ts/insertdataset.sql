@@ -8,7 +8,5 @@ CREATE OR REPLACE FUNCTION ts.insertdataset(
 AS $function$
 INSERT INTO ndb.datasets(collectionunitid, datasettypeid, datasetname, notes)
 VALUES (_collectionunitid, _datasettypeid, _datasetname, _notes)
+RETURNING datasetid
 $function$;
-
----return id
-SELECT scope_identity();

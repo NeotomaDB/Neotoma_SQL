@@ -24,6 +24,5 @@ INSERT INTO ndb.chroncontrols(
 	agelimitolder,
 	notes)
 VALUES (_chronologyid, _chroncontroltypeid, _analysisunitid, _depth, _thickness, _agetypeid, _age, _agelimityounger, _agelimitolder, _notes)
+RETURNING chroncontrolid
 $function$;
----return id
-select scope_identity()

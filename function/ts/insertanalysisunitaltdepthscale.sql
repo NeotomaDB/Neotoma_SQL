@@ -8,6 +8,5 @@ CREATE OR REPLACE FUNCTION ts.insertanalysisunitaltdepthscale(
 AS $function$
 INSERT INTO ndb.analysisunitaltdepthscales(altdepthid, altdepthname, variableunitsid, notes)
 VALUES (_altdepthid, _altdepthname, _variableunitsid, _notes)
+RETURNING altdepthscaleid
 $function$;
----return id
-SELECT scope_identity()

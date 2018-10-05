@@ -12,6 +12,5 @@ AS $function$
 INSERT INTO ndb.aggregatechronologies
 	(aggregatedatasetid, agetypeid, isdefault, chronologyname, ageboundyounger, ageboundolder, notes)
 VALUES (_aggregatedatasetid, _agetypeid, _isdefault, _chronologyname, _ageboundyounger, _ageboundolder, _notes)
+RETURNING aggregatechronid
 $function$;
----return id
-SELECT scope_identity();

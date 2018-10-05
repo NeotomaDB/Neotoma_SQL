@@ -13,6 +13,5 @@ AS $function$
 INSERT INTO ndb.analysisunits
 	(collectionunitid, analysisunitname, depth, thickness, faciesid, mixed, igsn, notes)
 VALUES (_collectionunitid, _analysisunitname, _depth, _thickness, _faciesid, _mixed, _igsn, _notes)
+RETURNING analysisunitid
 $function$;
----return id
-SELECT scope_identity()
