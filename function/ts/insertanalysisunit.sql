@@ -7,7 +7,7 @@ CREATE OR REPLACE FUNCTION ts.insertanalysisunit(
 	_mixed smallint = null,
 	_igsn character varying = null,
 	_notes character varying = null)
- RETURNS void
+ RETURNS integer
  LANGUAGE sql
 AS $function$
 INSERT INTO ndb.analysisunits

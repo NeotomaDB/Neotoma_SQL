@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ts.insertcollector(_collunitid integer, _contactid integer, _collectororder integer)
- RETURNS void
+ RETURNS integer
  LANGUAGE sql
 AS $function$
 INSERT INTO ndb.collectors(collectionunitid, contactid, collectororder)

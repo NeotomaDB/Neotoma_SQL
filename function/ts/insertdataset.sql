@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION ts.insertdataset(
 	_datasettypeid integer,
 	_datasetname character varying = null,
 	_notes character varying = null)
- RETURNS void
+ RETURNS integer
  LANGUAGE sql
 AS $function$
 INSERT INTO ndb.datasets(collectionunitid, datasettypeid, datasetname, notes)
