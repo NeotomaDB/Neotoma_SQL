@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION ts.inserttaphonomicsystemdatasettype(_datasettypeid i
  RETURNS void
  LANGUAGE sql
 AS $function$
-INSERT INTO ndb.taphonomicsystemsdatasettypes
-	(datasettypeid, taphonomicsystemid)
-VALUES (_datasettypeid, _taphonomicsystemid)
+  INSERT INTO ndb.taphonomicsystemsdatasettypes
+	  (datasettypeid, taphonomicsystemid)
+  VALUES (_datasettypeid, _taphonomicsystemid)
 $function$

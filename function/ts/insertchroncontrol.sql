@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION ts.insertchroncontrol(
 	_agelimityounger float = null,
 	_agelimitolder float = null,
 	_notes character varying = null)
- RETURNS void
+ RETURNS integer
  LANGUAGE sql
 AS $function$
 INSERT INTO ndb.chroncontrols(

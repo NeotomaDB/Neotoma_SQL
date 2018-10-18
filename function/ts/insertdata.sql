@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ts.insertdata(_sampleid integer, _variableid integer, _value float)
- RETURNS void
+ RETURNS integer
  LANGUAGE sql
 AS $function$
 INSERT INTO ndb.data(sampleid, variableid, value)
