@@ -1,19 +1,28 @@
-""" Connect to the Neotoma Dev database and return all the currently scripted
-    queries. If a sql file exists in one of the local schema directories but
-    does not have an associated function, then create that function. """
+"""
+Neotoma DB Function Checker
 
-# NOTE: This requires the inclusion of a json file in the base directory called
-#       connect_remote.json that uses the format:
-#
-#  {
-#     "host": "hostname",
-#     "port": 9999,
-#     "database": "databasename",
-#     "user": "username",
-#     "password": "passwordname"
-#  }
-#
-#  Please ensure that this file is included in the .gitignore file.
+Simon Goring
+2018 MIT License
+
+Connect to a Neotoma Paleoecology Database using a JSON connection string
+and return all the currently scripted queries. If a sql file exists in one
+of the local schema directories but does not have an associated function,
+then create that function.
+
+
+NOTE: This requires the inclusion of a json file in the base directory called
+connect_remote.json that uses the format:
+
+{
+ "host": "hostname",
+ "port": 9999,
+ "database": "databasename",
+ "user": "username",
+ "password": "passwordname"
+}
+
+Please ensure that this file is included in the .gitignore file.
+"""
 
 import json
 import os
@@ -29,7 +38,7 @@ with open('.gitignore') as gi:
             break
 
 if good is False:
-    print("Your connect_remote file is not in your .gitignore file.  Please add it!")
+    print("The connect_remote.json file is not in your .gitignore file.  Please add it!")
 
 with open('connect_remote.json') as f:
     data = json.load(f)
@@ -38,7 +47,7 @@ conn = psycopg2.connect(**data)
 
 cur = conn.cursor()
 
-# This query usues the catalog to find all functions and definitions within the
+# This query uses the catalog to find all functions and definitions within the
 # neotomadev database.
 
 cur.execute("""
@@ -106,5 +115,6 @@ for schema in ['ti', 'ts']:
             conn.commit()
             print("Executing " + schema + "." + functs.split(".")[0])
         if cur.rowcount > 1:
+            # TODO:  Need to add a script to check that the definitions are the same.
             print(schema + "." + functs.split(".")[0] + " has " +
                   str(cur.rowcount) + " definitions.")
