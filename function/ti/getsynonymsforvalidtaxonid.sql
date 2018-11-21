@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION ti.getsynonymsforvalidtaxonid(_validtaxonid integer)
  RETURNS TABLE(taxonid integer, taxoncode character varying, taxonname character varying,
-			   author character varying, valid smallint, highertaxonid integer, extinct smallint,
+			   author character varying, valid boolean, highertaxonid integer, extinct boolean,
 			   taxagroupid character varying, publicationid integer, validatorid integer, validatedate character varying,
 			   notes character varying, synonymtypeid integer)
  LANGUAGE sql
