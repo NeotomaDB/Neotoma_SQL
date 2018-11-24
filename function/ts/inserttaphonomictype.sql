@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION ts.inserttaphonomictype(
   _taphonomicsystemid integer,
-  _taphonomictype character varying
+  _taphonomictype character varying,
   _notes character varying = null)
  RETURNS integer
  LANGUAGE sql

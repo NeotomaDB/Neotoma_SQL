@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ts.insertsynonym(_invalidtaxonid integer,
+CREATE OR REPLACE FUNCTION ts.insertsynonym(
+    _invalidtaxonid integer,
     _validtaxonid integer,
     _synonymtypeid integer = null)
  RETURNS integer
