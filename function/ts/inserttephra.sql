@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION ts.inserttephra(
   _eventid integer,
-  _analysisunitid integer
+  _analysisunitid integer,
   _notes character varying = null)
  RETURNS integer
  LANGUAGE sql
