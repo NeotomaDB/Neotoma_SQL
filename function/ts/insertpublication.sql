@@ -1,4 +1,4 @@
-character varyingCREATE OR REPLACE FUNCTION ts.insertpublication(_pubtypeid integer,
+CREATE OR REPLACE FUNCTION ts.insertpublication(_pubtypeid integer,
       _year character varying = null,
       _citation character varying = null,
       _title character varying = null,
