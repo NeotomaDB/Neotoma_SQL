@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION ts.insertpublicationauthors(_publicationid integer,
     _authororder integer,
     _familyname character varying,
     _initials character varying = null,
-    _suffix character varying = null
+    _suffix character varying = null,
     _contactid integer)
  RETURNS integer
  LANGUAGE sql
