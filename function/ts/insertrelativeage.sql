@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION ts.insertrelativeage(_relativeageunitid integer,
  RETURNS integer
  LANGUAGE sql
 AS $function$
-  INSERT INTO ndb.relativeagepublications (relativeageunitid, relativeagescaleid,
+  INSERT INTO ndb.relativeages (relativeageunitid, relativeagescaleid,
     relativeage, c14ageyounger, c14ageolder, calageyounger, calageolder, notes)
   VALUES (_relativeageunitid, _relativeagescaleid, _relativeage, _c14ageyounger,
     _c14ageolder, _calageyounger, _calageolder, _notes)

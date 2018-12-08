@@ -6,7 +6,7 @@ _description character varying = null)
  RETURNS integer
  LANGUAGE sql
 AS $function$
-  INSERT INTO ndb.lithology (collectionunitid, depthop, depthbottom, lowerboundary, description)
+  INSERT INTO ndb.lithology (collectionunitid, depthtop, depthbottom, lowerboundary, description)
   VALUES (_collectionunitid, _depthtop, _depthbottom, _lowerboundary, _description)
   RETURNING lithologyid
 $function$;

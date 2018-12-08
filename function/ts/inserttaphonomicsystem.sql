@@ -6,5 +6,5 @@ CREATE OR REPLACE FUNCTION ts.inserttaphonomicsystem(
 AS $function$
   INSERT INTO ndb.taphonomicsystems (taphonomicsystem, notes)
   VALUES (_taphonomicsystem, _notes)
-  RETURNING taphonomicsystemid
+  RETURNING taphonomicsystemid;
 $function$;

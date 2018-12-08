@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION ts.insertsynonymy(
     _datasetid integer,
     _taxonid integer,
     _reftaxonid integer,
-    _fromcontributor boolean = 0,
+    _fromcontributor boolean = FALSE,
     _publicationid integer = null,
     _notes character varying = null,
     _contactid integer = null,
@@ -14,5 +14,5 @@ AS $function$
     publicationid, notes, contactid, datesynonymized)
   VALUES (_datasetid, _taxonid, _reftaxonid, _fromcontributor, _publicationid,
     _notes, _contactid,
-    TO_CHAR(datesynonymized, 'YYYY-MM-DD') as datesynonymized)
+    TO_DATE(_datesynoynmized, 'YYYY-MM-DD'))
 $function$;

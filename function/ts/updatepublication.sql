@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION ts.updatepublication(
   _publicationid integer,
   _pubtypeid integer,
   _year character varying = null,
-  _citation character varying,
+  _citation character varying = null,
   _title character varying = null,
   _journal character varying = null,
   _vol character varying = null,
@@ -26,7 +26,7 @@ CREATE OR REPLACE FUNCTION ts.updatepublication(
  RETURNS void
  LANGUAGE sql
 AS $function$
-	UPDATE ndb.publications AS pub
+	UPDATE ndb.publications
 	SET   pubtypeid = _pubtypeid, year = _year, citation = _citation,
     articletitle = _title, journal = _journal, volume = _vol, issue = _issue,
     pages = _pages, citationnumber = _citnumber, doi = _doi,
@@ -34,5 +34,5 @@ AS $function$
     volumetitle = _voltitle, seriestitle = _sertitle, seriesvolume = _servol,
     publisher = _publisher, url = _url, city = _city, state = _state,
     country = _country, originallanguage = _origlang, notes = _notes
-	WHERE pub.publicationid = _publicationid
+	WHERE publicationid = _publicationid
 $function$;

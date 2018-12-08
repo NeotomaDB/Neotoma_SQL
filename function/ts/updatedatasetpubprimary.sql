@@ -5,7 +5,7 @@ CREATE OR REPLACE FUNCTION ts.updatedatasetpubprimary(
  RETURNS void
  LANGUAGE sql
 AS $function$
-	UPDATE ndb.datasetpublications AS dp
-	SET   dp.primarypub = _primary
-	WHERE (dp.datasetid = _datasetid) AND (dp.publicationid = _publicationid)
+	UPDATE ndb.datasetpublications
+	SET   primarypub = _primary
+	WHERE (datasetid = _datasetid) AND (publicationid = _publicationid)
 $function$;

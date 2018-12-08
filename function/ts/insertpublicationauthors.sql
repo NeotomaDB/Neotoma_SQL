@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION ts.insertpublicationauthors(_publicationid integer,
     _familyname character varying,
     _initials character varying = null,
     _suffix character varying = null,
-    _contactid integer)
+    _contactid integer = null)
  RETURNS integer
  LANGUAGE sql
 AS $function$

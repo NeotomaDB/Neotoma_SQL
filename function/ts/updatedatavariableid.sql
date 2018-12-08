@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION ts.updatedatavariableid(
  RETURNS void
  LANGUAGE sql
 AS $function$
-	UPDATE ndb.data AS dt
-	SET   dt.variableid = _newvariableid
-	WHERE dt.variableid = _oldvariableid
+	UPDATE ndb.data
+	SET   variableid = _newvariableid
+	WHERE variableid = _oldvariableid
 $function$;

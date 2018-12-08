@@ -10,5 +10,4 @@ CREATE OR REPLACE FUNCTION ti.gettaphonomicsystembyname(_taphonomicsystem charac
     ts.notes
  FROM         ndb.taphonomicsystems AS ts
  WHERE    ts.taphonomicsystem = _taphonomicsystem
-
 $function$
