@@ -5,10 +5,10 @@ CREATE OR REPLACE FUNCTION ts.updatedatavariableid_deletevariable(
  RETURNS void
  LANGUAGE sql
 AS $function$
-	UPDATE ndb.data AS dt
-	SET   dt.variableid = _savevarid
-	WHERE dt.variableid = _delvarid
+	UPDATE ndb.data
+	SET   variableid = _savevarid
+	WHERE variableid = _delvarid;
 
-  DELETE FROM ndb.variables as vr
-  WHERE vr.variableid = _delvarid
+  DELETE FROM ndb.variables
+  WHERE variableid = _delvarid;
 $function$;

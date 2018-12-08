@@ -14,8 +14,8 @@ CREATE OR REPLACE FUNCTION ts.insertsample(
    INSERT INTO ndb.samples(analysisunitid, datasetid, samplename, sampledate,
       analysisdate, taxonid, labnumber, preparationmethod, notes)
    VALUES (_analysisunitid, _datasetid, _samplename,
-      TO_CHAR(sampledate, 'YYYY-MM-DD') as sampledate,
-      TO_CHAR(analysisdate, 'YYYY-MM-DD') as analysisdate,
+      TO_DATE(_sampledate, 'YYYY-MM-DD'),
+      TO_DATE(_analysisdate, 'YYYY-MM-DD'),
       _taxonid, _labnumber, _prepmethod, _notes)
    RETURNING sampleid
  $function$;

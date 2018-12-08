@@ -6,8 +6,8 @@ CREATE OR REPLACE FUNCTION ts.insertpublicationtranslators(_publicationid intege
  RETURNS integer
  LANGUAGE sql
 AS $function$
-  INSERT INTO ndb.publicationeditors (publicationid, translatorororder, familyname,
+  INSERT INTO ndb.publicationtranslators (publicationid, translatororder, familyname,
     initials, suffix)
-  VALUES (_publicationid, _translatorororder, _familyname, _initials, _suffix)
+  VALUES (_publicationid, _translatororder, _familyname, _initials, _suffix)
   RETURNING translatorid
 $function$;

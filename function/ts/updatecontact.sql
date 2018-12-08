@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION ts.updatecontact(
   _contactid integer,
   _aliasid integer = null,
-  _contactname character varying,
+  _contactname character varying = null,
   _statusid integer = null,
   _familyname character varying = null,
   _initials character varying = null,

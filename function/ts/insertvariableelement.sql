@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION ts.insertvariableelement(
 AS $function$
   INSERT INTO ndb.variableelements(variableelement, elementtypeid, symmetryid,
     portionid, maturityid)
-  VALUES (_variableelement, _elementtypeid, _symmetryid, _portionid,
+  VALUES (_variableelement, _elementtype, _symmetryid, _portionid,
     _maturityid)
   RETURNING variableelementid
 $function$;

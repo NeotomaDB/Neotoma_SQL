@@ -30,6 +30,6 @@ AS $function$
       country, originallanguage, notes)
   VALUES (_pubtypeid, _year, _citation, _title, _journal, _vol, _issue, _pages,
   _citnumber, _doi, _booktitle, _numvol, _edition, _voltitle, _sertitle,
-  _servol, _publisher, _url, _city, _state, _country, _origlang, _note)
+  _servol, _publisher, _url, _city, _state, _country, _origlang, _notes)
   RETURNING publicationid
 $function$;

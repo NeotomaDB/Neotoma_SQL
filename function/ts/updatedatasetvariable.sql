@@ -6,8 +6,8 @@ CREATE OR REPLACE FUNCTION ts.updatedatasetvariable(
  RETURNS void
  LANGUAGE sql
 AS $function$
-	UPDATE ndb.data AS dt
-	SET   dt.variableid = _newvariableid
-	WHERE (dt.variableid = _oldvariableid AND dt.sampleid >= _sampleid1 AND
-      dt.sampleid <= _sampleid2)
+	UPDATE ndb.data
+	SET   variableid = _newvariableid
+	WHERE (variableid = _oldvariableid AND sampleid >= _sampleid1 AND
+      sampleid <= _sampleid2)
 $function$;
