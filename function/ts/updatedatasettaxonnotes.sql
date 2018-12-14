@@ -11,9 +11,9 @@ AS $function$
 	SET   datasetid = _datasetid,
         taxonid = _taxonid,
   	    contactid = _contactid,
-  	    date = TO_CHAR(_datetime, 'YYYY-MM-DD'),
+  	    date = TO_CHAR(_date, 'YYYY-MM-DD'),
   	    notes = _notes
-	WHERE (dtn.datasetid = _datasetid) AND (dtn.taxonid = _taxonid)
+	WHERE (dtn.datasetid = _datasetid) AND (dtn.taxonid = _taxonid);
 
   INSERT INTO ti.stewardupdates(contactid, tablename, pk1, pk2, operation, columnname)
   values      (_contactid, 'datasettaxonnotes', _datasetid, _taxonid, 'update', 'notes')
