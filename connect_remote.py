@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 """
 Neotoma DB Function Checker
 
