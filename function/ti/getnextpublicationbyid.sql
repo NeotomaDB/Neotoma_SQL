@@ -36,8 +36,10 @@ CREATE OR REPLACE FUNCTION ti.getnextpublicationbyid(_publicationid integer)
 	pub.country,
 	pub.originallanguage,
 	pub.notes
- FROM       ndb.publications AS pub
- WHERE      pub.publicationid > _publicationid
- ORDER BY 	pub.publicationid LIMIT 1 OFFSET 0
-
+ FROM   ndb.publications AS pub
+ WHERE  publicationid = (
+   SELECT MIN(pub.publicationid)
+   FROM   ndb.publications AS pub
+   WHERE  (publicationid > _publicationid)
+ )
 $function$

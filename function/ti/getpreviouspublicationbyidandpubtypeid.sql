@@ -37,7 +37,9 @@ CREATE OR REPLACE FUNCTION ti.getpreviouspublicationbyidandpubtypeid(_publicatio
 	pub.originallanguage,
 	pub.notes
  FROM       ndb.publications AS pub
- WHERE      pub.publicationid < _publicationid AND pubtypeid = _pubtypeid
- ORDER BY 	pub.publicationid DESC LIMIT 1
-
+ WHERE publicationid = (
+   SELECT MAX(pub.publicationid)
+   FROM   ndb.publications AS pub
+   WHERE  (publicationid < _publicationid AND pubtypeid = _pubtypeid)
+ )
 $function$
