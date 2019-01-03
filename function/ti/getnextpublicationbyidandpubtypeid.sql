@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.getnextpublicationbyidandpubtypeid(_publicationid integer, _pubtypeid integer)
+CREATE OR REPLACE FUNCTION ti.getnextpublicationbyidandpubtypeid(_publicationid integer, _pubtypeid integer)
 RETURNS TABLE (publicationid integer, pubtypeid integer, year character varying, citation character varying,
        articletitle character varying, journal character varying, volume character varying,
        issue character varying, pages character varying, citationnumber character varying,
@@ -39,6 +39,6 @@ FROM ndb.publications AS pub
 WHERE publicationid = (
   SELECT MIN(pub.publicationid)
   FROM   ndb.publications AS pub
-  where  (publicationid > _publicationid and pubtypeid = _pubtypeid)
+  WHERE  (publicationid > _publicationid and pubtypeid = _pubtypeid)
 )
 $function$
