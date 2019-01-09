@@ -59,7 +59,7 @@ cur.execute("""
   FROM            pg_catalog.pg_proc AS f
   INNER JOIN pg_catalog.pg_namespace AS n ON f.pronamespace = n.oid
   WHERE
-    n.nspname IN ('ti','ndb','ts', 'mca', 'ecg', 'ap', 'da', 'emb', 'gen')""")
+    n.nspname IN ('ti','ndb','ts', 'mca', 'ecg', 'ap', 'da', 'emb', 'gen', 'doi')""")
 
 # For each sql function in the named namespaces go in and write out the actual
 # function declaration if the function does not currently exist in the GitHub
@@ -96,7 +96,7 @@ for record in cur:
             file.write(record[2])
             file.close()
 
-for schema in ['ti', 'ts']:
+for schema in ['ti', 'ts', 'doi']:
     # Now check all files to see if they are in the DB. . .
     for functs in os.listdir("./function/" + schema + "/"):
         #
