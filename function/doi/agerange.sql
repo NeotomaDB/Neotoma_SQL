@@ -15,7 +15,7 @@ LEFT OUTER JOIN ndb.dsageranges AS agerange ON dts.datasetid = agerange.dataseti
 LEFT OUTER JOIN ndb.agetypes AS agetypes ON agetypes.agetypeid = agerange.agetypeid
 WHERE dts.datasetid = dsid
 GROUP BY dts.datasetid;
-$BODY$
+$BODY$;
 
 CREATE OR REPLACE FUNCTION doi.agerange(dsid integer[])
 RETURNS TABLE(datasetid integer, ages json)
@@ -34,7 +34,7 @@ LEFT OUTER JOIN ndb.dsageranges AS agerange ON dts.datasetid = agerange.dataseti
 LEFT OUTER JOIN ndb.agetypes AS agetypes ON agetypes.agetypeid = agerange.agetypeid
 WHERE dts.datasetid = ANY(dsid)
 GROUP BY dts.datasetid;
-$BODY$
+$BODY$;
 
 
 ALTER FUNCTION doi.agerange(integer)

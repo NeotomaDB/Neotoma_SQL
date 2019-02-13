@@ -48,7 +48,7 @@ SELECT * FROM doi.ndbdata(dsid)
 
 SELECT ids.dsid AS datasetid,
 			 json_strip_nulls(json_build_object('chronologies', jsonb_build_object('chronologies', chr.chronologies),
-															'data', dt.data)) AS frozendata
+															'data', dt.data)) AS download
 FROM
 	datameta  AS dt
 	JOIN chronmeta AS chr ON dt.datasetid = chr.datasetid

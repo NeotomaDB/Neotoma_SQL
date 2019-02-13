@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetpublicationstatusv2(_datasetid integer, _publicationid integer)
- RETURNS TABLE(primarypub smallint)
+ RETURNS TABLE(primarypub boolean)
  LANGUAGE sql
 AS $function$
 
