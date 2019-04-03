@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.gettaxonhierarchy(_taxonname character varying)
- RETURNS TABLE(taxonid integer, taxonname character varying, valid smallint, highertaxonid integer)
+ RETURNS TABLE(taxonid integer, taxonname character varying, valid boolean, highertaxonid integer)
  LANGUAGE sql
 AS $function$
 WITH RECURSIVE lowertaxa AS (SELECT

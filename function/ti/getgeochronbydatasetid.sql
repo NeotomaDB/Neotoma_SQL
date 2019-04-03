@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getgeochronbydatasetid(datasetid integer)
- RETURNS TABLE(geochronid integer, geochrontypeid integer, geochrontype integer, agetype character varying, depth double precision, thickness double precision, analysisunitname character varying, age double precision, errorolder double precision, erroryounger double precision, infinite smallint, labnumber character varying, materialdated character varying, notes text)
+ RETURNS TABLE(geochronid integer, geochrontypeid integer, geochrontype integer, agetype character varying, depth double precision, thickness double precision, analysisunitname character varying, age double precision, errorolder double precision, erroryounger double precision, infinite boolean, labnumber character varying, materialdated character varying, notes text)
  LANGUAGE sql
 AS $function$
 
