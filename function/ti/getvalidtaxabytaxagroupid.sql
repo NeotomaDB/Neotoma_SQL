@@ -27,5 +27,5 @@ AS $function$
   TO_CHAR(tx.validatedate, 'YYYY-MM-DD HH:MI:SS') AS validatedate,
   tx.notes
   FROM ndb.taxa AS tx
-  WHERE (tx.valid = 1) AND (tx.taxagroupid like _taxagroupid)
+  WHERE (tx.valid = True) AND (tx.taxagroupid like _taxagroupid)
 $function$
