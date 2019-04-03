@@ -19,7 +19,7 @@ BEGIN
 
 	END IF;
 
-	return query select     ndb.sites.siteid, ndb.sites.sitename, ST_DISTANCE(ST_Centroid(_site1::geometry), ST_Centroid(geog::geometry), true)/1000 as distkm,
+	return query select     ndb.sites.siteid, ndb.sites.sitename, ST_Distance(ST_Centroid(_site1::geometry), ST_Centroid(geog::geometry), true)/1000 as distkm,
 			   (ti.geopol1.geopolname1 ||
 			   (CASE WHEN ti.geopol2.geopolname2 IS NOT NULL THEN '|' || ti.geopol2.geopolname2 ||
 				    (CASE WHEN ti.geopol3.geopolname3 IS NOT NULL THEN '|' || ti.geopol3.geopolname3 ELSE '' END) ||
@@ -29,7 +29,7 @@ BEGIN
 						  ti.geopol2 on ndb.sites.siteid = ti.geopol2.siteid left outer join
 						  ti.geopol3 on ndb.sites.siteid = ti.geopol3.siteid left outer join
 						  ti.geopol4 on ndb.sites.siteid = ti.geopol4.siteid
-	where  ST_DISTANCE(ST_Centroid(_site1::geometry), ST_Centroid(geog::geometry), true) <= _distm
+	where  ST_Distance(ST_Centroid(_site1::geometry), ST_Centroid(geog::geometry), true) <= _distm
 	order by distkm;
 
 END;
