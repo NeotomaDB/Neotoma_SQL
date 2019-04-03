@@ -6,7 +6,7 @@ CREATE OR REPLACE FUNCTION ts.insertaggregatechronology(
 	_ageboundyounger integer,
 	_ageboundolder integer,
 	_notes character varying)
- RETURNS void
+ RETURNS integer
  LANGUAGE sql
 AS $function$
 INSERT INTO ndb.aggregatechronologies
