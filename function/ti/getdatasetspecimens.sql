@@ -34,50 +34,25 @@ CREATE OR REPLACE FUNCTION ti.getdatasetspecimens(_datasetid integer)
                version character varying)
  LANGUAGE sql
 AS $function$
-SELECT ndb.specimens.specimenid,
-       ndb.analysisunits.analysisunitname,
-       ndb.analysisunits.depth,
-       ndb.analysisunits.thickness,
-		   ndb.taxa.taxonname,
-       ndb.variableunits.variableunits,
-       ndb.variablecontexts.variablecontext,
-       ndb.elementtypes.elementtype,
-		   ndb.elementsymmetries.symmetry,
-       ndb.elementportions.portion,
-       ndb.elementmaturities.maturity,
-       ndb.specimensextypes.sex,
-		   ndb.specimendomesticstatustypes.domesticstatus,
-       ndb.specimens.nisp,
-       ndb.specimens.preservative,
-       ndb.repositoryinstitutions.repository,
-		   ndb.specimens.specimennr,
-       ndb.specimens.fieldnr,
-       ndb.specimens.arctosnr,
-       sgbk.genbanknr,
-       ndb.specimens.notes,
-		   ndb.geochrontypes.geochrontype,
-       ndb.geochronology.labnumber,
-       ndb.fractiondated.fraction,
-       ndb.geochronology.age,
-       ndb.geochronology.errorolder,
-		   ndb.geochronology.erroryounger,
-       ndb.geochronology.infinite,
-       ndb.specimendatescal.calageolder,
-       ndb.specimendatescal.calageyounger,
-		   ndb.calibrationcurves.calibrationcurve,
-       cpro.calibrationprogram,
-       cpro.version
-FROM ndb.specimengenbank AS sgbk RIGHT OUTER JOIN
+SELECT ndb.specimens.specimenid, ndb.analysisunits.analysisunitname, ndb.analysisunits.depth, ndb.analysisunits.thickness, 
+		ndb.taxa.taxonname, ndb.variableunits.variableunits, ndb.variablecontexts.variablecontext, ndb.elementtypes.elementtype,
+		ndb.elementsymmetries.symmetry, ndb.elementportions.portion, ndb.elementmaturities.maturity, ndb.specimensextypes.sex,
+		ndb.specimendomesticstatustypes.domesticstatus, ndb.specimens.nisp, ndb.specimens.preservative, ndb.repositoryinstitutions.repository,
+		ndb.specimens.specimennr, ndb.specimens.fieldnr, ndb.specimens.arctosnr, ndb.specimengenbank.genbanknr, ndb.specimens.notes,
+		ndb.geochrontypes.geochrontype, ndb.geochronology.labnumber, ndb.fractiondated.fraction, ndb.geochronology.age, ndb.geochronology.errorolder,
+		ndb.geochronology.erroryounger, ndb.geochronology.infinite, ndb.specimendatescal.calageolder, ndb.specimendatescal.calageyounger,
+		ndb.calibrationcurves.calibrationcurve, ndb.calibrationprograms.calibrationprogram, ndb.calibrationprograms.version
+FROM ndb.specimengenbank RIGHT OUTER JOIN
 	ndb.datasets INNER JOIN
 	ndb.samples ON ndb.datasets.datasetid = ndb.samples.datasetid INNER JOIN
 	ndb.analysisunits ON ndb.samples.analysisunitid = ndb.analysisunits.analysisunitid INNER JOIN
 	ndb.data ON ndb.samples.sampleid = ndb.data.sampleid INNER JOIN
 	ndb.specimens ON ndb.data.dataid = ndb.specimens.dataid INNER JOIN
 	ndb.variables ON ndb.data.variableid = ndb.variables.variableid INNER JOIN
-	ndb.taxa ON ndb.variables.taxonid = ndb.taxa.taxonid ON sgbk.specimenid = ndb.specimens.specimenid LEFT OUTER JOIN
+	ndb.taxa ON ndb.variables.taxonid = ndb.taxa.taxonid ON ndb.specimengenbank.specimenid = ndb.specimens.specimenid LEFT OUTER JOIN
 	ndb.calibrationcurves INNER JOIN
 	ndb.specimendatescal ON ndb.calibrationcurves.calibrationcurveid = ndb.specimendatescal.calibrationcurveid INNER JOIN
-	ndb.calibrationprograms AS cpro ON ndb.specimendatescal.calibrationprogramid = cpro.calibrationprogramid RIGHT OUTER JOIN
+	ndb.calibrationprograms ON ndb.specimendatescal.calibrationprogramid = ndb.calibrationprograms.calibrationprogramid RIGHT OUTER JOIN
 	ndb.geochrontypes INNER JOIN
 	ndb.geochronology ON ndb.geochrontypes.geochrontypeid = ndb.geochronology.geochrontypeid INNER JOIN
 	ndb.fractiondated INNER JOIN
