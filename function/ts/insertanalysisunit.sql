@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION ts.insertanalysisunit(
 	_depth float = null,
 	_thickness float = null,
 	_faciesid integer = null,
-	_mixed smallint = null,
+	_mixed boolean = null,
 	_igsn character varying = null,
 	_notes character varying = null)
  RETURNS integer

@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION ts.insertsteward(
   _contactid int,
   _username CHARACTER VARYING,
   _password CHARACTER VARYING,
-  _taxonomyexpert smallint,
+  _taxonomyexpert boolean,
   _databaseid int)
 RETURNS void
 LANGUAGE sql

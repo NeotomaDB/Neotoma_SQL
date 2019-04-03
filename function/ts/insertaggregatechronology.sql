@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION ts.insertaggregatechronology(
 	_aggregatedatasetid integer,
 	_agetypeid integer,
-	_isdefault smallint,
+	_isdefault boolean,
 	_chronologyname character varying,
 	_ageboundyounger integer,
 	_ageboundolder integer,
