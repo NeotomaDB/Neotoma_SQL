@@ -1,12 +1,17 @@
 CREATE OR REPLACE FUNCTION ti.getsitesbydatabaseanddatasettype(databaseid integer, datasettypeid integer)
- RETURNS TABLE(siteid integer, sitename character varying, latitude double precision, longitude double precision, altitude double precision, area double precision)
+ RETURNS TABLE(siteid integer,
+               sitename character varying,
+               latitude double precision,
+               longitude double precision,
+               altitude double precision,
+               area double precision)
  LANGUAGE sql
 AS $function$
 SELECT
   sts.siteid AS siteid,
   sts.sitename AS sitename,
-  ST_Y(ST_CENTROID(sts.geom)) AS latitude,
-  ST_X(ST_CENTROID(sts.geom)) AS longitude,
+  ST_Y(ST_CENTROID(sts.geog)) AS latitude,
+  ST_X(ST_CENTROID(sts.geog)) AS longitude,
   sts.altitude,
   sts.area
 FROM ndb.datasets AS ds
