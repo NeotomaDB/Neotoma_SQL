@@ -20,7 +20,7 @@ select
   tx.author,
   tx.valid,
   tx.highertaxonid,
-  tx.extinct, 
+  tx.extinct,
   tx.taxagroupid,
   tx.publicationid,
   tx.validatorid,
@@ -29,7 +29,7 @@ select
 FROM
   ndb.taxa AS tx
 WHERE
-  (tx.valid = 1) AND
+  (tx.valid = True) AND
   (tx.taxagroupid IN (
     SELECT unnest(string_to_array(taxagrouplist,'$')))
   )
