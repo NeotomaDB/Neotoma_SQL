@@ -1,15 +1,15 @@
 CREATE  OR REPLACE FUNCTION doi.lastdayds()
 RETURNS TABLE(datasets INTEGER[],
-			   contactname CHARACTER VARYING,
-		       leadinginitials CHARACTER VARYING,
-			   givennames CHARACTER VARYING,
-			  familyname CHARACTER VARYING,
-			  suffix CHARACTER VARYING,
-			  title CHARACTER VARYING,
-			  phone CHARACTER VARYING,
-			  email CHARACTER VARYING,
-			  address CHARACTER VARYING,
-			  url CHARACTER VARYING)
+						  contactname CHARACTER VARYING,
+					    leadinginitials CHARACTER VARYING,
+						  givennames CHARACTER VARYING,
+						  familyname CHARACTER VARYING,
+						  suffix CHARACTER VARYING,
+						  title CHARACTER VARYING,
+						  phone CHARACTER VARYING,
+						  email CHARACTER VARYING,
+						  address CHARACTER VARYING,
+						  url CHARACTER VARYING)
 LANGUAGE sql
 AS $function$
 
@@ -31,7 +31,7 @@ AS $function$
 	LEFT JOIN doi.frozen AS frz ON frz.datasetid = ds.datasetid
   WHERE
   dsdoi.doi IS NULL AND
-	frz.record IS NULL AND
+	frz.download IS NULL AND
   age(ds.recdatecreated) > interval '1 day'
   GROUP BY cts.contactname,
 		cts.leadinginitials,
