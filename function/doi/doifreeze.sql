@@ -14,13 +14,18 @@ WITH chronmeta AS (
 ),
 datameta AS (
 SELECT * FROM doi.ndbdata(dsid)
+),
+datasetmeta AS (
+	SELECT * FROM doi.datasetinfo(dsid)
 )
 
 SELECT dsid AS datasetid,
-			 json_strip_nulls(json_build_object('chronologies', json_build_object('chronologies', chr.chronologies),
+			 json_strip_nulls(json_build_object('dataset', dsm.dataset,
+				 'chronologies', json_build_object('chronologies', chr.chronologies),
 							'data', dt.data)) AS frozendata
 FROM
 	datameta  AS dt
+	JOIN datasetmeta AS dsm ON dt.datasetid = dsm.datasetid
 	JOIN chronmeta AS chr ON dt.datasetid = chr.datasetid
 
 $BODY$;
@@ -47,10 +52,12 @@ SELECT * FROM doi.ndbdata(dsid)
 )
 
 SELECT ids.dsid AS datasetid,
-			 json_strip_nulls(json_build_object('chronologies', jsonb_build_object('chronologies', chr.chronologies),
-															'data', dt.data)) AS download
+			 json_strip_nulls(json_build_object('dataset', dsm.dataset,
+				                                  'chronologies', jsonb_build_object('chronologies', chr.chronologies),
+															            'data', dt.data)) AS download
 FROM
 	datameta  AS dt
+	JOIN datasetmeta AS dsm ON dt.datasetid = dsm.datasetid
 	JOIN chronmeta AS chr ON dt.datasetid = chr.datasetid
 											JOIN ids AS ids ON ids.dsid = dt.datasetid
 
