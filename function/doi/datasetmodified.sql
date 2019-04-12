@@ -1,4 +1,4 @@
-CREATE OR REPLACE  FUNCTION datasetchanged()
+CREATE OR REPLACE  FUNCTION doi.datasetchanged()
 RETURNS TABLE(datasetid integer,
               dataset timestamp,
               dspi timestamp,
