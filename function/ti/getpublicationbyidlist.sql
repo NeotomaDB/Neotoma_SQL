@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION getpublicationbyidlist (
+CREATE OR REPLACE FUNCTION ti.getpublicationbyidlist (
   _publicationidlist CHARACTER VARYING)
 RETURNS SETOF ndb.publications
 LANGUAGE sql
