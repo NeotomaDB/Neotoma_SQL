@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION gettaphonomictypesbyidlist (
+CREATE OR REPLACE FUNCTION ti.gettaphonomictypesbyidlist (
   _taphonomictypeids CHARACTER VARYING)
 RETURNS TABLE(
   taphonomictypeid INTEGER,
