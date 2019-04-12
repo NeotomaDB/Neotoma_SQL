@@ -129,4 +129,4 @@ for schema in ['ti', 'ts', 'doi']:
 print("The script has rewritten:")
 
 for funs in rewrite:
-    print(funs)
+    print("  * " + funs)
