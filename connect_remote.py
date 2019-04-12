@@ -67,6 +67,9 @@ cur.execute("""
 
 print('Running!')
 
+rewrite = []
+z = 0
+
 for record in cur:
     # This checks each function in the database and then tests whether there
     # is a file associated with it.
@@ -116,7 +119,14 @@ for schema in ['ti', 'ts', 'doi']:
             cur.execute(open("./function/" + schema + "/" + functs, "r").read())
             conn.commit()
             print("Executing " + schema + "." + functs.split(".")[0])
+            rewrite.append(schema + "." + functs.split(".")[0])
+            z = z + 1
         if cur.rowcount > 1:
             # TODO:  Need to add a script to check that the definitions are the same.
             print(schema + "." + functs.split(".")[0] + " has " +
                   str(cur.rowcount) + " definitions.")
+
+print("The script has rewritten:")
+
+for funs in rewrite:
+    print(funs)
