@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION ndb.rawbymonth(startperiod integer default 0,
                                                 endperiod integer default 1)
 RETURNS TABLE (datasets bigint,
                sites bigint,
-             publications, bigint,
+             publications bigint,
            authors bigint,
          observations bigint)
 AS
@@ -23,7 +23,8 @@ WITH rsum AS (
   JOIN ndb.sitegeopolitical AS sgp ON dsl.siteid = sgp.siteid
   JOIN ndb.geopoldepth AS gpd ON gpd.geopoliticalid = sgp.geopoliticalid
   WHERE
-    ds.datasetid < 10
+  EXTRACT(year from AGE(NOW(), dss.submissiondate))*12 +
+  EXTRACT(month from AGE(NOW(), dss.submissiondate)) BETWEEN startperiod and endperiod
   GROUP BY ds.datasetid, dsl.siteid, dsl.siteid, gpd.path[1], smp.observations)
 SELECT COUNT(DISTINCT datasetid) AS datasets,
        COUNT(DISTINCT siteid) AS sites,
