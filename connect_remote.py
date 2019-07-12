@@ -33,12 +33,13 @@ import argparse
 import copy
 import re
 import git
+import sys
 
 parser = argparse.ArgumentParser(description='Check Neotoma SQL functions against functions in the online database servers (`neotoma` and `neotomadev`).')
 
 parser.add_argument('-dev', dest='isDev', default = False, help = 'Use the `dev` database? (`False` without the flag)', action = 'store_true')
 parser.add_argument('-push', dest='isPush', default = False, help = 'Assume that SQL functions in the repository are newer, push to the db server.', action = 'store_true')
-parser.add_argument('-g', dest='pullGit', default = False, help = 'Pull from the remote git server before running?.', action = 'store_true')
+parser.add_argument('-g', dest='pullGit', nargs = '?', type = str, default = None, help = 'Pull from the remote git server before running?.')
 
 args = parser.parse_args()
 
@@ -57,8 +58,13 @@ if good is False:
 with open('connect_remote.json') as f:
     data = json.load(f)
 
-if args.pullGit:
+if args.pullGit is not None:
     repo = git.Repo('.')
+    try:
+        repo.heads[args.pullGit].checkout()
+    except git.exc.GitCommandError:
+        sys.exit("Stash or commit changes in the current branch before switching to " + args.pullGit + ".")
+
     repo.remotes.origin.pull()
 
 if args.isDev:
