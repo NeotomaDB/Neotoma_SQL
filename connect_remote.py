@@ -31,9 +31,9 @@ import os
 import psycopg2
 import argparse
 
-parser = argparse.ArgumentParser(description='Check Neotoma SQL functions.')
+parser = argparse.ArgumentParser(description='Check Neotoma SQL functions against functions in the online database servers (`neotoma` and `neotomadev`).')
 
-parser.add_argument('-dev', dest='isDev', default = False, action = 'store_true')
+parser.add_argument('-dev', dest='isDev', default = False, help = 'Use the `dev` database? (`False` without the flag)', action = 'store_true')
 args = parser.parse_args()
 
 with open('.gitignore') as gi:
