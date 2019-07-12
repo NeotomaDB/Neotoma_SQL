@@ -30,10 +30,16 @@ import json
 import os
 import psycopg2
 import argparse
+import copy
+import re
+import git
 
 parser = argparse.ArgumentParser(description='Check Neotoma SQL functions against functions in the online database servers (`neotoma` and `neotomadev`).')
 
 parser.add_argument('-dev', dest='isDev', default = False, help = 'Use the `dev` database? (`False` without the flag)', action = 'store_true')
+parser.add_argument('-push', dest='isPush', default = False, help = 'Assume that SQL functions in the repository are newer, push to the db server.', action = 'store_true')
+parser.add_argument('-g', dest='pullGit', default = False, help = 'Pull from the remote git server before running?.', action = 'store_true')
+
 args = parser.parse_args()
 
 with open('.gitignore') as gi:
@@ -50,6 +56,10 @@ if good is False:
 
 with open('connect_remote.json') as f:
     data = json.load(f)
+
+if args.pullGit:
+    repo = git.Repo('.')
+    repo.remotes.origin.pull()
 
 if args.isDev:
     data['database'] = data['database'] + 'dev'
@@ -87,6 +97,7 @@ for record in cur:
 
     newFile = "./function/" + record[0] + "/" + record[1] + ".sql"
     testPath = "./function/" + record[0]
+
     if os.path.isdir(testPath) is False:
         # If there is no directory for the schema, make it.
         os.mkdir(testPath)
@@ -101,14 +112,28 @@ for record in cur:
     if os.path.exists(newFile) is True:
         # If there is a file, check to see if they are the same, so we
         # can check for updated functions.
-        oldFile = open(newFile)
-        match = set(oldFile).intersection(record[2])
-        if len(match) > 1:
-            print(len(match))
-            print(record[0] + '.' + record[1] + ' has been updated.')
-            file = open(newFile, 'w')
-            file.write(record[2])
-            file.close()
+        file = open(newFile)
+        textCheck = copy.deepcopy(file.read())
+        serverFun = copy.deepcopy(record[2])
+
+        textCheck = re.sub('[\s+\t+\n+\r+]','', textCheck)
+        serverFun = re.sub('[\s+\t+\n+\r+]','', serverFun)
+        match = serverFun == textCheck
+
+        # Pushing and pulling are defined by the user.
+
+        if match:
+            print(match)
+
+            if args.isPush == False:
+                file = open(newFile, 'w')
+                file.write(record[2])
+                file.close()
+                print('The file for ' + record[0] + '.' + record[1] + ' has been updated in the repository.')
+            else:
+                cur.execute(open("./function/" + record[0] + "/" + record[1] + ".sql", "r").read())
+                conn.commit()
+                print('The function for ' + record[0] + '.' + record[1] + ' has been updated in the `' + data['database'] + '` database.')
 
 for schema in ['ti', 'ts', 'doi']:
     # Now check all files to see if they are in the DB. . .
