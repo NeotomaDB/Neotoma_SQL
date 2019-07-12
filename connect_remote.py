@@ -29,6 +29,12 @@ Please ensure that this file is included in the .gitignore file.
 import json
 import os
 import psycopg2
+import argparse
+
+parser = argparse.ArgumentParser(description='Check Neotoma SQL functions.')
+
+parser.add_argument('-dev', dest='isDev', default = False, action = 'store_true')
+args = parser.parse_args()
 
 with open('.gitignore') as gi:
     good = False
@@ -44,6 +50,11 @@ if good is False:
 
 with open('connect_remote.json') as f:
     data = json.load(f)
+
+if args.isDev:
+    data['database'] = data['database'] + 'dev'
+
+print("Writing to the " + data['database'] + ' Neotoma server.')
 
 conn = psycopg2.connect(**data)
 
