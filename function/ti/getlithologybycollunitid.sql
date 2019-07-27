@@ -1,8 +1,7 @@
 CREATE OR REPLACE FUNCTION ti.getlithologybycollunitid(_collunitid integer)
- RETURNS TABLE(lithologyid integer, depthtop double precision, depthbottom double precision,
-			  lowerboundary character varying, description character varying)
+ RETURNS TABLE(lithologyid integer, depthtop double precision, depthbottom double precision, lowerboundary character varying, description character varying)
  LANGUAGE sql
- AS $function$
+AS $function$
 
  SELECT
  	li.lithologyid,

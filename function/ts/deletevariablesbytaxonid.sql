@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deletevariablesbytaxonid (_taxonid integer)
+CREATE OR REPLACE FUNCTION ts.deletevariablesbytaxonid(_taxonid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

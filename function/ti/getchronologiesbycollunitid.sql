@@ -1,14 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getchronologiesbycollunitid(collunitid integer)
- RETURNS TABLE(chronologyid integer,
-               agetype character varying,
-               chronologyname character varying,
-               isdefault boolean,
-               agemodel character varying,
-               ageboundolder integer,
-               ageboundyounger integer,
-               contactid integer,
-               dateprepared character varying,
-               notes text)
+ RETURNS TABLE(chronologyid integer, agetype character varying, chronologyname character varying, isdefault boolean, agemodel character varying, ageboundolder integer, ageboundyounger integer, contactid integer, dateprepared character varying, notes text)
  LANGUAGE sql
 AS $function$
 SELECT ndb.chronologies.chronologyid, ndb.agetypes.agetype, ndb.chronologies.chronologyname,

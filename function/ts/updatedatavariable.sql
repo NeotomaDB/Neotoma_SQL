@@ -1,8 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatedatavariable(
-  _datasetid integer,
-  _oldvariableid integer,
-  _newvariableid integer,
-  _contactid integer)
+CREATE OR REPLACE FUNCTION ts.updatedatavariable(_datasetid integer, _oldvariableid integer, _newvariableid integer, _contactid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deletepublicationtranslator (_translatorid integer)
+CREATE OR REPLACE FUNCTION ts.deletepublicationtranslator(_translatorid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

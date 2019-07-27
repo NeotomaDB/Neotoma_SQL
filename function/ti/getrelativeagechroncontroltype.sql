@@ -1,6 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getrelativeagechroncontroltype(_relativeage character varying)
- RETURNS TABLE(chroncontroltypeid integer,
-		       chroncontroltype character varying)
+ RETURNS TABLE(chroncontroltypeid integer, chroncontroltype character varying)
  LANGUAGE sql
 AS $function$
 select     cct.chroncontroltypeid,

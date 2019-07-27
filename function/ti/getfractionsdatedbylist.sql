@@ -1,6 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getfractionsdatedbylist(_fractions character varying)
- RETURNS TABLE(fractionid integer,
-			   fraction character varying)
+ RETURNS TABLE(fractionid integer, fraction character varying)
  LANGUAGE sql
 AS $function$
 select       fd.fractionid, fd.fraction

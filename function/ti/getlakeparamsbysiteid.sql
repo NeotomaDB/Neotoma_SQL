@@ -1,6 +1,5 @@
-CREATE OR REPLACE FUNCTION ti.getlakeparamsbysiteid(_siteid integer) 
- RETURNS TABLE(lakeparameter character varying,
-			  value double precision)
+CREATE OR REPLACE FUNCTION ti.getlakeparamsbysiteid(_siteid integer)
+ RETURNS TABLE(lakeparameter character varying, value double precision)
  LANGUAGE sql
 AS $function$
 select     lpt.lakeparameter,

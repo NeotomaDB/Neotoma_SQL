@@ -1,7 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.gettaphonomicsystembyname(_taphonomicsystem character varying)
- RETURNS TABLE(taphonomicsystemid integer,
-   taphonomicsystem character varying,
-   notes character varying)
+ RETURNS TABLE(taphonomicsystemid integer, taphonomicsystem character varying, notes character varying)
  LANGUAGE sql
 AS $function$
 
@@ -11,5 +9,4 @@ AS $function$
     ts.notes
  FROM         ndb.taphonomicsystems AS ts
  WHERE    ts.taphonomicsystem = _taphonomicsystem
-
 $function$

@@ -70,7 +70,7 @@ if args.pullGit is not None:
 if args.isDev:
     data['database'] = data['database'] + 'dev'
 
-print("Writing to the " + data['database'] + ' Neotoma server.')
+print("Using the " + data['database'] + ' Neotoma server.')
 
 conn = psycopg2.connect(**data)
 

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deleteecolgroup (_taxonid integer, _ecolsetid integer)
+CREATE OR REPLACE FUNCTION ts.deleteecolgroup(_taxonid integer, _ecolsetid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

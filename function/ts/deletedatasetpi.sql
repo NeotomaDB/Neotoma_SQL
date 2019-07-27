@@ -12,8 +12,8 @@ AS $function$
 	  WHERE dspi.datasetid = _datasetid
 	)
 
-	UPDATE ndb.datasetpis AS dspi 
-	SET piorder = (SELECT ranker FROM newrank) 
+	UPDATE ndb.datasetpis AS dspi
+	SET piorder = (SELECT ranker FROM newrank)
 	WHERE dspi.datasetid = _datasetid
 
 $function$

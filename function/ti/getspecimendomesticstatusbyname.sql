@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION ti.getspecimendomesticstatusbyname(_domesticstatus character varying)
  RETURNS TABLE(domesticstatusid integer, domesticstatus character varying)
  LANGUAGE sql
- AS $function$
+AS $function$
 
 SELECT
 	sds.domesticstatusid,

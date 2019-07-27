@@ -1,10 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getsitesbydatasettype(datasettypeid integer)
- RETURNS TABLE(siteid integer,
-               sitename character varying,
-               latitude double precision,
-               longitude double precision,
-               altitude double precision,
-               area double precision)
+ RETURNS TABLE(siteid integer, sitename character varying, latitude double precision, longitude double precision, altitude double precision, area double precision)
  LANGUAGE sql
 AS $function$
 SELECT

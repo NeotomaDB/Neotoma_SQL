@@ -1,7 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.gettaxalookupsynonymybytaxagroupidlist(taxagrouplist character varying)
- RETURNS TABLE(taxonid integer,
-               taxonname character varying,
-               validtaxonid integer)
+ RETURNS TABLE(taxonid integer, taxonname character varying, validtaxonid integer)
  LANGUAGE sql
 AS $function$
 
