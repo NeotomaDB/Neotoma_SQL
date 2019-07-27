@@ -1,7 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetcitations(_datasetid integer)
- RETURNS TABLE(primarypub    boolean,
-               publicationid integer,
-               citation      text)
+ RETURNS TABLE(primarypub boolean, publicationid integer, citation text)
  LANGUAGE sql
 AS $function$
 SELECT dpu.primarypub,

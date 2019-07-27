@@ -1,19 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetsamples(_datasetid integer)
- RETURNS TABLE(sampleid integer,
-               samplename character varying,
-               analysisdate character varying,
-               labnumber character varying,
-               preparationmethod text,
-               samplenotes text,
-               analysisunitid integer,
-               analysisunitname character varying,
-               depth double precision,
-               thickness double precision,
-               faciesid integer,
-               facies character varying,
-               mixed boolean,
-               igsn character varying,
-               analunitnotes text)
+ RETURNS TABLE(sampleid integer, samplename character varying, analysisdate character varying, labnumber character varying, preparationmethod text, samplenotes text, analysisunitid integer, analysisunitname character varying, depth double precision, thickness double precision, faciesid integer, facies character varying, mixed boolean, igsn character varying, analunitnotes text)
  LANGUAGE sql
 AS $function$
 SELECT smp.sampleid,

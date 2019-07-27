@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deletevariablecontext (_variablecontextid integer)
+CREATE OR REPLACE FUNCTION ts.deletevariablecontext(_variablecontextid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

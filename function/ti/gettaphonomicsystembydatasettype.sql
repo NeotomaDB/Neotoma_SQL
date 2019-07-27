@@ -1,8 +1,7 @@
 CREATE OR REPLACE FUNCTION ti.gettaphonomicsystembydatasettype(_datasettypeid integer)
- RETURNS TABLE(taphonomicsystemid integer, taphonomicsystem character varying,
-			  notes character varying)
+ RETURNS TABLE(taphonomicsystemid integer, taphonomicsystem character varying, notes character varying)
  LANGUAGE sql
- AS $function$
+AS $function$
 
  SELECT
  	tsy.taphonomicsystemid,

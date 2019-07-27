@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deleteanalysisunit (_analunitid integer)
+CREATE OR REPLACE FUNCTION ts.deleteanalysisunit(_analunitid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$
