@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.calibrationprograms (calibrationprogram, version)
   VALUES (_calibrationprogram, _version)
   RETURNING calibrationprogramid
-$function$;
+$function$

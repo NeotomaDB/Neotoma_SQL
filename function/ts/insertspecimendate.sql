@@ -1,13 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.insertspecimendate(
-  _geochronid int,
-  _specimenid int = null,
-  _taxonid int = null,
-  _elementtypeid int = null,
-  _fractionid int = null,
-  _sampleid int = null,
-  _notes CHARACTER VARYING = null)
-RETURNS integer
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ts.insertspecimendate(_geochronid integer, _specimenid integer DEFAULT NULL::integer, _taxonid integer DEFAULT NULL::integer, _elementtypeid integer DEFAULT NULL::integer, _fractionid integer DEFAULT NULL::integer, _sampleid integer DEFAULT NULL::integer, _notes character varying DEFAULT NULL::character varying)
+ RETURNS integer
+ LANGUAGE sql
 AS $function$
   insert into ndb.specimendates
                             (geochronid, specimenid, taxonid, elementtypeid, fractionid, sampleid, notes)

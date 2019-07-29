@@ -1,19 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatecontact(
-  _contactid integer,
-  _aliasid integer = null,
-  _contactname character varying = null,
-  _statusid integer = null,
-  _familyname character varying = null,
-  _initials character varying = null,
-  _givennames character varying = null,
-  _suffix character varying = null,
-  _title character varying = null,
-  _phone character varying = null,
-  _fax character varying = null,
-  _email character varying = null,
-  _url character varying = null,
-  _address character varying = null,
-  _notes character varying = null)
+CREATE OR REPLACE FUNCTION ts.updatecontact(_contactid integer, _aliasid integer DEFAULT NULL::integer, _contactname character varying DEFAULT NULL::character varying, _statusid integer DEFAULT NULL::integer, _familyname character varying DEFAULT NULL::character varying, _initials character varying DEFAULT NULL::character varying, _givennames character varying DEFAULT NULL::character varying, _suffix character varying DEFAULT NULL::character varying, _title character varying DEFAULT NULL::character varying, _phone character varying DEFAULT NULL::character varying, _fax character varying DEFAULT NULL::character varying, _email character varying DEFAULT NULL::character varying, _url character varying DEFAULT NULL::character varying, _address character varying DEFAULT NULL::character varying, _notes character varying DEFAULT NULL::character varying)
  RETURNS void
  LANGUAGE sql
 AS $function$
@@ -33,4 +18,4 @@ AS $function$
     address = _address,
     notes = _notes
 	WHERE ct.contactid = _contactid
-$function$;
+$function$

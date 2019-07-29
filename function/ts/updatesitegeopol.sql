@@ -1,6 +1,7 @@
-CREATE OR REPLACE FUNCTION ts.updatesitegeopol(_siteid int, _stewardcontactid int, _oldgeopolid int, _newgeopolid int)
-RETURNS void
-AS $$
+CREATE OR REPLACE FUNCTION ts.updatesitegeopol(_siteid integer, _stewardcontactid integer, _oldgeopolid integer, _newgeopolid integer)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
 DECLARE	
 	_sitegeopolid int := (SELECT sitegeopoliticalid FROM ndb.sitegeopolitical WHERE (siteid = _siteid AND geopoliticalid = _oldgeopolid));
 
@@ -13,5 +14,4 @@ BEGIN
 	END IF;
 
 END;
-$$ LANGUAGE plpgsql;
-
+$function$

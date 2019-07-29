@@ -1,9 +1,7 @@
-CREATE OR REPLACE FUNCTION ts.updateissurfacesample(
-  _datasetid INTEGER,
-  _issamp boolean)
-RETURNS void
-LANGUAGE plpgsql
-AS $$
+CREATE OR REPLACE FUNCTION ts.updateissurfacesample(_datasetid integer, _issamp boolean)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
 
   BEGIN
     IF _issamp = True AND
@@ -44,4 +42,4 @@ AS $$
       WHERE (sk.sampleid IN (SELECT sampleid FROM smpid) AND (sk.keywordid = 1));
     END IF;
   END
-$$
+$function$

@@ -1,11 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.insertsteward(
-  _contactid int,
-  _username CHARACTER VARYING,
-  _password CHARACTER VARYING,
-  _taxonomyexpert smallint,
-  _databaseid int)
-RETURNS void
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ts.insertsteward(_contactid integer, _username character varying, _password character varying, _taxonomyexpert smallint, _databaseid integer)
+ RETURNS void
+ LANGUAGE sql
 AS $function$
 
   insert into ti.stewards(contactid, username, pwd, taxonomyexpert)

@@ -1,9 +1,6 @@
-
-CREATE OR REPLACE FUNCTION ts.updatesamplelabnumber(
-  _sampleid INTEGER,
-  _labnumber CHARACTER VARYING = null)
-RETURNS void
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ts.updatesamplelabnumber(_sampleid integer, _labnumber character varying DEFAULT NULL::character varying)
+ RETURNS void
+ LANGUAGE sql
 AS $function$
 
   UPDATE ndb.samples AS smp

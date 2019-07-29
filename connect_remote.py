@@ -126,12 +126,12 @@ for record in cur:
         serverFun = re.sub('[\s+\t+\n+\r+]','', serverFun)
         match = serverFun == textCheck
 
-        # Pushing and pulling are defined by the user.
+        # Pushing (to the db) and pulling (from the db) are defined by the user.
 
-        if match:
-            print(match)
+        if match == False:
 
             if args.isPush == False:
+                print('The function ' + record[0] + '.' + record[1] + ' differs between the database and your local copy.\n *' + newFile + ' will be written locally.')
                 file = open(newFile, 'w')
                 file.write(record[2])
                 file.close()

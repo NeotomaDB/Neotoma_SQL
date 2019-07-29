@@ -1,8 +1,10 @@
-CREATE OR REPLACE FUNCTION ti.getcollunithandlecount(hand character varying)
+CREATE OR REPLACE FUNCTION ti.getcollunithandlecount(_handle character varying)
  RETURNS bigint
- LANGUAGE sql
+ LANGUAGE plpgsql
 AS $function$
-SELECT COUNT(handle) AS count
-FROM ndb.collectionunits
-WHERE handle = hand;
+BEGIN
+	SELECT COUNT(handle) AS count
+	FROM ndb.collectionunits
+	WHERE handle = _handle;
+END;
 $function$

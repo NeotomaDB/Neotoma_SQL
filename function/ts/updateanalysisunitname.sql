@@ -5,4 +5,4 @@ AS $function$
 	UPDATE ndb.analysisunits AS aus
 	SET   analysisunitname = _analysisunitname
 	WHERE aus.analysisunitid = analysisunitid
-$function$;
+$function$

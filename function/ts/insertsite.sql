@@ -1,15 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.insertsite(
-  _sitename CHARACTER VARYING,
-  _east numeric,
-  _north numeric,
-  _west numeric,
-  _south numeric,
-  _altitude integer = null,
-  _area numeric = null,
-  _descript CHARACTER VARYING = null,
-  _notes CHARACTER VARYING = null)
-RETURNS integer
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ts.insertsite(_sitename character varying, _east numeric, _north numeric, _west numeric, _south numeric, _altitude integer DEFAULT NULL::integer, _area numeric DEFAULT NULL::numeric, _descript character varying DEFAULT NULL::character varying, _notes character varying DEFAULT NULL::character varying)
+ RETURNS integer
+ LANGUAGE sql
 AS $function$
 
   insert into ndb.sites (sitename, altitude, area, sitedescription, notes, geog)

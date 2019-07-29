@@ -1,13 +1,7 @@
-CREATE OR REPLACE FUNCTION ndb.rawbymonth(startperiod integer default 0,
-                                                endperiod integer default 1)
-RETURNS TABLE (datasets bigint,
-               sites bigint,
-             publications bigint,
-           authors bigint,
-           countrygpid bigint,
-         observations numeric)
-AS
-$function$
+CREATE OR REPLACE FUNCTION ndb.rawbymonth(startperiod integer DEFAULT 0, endperiod integer DEFAULT 1)
+ RETURNS TABLE(datasets bigint, sites bigint, publications bigint, authors bigint, countrygpid bigint, observations numeric)
+ LANGUAGE sql
+AS $function$
 WITH rsum AS (
   SELECT ds.datasetid,
          dsl.siteid,
@@ -49,4 +43,4 @@ SELECT *,
       (SELECT SUM(observations) FROM obssum) AS observations
 FROM shortsum
 
-$function$ LANGUAGE SQL;
+$function$

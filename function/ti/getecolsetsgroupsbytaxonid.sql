@@ -7,6 +7,6 @@ SELECT ndb.ecolgroups.taxonid, ndb.ecolgroups.ecolsetid, ndb.ecolsettypes.ecolse
 FROM ndb.ecolgroups INNER JOIN
 	ndb.ecolsettypes ON ndb.ecolgroups.ecolsetid = ndb.ecolsettypes.ecolsetid INNER JOIN
 	ndb.ecolgrouptypes ON ndb.ecolgroups.ecolgroupid = ndb.ecolgrouptypes.ecolgroupid
-WHERE ndb.ecolgroups.taxonid = @taxonid
+WHERE ndb.ecolgroups.taxonid = _taxonid
 ORDER BY ndb.ecolgroups.ecolsetid, ndb.ecolgroups.ecolgroupid
 $function$

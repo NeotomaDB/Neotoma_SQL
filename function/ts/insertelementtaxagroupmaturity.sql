@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertelementtaxagroupmaturity(_elementtaxagroupid
 AS $function$
   INSERT INTO ndb.elementtaxagroupmaturities (elementtaxagroupid, maturityid)
   VALUES (_elementtaxagroupid, _maturityid)
-$function$;
+$function$

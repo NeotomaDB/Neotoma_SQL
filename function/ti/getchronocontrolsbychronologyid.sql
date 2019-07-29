@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getchronocontrolsbychronologyid(cronid integer)
+CREATE OR REPLACE FUNCTION ti.getchronocontrolsbychronologyid(_cronid integer)
  RETURNS TABLE(chroncontrolid integer, chroncontroltypeid integer, chroncontroltype character varying, depth double precision, thickness double precision, analysisunitid integer, analysisunitname character varying, age double precision, agelimityounger double precision, agelimitolder double precision, notes text, calibrationcurve character varying, calibrationprogram character varying, version character varying)
  LANGUAGE sql
 AS $function$
@@ -13,5 +13,5 @@ FROM ndb.calibrationprograms INNER JOIN
      ndb.chroncontroltypes ON ndb.chroncontrols.chroncontroltypeid = ndb.chroncontroltypes.chroncontroltypeid ON 
      ndb.chroncontrolscal14c.chroncontrolid = ndb.chroncontrols.chroncontrolid LEFT OUTER JOIN
      ndb.analysisunits ON ndb.chroncontrols.analysisunitid = ndb.analysisunits.analysisunitid
-WHERE ndb.chroncontrols.chronologyid = cronid;
+WHERE ndb.chroncontrols.chronologyid = _cronid;
 $function$

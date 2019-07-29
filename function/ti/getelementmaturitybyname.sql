@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ti.getelementmaturitybyname(_maturity character varyi
 AS $function$
 SELECT maturityid, maturity 
 FROM ndb.elementmaturities
-WHERE maturity = _maturity 
+WHERE maturity ILIKE _maturity;
 $function$

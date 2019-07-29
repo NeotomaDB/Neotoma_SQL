@@ -1,6 +1,7 @@
-CREATE OR REPLACE FUNCTION ts.updatespecimennisp(_specimenid int, _nisp float, _contactid int)
-RETURNS void
-AS $$ 
+CREATE OR REPLACE FUNCTION ts.updatespecimennisp(_specimenid integer, _nisp double precision, _contactid integer)
+ RETURNS void
+ LANGUAGE sql
+AS $function$ 
 
 UPDATE ndb.specimens
 SET nisp = _nisp
@@ -10,4 +11,4 @@ INSERT INTO ti.stewardupdates(contactid, tablename, pk1, operation, columnname)
 VALUES (_contactid, 'Specimens', _specimenid, 'Update', 'NISP')
 
 
-$$ LANGUAGE SQL;
+$function$

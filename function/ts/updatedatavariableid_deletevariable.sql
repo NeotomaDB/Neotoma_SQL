@@ -1,7 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatedatavariableid_deletevariable(
-  _savevarid integer,
-  _delvarid integer)
-/* merges @delvarid with @savevarid and deletes @delvarid */
+CREATE OR REPLACE FUNCTION ts.updatedatavariableid_deletevariable(_savevarid integer, _delvarid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$
@@ -11,4 +8,4 @@ AS $function$
 
   DELETE FROM ndb.variables
   WHERE variableid = _delvarid;
-$function$;
+$function$

@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.elementsymmetries (symmetry)
   VALUES (_symmetry)
   RETURNING symmetryid
-$function$;
+$function$

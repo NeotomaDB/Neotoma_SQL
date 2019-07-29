@@ -1,6 +1,7 @@
-CREATE OR REPLACE FUNCTION ts.updatesitelatlon(_siteid int, _stewardcontactid int, _east NUMERIC, _north NUMERIC, _west NUMERIC, _south NUMERIC)
-RETURNS void
-AS $$
+CREATE OR REPLACE FUNCTION ts.updatesitelatlon(_siteid integer, _stewardcontactid integer, _east numeric, _north numeric, _west numeric, _south numeric)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
 DECLARE
 	oldgeo geometry := (SELECT geog FROM ndb.sites WHERE siteid = _siteid);
 	geo geometry;
@@ -28,4 +29,4 @@ BEGIN
 	END IF;
 
 END;
-$$ LANGUAGE plpgsql;
+$function$

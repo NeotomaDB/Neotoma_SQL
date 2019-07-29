@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.ecolgrouptypes(ecolgroupid, ecolgroup)
   VALUES (_ecolgroupid, _ecolgroup)
   RETURNING ecolgroupid
-$function$;
+$function$

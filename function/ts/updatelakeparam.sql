@@ -1,6 +1,7 @@
-CREATE OR REPLACE FUNCTION ts.updatelakeparam(_siteid int, _stewardcontactid int, _lakeparameter varchar, _value numeric DEFAULT null)
-RETURNS void
-AS $$
+CREATE OR REPLACE FUNCTION ts.updatelakeparam(_siteid integer, _stewardcontactid integer, _lakeparameter character varying, _value numeric DEFAULT NULL::numeric)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
 DECLARE
 
 	lakeparameterid int := (SELECT lakeparameterid FROM ndb.lakeparametertypes WHERE lakeparameter = _lakeparameter);
@@ -31,4 +32,4 @@ BEGIN
 	END IF;
 END;
 
-$$ LANGUAGE plpgsql;
+$function$
