@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ti.getcontactbyfamilynameandinitials(_familyname char
 AS $function$
 SELECT ndb.contacts.* 
 FROM ndb.contacts
-WHERE familyname LIKE _familyname AND leadinginitials LIKE _initials;
+WHERE familyname ILIKE _familyname AND leadinginitials ILIKE _initials;
 $function$

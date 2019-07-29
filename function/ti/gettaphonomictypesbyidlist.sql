@@ -1,10 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.gettaphonomictypesbyidlist (
-  _taphonomictypeids CHARACTER VARYING)
-RETURNS TABLE(
-  taphonomictypeid INTEGER,
-  taphonomictype CHARACTER VARYING,
-  taphonomicsystem CHARACTER VARYING)
-  LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.gettaphonomictypesbyidlist(_taphonomictypeids character varying)
+ RETURNS TABLE(taphonomictypeid integer, taphonomictype character varying, taphonomicsystem character varying)
+ LANGUAGE sql
 AS $function$
 SELECT
   tty.taphonomictypeid,

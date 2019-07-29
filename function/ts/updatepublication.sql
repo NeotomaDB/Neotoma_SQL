@@ -1,28 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatepublication(
-  _publicationid integer,
-  _pubtypeid integer,
-  _year character varying = null,
-  _citation character varying = null,
-  _title character varying = null,
-  _journal character varying = null,
-  _vol character varying = null,
-  _issue character varying = null,
-  _pages character varying = null,
-  _citnumber character varying = null,
-  _doi character varying = null,
-  _booktitle character varying = null,
-  _numvol character varying = null,
-  _edition character varying = null,
-  _voltitle character varying = null,
-  _sertitle character varying = null,
-  _servol character varying = null,
-  _publisher character varying = null,
-  _url character varying = null,
-  _city character varying = null,
-  _state character varying = null,
-  _country character varying = null,
-  _origlang character varying = null,
-  _notes character varying = null)
+CREATE OR REPLACE FUNCTION ts.updatepublication(_publicationid integer, _pubtypeid integer, _year character varying DEFAULT NULL::character varying, _citation character varying DEFAULT NULL::character varying, _title character varying DEFAULT NULL::character varying, _journal character varying DEFAULT NULL::character varying, _vol character varying DEFAULT NULL::character varying, _issue character varying DEFAULT NULL::character varying, _pages character varying DEFAULT NULL::character varying, _citnumber character varying DEFAULT NULL::character varying, _doi character varying DEFAULT NULL::character varying, _booktitle character varying DEFAULT NULL::character varying, _numvol character varying DEFAULT NULL::character varying, _edition character varying DEFAULT NULL::character varying, _voltitle character varying DEFAULT NULL::character varying, _sertitle character varying DEFAULT NULL::character varying, _servol character varying DEFAULT NULL::character varying, _publisher character varying DEFAULT NULL::character varying, _url character varying DEFAULT NULL::character varying, _city character varying DEFAULT NULL::character varying, _state character varying DEFAULT NULL::character varying, _country character varying DEFAULT NULL::character varying, _origlang character varying DEFAULT NULL::character varying, _notes character varying DEFAULT NULL::character varying)
  RETURNS void
  LANGUAGE sql
 AS $function$
@@ -35,4 +11,4 @@ AS $function$
     publisher = _publisher, url = _url, city = _city, state = _state,
     country = _country, originallanguage = _origlang, notes = _notes
 	WHERE publicationid = _publicationid
-$function$;
+$function$

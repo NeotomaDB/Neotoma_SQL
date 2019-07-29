@@ -1,8 +1,8 @@
 CREATE OR REPLACE FUNCTION ti.getecolsetcountsbytaxagroupid(_taxagroupid character varying)
- RETURNS TABLE(ecolsetid integer, ecolsetname character varying, count bigint)
+ RETURNS TABLE(ecolsetid integer, ecolsetname character varying, count integer)
  LANGUAGE sql
 AS $function$
-SELECT ndb.ecolgroups.ecolsetid, ndb.ecolsettypes.ecolsetname, COUNT(*) AS count
+SELECT ndb.ecolgroups.ecolsetid, ndb.ecolsettypes.ecolsetname, COUNT(*)::integer AS count
 FROM ndb.ecolgroups INNER JOIN
 	ndb.taxa ON ndb.ecolgroups.taxonid = ndb.taxa.taxonid INNER JOIN
 	ndb.ecolsettypes ON ndb.ecolgroups.ecolsetid = ndb.ecolsettypes.ecolsetid

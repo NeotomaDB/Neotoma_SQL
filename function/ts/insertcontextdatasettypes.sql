@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertcontextdatasettypes(_datasettypeid integer, 
 AS $function$
 INSERT INTO ndb.contextsdatasettypes(datasettypeid, variablecontextid)
 VALUES (_datasettypeid, _variablecontextid)
-$function$;
+$function$

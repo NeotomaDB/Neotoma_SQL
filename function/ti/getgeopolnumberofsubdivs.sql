@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION ti.getgeopolnumberofsubdivs(_highergeopolid integer)
- RETURNS TABLE (higherpoliticalid bigint)
+ RETURNS TABLE(higherpoliticalid bigint)
  LANGUAGE sql
-as $function$
+AS $function$
 select      count(geopoliticalid) as numberofsubdivs
 from          ndb.geopoliticalunits AS gpu
 group by gpu.highergeopoliticalid

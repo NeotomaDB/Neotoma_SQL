@@ -1,16 +1,6 @@
-CREATE  OR REPLACE FUNCTION doi.lastdayds()
-RETURNS TABLE(datasets INTEGER[],
-						  contactname CHARACTER VARYING,
-					    leadinginitials CHARACTER VARYING,
-						  givennames CHARACTER VARYING,
-						  familyname CHARACTER VARYING,
-						  suffix CHARACTER VARYING,
-						  title CHARACTER VARYING,
-						  phone CHARACTER VARYING,
-						  email CHARACTER VARYING,
-						  address CHARACTER VARYING,
-						  url CHARACTER VARYING)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION doi.lastdayds()
+ RETURNS TABLE(datasets integer[], contactname character varying, leadinginitials character varying, givennames character varying, familyname character varying, suffix character varying, title character varying, phone character varying, email character varying, address character varying, url character varying)
+ LANGUAGE sql
 AS $function$
 
   SELECT array_agg(ds.datasetid) AS datasets,

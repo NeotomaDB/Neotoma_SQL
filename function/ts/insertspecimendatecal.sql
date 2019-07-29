@@ -1,11 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.insertspecimendatecal(
-    _specimendatecalid integer,
-    _calage float = null,
-    _calageolder float = null,
-    _calageyounger float = null,
-    _calibrationcurveid integer = null,
-    _calibrationprogramid integer = null,
-    _datecalibrated character varying = null)
+CREATE OR REPLACE FUNCTION ts.insertspecimendatecal(_specimendatecalid integer, _calage double precision DEFAULT NULL::double precision, _calageolder double precision DEFAULT NULL::double precision, _calageyounger double precision DEFAULT NULL::double precision, _calibrationcurveid integer DEFAULT NULL::integer, _calibrationprogramid integer DEFAULT NULL::integer, _datecalibrated character varying DEFAULT NULL::character varying)
  RETURNS integer
  LANGUAGE sql
 AS $function$
@@ -15,4 +8,4 @@ AS $function$
     _calibrationcurveid, _calibrationprogramid,
     TO_DATE(_datecalibrated, 'YYYY-MM-DD'))
   RETURNING specimendatecalid
-$function$;
+$function$

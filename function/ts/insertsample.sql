@@ -1,16 +1,7 @@
-CREATE OR REPLACE FUNCTION ts.insertsample(
-  _analysisunitid integer,
-  _datasetid integer,
-  _samplename character varying = null,
-  _sampledate character varying = null,
-  _analysisdate character varying = null,
-  _taxonid integer = null,
-  _labnumber character varying = null,
-  _prepmethod character varying = null,
-  _notes character varying = null)
+CREATE OR REPLACE FUNCTION ts.insertsample(_analysisunitid integer, _datasetid integer, _samplename character varying DEFAULT NULL::character varying, _sampledate character varying DEFAULT NULL::character varying, _analysisdate character varying DEFAULT NULL::character varying, _taxonid integer DEFAULT NULL::integer, _labnumber character varying DEFAULT NULL::character varying, _prepmethod character varying DEFAULT NULL::character varying, _notes character varying DEFAULT NULL::character varying)
  RETURNS integer
  LANGUAGE sql
- AS $function$
+AS $function$
    INSERT INTO ndb.samples(analysisunitid, datasetid, samplename, sampledate,
       analysisdate, taxonid, labnumber, preparationmethod, notes)
    VALUES (_analysisunitid, _datasetid, _samplename,
@@ -18,4 +9,4 @@ CREATE OR REPLACE FUNCTION ts.insertsample(
       TO_DATE(_analysisdate, 'YYYY-MM-DD'),
       _taxonid, _labnumber, _prepmethod, _notes)
    RETURNING sampleid
- $function$;
+ $function$

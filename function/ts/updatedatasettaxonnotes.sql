@@ -1,9 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatedatasettaxonnotes(
-  _datasetid integer,
-  _taxonid integer,
-  _contactid integer,
-  _date character varying,
-  _notes character varying)
+CREATE OR REPLACE FUNCTION ts.updatedatasettaxonnotes(_datasetid integer, _taxonid integer, _contactid integer, _date character varying, _notes character varying)
  RETURNS void
  LANGUAGE sql
 AS $function$
@@ -17,4 +12,4 @@ AS $function$
 
   INSERT INTO ti.stewardupdates(contactid, tablename, pk1, pk2, operation, columnname)
   values      (_contactid, 'datasettaxonnotes', _datasetid, _taxonid, 'update', 'notes')
-$function$;
+$function$

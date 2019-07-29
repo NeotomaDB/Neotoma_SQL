@@ -1,7 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatedatasetrepositorynotes(
-    _datasetid integer,
-    _repositoryid integer,
-    _notes character varying = null )
+CREATE OR REPLACE FUNCTION ts.updatedatasetrepositorynotes(_datasetid integer, _repositoryid integer, _notes character varying DEFAULT NULL::character varying)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$

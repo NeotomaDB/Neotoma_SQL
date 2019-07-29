@@ -1,14 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updategeochron(
-  _geochronid integer,
-  _geochrontypeid integer,
-  _agetypeid integer,
-  _age float = null,
-  _errorolder float = null,
-  _erroryounger float = null,
-  _infinite boolean = FALSE,
-  _labnumber character varying = null,
-  _materialdated character varying = null,
-  _notes character varying = null)
+CREATE OR REPLACE FUNCTION ts.updategeochron(_geochronid integer, _geochrontypeid integer, _agetypeid integer, _age double precision DEFAULT NULL::double precision, _errorolder double precision DEFAULT NULL::double precision, _erroryounger double precision DEFAULT NULL::double precision, _infinite boolean DEFAULT false, _labnumber character varying DEFAULT NULL::character varying, _materialdated character varying DEFAULT NULL::character varying, _notes character varying DEFAULT NULL::character varying)
  RETURNS void
  LANGUAGE sql
 AS $function$
@@ -18,4 +8,4 @@ AS $function$
     infinite = _infinite, labnumber = _labnumber,
     materialdated = _materialdated, notes = _notes
 	WHERE geochronid = _geochronid
-$function$;
+$function$

@@ -3,10 +3,10 @@ CREATE OR REPLACE FUNCTION ti.getdatasettypesbyname(_datasettype character varyi
  LANGUAGE plpgsql
 AS $function$
 DECLARE
-	dt varchar(80) = _datasettype + '%';
+	dt text := $1::text || '%'::text;
 BEGIN
-	RETURN QUERY SELECT datasettypeid, datasettype
-		FROM ndb.datasettypes
-		WHERE datasettype LIKE dt;
+	RETURN QUERY SELECT d."datasettypeid", d."datasettype"
+	FROM ndb.datasettypes d
+	WHERE d.datasettype ILIKE dt;
 END;
 $function$

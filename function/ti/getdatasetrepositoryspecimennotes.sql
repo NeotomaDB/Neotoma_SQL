@@ -1,10 +1,11 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetrepositoryspecimennotes(datasetid integer)
+CREATE OR REPLACE FUNCTION ti.getdatasetrepositoryspecimennotes(_datasetid integer)
  RETURNS TABLE(repositoryid integer, notes text)
- LANGUAGE sql
+ LANGUAGE plpgsql
 AS $function$
-
-select repositoryid, notes
-from   ndb.repositoryspecimens
-where  (datasetid = $1)
+BEGIN
+	SELECT repositoryid, notes
+	FROM   ndb.repositoryspecimens
+	WHERE  datasetid = $1;
+END;
 
 $function$

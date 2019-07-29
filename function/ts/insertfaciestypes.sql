@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.faciestypes (facies)
   VALUES (_facies)
   RETURNING faciesid
-$function$;
+$function$

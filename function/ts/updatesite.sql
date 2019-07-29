@@ -1,17 +1,7 @@
-CREATE OR REPLACE FUNCTION ts.updatesite(_siteid int,
-	_stewardcontactid int,
-	_sitename varchar, 
-	_east numeric DEFAULT NULL,
-	_north numeric DEFAULT NULL,
-	_west numeric DEFAULT NULL,
-	_south numeric DEFAULT NULL,
-	_altitude int DEFAULT NULL,
-	_area numeric DEFAULT NULL,
-	_descript varchar DEFAULT NULL,
-	_notes varchar DEFAULT NULL)
-
-RETURNS	void
-AS $$
+CREATE OR REPLACE FUNCTION ts.updatesite(_siteid integer, _stewardcontactid integer, _sitename character varying, _east numeric DEFAULT NULL::numeric, _north numeric DEFAULT NULL::numeric, _west numeric DEFAULT NULL::numeric, _south numeric DEFAULT NULL::numeric, _altitude integer DEFAULT NULL::integer, _area numeric DEFAULT NULL::numeric, _descript character varying DEFAULT NULL::character varying, _notes character varying DEFAULT NULL::character varying)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
 DECLARE
 
 	oldsitename varchar(128) := (SELECT sitename FROM ndb.sites WHERE siteid = _siteid);
@@ -110,4 +100,4 @@ BEGIN
 	END IF;
     
 END;
-$$ LANGUAGE plpgsql;
+$function$

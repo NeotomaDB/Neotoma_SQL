@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getcontextdatasettypecount(_datasettypeid integer, _variablecontextid integer)
- RETURNS bigint
+ RETURNS TABLE(count bigint)
  LANGUAGE sql
 AS $function$
 SELECT COUNT(datasettypeid) AS count

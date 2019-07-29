@@ -1,9 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.insertvariableelement(
-  _variableelement character varying,
-  _elementtype integer,
-  _symmetryid integer = null,
-  _portionid integer = null,
-  _maturityid integer = null)
+CREATE OR REPLACE FUNCTION ts.insertvariableelement(_variableelement character varying, _elementtype integer, _symmetryid integer DEFAULT NULL::integer, _portionid integer DEFAULT NULL::integer, _maturityid integer DEFAULT NULL::integer)
  RETURNS integer
  LANGUAGE sql
 AS $function$
@@ -12,4 +7,4 @@ AS $function$
   VALUES (_variableelement, _elementtype, _symmetryid, _portionid,
     _maturityid)
   RETURNING variableelementid
-$function$;
+$function$

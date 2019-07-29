@@ -1,15 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getsites(
-  _datasettypeid      INTEGER = null,
-  _sitename CHARACTER VARYING = null,
-  _geopoliticalid     INTEGER = null,
-  _contactid          INTEGER = null,
-  _authorid           INTEGER = null)
-RETURNS TABLE (
-  siteid   INTEGER,
-  sitename CHARACTER VARYING,
-  geog     CHARACTER VARYING
-)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getsites(_datasettypeid integer DEFAULT NULL::integer, _sitename character varying DEFAULT NULL::character varying, _geopoliticalid integer DEFAULT NULL::integer, _contactid integer DEFAULT NULL::integer, _authorid integer DEFAULT NULL::integer)
+ RETURNS TABLE(siteid integer, sitename character varying, geog character varying)
+ LANGUAGE sql
 AS $function$
 
 SELECT st.siteid, st.sitename, ST_AsText(st.geog)

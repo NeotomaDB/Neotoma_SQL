@@ -1,25 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.updatecollectionunit(
-  _collunitid int,
-  _stewardcontactid INTEGER,
-  _handle CHARACTER VARYING,
-  _colltypeid int = null,
-  _depenvtid int = null,
-  _collunitname CHARACTER VARYING = null,
-  _colldate date = null,
-  _colldevice CHARACTER VARYING = null,
-  _gpslatitude float = null,
-  _gpslongitude float = null,
-  _gpsaltitude float = null,
-  _gpserror float = null,
-  _waterdepth float = null,
-  _substrateid int = null,
-  _slopeaspect int = null,
-  _slopeangle int = null,
-  _location CHARACTER VARYING = null,
-  _notes CHARACTER VARYING = null
-  )
-RETURNS void
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ts.updatecollectionunit(_collunitid integer, _stewardcontactid integer, _handle character varying, _colltypeid integer DEFAULT NULL::integer, _depenvtid integer DEFAULT NULL::integer, _collunitname character varying DEFAULT NULL::character varying, _colldate date DEFAULT NULL::date, _colldevice character varying DEFAULT NULL::character varying, _gpslatitude double precision DEFAULT NULL::double precision, _gpslongitude double precision DEFAULT NULL::double precision, _gpsaltitude double precision DEFAULT NULL::double precision, _gpserror double precision DEFAULT NULL::double precision, _waterdepth double precision DEFAULT NULL::double precision, _substrateid integer DEFAULT NULL::integer, _slopeaspect integer DEFAULT NULL::integer, _slopeangle integer DEFAULT NULL::integer, _location character varying DEFAULT NULL::character varying, _notes character varying DEFAULT NULL::character varying)
+ RETURNS void
+ LANGUAGE sql
 AS $function$
 
         WITH  collunit AS (

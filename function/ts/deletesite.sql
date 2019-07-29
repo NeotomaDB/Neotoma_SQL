@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.deletesite(_siteid INTEGER)
-RETURNS void
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ts.deletesite(_siteid integer)
+ RETURNS void
+ LANGUAGE sql
 AS $function$
 
   WITH gccs AS (

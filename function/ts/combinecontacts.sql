@@ -1,8 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.combinecontacts(
-  _keepcontactid INTEGER,
-  _contactidlist CHARACTER VARYING)
-RETURNS void
-LANGUAGE 'plpgsql'
+CREATE OR REPLACE FUNCTION ts.combinecontacts(_keepcontactid integer, _contactidlist character varying)
+ RETURNS void
+ LANGUAGE plpgsql
 AS $function$
   DECLARE
     rec RECORD;

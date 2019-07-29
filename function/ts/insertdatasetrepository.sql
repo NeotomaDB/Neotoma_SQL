@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertdatasetrepository(_datasetid integer, _repos
 AS $function$
   INSERT INTO ndb.repositoryspecimens(datasetid, repositoryid, notes)
   VALUES (_datasetid, _repositoryid, _notes)
-$function$;
+$function$

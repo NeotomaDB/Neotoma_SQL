@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertelementtaxagroupportion(_elementtaxagroupid 
 AS $function$
   INSERT INTO ndb.elementtaxagroupportions (elementtaxagroupid, portionid)
   VALUES (_elementtaxagroupid, _portionid)
-$function$;
+$function$

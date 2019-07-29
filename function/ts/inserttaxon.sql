@@ -1,17 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.inserttaxon(
-  _code CHARACTER VARYING,
-  _name CHARACTER VARYING,
-  _author CHARACTER VARYING = null,
-  _valid boolean = True,
-  _higherid int = null,
-  _extinct boolean = False,
-  _groupid CHAR(3) = null,
-  _pubid int = null,
-  _validatorid int = null,
-  _validatedate CHARACTER VARYING = null,
-  _notes CHARACTER VARYING = null)
-RETURNS integer
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ts.inserttaxon(_code character varying, _name character varying, _author character varying DEFAULT NULL::character varying, _valid boolean DEFAULT true, _higherid integer DEFAULT NULL::integer, _extinct boolean DEFAULT false, _groupid character DEFAULT NULL::bpchar, _pubid integer DEFAULT NULL::integer, _validatorid integer DEFAULT NULL::integer, _validatedate character varying DEFAULT NULL::character varying, _notes character varying DEFAULT NULL::character varying)
+ RETURNS integer
+ LANGUAGE sql
 AS $function$
 
   INSERT INTO ndb.taxa (taxoncode,

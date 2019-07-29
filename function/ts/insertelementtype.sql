@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.elementtypes (elementtype)
   VALUES (_elementtype)
   RETURNING elementtypeid
-$function$;
+$function$

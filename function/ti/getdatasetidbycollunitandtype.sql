@@ -1,10 +1,12 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetidbycollunitandtype(collunitid integer, datasettypeid integer)
+CREATE OR REPLACE FUNCTION ti.getdatasetidbycollunitandtype(_collunitid integer, _datasettypeid integer)
  RETURNS TABLE(datasetid integer)
- LANGUAGE sql
+ LANGUAGE plpgsql
 AS $function$
+BEGIN
 
-select    datasetid
-from      ndb.datasets
-where     (datasettypeid = $2) and (collectionunitid = $1)
+	SELECT datasetid
+	FROM ndb.datasets
+	WHERE datasettypeid = $2 AND collectionunitid = $1;
 
+END;
 $function$

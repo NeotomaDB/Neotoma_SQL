@@ -1,7 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.deletechronology(
-  _chronologyid INTEGER)
-RETURNS void
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ts.deletechronology(_chronologyid integer)
+ RETURNS void
+ LANGUAGE sql
 AS $function$
   WITH gccs AS (
     SELECT     gcc.chroncontrolid, gcc.geochronid

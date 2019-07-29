@@ -1,13 +1,7 @@
-CREATE OR REPLACE FUNCTION ts.updatesynonymy(_synonymyid int,
-	_reftaxonid int,
-	_fromcontributor BOOLEAN DEFAULT false,
-	_publicationid int DEFAULT null,
-	_notes varchar DEFAULT null,
-	_contactid int DEFAULT null,
-	_datesynonymized date DEFAULT null)
-
-RETURNS void
-AS $$
+CREATE OR REPLACE FUNCTION ts.updatesynonymy(_synonymyid integer, _reftaxonid integer, _fromcontributor boolean DEFAULT false, _publicationid integer DEFAULT NULL::integer, _notes character varying DEFAULT NULL::character varying, _contactid integer DEFAULT NULL::integer, _datesynonymized date DEFAULT NULL::date)
+ RETURNS void
+ LANGUAGE sql
+AS $function$
 
 UPDATE ndb.synonymy
 SET reftaxonid = _reftaxonid, 
@@ -21,4 +15,4 @@ WHERE synonymyid = _synonymyid;
 INSERT INTO ti.stewardupdates(contactid, tablename, pk1, operation)
 VALUES (_contactid, 'synonymy', _synonymyid, 'update')
  
-$$ LANGUAGE SQL;
+$function$

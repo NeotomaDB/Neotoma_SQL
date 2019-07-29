@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertchroncontrolcal14c(_chroncontrolid integer, 
 AS $function$
   INSERT INTO ndb.chroncontrolscal14c(chroncontrolid, calibrationcurveid, calibrationprogramid)
   VALUES (_chroncontrolid, _calibrationcurveid, _calibrationprogramid)
-$function$;
+$function$

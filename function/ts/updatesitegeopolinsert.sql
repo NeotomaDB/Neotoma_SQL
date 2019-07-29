@@ -1,6 +1,7 @@
-CREATE OR REPLACE FUNCTION ts.updatesitegeopolinsert(_siteid int, _stewardcontactid int, _geopoliticalid int)
-RETURNS	void
-AS $$
+CREATE OR REPLACE FUNCTION ts.updatesitegeopolinsert(_siteid integer, _stewardcontactid integer, _geopoliticalid integer)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
 BEGIN
 	BEGIN
 	INSERT INTO ndb.sitegeopolitical(siteid, geopoliticalid)
@@ -16,4 +17,4 @@ BEGIN
 	END;
 END;
 
-$$ LANGUAGE plpgsql;
+$function$

@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.deletetaxon (_taxonid INTEGER)
-RETURNS void
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ts.deletetaxon(_taxonid integer)
+ RETURNS void
+ LANGUAGE sql
 AS $function$
   DELETE FROM ndb.taxaalthierarchy AS tah
   WHERE tah.highertaxonid = _taxonid;
