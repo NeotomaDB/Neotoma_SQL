@@ -1,10 +1,9 @@
-CREATE OR REPLACE FUNCTION ti.getanalysisunitsbycollunitid(collunitid integer)
+CREATE OR REPLACE FUNCTION ti.getanalysisunitsbycollunitid(_collunitid integer)
  RETURNS TABLE(analysisunitid integer, analysisunitname character varying, depth double precision, thickness double precision)
- LANGUAGE sql
-AS $function$
+AS $$
 
 select     analysisunitid, analysisunitname, depth, thickness
 from       ndb.analysisunits
-where      (collectionunitid = $1)
+where      (collectionunitid = $1);
 
-$function$
+$$ LANGUAGE SQL;
