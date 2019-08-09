@@ -1,8 +1,7 @@
 CREATE OR REPLACE FUNCTION ti.getanalysisunitsamplecount(_analunitid integer)
- RETURNS TABLE(count bigint)
- LANGUAGE sql
-AS $function$
-SELECT     count(analysisunitid) AS count
+ RETURNS TABLE(count INTEGER)
+AS $$
+SELECT     count(analysisunitid)::integer AS count
 FROM       ndb.samples
-WHERE      analysisunitid = _analunitid;
-$function$
+WHERE      analysisunitid = $1;
+$$ LANGUAGE SQL;

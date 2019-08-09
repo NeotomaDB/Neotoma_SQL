@@ -1,7 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getchildtaxa(taxonname character varying)
+CREATE OR REPLACE FUNCTION ti.getchildtaxa(_taxonname character varying)
  RETURNS TABLE(taxonid integer, taxonname character varying, author character varying, highertaxonid integer, level integer)
- LANGUAGE sql
-AS $function$
+AS $$
 WITH  RECURSIVE taxacte 
 AS 
 (
@@ -19,4 +18,4 @@ AS
  SELECT taxonid, taxonname, author, highertaxonid, level 
  FROM taxacte
  ORDER BY level
-$function$
+$$ LANGUAGE SQL;

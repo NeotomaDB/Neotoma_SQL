@@ -1,10 +1,9 @@
-CREATE OR REPLACE FUNCTION ti.getagetypeid(agetype character varying)
+CREATE OR REPLACE FUNCTION ti.getagetypeid(_agetype character varying)
  RETURNS TABLE(agetypeid integer)
- LANGUAGE sql
-AS $function$
+AS $$
 
-SELECT     agetypeid
-FROM       ndb.agetypes at
-WHERE     at.agetype = $1
+SELECT agetypeid
+FROM  ndb.agetypes at
+WHERE at.agetype = $1;
 
-$function$
+$$ LANGUAGE SQL;
