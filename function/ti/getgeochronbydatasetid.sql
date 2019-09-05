@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getgeochronbydatasetid(datasetid integer)
+CREATE OR REPLACE FUNCTION ti.getgeochronbydatasetid(_datasetid integer)
  RETURNS TABLE(geochronid integer, geochrontypeid integer, geochrontype integer, agetype character varying, depth double precision, thickness double precision, analysisunitname character varying, age double precision, errorolder double precision, erroryounger double precision, infinite boolean, labnumber character varying, materialdated character varying, notes text)
  LANGUAGE sql
 AS $function$
@@ -14,4 +14,4 @@ from         ndb.geochronology inner join
                       ndb.analysisunits on ndb.samples.analysisunitid = ndb.analysisunits.analysisunitid
 where     (ndb.datasets.datasetid = $1)
 
-$function$
+$function$;

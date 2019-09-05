@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ti.geteventtypebyname(_eventtype character varying)
 AS $function$
 SELECT eventtypeid, eventtype
 FROM ndb.eventtypes
-WHERE (eventtype = _eventtype);
-$function$
+WHERE eventtype ILIKE $1
+$function$;

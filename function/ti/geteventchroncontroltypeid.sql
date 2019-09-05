@@ -5,5 +5,5 @@ AS $function$
 SELECT ndb.events.eventid, ndb.eventtypes.chroncontroltypeid
 FROM ndb.eventtypes INNER JOIN
        ndb.events on ndb.eventtypes.eventtypeid = ndb.events.eventtypeid
-WHERE ndb.events.eventname = _eventname
-$function$
+WHERE ndb.events.eventname ILIKE $1
+$function$;

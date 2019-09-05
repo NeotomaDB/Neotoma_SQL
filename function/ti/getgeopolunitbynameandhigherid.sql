@@ -3,11 +3,8 @@ CREATE OR REPLACE FUNCTION ti.getgeopolunitbynameandhigherid(_geopolname charact
  LANGUAGE sql
 AS $function$
 
-
 SELECT     GeoPoliticalID, GeoPoliticalName, GeoPoliticalUnit, Rank, HigherGeoPoliticalID
 FROM       NDB.GeoPoliticalUnits
-WHERE      (geopoliticalname = _geopolname) AND (highergeopoliticalid = _highergeopolid)
-
-
+WHERE      (geopoliticalname ILIKE $1) AND (highergeopoliticalid = $2)
 
 $function$
