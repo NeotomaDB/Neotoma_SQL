@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ti.geteventbyname(_eventname character varying)
 AS $function$
 SELECT eventid, eventtypeid, eventname, c14age, c14ageolder, c14ageyounger, calage, calageyounger, calageolder, notes
 FROM ndb.events
-WHERE eventname = _eventname;
-$function$
+WHERE eventname ILIKE $1
+$function$;

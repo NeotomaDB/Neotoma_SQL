@@ -3,9 +3,8 @@ CREATE OR REPLACE FUNCTION ti.getgeochrontypeid(_geochrontype character varying)
  LANGUAGE sql
 AS $function$
 
-SELECT     geochrontypeid
-FROM       ndb.geochrontypes
-where     (geochrontype = _geochrontype)
+SELECT geochrontypeid
+FROM ndb.geochrontypes
+WHERE geochrontype ILIKE $1
 
-
-$function$
+$function$;

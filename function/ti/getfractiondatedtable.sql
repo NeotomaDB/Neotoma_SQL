@@ -1,10 +1,8 @@
 CREATE OR REPLACE FUNCTION ti.getfractiondatedtable()
- RETURNS ndb.fractiondated
- LANGUAGE sql
-AS $function$
+RETURNS TABLE(fractionid int, fraction character varying(80))
+AS $$
 
-select      ndb.fractiondated.*
-from          ndb.fractiondated
+select fractionid, fraction
+from ndb.fractiondated
 
-
-$function$
+$$ LANGUAGE SQL;

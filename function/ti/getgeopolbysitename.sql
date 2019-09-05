@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION ti.getgeopolbysitename(_sitename character varying, _
  LANGUAGE plpgsql
 AS $function$
   DECLARE
-    _site1 geography;
+    _site1 geometry;
     _geopolname1 varchar(255);
     _geopolname2 varchar(255);
     _geopolname3 varchar(255);
@@ -34,7 +34,7 @@ AS $function$
   SELECT
       s.siteid,
       s.sitename,
-      ST_Distance(ST_Centroid(_site1), s.geog)/1000 as "distkm",
+      ST_Distance(ST_Centroid(_site1)::geography, s.geog)/1000 as "distkm",
       concat_ws('|',g1.geopolname1, g2.geopolname2, g2.geopolname2, g3.geopolname3, g4.geopolname4) as geopolitical
   FROM
       ndb.sites s LEFT OUTER JOIN
