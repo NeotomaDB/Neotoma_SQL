@@ -7,5 +7,5 @@ select     cct.chroncontroltypeid,
 from       ndb.relativeages as ra
 	inner join ndb.relativeagescales as ras on ra.relativeagescaleid = ras.relativeagescaleid
 	inner join ndb.chroncontroltypes as cct on ras.relativeagescale = cct.chroncontroltype
-where     (ra.relativeage = _relativeage)
+where     (ra.relativeage ILIKE _relativeage)
 $function$

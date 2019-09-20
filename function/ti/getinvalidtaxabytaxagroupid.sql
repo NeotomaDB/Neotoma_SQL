@@ -7,6 +7,6 @@ AS $function$
 SELECT      taxonid, taxoncode, taxonname, author, valid, highertaxonid, extinct, taxagroupid, publicationid, validatorid,
                TO_CHAR(tx.validatedate, 'YYYY-MM-DD HH:MI:SS') AS validatedate, notes
 FROM          ndb.taxa tx
-WHERE      (valid = False) AND (taxagroupid = _taxagroupid)
+WHERE      (valid = False) AND (taxagroupid ILIKE _taxagroupid)
 
 $function$

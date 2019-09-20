@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getvariabletaxonid(variableid integer)
+CREATE OR REPLACE FUNCTION ti.getvariabletaxonid(_variableid integer)
  RETURNS TABLE(taxonid integer)
  LANGUAGE sql
 AS $function$

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getvalidsynonymbyinvalidtaxonid(invalidtaxonid integer)
+CREATE OR REPLACE FUNCTION ti.getvalidsynonymbyinvalidtaxonid(_invalidtaxonid integer)
  RETURNS SETOF ndb.synonyms
  LANGUAGE sql
 AS $function$

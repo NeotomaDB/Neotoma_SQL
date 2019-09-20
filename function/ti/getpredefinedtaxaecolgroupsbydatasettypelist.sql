@@ -9,7 +9,7 @@ FROM ndb.datasettaxagrouptypes INNER JOIN
                       ndb.ecolgroups ON ndb.taxa.taxonid = ndb.ecolgroups.taxonid INNER JOIN
                       ndb.taxagrouptypes ON ndb.datasettaxagrouptypes.taxagroupid = ndb.taxagrouptypes.taxagroupid INNER JOIN
                       ndb.ecolgrouptypes ON ndb.ecolgroups.ecolgroupid = ndb.ecolgrouptypes.ecolgroupid
-WHERE ndb.datasettaxagrouptypes.datasettypeid IN (SELECT unnest(string_to_array(_datasettypeids,'$'))::int)
+WHERE ndb.datasettaxagrouptypes.datasettypeid IN (SELECT unnest(string_to_array(_datasettypeids,','))::int)
 GROUP BY ndb.datasettaxagrouptypes.taxagroupid, ndb.taxagrouptypes.taxagroup, ndb.ecolgroups.ecolgroupid, ndb.ecolgrouptypes.ecolgroup
 ORDER BY ndb.datasettaxagrouptypes.taxagroupid;
 
