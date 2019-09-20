@@ -12,5 +12,5 @@ select     ra.relativeageid,
 		   ra.calageolder,
 		   ra.notes
 from       ndb.relativeages as ra
-where      ra.relativeage = _relativeage
+where      ra.relativeage ILIKE _relativeage
 $function$

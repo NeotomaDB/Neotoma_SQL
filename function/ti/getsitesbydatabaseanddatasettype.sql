@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getsitesbydatabaseanddatasettype(databaseid integer, datasettypeid integer)
+CREATE OR REPLACE FUNCTION ti.getsitesbydatabaseanddatasettype(_databaseid integer, _datasettypeid integer)
  RETURNS TABLE(siteid integer, sitename character varying, latitude double precision, longitude double precision, altitude double precision, area double precision)
  LANGUAGE sql
 AS $function$

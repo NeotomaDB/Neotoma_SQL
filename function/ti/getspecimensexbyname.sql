@@ -7,6 +7,6 @@ SELECT
 	sst.sexid,
 	sst.sex
 FROM       ndb.specimensextypes AS sst
-WHERE      sst.sex = _sex
+WHERE      sst.sex ILIKE _sex
 
 $function$

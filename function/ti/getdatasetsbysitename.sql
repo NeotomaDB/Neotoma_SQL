@@ -7,5 +7,5 @@ FROM ndb.sites INNER JOIN
      ndb.collectionunits ON ndb.sites.siteid = ndb.collectionunits.siteid INNER JOIN
      ndb.datasets ON ndb.collectionunits.collectionunitid = ndb.datasets.collectionunitid INNER JOIN
      ndb.datasettypes ON ndb.datasets.datasettypeid = ndb.datasettypes.datasettypeid
-WHERE ndb.sites.sitename LIKE _sitename
+WHERE ndb.sites.sitename ILIKE _sitename
 $function$

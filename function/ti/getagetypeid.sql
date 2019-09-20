@@ -4,6 +4,6 @@ AS $$
 
 SELECT agetypeid
 FROM  ndb.agetypes at
-WHERE at.agetype = $1;
+WHERE at.agetype ILIKE $1;
 
 $$ LANGUAGE SQL;
