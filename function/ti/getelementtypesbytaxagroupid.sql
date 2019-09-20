@@ -5,5 +5,5 @@ AS $function$
 SELECT ndb.elementtaxagroups.elementtypeid, ndb.elementtypes.elementtype
 FROM   ndb.elementtaxagroups inner JOIN
                       ndb.elementtypes ON ndb.elementtaxagroups.elementtypeid = ndb.elementtypes.elementtypeid
-WHERE ndb.elementtaxagroups.taxagroupid = _taxagroupid;
+WHERE ndb.elementtaxagroups.taxagroupid ILIKE _taxagroupid;
 $function$
