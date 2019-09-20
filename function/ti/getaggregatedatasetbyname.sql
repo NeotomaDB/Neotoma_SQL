@@ -5,6 +5,6 @@ AS $function$
 
 SELECT     aggregatedatasetid, aggregatedatasetname, aggregateordertypeid, notes
 FROM       ndb.aggregatedatasets
-WHERE     (aggregatedatasetname = $1)
+WHERE     (aggregatedatasetname ILIKE $1)
 
 $function$

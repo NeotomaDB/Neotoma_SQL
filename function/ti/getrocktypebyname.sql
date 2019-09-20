@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ti.getrocktypebyname(_rocktype character varying)
 AS $function$
 select     rt.rocktypeid, rt.rocktype, rt.higherrocktypeid, rt.description
 from       ndb.rocktypes as rt
-where      rocktype = _rocktype
+where      rocktype ILIKE _rocktype
 $function$

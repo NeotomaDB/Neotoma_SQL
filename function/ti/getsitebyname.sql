@@ -6,5 +6,5 @@ select     st.siteid,
            st.sitename,
            ST_AsText(st.geog) as geog
 from       ndb.sites AS st
-where     st.sitename LIKE _sitename
+where     st.sitename ILIKE _sitename
 $function$

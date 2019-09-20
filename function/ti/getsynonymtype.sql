@@ -7,6 +7,6 @@ AS $function$
  	st.synonymtypeid,
 	st.synonymtype
  FROM       ndb.synonymtypes as st
- WHERE      st.synonymtype = _synonymtype
+ WHERE      st.synonymtype ILIKE _synonymtype
 
 $function$
