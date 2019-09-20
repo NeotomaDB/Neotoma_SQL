@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getsitesbydatasettype(datasettypeid integer)
+CREATE OR REPLACE FUNCTION ti.getsitesbydatasettype(_datasettypeid integer)
  RETURNS TABLE(siteid integer, sitename character varying, latitude double precision, longitude double precision, altitude double precision, area double precision)
  LANGUAGE sql
 AS $function$
@@ -6,7 +6,7 @@ SELECT
   sts.siteid AS siteid,
   sts.sitename AS sitename,
   ST_Y(ST_Centroid(sts.geog::geometry)) AS latitude,
-  ST_X(ST_Centroid(sts.geog::geometry)) AS longitude, 
+  ST_X(ST_Centroid(sts.geog::geometry)) AS longitude,
   sts.altitude,
   sts.area
 FROM ndb.datasets AS ds

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getaggregatedatasetbyname(name character varying)
+CREATE OR REPLACE FUNCTION ti.getaggregatedatasetbyname(_name character varying)
  RETURNS TABLE(aggregatedatasetid integer, aggregatedatasetname character varying, aggregateordertypeid integer, notes text)
  LANGUAGE sql
 AS $function$
