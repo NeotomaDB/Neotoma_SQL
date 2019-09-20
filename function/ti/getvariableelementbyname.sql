@@ -1,8 +1,8 @@
-CREATE OR REPLACE FUNCTION ti.getvariableelementbyname(variableelement character varying)
+CREATE OR REPLACE FUNCTION ti.getvariableelementbyname(_variableelement character varying)
  RETURNS TABLE(variableelementid integer, elementtypeid integer, symmetryid integer, portionid integer, maturityid integer)
  LANGUAGE sql
 AS $function$
-SELECT 
+SELECT
   ve.variableelementid,
   ve.elementtypeid,
   ve.symmetryid,
@@ -10,5 +10,5 @@ SELECT
   ve.maturityid
 FROM ndb.variableelements as ve
 WHERE
-  ve.variableelement LIKE variableelement
+  ve.variableelement ILIKE variableelement
 $function$
