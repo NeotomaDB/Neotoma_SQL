@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getvariableunitsid(variableunits character varying)
+CREATE OR REPLACE FUNCTION ti.getvariableunitsid(_variableunits character varying)
  RETURNS TABLE(variableunitsid integer)
  LANGUAGE sql
 AS $function$

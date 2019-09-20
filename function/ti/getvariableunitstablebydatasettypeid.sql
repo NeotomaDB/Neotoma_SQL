@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getvariableunitstablebydatasettypeid(datasettypeid integer)
+CREATE OR REPLACE FUNCTION ti.getvariableunitstablebydatasettypeid(_datasettypeid integer)
  RETURNS TABLE(variableunits character varying)
  LANGUAGE sql
 AS $function$
