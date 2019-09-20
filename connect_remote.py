@@ -137,6 +137,13 @@ for record in cur:
                 file.close()
                 print('The file for ' + record[0] + '.' + record[1] + ' has been updated in the repository.')
             else:
+                try:
+                    cur.execute("DROP FUNCTION " + record[0] + "." + record[1] + "();")
+                    conn.commit()
+                except:
+                    conn.rollback()
+                    print("Could not delete")
+
                 cur.execute(open("./function/" + record[0] + "/" + record[1] + ".sql", "r").read())
                 conn.commit()
                 print('The function for ' + record[0] + '.' + record[1] + ' has been updated in the `' + data['database'] + '` database.')
