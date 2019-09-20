@@ -15,7 +15,7 @@ BEGIN
 				   cast(cast(_west as decimal(20,15)) as varchar(20)) || ' ' || cast(cast(_north as decimal(20,15)) as varchar(20)) || ', ' ||
 				   cast(cast(_west as decimal(20,15)) as varchar(20)) || ' ' || cast(cast(_south as decimal(20,15)) as varchar(20)) || '))')::geography;
 	ELSE
-	  _site1 := st_geomfromtext('point(' + cast(cast(_west as decimal(20,15)) as varchar(20)) + ' ' + cast(cast(_north as decimal(20,15)) as varchar(20)) + ')', 4326)::geography;
+	  _site1 := st_geomfromtext('point(' || cast(_west as decimal(20,15))::text || ' ' || cast(_north as decimal(20,15))::text || ')', 4326)::geography;
 
 	END IF;
 
