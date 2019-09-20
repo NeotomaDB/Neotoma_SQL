@@ -5,6 +5,6 @@ AS $function$
 BEGIN
 	SELECT COUNT(handle) AS count
 	FROM ndb.collectionunits
-	WHERE handle = _handle;
+	WHERE handle ILIKE _handle;
 END;
 $function$

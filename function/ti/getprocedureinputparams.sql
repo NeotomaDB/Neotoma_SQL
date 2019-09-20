@@ -12,11 +12,11 @@ BEGIN
 
 	RETURN QUERY
 	SELECT unnest(regexp_split_to_array(pg_get_function_arguments(p.oid), ', ')) AS params
-	FROM pg_catalog.pg_namespace n JOIN  pg_catalog.pg_proc p 
+	FROM pg_catalog.pg_namespace n JOIN  pg_catalog.pg_proc p
 	ON p.pronamespace = n.oid
-	WHERE p.proname = func AND n.nspname = sch; 
-	
+	WHERE p.proname ILIKE func AND n.nspname ILIKE sch;
+
 
 END;
-    
+
 $function$
