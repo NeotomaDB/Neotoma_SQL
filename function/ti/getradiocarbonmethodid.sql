@@ -4,5 +4,6 @@ CREATE OR REPLACE FUNCTION ti.getradiocarbonmethodid(_radiocarbonmethod characte
 AS $function$
 SELECT
 	 rcm.radiocarbonmethodid
-FROM ndb.radiocarbonmethods AS rcm;
+FROM ndb.radiocarbonmethods AS rcm
+WHERE radiocarbonmethod = $1;
 $function$
