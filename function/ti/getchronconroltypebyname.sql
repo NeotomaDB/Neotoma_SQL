@@ -1,8 +1,10 @@
-CREATE OR REPLACE FUNCTION ti.getchronconroltypebyname(_chroncontroltype varchar(64))
-RETURNS TABLE(chroncontroltypeid int, chroncontroltype varchar(64), higherchroncontroltypeid int) AS $$
+CREATE OR REPLACE FUNCTION ti.getchronconroltypebyname(_chroncontroltype character varying)
+ RETURNS TABLE(chroncontroltypeid integer, chroncontroltype character varying, higherchroncontroltypeid integer)
+ LANGUAGE sql
+AS $function$
 SELECT chroncontroltypeid,
        chroncontroltype,
        higherchroncontroltypeid
 FROM ndb.chroncontroltypes
 WHERE (chroncontroltype ILIKE _chroncontroltype);
-$$ LANGUAGE SQL;
+$function$
