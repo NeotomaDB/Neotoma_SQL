@@ -7,6 +7,6 @@ SELECT
 	sds.domesticstatusid,
 	sds.domesticstatus
 FROM          ndb.specimendomesticstatustypes AS sds
-WHERE    sds.domesticstatus ILIKE _domesticstatus
+WHERE    sds.domesticstatus ILIKE $1
 
 $function$

@@ -8,6 +8,6 @@ SELECT     vr.variableid,
            vr.variableunitsid,
            vr.variablecontextid
 FROM         ndb.variables AS vr
-WHERE     (vr.taxonid = taxonid)
+WHERE     (vr.taxonid = $1)
 
 $function$

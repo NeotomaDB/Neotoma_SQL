@@ -8,5 +8,5 @@ AS $function$
  	ts.taphonomicsystem,
     ts.notes
  FROM         ndb.taphonomicsystems AS ts
- WHERE    ts.taphonomicsystem ILIKE _taphonomicsystem
+ WHERE    ts.taphonomicsystem ILIKE $1
 $function$

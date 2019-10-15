@@ -6,11 +6,11 @@ AS $function$
 SELECT tx.taxonid,
        tx.taxonname,
 		   sy.validtaxonid
-from
+FROM
   ndb.taxa AS tx
   inner join ndb.synonyms AS sy on tx.taxonid = sy.invalidtaxonid
-where
+WHERE
   tx.valid = False AND
-  (LOWER(tx.taxagroupid) in LOWER((SELECT unnest(string_to_array(taxagrouplist,'$')))))
+  (LOWER(tx.taxagroupid) in (SELECT unnest(string_to_array(LOWER($1),'$'))))
 
 $function$

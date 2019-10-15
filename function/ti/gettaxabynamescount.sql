@@ -7,6 +7,6 @@ SELECT count(tx.taxonid) AS count
 from
   ndb.taxa AS tx
 where
-  (tx.taxonname in (SELECT unnest(string_to_array(taxanames,'$'))))
+  (LOWER(tx.taxonname) in (SELECT unnest(string_to_array(LOWER($1),'$'))))
 
 $function$
