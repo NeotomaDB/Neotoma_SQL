@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getradiocarbonmethodid(_radiocarbonmethod character varying)
- RETURNS TABLE(_radiocarbonmethodid integer)
+ RETURNS TABLE(radiocarbonmethodid integer)
  LANGUAGE sql
 AS $function$
 SELECT
