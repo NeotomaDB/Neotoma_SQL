@@ -6,12 +6,11 @@ SELECT tx.taxonname,
        ve.variableelement,
        vu.variableunits,
        vc.variablecontext
-FROM
-                   ndb.variables AS vr
+FROM ndb.variables AS vr
   INNER JOIN            ndb.taxa AS tx ON           vr.taxonid = tx.taxonid
   LEFT JOIN ndb.variablecontexts AS vc ON vr.variablecontextid = vc.variablecontextid
   LEFT JOIN    ndb.variableunits AS vu ON   vr.variableunitsid = vu.variableunitsid
   LEFT JOIN ndb.variableelements AS ve ON vr.variableelementid = ve.variableelementid
-WHERE     (vr.variableid = variableid)
+WHERE     (vr.variableid = $1)
 
 $function$

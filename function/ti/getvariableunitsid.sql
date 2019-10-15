@@ -5,6 +5,6 @@ AS $function$
 SELECT vu.variableunitsid
 FROM
   ndb.variableunits AS vu
-WHERE vu.variableunits ILIKE variableunits
+WHERE vu.variableunits ILIKE $1
 
 $function$
