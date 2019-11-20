@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION doi.chronmeta(dsid integer)
+CREATE OR REPLACE FUNCTION doi.chronmeta(dsid integer[])
  RETURNS TABLE(datasetid integer, chronologies json)
  LANGUAGE sql
 AS $function$
@@ -13,7 +13,7 @@ AS $function$
 			FROM ndb.dslinks AS dsl
 			LEFT OUTER JOIN     ndb.chronologies AS chrs    ON chrs.collectionunitid = dsl.collectionunitid
 			LEFT OUTER JOIN          ndb.contacts AS cnt    ON cnt.contactid = chrs.contactid
-		WHERE    dsl.datasetid = dsid AND cnt.contactid IS NOT NULL
+		WHERE    dsl.datasetid = ANY(dsid) AND cnt.contactid IS NOT NULL
 		GROUP BY chrs.chronologyid
 
 	),
@@ -34,7 +34,7 @@ AS $function$
 		  LEFT OUTER JOIN          ndb.agetypes AS aty    ON chrs.agetypeid = aty.agetypeid
 		  LEFT OUTER JOIN          ndb.datasets AS dts    ON dsl.datasetid = dts.datasetid
 		  LEFT OUTER JOIN contactinfo AS cinf ON cinf.chronologyid = chrs.chronologyid
-		WHERE    dsl.datasetid = dsid
+		WHERE    dsl.datasetid = ANY(dsid)
 	)
 	SELECT
 	  dts.datasetid,
@@ -81,6 +81,6 @@ AS $function$
 	  LEFT OUTER JOIN chronmeta AS cmet ON cmet.chronologyid = chrs.chronologyid
 		LEFT OUTER JOIN ndb.radiocarbon AS rcb ON rcb.geochronid = gc.geochronid
 		LEFT JOIN ndb.radiocarbonmethods AS rcm ON rcm.radiocarbonmethodid = rcb.radiocarbonmethodid
-	WHERE    dts.datasetid = dsid
+	WHERE    dts.datasetid = ANY(dsid)
 	GROUP BY dts.datasetid, cmet.chronologyid, cmet.meta
 $function$

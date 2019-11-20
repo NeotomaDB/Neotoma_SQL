@@ -31,6 +31,6 @@ FROM
 WHERE
   (tx.valid = True) AND
   (tx.taxagroupid IN (
-    SELECT unnest(string_to_array(taxagrouplist,'$')))
+    SELECT unnest(string_to_array(_taxagrouplist,'$')))
   )
 $function$
