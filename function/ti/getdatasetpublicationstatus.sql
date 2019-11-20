@@ -1,13 +1,8 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetpublicationstatus(_datasetid integer, _publicationid integer)
  RETURNS TABLE(primarypub boolean)
- LANGUAGE plpgsql
+ LANGUAGE sql
 AS $function$
-BEGIN
-
-	SELECT primarypub
-	FROM ndb.datasetpublications
-	WHERE datasetid = $1 AND publicationid = $2;
-
-END;
-
+	SELECT dspub.primarypub
+	FROM ndb.datasetpublications AS dspub
+	WHERE dspub.datasetid = $1 AND dspub.publicationid = $2;
 $function$
