@@ -12,5 +12,5 @@ AS $function$
 	FROM   ndb.datasetpis AS dspi
     INNER JOIN ndb.datasets AS ds ON dspi.datasetid = ds.datasetid
     INNER JOIN ndb.contacts AS ct on dspi.contactid = ct.contactid
-	WHERE  (_datasettypeidlist IS NULL) OR ds.datasettypeid in (SELECT unnest(string_to_array(_datasettypeidlist,'$'))::int);
+	WHERE  (_datasettypeidlist IS NULL) OR ds.datasettypeid in (SELECT unnest(string_to_array(_datasettypeidlist,','))::int);
 $function$
