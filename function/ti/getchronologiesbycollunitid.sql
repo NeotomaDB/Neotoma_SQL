@@ -23,6 +23,6 @@ SELECT chn.chronologyid,
        chn.notes
 FROM ndb.chronologies AS chn
 INNER JOIN ndb.agetypes AS aty ON chn.agetypeid = aty.agetypeid
-WHERE chn.collectionunitid = _collunitid
+WHERE chn.collectionunitid = _collectionunitid
 ORDER BY chn.chronologyid;
 $function$
