@@ -5,5 +5,5 @@ AS $function$
 SELECT
 	 rcm.radiocarbonmethodid
 FROM ndb.radiocarbonmethods AS rcm
-WHERE radiocarbonmethod = $1;
+WHERE radiocarbonmethod ILIKE $1;
 $function$
