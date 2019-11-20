@@ -12,7 +12,7 @@ CREATE OR REPLACE FUNCTION ti.getchronologiesbycollunitid(_collectionunitid inte
  LANGUAGE sql
 AS $function$
 SELECT chn.chronologyid,
-       ndb.agetypes.agetype,
+       aty.agetype,
        chn.chronologyname,
        chn.isdefault,
        chn.agemodel,
