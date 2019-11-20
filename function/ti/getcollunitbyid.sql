@@ -17,7 +17,7 @@ CREATE OR REPLACE FUNCTION ti.getcollunitbyid(_collectionunitid integer)
                slopeangle integer,
                location character varying,
                notes text)
- LANGUAGE plpgsql
+ LANGUAGE sql
 AS $function$
   SELECT cu.collectionunitid,
          cu.handle, cu.siteid, cu.colltypeid,

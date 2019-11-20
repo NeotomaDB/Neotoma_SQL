@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION ti.getdatasetidsbytaxonid(_taxonid integer)
  RETURNS TABLE(datasetid integer)
  LANGUAGE sql
 AS $function$
-	SELECT ndb.datasets.datasetid
+	SELECT ds.datasetid
 	FROM ndb.datasets AS ds
     INNER JOIN ndb.samples AS smp ON ds.datasetid = smp.datasetid
     INNER JOIN ndb.data AS dt ON smp.sampleid = dt.sampleid
