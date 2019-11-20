@@ -3,8 +3,8 @@ CREATE OR REPLACE FUNCTION ti.getcollectiontypebyid(_colltypeid integer)
  LANGUAGE plpgsql
 AS $function$
 BEGIN
-	RETURN QUERY SELECT colltypeid, colltype
-	FROM ndb.collectiontypes
-	WHERE colltypeid = _colltypeid;
+	RETURN QUERY SELECT cty.colltypeid, cty.colltype
+	FROM ndb.collectiontypes AS cty
+	WHERE cty.colltypeid = _colltypeid;
 END;
 $function$
