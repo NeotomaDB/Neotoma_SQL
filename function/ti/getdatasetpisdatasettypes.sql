@@ -1,20 +1,16 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetpisdatasettypes(_datasettypeidlist character varying DEFAULT NULL::character varying)
- RETURNS TABLE(contactid integer, datasettypeid integer, datasetid integer, contactname character varying)
- LANGUAGE plpgsql
+ RETURNS TABLE(contactid integer,
+               datasettypeid integer,
+               datasetid integer,
+               contactname character varying)
+ LANGUAGE sql
 AS $function$
-BEGIN
-	IF _datasettypeidlist IS NULL THEN
-		RETURN QUERY SELECT ndb.datasetpis.contactid, ndb.datasets.datasettypeid, ndb.datasetpis.datasetid, ndb.contacts.contactname
-		FROM   ndb.datasetpis INNER JOIN
-				   ndb.datasets on ndb.datasetpis.datasetid = ndb.datasets.datasetid INNER JOIN
-				   ndb.contacts on ndb.datasetpis.contactid = ndb.contacts.contactid;
-
-	ELSE
-		RETURN QUERY SELECT ndb.datasetpis.contactid, ndb.datasets.datasettypeid, ndb.datasetpis.datasetid, ndb.contacts.contactname
-		FROM   ndb.datasetpis INNER JOIN
-				   ndb.datasets on ndb.datasetpis.datasetid = ndb.datasets.datasetid INNER JOIN
-				   ndb.contacts on ndb.datasetpis.contactid = ndb.contacts.contactid
-		WHERE  ndb.datasets.datasettypeid in (SELECT unnest(string_to_array(_datasettypeidlist,'$'))::int);
-	END IF;
-END;
+  SELECT dspi.contactid,
+         ds.datasettypeid,
+         dspi.datasetid,
+         ct.contactname
+	FROM   ndb.datasetpis AS dspi
+    INNER JOIN ndb.datasets AS ds ON dspi.datasetid = ds.datasetid
+    INNER JOIN ndb.contacts AS ct on dspi.contactid = ct.contactid
+	WHERE  (_datasettypeidlist IS NULL) OR ds.datasettypeid in (SELECT unnest(string_to_array(_datasettypeidlist,'$'))::int);
 $function$
