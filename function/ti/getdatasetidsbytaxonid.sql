@@ -1,14 +1,12 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetidsbytaxonid(_taxonid integer)
  RETURNS TABLE(datasetid integer)
- LANGUAGE plpgsql
+ LANGUAGE sql
 AS $function$
-BEGIN
 	SELECT ndb.datasets.datasetid
-	FROM ndb.datasets INNER JOIN
-		 ndb.samples ON ndb.datasets.datasetid = ndb.samples.datasetid INNER JOIN
-		 ndb.data ON ndb.samples.sampleid = ndb.data.sampleid INNER JOIN
-		 ndb.variables ON ndb.data.variableid = ndb.variables.variableid
-	GROUP BY ndb.datasets.datasetid, ndb.variables.taxonid
-	HAVING ndb.variables.taxonid = _taxonid;
-END;
+	FROM ndb.datasets AS ds
+    INNER JOIN ndb.samples AS smp ON ds.datasetid = smp.datasetid
+    INNER JOIN ndb.data AS dt ON smp.sampleid = dt.sampleid
+    INNER JOIN ndb.variables AS var ON dt.variableid = var.variableid
+	GROUP BY ds.datasetid, var.taxonid
+	HAVING var.taxonid = _taxonid;
 $function$
