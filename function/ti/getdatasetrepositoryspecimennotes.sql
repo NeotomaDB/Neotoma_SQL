@@ -1,11 +1,9 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetrepositoryspecimennotes(_datasetid integer)
- RETURNS TABLE(repositoryid integer, notes text)
- LANGUAGE plpgsql
+ RETURNS TABLE(repositoryid integer,
+               notes text)
+ LANGUAGE sql
 AS $function$
-BEGIN
-	SELECT repositoryid, notes
-	FROM   ndb.repositoryspecimens
-	WHERE  datasetid = $1;
-END;
-
+	SELECT rpsp.repositoryid, rpsp.notes
+	FROM   ndb.repositoryspecimens AS rpsp
+	WHERE  rpsp.datasetid = $1;
 $function$
