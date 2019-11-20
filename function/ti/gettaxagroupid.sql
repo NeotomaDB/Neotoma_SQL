@@ -5,6 +5,6 @@ AS $function$
 select     tgt.taxagroupid, 
             tgt.taxagroup
 from        ndb.taxagrouptypes AS tgt
-where     (tgt.taxagroup like _taxagroup)
+where     (tgt.taxagroup ILIKE _taxagroup)
 
 $function$
