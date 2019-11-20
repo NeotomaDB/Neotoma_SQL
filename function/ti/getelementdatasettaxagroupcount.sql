@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION ti.getelementdatasettaxagroupcount(_datasettypeid int
  RETURNS TABLE(elementtypeid integer)
  LANGUAGE sql
 AS $function$
-SELECT COUNT(elementtypeid)::INTEGER AS count
-FROM ndb.elementdatasettaxagroups
-WHERE (datasettypeid = _datasettypeid) AND (taxagroupid = _taxagroupid) AND (elementtypeid = _elementtypeid);
+  SELECT COUNT(edt.elementtypeid)::INTEGER AS count
+  FROM ndb.elementdatasettaxagroups AS edt
+  WHERE (edt.datasettypeid = _datasettypeid) AND (edt.taxagroupid = _taxagroupid) AND (elementtypeid = _elementtypeid);
 $function$
