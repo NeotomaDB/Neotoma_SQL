@@ -1,10 +1,10 @@
 CREATE OR REPLACE FUNCTION ti.getgeochronbydatasetid(_datasetid integer)
- RETURNS TABLE(geochronid integer, geochrontypeid integer, geochrontype integer, agetype character varying, depth double precision, thickness double precision, analysisunitname character varying, age double precision, errorolder double precision, erroryounger double precision, infinite boolean, labnumber character varying, materialdated character varying, notes text)
+ RETURNS TABLE(geochronid integer, geochrontypeid integer, geochrontype character varying, agetype character varying, depth double precision, thickness double precision, analysisunitid integer, analysisunitname character varying, age double precision, errorolder double precision, erroryounger double precision, infinite boolean, labnumber character varying, materialdated character varying, notes text)
  LANGUAGE sql
 AS $function$
 
-select     ndb.geochronology.geochronid, ndb.geochronology.geochrontypeid, ndb.geochrontypes.geochrontypeid, ndb.agetypes.agetype, ndb.analysisunits.depth, 
-                      ndb.analysisunits.thickness, ndb.analysisunits.analysisunitname, ndb.geochronology.age, ndb.geochronology.errorolder, ndb.geochronology.erroryounger, 
+select     ndb.geochronology.geochronid, ndb.geochronology.geochrontypeid, ndb.geochrontypes.geochrontype, ndb.agetypes.agetype, ndb.analysisunits.depth, 
+                      ndb.analysisunits.thickness, ndb.analysisunits.analysisunitid, ndb.analysisunits.analysisunitname, ndb.geochronology.age, ndb.geochronology.errorolder, ndb.geochronology.erroryounger, 
                       ndb.geochronology.infinite, ndb.geochronology.labnumber, ndb.geochronology.materialdated, ndb.geochronology.notes
 from         ndb.geochronology inner join
                       ndb.samples on ndb.geochronology.sampleid = ndb.samples.sampleid inner join
