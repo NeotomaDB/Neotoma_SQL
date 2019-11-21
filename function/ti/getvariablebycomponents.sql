@@ -18,8 +18,8 @@ AS $function$
   FROM
     ndb.variables AS vr
   WHERE
-              (_taxonid IS NULL OR           vr.taxonid = _taxonid)           AND
-    (_variableelementid IS NULL OR vr.variableelementid = _variableelementid) AND
-      (_variableunitsid IS NULL OR   vr.variableunitsid = _variableunitsid)   AND
-    (_variablecontextid IS NULL OR vr.variablecontextid = _variablecontextid)
+              (           vr.taxonid = _taxonid)           AND
+    (vr.variableelementid = _variableelementid) AND
+      (vr.variableunitsid = _variableunitsid)   AND
+    (vr.variablecontextid = _variablecontextid)
 $function$
