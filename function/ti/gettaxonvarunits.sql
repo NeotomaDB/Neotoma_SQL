@@ -7,6 +7,6 @@ AS $function$
     INNER JOIN          ndb.taxa AS tx ON        var.taxonid = tx.taxonid
 	INNER JOIN ndb.variableunits AS vu ON vu.variableunitsid = var.variableunitsid
   WHERE
-    tx.taxonname LIKE _taxonname
+    tx.taxonname ILIKE _taxonname
   GROUP BY vu.variableunits
 $function$
