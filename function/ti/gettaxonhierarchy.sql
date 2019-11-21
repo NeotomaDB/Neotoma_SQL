@@ -3,16 +3,17 @@ CREATE OR REPLACE FUNCTION ti.gettaxonhierarchy(_taxonname character varying)
  LANGUAGE sql
 AS $function$
 WITH RECURSIVE lowertaxa AS (SELECT
-              txa.taxonid, 
+              txa.taxonid,
               txa.highertaxonid
          FROM ndb.taxa AS txa
-        WHERE 
-          (LOWER(txa.taxonname) LIKE _taxonname)
+        WHERE
+          (txa.taxonname ILIKE _taxonname)
         UNION ALL
-       SELECT m.taxonid, 
+       SELECT m.taxonid,
 			   m.highertaxonid
          FROM ndb.taxa AS m
-         JOIN lowertaxa ON lowertaxa.taxonid = m.highertaxonid)
+         JOIN lowertaxa ON lowertaxa.highertaxonid = m.taxonid
+       WHERE NOT m.taxonid = m.highertaxonid)
 
 SELECT txa.taxonid,
        txa.taxonname,
