@@ -4,6 +4,6 @@ LANGUAGE sql
 AS $function$
 SELECT relativeagescaleid, relativeagescale
 FROM ndb.relativeagescales
-WHERE relativeagescale = $1;
+WHERE relativeagescale ILIKE $1;
 $function$
 
