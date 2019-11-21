@@ -15,5 +15,5 @@ select      tx.taxonid,
 			 TO_CHAR(tx.validatedate, 'YYYY-MM-DD HH:MI:SS') as validatedate, 
 			 tx.notes
 from          ndb.taxa AS tx
-where      (tx.taxonname like _taxonname)
+where      (tx.taxonname ILIKE _taxonname)
 $function$
