@@ -1,18 +1,14 @@
-CREATE OR REPLACE FUNCTION ti.getspecimendatebyspecimendateid
-RETURNS TABLE()
+CREATE OR REPLACE FUNCTION ti.getspecimendatebyspecimendateid(_specimendateid integer)
+RETURNS TABLE(specimenid integer, taxonid integer, taxonname character varying, elementtypeid integer,
+	elementtype character varying, fractionid integer, fraction character varying, sampleid integer, notes character varying)
 LANGUAGE sql
 AS $function$
 
+	SELECT ndb.specimendates.specimenid, ndb.specimendates.taxonid, ndb.taxa.taxonname, ndb.specimendates.elementtypeid, ndb.elementtypes.elementtype, 
+                      ndb.specimendates.fractionid, ndb.fractiondated.fraction, ndb.specimendates.sampleid, ndb.specimendates.notes
+    FROM ndb.specimendates INNER JOIN ndb.taxa ON ndb.specimendates.taxonid = ndb.taxa.taxonid LEFT OUTER JOIN
+                      ndb.fractiondated ON ndb.specimendates.fractionid = ndb.fractiondated.fractionid LEFT OUTER JOIN
+                      ndb.elementtypes ON ndb.specimendates.elementtypeid = ndb.elementtypes.elementtypeid
+	WHERE  ndb.specimendates.specimendateid = $1                      
 
 $function$
-
-
-CREATE PROCEDURE (@SPECIMENDATEID int)
-AS
-SELECT     NDB.SpecimenDates.SpecimenID, NDB.SpecimenDates.TaxonID, NDB.Taxa.TaxonName, NDB.SpecimenDates.ElementTypeID, NDB.ElementTypes.ElementType, 
-                      NDB.SpecimenDates.FractionID, NDB.FractionDated.Fraction, NDB.SpecimenDates.SampleID, NDB.SpecimenDates.Notes
-FROM       NDB.SpecimenDates INNER JOIN
-                      NDB.Taxa ON NDB.SpecimenDates.TaxonID = NDB.Taxa.TaxonID LEFT OUTER JOIN
-                      NDB.FractionDated ON NDB.SpecimenDates.FractionID = NDB.FractionDated.FractionID LEFT OUTER JOIN
-                      NDB.ElementTypes ON NDB.SpecimenDates.ElementTypeID = NDB.ElementTypes.ElementTypeID
-WHERE     (NDB.SpecimenDates.SpecimenDateID = @SPECIMENDATEID)
