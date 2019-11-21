@@ -15,7 +15,7 @@ Return query
 select t.taxonid, t.taxoncode, t.taxonname, t.author, t.valid, t.highertaxonid, t.extinct, t.taxagroupid, t.publicationid, 
        t.validatorid, t.validatedate::varchar(10) as validatedate, t.notes
 from ndb.taxa t
-where t.taxonname = ANY (taxaarray);
+where t.taxonname ILIKE ANY (taxaarray);
 
 
 
