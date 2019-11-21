@@ -7,4 +7,4 @@ AS $function$
 	FROM ndb.specimens
 	WHERE specimenid = $1
 
-$function$							
+$function$
