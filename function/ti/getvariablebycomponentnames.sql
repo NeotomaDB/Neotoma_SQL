@@ -2,17 +2,17 @@ CREATE OR REPLACE FUNCTION ti.getvariablebycomponentnames(_taxon character varyi
  RETURNS TABLE(variableid integer)
  LANGUAGE sql
 AS $function$
-SELECT
-  vr.variableid
-FROM 
-  ndb.variables AS vr
-  INNER JOIN            ndb.taxa AS tx ON           vr.taxonid = tx.taxonid
-  LEFT JOIN ndb.variablecontexts AS vc ON vr.variablecontextid = vc.variablecontextid 
-  LEFT JOIN    ndb.variableunits AS vu ON   vr.variableunitsid = vu.variableunitsid
-  LEFT JOIN ndb.variableelements AS ve ON vr.variableelementid = ve.variableelementid
-WHERE  
-    (_taxon IS NULL OR tx.taxonname LIKE _taxon) AND 
-  (_element IS NULL OR ve.variableelement = _element) AND 
-    (_units IS NULL OR vu.variableunits = _units) AND
-  (_context IS NULL OR vc.variablecontext LIKE _context)
+  SELECT
+    vr.variableid
+  FROM
+    ndb.variables AS vr
+    INNER JOIN            ndb.taxa AS tx ON           vr.taxonid = tx.taxonid
+    LEFT JOIN ndb.variablecontexts AS vc ON vr.variablecontextid = vc.variablecontextid
+    LEFT JOIN    ndb.variableunits AS vu ON   vr.variableunitsid = vu.variableunitsid
+    LEFT JOIN ndb.variableelements AS ve ON vr.variableelementid = ve.variableelementid
+  WHERE
+      (tx.taxonname LIKE _taxon) AND
+    (ve.variableelement = _element) AND
+      (vu.variableunits = _units) AND
+    (vc.variablecontext LIKE _context)
 $function$
