@@ -5,5 +5,5 @@ AS $function$
 select     count(dt.variableid) as count
 from         ndb.variables AS var
   inner join      ndb.data AS dt on var.variableid = dt.variableid
-where     (var.taxonid = @taxonid)
+where     (var.taxonid = _taxonid)
 $function$
