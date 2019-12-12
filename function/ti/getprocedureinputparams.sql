@@ -14,6 +14,7 @@ SELECT
 FROM information_schema.routines
     LEFT JOIN information_schema.parameters ON routines.specific_name=parameters.specific_name
 WHERE routines.specific_schema ILIKE split_part(_procedurename, '.', 1)
-    and routine_name ILIKE split_part(_procedurename, '.', 2)
+    AND routine_name ILIKE split_part(_procedurename, '.', 2)
+    AND parameters.parameter_mode = 'IN'
 ORDER BY parameters.ordinal_position;
 $function$
