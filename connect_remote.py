@@ -146,12 +146,11 @@ for record in cur:
                     cur2.execute(open("./function/" + record[0] + "/" + record[1] + ".sql", "r").read())
                     conn.commit()
                     print('The function for ' + record[0] + '.' + record[1] + ' has been updated in the `' + data['database'] + '` database.')
+                    cur2.execute("REASSIGN OWNED BY sug335 TO functionwriter;")
+                    conn.commit()
                 except:
                     conn.rollback()
                     print('The function for ' + record[0] + '.' + record[1] + ' has not been updated in the `' + data['database'] + '` database.')
-
-                cur2.execute("REASSIGN OWNED BY sug335 TO functionwriter;")
-                conn.commit()
 
 for schema in ['ti', 'ts', 'doi', 'ap']:
     # Now check all files to see if they are in the DB. . .
@@ -168,21 +167,29 @@ for schema in ['ti', 'ts', 'doi', 'ap']:
             n.nspname = %s AND proname = %s"""
         data = (schema, functs.split(".")[0])
         print(data)
-        cur.execute(SQL, data)
+        try:
+            cur.execute(SQL, data)
+        except:
+            conn.rollback()
+            print("Failed to run. " + schema)
+
         if cur.rowcount == 0:
             # Execute the new script if there is one.  Needs the commit.
-            cur.execute(open("./function/" + schema + "/" + functs, "r").read())
-            conn.commit()
             print("Executing " + schema + "." + functs.split(".")[0])
-            rewrite.append(schema + "." + functs.split(".")[0])
-            z = z + 1
+            try:
+                cur.execute(open("./function/" + schema + "/" + functs, "r").read())
+                conn.commit()
+                cur2.execute("REASSIGN OWNED BY sug335 TO functionwriter;")
+                conn.commit()
+                rewrite.append(schema + "." + functs.split(".")[0])
+                z = z + 1
+            except:
+                conn.rollback()
+                print("Failed to push function.")
         if cur.rowcount > 1:
             # TODO:  Need to add a script to check that the definitions are the same.
             print(schema + "." + functs.split(".")[0] + " has " +
                   str(cur.rowcount) + " definitions.")
-
-cur2.execute("REASSIGN OWNED BY sug335 TO functionwriter;")
-conn.commit()
 
 print("The script has rewritten:")
 
