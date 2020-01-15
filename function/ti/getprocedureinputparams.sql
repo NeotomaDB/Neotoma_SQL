@@ -1,20 +1,19 @@
 CREATE OR REPLACE FUNCTION ti.getprocedureinputparams(_procedurename character varying)
  RETURNS TABLE(name character varying,
                type character varying,
-               isdefault boolean,
-               paramorder bigint)
+               "isdefault" boolean,
+               "paramorder" bigint)
  LANGUAGE sql
 AS $function$
-SELECT     
-    parameters.parameter_name,
-    parameters.data_type, 
-    (SELECT CASE WHEN parameters.parameter_default IS NOT NULL THEN TRUE ELSE FALSE END)  isdefault,
-    parameters.ordinal_position::bigint
-    
-FROM information_schema.routines
-    LEFT JOIN information_schema.parameters ON routines.specific_name=parameters.specific_name
-WHERE routines.specific_schema ILIKE split_part(_procedurename, '.', 1)
-    AND routine_name ILIKE split_part(_procedurename, '.', 2)
-    AND parameters.parameter_mode = 'IN'
-ORDER BY parameters.ordinal_position;
+
+  SELECT (string_to_array(trim(leading from t.nametype), ' '))[1] AS name,
+      REGEXP_REPLACE(array_to_string((string_to_array(trim(leading from t.nametype), ' '))[2:],' '), ' DE.*', '') AS type,
+      t.nametype ILIKE '%DEFAULT%' AS default,
+      t."order"
+  FROM (
+    SELECT * FROM
+    unnest(string_to_array(pg_catalog.pg_get_function_arguments(LOWER(_procedurename)::regproc::oid),','))
+    WITH ORDINALITY a(nametype,"order")
+  ) AS t;
+
 $function$
