@@ -1,4 +1,7 @@
-CREATE OR REPLACE FUNCTION ti.getvariablebycomponentnames(_taxon character varying, _element character varying DEFAULT NULL::character varying, _units character varying DEFAULT NULL::character varying, _context character varying DEFAULT NULL::character varying)
+CREATE OR REPLACE FUNCTION ti.getvariablebycomponentnames(_taxon character varying,
+  _element character varying DEFAULT NULL::character varying,
+  _units character varying DEFAULT NULL::character varying,
+  _context character varying DEFAULT NULL::character varying)
  RETURNS TABLE(variableid integer)
  LANGUAGE sql
 AS $function$
@@ -11,8 +14,8 @@ AS $function$
     LEFT JOIN    ndb.variableunits AS vu ON   vr.variableunitsid = vu.variableunitsid
     LEFT JOIN ndb.variableelements AS ve ON vr.variableelementid = ve.variableelementid
   WHERE
-      (tx.taxonname LIKE _taxon) AND
+      (tx.taxonname ILIKE _taxon) AND
     (ve.variableelement = _element) AND
       (vu.variableunits = _units) AND
-    (vc.variablecontext LIKE _context)
+    (vc.variablecontext ILIKE _context)
 $function$
