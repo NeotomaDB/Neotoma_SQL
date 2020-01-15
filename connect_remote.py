@@ -91,7 +91,8 @@ pg_get_function_identity_arguments(f.oid) AS args,
   FROM            pg_catalog.pg_proc AS f
   INNER JOIN pg_catalog.pg_namespace AS n ON f.pronamespace = n.oid
   WHERE
-    n.nspname IN ('ti','ndb','ts', 'mca', 'ecg', 'ap', 'da', 'emb', 'gen', 'doi')""")
+    n.nspname IN ('ti','ndb','ts', 'mca', 'ecg', 'ap', 'da', 'emb', 'gen', 'doi')
+  ORDER BY n.nspname, proname""")
 
 # For each sql function in the named namespaces go in and write out the actual
 # function declaration if the function does not currently exist in the GitHub
@@ -100,6 +101,7 @@ pg_get_function_identity_arguments(f.oid) AS args,
 print('Running!')
 
 rewrite = []
+failed = []
 z = 0
 
 for record in cur:
@@ -141,6 +143,7 @@ for record in cur:
                 except:
                     conn.rollback()
                     print("Could not delete " + record[0] + "." + record[1])
+                    failed.append(record[0] + "." + record[1])
 
                 try:
                     cur2.execute(open("./function/" + record[0] + "/" + record[1] + ".sql", "r").read())
@@ -148,9 +151,12 @@ for record in cur:
                     print('The function for ' + record[0] + '.' + record[1] + ' has been updated in the `' + data['database'] + '` database.')
                     cur2.execute("REASSIGN OWNED BY sug335 TO functionwriter;")
                     conn.commit()
+                    rewrite.append(record[0] + "." + record[1])
+                    z = z + 1
                 except:
                     conn.rollback()
                     print('The function for ' + record[0] + '.' + record[1] + ' has not been updated in the `' + data['database'] + '` database.')
+                    failed.append(record[0] + "." + record[1])
 
 for schema in ['ti', 'ts', 'doi', 'ap']:
     # Now check all files to see if they are in the DB. . .
@@ -186,6 +192,8 @@ for schema in ['ti', 'ts', 'doi', 'ap']:
             except:
                 conn.rollback()
                 print("Failed to push function.")
+                failed.append(schema + "." + functs.split(".")[0])
+                z = z + 1
         if cur.rowcount > 1:
             # TODO:  Need to add a script to check that the definitions are the same.
             print(schema + "." + functs.split(".")[0] + " has " +
@@ -194,4 +202,8 @@ for schema in ['ti', 'ts', 'doi', 'ap']:
 print("The script has rewritten:")
 
 for funs in rewrite:
+    print("  * " + funs)
+
+print("The script has failed for:")
+for funs in failed:
     print("  * " + funs)
