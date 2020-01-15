@@ -12,6 +12,6 @@ SELECT
 FROM ndb.datasets AS ds
   INNER JOIN ndb.dslinks AS scd ON ds.collectionunitid = scd.collectionunitid
   INNER JOIN ndb.sites AS sts ON scd.siteid = sts.siteid
-WHERE datasettypeid = ds.datasettypeid
+WHERE ds.datasettypeid = _datasettypeid
 GROUP BY sts.siteid
 $function$
