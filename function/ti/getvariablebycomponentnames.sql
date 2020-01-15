@@ -15,7 +15,7 @@ AS $function$
     LEFT JOIN ndb.variableelements AS ve ON vr.variableelementid = ve.variableelementid
   WHERE
       (tx.taxonname ILIKE _taxon) AND
-    (ve.variableelement = _element) AND
-      (vu.variableunits = _units) AND
-    (vc.variablecontext ILIKE _context)
+    ((_element IS NULL AND ve.variableelement IS NULL) OR (ve.variableelement ILIKE _element)) AND
+      ((_units IS NULL AND vu.variableunits IS NULL) OR (vu.variableunits ILIKE _units)) AND
+    ((_context IS NULL AND vc.variablecontext IS NULL) OR (vc.variablecontext ILIKE _context))
 $function$
