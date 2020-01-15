@@ -1,18 +1,26 @@
 CREATE OR REPLACE FUNCTION ti.getchroncontroltypehighestid(_chroncontroltypeid integer)
- RETURNS TABLE(chroncontroltypeid integer, chroncontroltype character varying, higherchroncontroltypeid integer)
- LANGUAGE plpgsql
+ RETURNS TABLE(chroncontroltypeid integer,
+                 chroncontroltype character varying,
+         higherchroncontroltypeid integer)
+ LANGUAGE sql
 AS $function$
-DECLARE
-	id int := _chroncontroltypeid;
-	higherid int := (SELECT ndb.chroncontroltypes.higherchroncontroltypeid FROM ndb.chroncontroltypes WHERE ndb.chroncontroltypes.chroncontroltypeid = id);
-BEGIN
-	WHILE id <> higherid LOOP
-		id := higherid;
-		higherid := (SELECT ndb.chroncontroltypes.higherchroncontroltypeid FROM ndb.chroncontroltypes WHERE ndb.chroncontroltypes.chroncontroltypeid = id);
-	RETURN QUERY
-	SELECT ndb.chroncontroltypes.chroncontroltypeid, ndb.chroncontroltypes.chroncontroltype, ndb.chroncontroltypes.higherchroncontroltypeid
-	FROM ndb.chroncontroltypes
-	WHERE ndb.chroncontroltypes.chroncontroltypeid = id;
-	END LOOP;
-END;
+  WITH RECURSIVE climbchron AS (
+    SELECT cct.chroncontroltypeid,
+           cct.higherchroncontroltypeid
+    FROM ndb.chroncontroltypes AS cct
+    WHERE (cct.chroncontroltypeid = _chroncontroltypeid)
+    UNION ALL
+    SELECT cctb.chroncontroltypeid,
+           cctb.higherchroncontroltypeid
+    FROM ndb.chroncontroltypes AS cctb
+    JOIN climbchron ON climbchron.higherchroncontroltypeid = cctb.chroncontroltypeid
+    WHERE NOT climbchron.chroncontroltypeid = climbchron.higherchroncontroltypeid)
+
+  SELECT cctact.chroncontroltypeid,
+         cctact.chroncontroltype,
+  	     cctact.higherchroncontroltypeid
+  FROM                       climbchron AS chrons
+  LEFT OUTER JOIN ndb.chroncontroltypes AS cctact
+  ON    cctact.chroncontroltypeid = chrons.chroncontroltypeid
+  WHERE cctact.chroncontroltypeid = cctact.higherchroncontroltypeid
 $function$
