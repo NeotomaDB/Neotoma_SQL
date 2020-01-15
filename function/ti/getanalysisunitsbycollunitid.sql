@@ -1,9 +1,16 @@
 CREATE OR REPLACE FUNCTION ti.getanalysisunitsbycollunitid(_collunitid integer)
- RETURNS TABLE(analysisunitid integer, analysisunitname character varying, depth double precision, thickness double precision)
-AS $$
+ RETURNS TABLE(analysisunitid integer,
+             analysisunitname character varying,
+                        depth double precision,
+                    thickness double precision)
+LANGUAGE sql
+AS $function$
 
-select     analysisunitid, analysisunitname, depth, thickness
-from       ndb.analysisunits
-where      (collectionunitid = $1);
+SELECT au.analysisunitid,
+       au.analysisunitname,
+       au.depth,
+       au.thickness
+FROM   ndb.analysisunits AS au
+WHERE  au.collectionunitid = $1;
 
-$$ LANGUAGE SQL;
+$funciton$

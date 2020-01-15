@@ -1,5 +1,10 @@
 CREATE OR REPLACE FUNCTION ti.getsitesbydatabaseanddatasettype(_databaseid integer, _datasettypeid integer)
- RETURNS TABLE(siteid integer, sitename character varying, latitude double precision, longitude double precision, altitude double precision, area double precision)
+ RETURNS TABLE(siteid integer,
+             sitename character varying,
+             latitude double precision,
+            longitude double precision,
+             altitude double precision,
+                 area double precision)
  LANGUAGE sql
 AS $function$
 SELECT
@@ -13,7 +18,7 @@ FROM ndb.datasets AS ds
   INNER JOIN ndb.dslinks AS scd ON ds.collectionunitid = scd.collectionunitid
   INNER JOIN   ndb.sites AS sts ON scd.siteid = sts.siteid
   INNER JOIN ndb.datasetdatabases AS dsdb ON ds.datasetid = dsdb.datasetid
-WHERE datasettypeid = ds.datasettypeid
-  AND databaseid = dsdb.databaseid
+WHERE datasettypeid = _datasettypeid
+  AND databaseid = _databaseid
 GROUP BY sts.siteid
 $function$
