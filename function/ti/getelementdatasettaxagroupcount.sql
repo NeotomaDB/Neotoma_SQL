@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getelementdatasettaxagroupcount(_datasettypeid integer, _taxagroupid character varying, _elementtypeid integer)
- RETURNS TABLE(elementtypeid integer)
+ RETURNS TABLE(count integer)
  LANGUAGE sql
 AS $function$
   SELECT COUNT(edt.elementtypeid)::INTEGER AS count
