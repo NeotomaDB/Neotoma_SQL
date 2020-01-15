@@ -100,8 +100,8 @@ pg_get_function_identity_arguments(f.oid) AS args,
 
 print('Running!')
 
-rewrite = []
-failed = []
+rewrite = set()
+failed = set()
 z = 0
 
 for record in cur:
@@ -143,7 +143,7 @@ for record in cur:
                 except:
                     conn.rollback()
                     print("Could not delete " + record[0] + "." + record[1])
-                    failed.append(record[0] + "." + record[1])
+                    failed.add(record[0] + "." + record[1])
 
                 try:
                     cur2.execute(open("./function/" + record[0] + "/" + record[1] + ".sql", "r").read())
@@ -151,12 +151,12 @@ for record in cur:
                     print('The function for ' + record[0] + '.' + record[1] + ' has been updated in the `' + data['database'] + '` database.')
                     cur2.execute("REASSIGN OWNED BY sug335 TO functionwriter;")
                     conn.commit()
-                    rewrite.append(record[0] + "." + record[1])
+                    rewrite.add(record[0] + "." + record[1])
                     z = z + 1
                 except:
                     conn.rollback()
                     print('The function for ' + record[0] + '.' + record[1] + ' has not been updated in the `' + data['database'] + '` database.')
-                    failed.append(record[0] + "." + record[1])
+                    failed.add(record[0] + "." + record[1])
 
 for schema in ['ti', 'ts', 'doi', 'ap']:
     # Now check all files to see if they are in the DB. . .
@@ -187,12 +187,12 @@ for schema in ['ti', 'ts', 'doi', 'ap']:
                 conn.commit()
                 cur2.execute("REASSIGN OWNED BY sug335 TO functionwriter;")
                 conn.commit()
-                rewrite.append(schema + "." + functs.split(".")[0])
+                rewrite.add(schema + "." + functs.split(".")[0])
                 z = z + 1
             except:
                 conn.rollback()
                 print("Failed to push function.")
-                failed.append(schema + "." + functs.split(".")[0])
+                failed.add(schema + "." + functs.split(".")[0])
                 z = z + 1
         if cur.rowcount > 1:
             # TODO:  Need to add a script to check that the definitions are the same.
