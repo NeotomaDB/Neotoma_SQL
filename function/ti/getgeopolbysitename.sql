@@ -1,5 +1,12 @@
-CREATE OR REPLACE FUNCTION ti.getgeopolbysitename(_sitename character varying, _east double precision, _north double precision, _west double precision, _south double precision)
- RETURNS TABLE(siteid integer, sitename character varying, distkm double precision, geopolitical text)
+CREATE OR REPLACE FUNCTION ti.getgeopolbysitename(_sitename character varying,
+  _east double precision,
+  _north double precision,
+  _west double precision,
+  _south double precision)
+ RETURNS TABLE(siteid integer,
+               sitename character varying,
+               distkm double precision,
+               geopolitical text)
  LANGUAGE plpgsql
 AS $function$
   DECLARE
@@ -35,14 +42,14 @@ AS $function$
       s.siteid,
       s.sitename,
       ST_Distance(ST_Centroid(_site1)::geography, s.geog)/1000 as "distkm",
-      concat_ws('|',g1.geopolname1, g2.geopolname2, g2.geopolname2, g3.geopolname3, g4.geopolname4) as geopolitical
+      concat_ws('|',g1.geopolname1, g2.geopolname2, g3.geopolname3, g4.geopolname4) as geopolitical
   FROM
       ndb.sites s LEFT OUTER JOIN
       ti.geopol1 g1 on s.siteid = g1.siteid left outer join
       ti.geopol2 g2 on s.siteid = g2.siteid left outer join
       ti.geopol3 g3 on s.siteid = g3.siteid left outer join
       ti.geopol4 g4 on s.siteid = g4.siteid
-  WHERE   (s.sitename LIKE _sitename)
+  WHERE   (s.sitename ILIKE _sitename)
   ORDER BY distkm ;
 
   END;
