@@ -13,7 +13,7 @@ WITH RECURSIVE lowertaxa AS (SELECT
 			   m.highertaxonid
          FROM ndb.taxa AS m
          JOIN lowertaxa ON lowertaxa.highertaxonid = m.taxonid
-       WHERE NOT m.taxonid = m.highertaxonid)
+       WHERE NOT lowertaxa.taxonid = lowertaxa.highertaxonid)
 
 SELECT txa.taxonid,
        txa.taxonname,
