@@ -5,12 +5,10 @@ CREATE OR REPLACE FUNCTION ti.getanalysisunitsbycollunitid(_collunitid integer)
                     thickness double precision)
 LANGUAGE sql
 AS $function$
-
-SELECT au.analysisunitid,
-       au.analysisunitname,
-       au.depth,
-       au.thickness
-FROM   ndb.analysisunits AS au
-WHERE  au.collectionunitid = $1;
-
-$funciton$
+  SELECT au.analysisunitid,
+         au.analysisunitname,
+         au.depth,
+         au.thickness
+  FROM   ndb.analysisunits AS au
+  WHERE  au.collectionunitid = _collunitid;
+$function$
