@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getspecimendatesbygeochrondatasetid(_geochrondatasetid integer)
- RETURNS TABLE(specimentdateid integer,
+ RETURNS TABLE(specimendateid integer,
                     specimenid integer,
     geochronid integer,
     sampleid integer,
