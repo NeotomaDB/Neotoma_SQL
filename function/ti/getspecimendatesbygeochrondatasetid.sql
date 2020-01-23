@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getspecimendatesbygeochrondatasetid(_geochronid integer)
+CREATE OR REPLACE FUNCTION ti.getspecimendatesbygeochrondatasetid(_geochrondatasetid integer)
  RETURNS TABLE(specimentdateid integer,
                     specimenid integer,
     geochronid integer,
@@ -38,5 +38,5 @@ AS $function$
     LEFT OUTER JOIN ndb.specimendatescal AS sdc ON sdc.specimendateid =sdt.specimendateid
     LEFT OUTER JOIN ndb.calibrationprograms AS cp ON cp.calibrationprogramid = sdc.calibrationprogramid
     LEFT OUTER JOIN ndb.calibrationcurves AS cc ON cc.calibrationcurveid = sdc.calibrationcurveid
-  WHERE gcn.geochronid = _geochronid
+  WHERE smp.datasetid = _geochrondatasetid
 $function$
