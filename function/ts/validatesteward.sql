@@ -1,12 +1,10 @@
 CREATE OR REPLACE FUNCTION ts.validatesteward(_username character varying, _pwd character varying)
- RETURNS TABLE(databaseid integer)
- LANGUAGE sql
+	RETURNS integer
+	LANGUAGE sql
 AS $function$
-
-    SELECT     ndb.constituentdatabases.databaseid
-    FROM         ti.stewards INNER JOIN
-                          ti.stewarddatabases on ti.stewards.stewardid = ti.stewarddatabases.stewardid inner join
-                          ndb.constituentdatabases on ti.stewarddatabases.databaseid = ndb.constituentdatabases.databaseid
-    WHERE     (ti.stewards.username = _username) and (ti.stewards.pwd = _pwd)
-
-$function$
+	SELECT cds.databaseid
+	FROM  ti.stewards AS ss
+				JOIN  ti.stewarddatabases AS sds on ss.stewardid = sds.stewardid
+				join ndb.constituentdatabases AS cds on sds.databaseid = cds.databaseid
+	WHERE ss.username = _username AND ss.pwd = _pwd
+$function$;
