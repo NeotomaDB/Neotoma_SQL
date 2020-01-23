@@ -2,8 +2,8 @@ CREATE OR REPLACE FUNCTION ti.getelementtypesbytaxagroupid(_taxagroupid characte
  RETURNS TABLE(elementtypeid integer, elementtype character varying)
  LANGUAGE sql
 AS $function$
-SELECT ndb.elementtaxagroups.elementtypeid, ndb.elementtypes.elementtype
-FROM   ndb.elementtaxagroups inner JOIN
-                      ndb.elementtypes ON ndb.elementtaxagroups.elementtypeid = ndb.elementtypes.elementtypeid
-WHERE ndb.elementtaxagroups.taxagroupid ILIKE _taxagroupid;
+SELECT etx.elementtypeid, et.elementtype
+FROM   ndb.elementtaxagroups AS etx INNER JOIN
+                      ndb.elementtypes AS et ON etx.elementtypeid = et.elementtypeid
+WHERE etx.taxagroupid = _taxagroupid;
 $function$
