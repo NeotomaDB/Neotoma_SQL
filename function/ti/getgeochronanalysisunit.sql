@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getgeochronanalysisunit(geochronid integer)
+CREATE OR REPLACE FUNCTION ti.getgeochronanalysisunit(_geochronid integer)
  RETURNS TABLE(sampleid integer, collectionunitid integer, analysisunitid integer, analysisunitname character varying, depth double precision, thickness double precision)
  LANGUAGE sql
 AS $function$

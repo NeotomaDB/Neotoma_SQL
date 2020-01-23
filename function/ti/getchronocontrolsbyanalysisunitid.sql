@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getchronocontrolsbyanalysisunitid(analunitid integer)
+CREATE OR REPLACE FUNCTION ti.getchronocontrolsbyanalysisunitid(_analunitid integer)
  RETURNS TABLE(chroncontrolid integer)
  LANGUAGE sql
 AS $function$

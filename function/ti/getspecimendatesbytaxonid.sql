@@ -1,8 +1,7 @@
 CREATE OR REPLACE FUNCTION ti.getspecimendatesbytaxonid(_taxonid integer)
- RETURNS TABLE(specimendateid integer, geochronid integer, taxonid integer, fractionid integer,
-			  sampleid integer, notes character varying, elementtypeid integer)
+ RETURNS TABLE(specimendateid integer, geochronid integer, taxonid integer, fractionid integer, sampleid integer, notes character varying, elementtypeid integer)
  LANGUAGE sql
- AS $function$
+AS $function$
  SELECT
 	sd.specimendateid,
 	sd.geochronid,

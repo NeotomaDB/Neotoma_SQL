@@ -1,9 +1,9 @@
-CREATE OR REPLACE FUNCTION ti.getvalidsynonymbyinvalidtaxonid(invalidtaxonid integer)
- RETURNS SETOF ndb.synonyms
+CREATE OR REPLACE FUNCTION ti.getvalidsynonymbyinvalidtaxonid(_invalidtaxonid integer)
+ RETURNS TABLE(synonymid integer, invalidtaxonid integer, validtaxonid integer, synonymtypeid integer)
  LANGUAGE sql
 AS $function$
-SELECT     sy.*
-FROM         ndb.synonyms AS sy
-WHERE     (sy.invalidtaxonid = invalidtaxonid)
+SELECT synonymid, invalidtaxonid, validtaxonid, synonymtypeid
+FROM ndb.synonyms
+WHERE invalidtaxonid = $1
 
 $function$

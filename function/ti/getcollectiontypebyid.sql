@@ -1,8 +1,11 @@
-CREATE OR REPLACE FUNCTION ti.getcollectiontypebyid(integer)
- RETURNS TABLE(colltypeid integer, colltype character varying)
- LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getcollectiontypebyid(_colltypeid integer)
+ RETURNS TABLE(colltypeid integer,
+               colltype character varying)
+ LANGUAGE plpgsql
 AS $function$
-SELECT colltypeid, colltype
-FROM ndb.collectiontypes
-WHERE colltypeid = $1; 
+BEGIN
+	RETURN QUERY SELECT cty.colltypeid, cty.colltype
+	FROM ndb.collectiontypes AS cty
+	WHERE cty.colltypeid = _colltypeid;
+END;
 $function$

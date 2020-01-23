@@ -1,8 +1,7 @@
-CREATE OR REPLACE FUNCTION ti.getchildtaxacount(hitaxid integer)
- RETURNS bigint
- LANGUAGE sql
-AS $function$
-SELECT COUNT(highertaxonid) AS count
+CREATE OR REPLACE FUNCTION ti.getchildtaxacount(_highertaxonid integer)
+ RETURNS TABLE(count INTEGER)
+AS $$
+SELECT COUNT(highertaxonid)::integer AS count
 FROM ndb.taxa
-WHERE (highertaxonid <> taxonid) AND (highertaxonid = hitaxid);
-$function$
+WHERE (highertaxonid <> taxonid) AND (highertaxonid = $1);
+$$ LANGUAGE SQL;

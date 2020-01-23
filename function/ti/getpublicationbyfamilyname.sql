@@ -6,5 +6,5 @@ SELECT ndb.publications.*
 FROM ndb.publicationauthors inner join
                       ndb.contacts ON ndb.publicationauthors.contactid = ndb.contacts.contactid INNER JOIN
                       ndb.publications ON ndb.publicationauthors.publicationid = ndb.publications.publicationid
-WHERE (ndb.contacts.familyname like _familyname) OR (ndb.publicationauthors.familyname like _familyname);
+WHERE (ndb.contacts.familyname ILIKE $1) OR (ndb.publicationauthors.familyname ILIKE $1);
 $function$

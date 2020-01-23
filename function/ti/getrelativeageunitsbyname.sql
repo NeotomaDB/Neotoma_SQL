@@ -2,8 +2,8 @@ CREATE OR REPLACE FUNCTION ti.getrelativeageunitsbyname(_relativeagescale charac
  RETURNS TABLE(relativeagescaleid integer, relativeagescale character varying)
  LANGUAGE sql
 AS $function$
-SELECT     ras.relativeagescaleid, 
+SELECT     ras.relativeagescaleid,
             ras.relativeagescale
 FROM       ndb.relativeagescales AS ras
-WHERE (ras.relativeagescale = _relativeagescale)
+WHERE (ras.relativeagescale ILIKE _relativeagescale)
 $function$

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deletedepenvttype (_depenvtid integer)
+CREATE OR REPLACE FUNCTION ts.deletedepenvttype(_depenvtid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

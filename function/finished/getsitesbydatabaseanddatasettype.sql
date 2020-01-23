@@ -9,8 +9,8 @@ RETURNS TABLE (
 ) AS $$
 SELECT             sts.siteid AS siteid,
                  sts.sitename AS sitename,
-  ST_Y(ST_CENTROID(sts.geom)) AS latitude,
-  ST_X(ST_CENTROID(sts.geom)) AS longitude,
+  ST_Y(ST_CENTROID(sts.geog)) AS latitude,
+  ST_X(ST_CENTROID(sts.geog)) AS longitude,
                  sts.altitude AS altitude,
                      sts.area AS area
 FROM                 ndb.datasets AS ds

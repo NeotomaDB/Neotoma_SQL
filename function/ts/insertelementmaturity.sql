@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.elementmaturities (maturity)
   VALUES (_maturity)
   RETURNING maturityid
-$function$;
+$function$

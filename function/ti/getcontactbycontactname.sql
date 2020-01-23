@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ti.getcontactbycontactname(_contactname character var
 AS $function$
 SELECT contactid, aliasid, contactname, contactstatusid, familyname, leadinginitials, givennames, suffix, title, phone, fax, email, url, address, notes
 FROM ndb.contacts
-WHERE contactname = _contactname;
+WHERE contactname ILIKE _contactname;
 $function$

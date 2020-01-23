@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertelementdatasettaxagroups(_datasettypeid inte
 AS $function$
   INSERT INTO ndb.elementdatasettaxagroups (datasettypeid, taxagroupid, elementtypeid)
   VALUES (_datasettypeid, _taxagroupid, _elementtypeid)
-$function$;
+$function$

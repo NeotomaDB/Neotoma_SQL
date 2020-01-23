@@ -1,15 +1,7 @@
 CREATE OR REPLACE FUNCTION ti.getnextpublicationbyid(_publicationid integer)
- RETURNS TABLE(publicationid integer, pubtypeid integer, year character varying, citation character varying,
-			  articletitle character varying, journal character varying, volume character varying,
-			  issue character varying, pages character varying, citationnumber character varying,
-			  doi character varying, booktitle character varying, numvolumes character varying,
-			  edition character varying, volumetitle character varying,
-			  seriestitle character varying, seriesvolume character varying,
-			  publisher character varying, url character varying, city character varying,
-			  state character varying, country character varying,
-			  originallanguage character varying, notes character varying)
+ RETURNS TABLE(publicationid integer, pubtypeid integer, year character varying, citation character varying, articletitle character varying, journal character varying, volume character varying, issue character varying, pages character varying, citationnumber character varying, doi character varying, booktitle character varying, numvolumes character varying, edition character varying, volumetitle character varying, seriestitle character varying, seriesvolume character varying, publisher character varying, url character varying, city character varying, state character varying, country character varying, originallanguage character varying, notes character varying)
  LANGUAGE sql
- AS $function$
+AS $function$
 
  SELECT
  	pub.publicationid,

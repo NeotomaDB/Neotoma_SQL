@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.fractiondated (fraction)
   VALUES (_fraction)
   RETURNING fractionid
-$function$;
+$function$

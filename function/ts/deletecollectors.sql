@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deletecollectors (_collunitid integer)
+CREATE OR REPLACE FUNCTION ts.deletecollectors(_collunitid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

@@ -1,8 +1,8 @@
-CREATE OR REPLACE FUNCTION ti.getcollunithandlecount(hand character varying)
- RETURNS bigint
+CREATE OR REPLACE FUNCTION ti.getcollunithandlecount(_handle character varying)
+ RETURNS TABLE (count bigint)
  LANGUAGE sql
 AS $function$
-SELECT COUNT(handle) AS count
-FROM ndb.collectionunits
-WHERE handle = hand;
+	SELECT COUNT(cu.handle) AS count
+	FROM ndb.collectionunits AS cu
+	WHERE cu.handle ILIKE _handle;
 $function$

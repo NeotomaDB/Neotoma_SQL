@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deleteeventpublication (_eventid integer, _publicationid integer)
+CREATE OR REPLACE FUNCTION ts.deleteeventpublication(_eventid integer, _publicationid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

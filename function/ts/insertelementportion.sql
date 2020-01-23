@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.elementportions (portion)
   VALUES (_portion)
   RETURNING portionid
-$function$;
+$function$

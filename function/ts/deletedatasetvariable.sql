@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deletedatasetvariable (_datasetid integer, _variableid integer)
+CREATE OR REPLACE FUNCTION ts.deletedatasetvariable(_datasetid integer, _variableid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

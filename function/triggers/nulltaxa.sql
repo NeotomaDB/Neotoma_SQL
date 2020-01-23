@@ -1,0 +1,3 @@
+CREATE TRIGGER nulltaxa
+  AFTER INSERT ON ndb.taxa
+  FOR EACH ROW EXECUTE PROCEDURE ts.linkhigher();

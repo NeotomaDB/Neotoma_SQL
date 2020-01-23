@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deletegeochronpublication (_geochronid integer, _publicationid integer)
+CREATE OR REPLACE FUNCTION ts.deletegeochronpublication(_geochronid integer, _publicationid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

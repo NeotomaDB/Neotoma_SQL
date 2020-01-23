@@ -5,4 +5,4 @@ AS $function$
 INSERT INTO ndb.depagenttypes(depagent)
 VALUES (_depagent)
 RETURNING depagentid
-$function$;
+$function$

@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.elementtaxagroups (taxagroupid, elementtypeid)
   VALUES (_taxagroupid, _elementtypeid)
   RETURNING elementtaxagroupid
-$function$;
+$function$
