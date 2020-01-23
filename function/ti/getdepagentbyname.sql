@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ti.getdepagentbyname(_depagent character varying)
 AS $function$ 
 SELECT depagentid, depagent 
 FROM ndb.depagenttypes
-WHERE depagent = _depagent
+WHERE depagent ILIKE _depagent;
 $function$

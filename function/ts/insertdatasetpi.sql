@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertdatasetpi(_datasetid integer, _contactid int
 AS $function$
 INSERT INTO ndb.datasetpis(datasetid, contactid, piorder)
 VALUES (_datasetid, _contactid, _piorder)
-$function$;
+$function$

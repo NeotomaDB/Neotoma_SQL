@@ -1,9 +1,16 @@
-CREATE OR REPLACE FUNCTION ti.getrepositoryinstitution(_acronym character varying, _repository character varying)
- RETURNS TABLE(repositoryid integer, acronym character varying, repository character varying, notes character varying)
+CREATE OR REPLACE FUNCTION ti.getrepositoryinstitution(_acronym character varying DEFAULT NULL,
+                                                       _repository character varying DEFAULT NULL)
+ RETURNS TABLE(repositoryid integer,
+                    acronym character varying,
+                 repository character varying,
+                      notes character varying)
  LANGUAGE sql
 AS $function$
-select     ri.repositoryid, ri.acronym, ri.repository, ri.notes
-from       ndb.repositoryinstitutions AS ri
-where      (ri.acronym = _acronym) or (ri.repository = _repository)
-
+  SELECT     ri.repositoryid,
+             ri.acronym,
+             ri.repository,
+             ri.notes
+  FROM       ndb.repositoryinstitutions AS ri
+  WHERE      ((ri.acronym IS NULL) OR (ri.acronym ILIKE _acronym))
+    OR    ((ri.repository IS NULL) OR (ri.repository ILIKE _repository))
 $function$

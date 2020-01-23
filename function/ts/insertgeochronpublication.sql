@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertgeochronpublication(_geochronid integer, _pu
 AS $function$
   INSERT INTO ndb.geochronpublications (geochronid, publicationid)
   VALUES (_geochronid, _publicationid)
-$function$;
+$function$

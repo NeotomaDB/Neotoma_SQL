@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertecolgroup(_taxonid integer, _ecolsetid integ
 AS $function$
   INSERT INTO ndb.ecolgroups(taxonid, ecolsetid, ecolgroupid)
   VALUES (_taxonid, _ecolsetid, _ecolgroupid)
-$function$;
+$function$

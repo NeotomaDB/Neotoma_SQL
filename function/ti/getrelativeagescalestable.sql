@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION ti.getrelativeagescalestable()
- RETURNS SETOF ndb.relativeagescales
+ RETURNS TABLE(relativeagescaleid int, relativeagescale character varying) 
  LANGUAGE sql
 AS $function$
-SELECT *
+SELECT relativeagescaleid, relativeagescale
  FROM ndb.relativeagescales;
 $function$

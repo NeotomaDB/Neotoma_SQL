@@ -5,4 +5,4 @@ AS $function$
 INSERT INTO ndb.aggregatesamples
 	(aggregatedatasetid, sampleid)
 VALUES (_aggregatedatasetid, _sampleid)
-$function$;
+$function$

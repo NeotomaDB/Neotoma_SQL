@@ -1,16 +1,16 @@
-CREATE OR REPLACE FUNCTION ti.gettaxalookupsynonymybytaxagroupidlist(taxagrouplist character varying)
+CREATE OR REPLACE FUNCTION ti.gettaxalookupsynonymybytaxagroupidlist(_taxagrouplist character varying)
  RETURNS TABLE(taxonid integer, taxonname character varying, validtaxonid integer)
  LANGUAGE sql
 AS $function$
 
-SELECT tx.taxonid, 
-        tx.taxonname, 
-		sy.validtaxonid
-from 
+SELECT tx.taxonid,
+       tx.taxonname,
+		   sy.validtaxonid
+FROM
   ndb.taxa AS tx
   inner join ndb.synonyms AS sy on tx.taxonid = sy.invalidtaxonid
-where      
-  tx.valid = 0 AND 
-  (tx.taxagroupid in (SELECT unnest(string_to_array(taxagrouplist,'$'))))
+WHERE
+  tx.valid = False AND
+  (LOWER(tx.taxagroupid) in (SELECT unnest(string_to_array(LOWER($1),'$'))))
 
 $function$

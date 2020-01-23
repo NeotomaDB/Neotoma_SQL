@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertgeochroncontrol(_chroncontrolid integer, _ge
 AS $function$
   INSERT INTO ndb.geochroncontrols (chroncontrolid, geochronid)
   VALUES (_chroncontrolid, _geochronid)
-$function$;
+$function$

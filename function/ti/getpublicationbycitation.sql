@@ -5,5 +5,5 @@ AS $function$
 SELECT publicationid, pubtypeid, year, citation, articletitle, journal, volume, issue, pages, citationnumber, doi, booktitle, numvolumes, edition,
 volumetitle, seriestitle, seriesvolume, publisher, url, city, state, country, originallanguage, notes
 FROM ndb.publications
-WHERE (citation like _citation);
+WHERE citation ILIKE _citation;
 $function$

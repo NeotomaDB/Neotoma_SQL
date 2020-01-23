@@ -12,7 +12,7 @@ AS $function$
 
 		update ndb.constituentdatabases
 		set contactid = null
-		where contactid = OLD.contactid; 
+		where contactid = OLD.contactid ;
 
 		delete from ndb.dataprocessors
 		where contactid = OLD.contactid;

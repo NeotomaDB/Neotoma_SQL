@@ -1,3 +1,5 @@
 connect_remote.json
 .DS_Store
 ignore/*
+.Rhistory
+*.R

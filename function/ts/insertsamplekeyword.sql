@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertsamplekeyword(_sampleid integer, _keywordid 
 AS $function$
   INSERT INTO ndb.samplekeywords(sampleid, keywordid)
   VALUES (_sampleid, _keywordid)
-$function$;
+$function$

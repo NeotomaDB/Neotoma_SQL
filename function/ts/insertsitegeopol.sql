@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.sitegeopolitical(siteid, geopoliticalid)
   VALUES (_siteid, _geopoliticalid)
   RETURNING sitegeopoliticalid
-$function$;
+$function$

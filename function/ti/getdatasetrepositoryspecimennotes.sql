@@ -1,10 +1,9 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetrepositoryspecimennotes(datasetid integer)
- RETURNS TABLE(repositoryid integer, notes text)
+CREATE OR REPLACE FUNCTION ti.getdatasetrepositoryspecimennotes(_datasetid integer)
+ RETURNS TABLE(repositoryid integer,
+               notes text)
  LANGUAGE sql
 AS $function$
-
-select repositoryid, notes
-from   ndb.repositoryspecimens
-where  (datasetid = $1)
-
+	SELECT rpsp.repositoryid, rpsp.notes
+	FROM   ndb.repositoryspecimens AS rpsp
+	WHERE  rpsp.datasetid = $1;
 $function$

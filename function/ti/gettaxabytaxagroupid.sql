@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.gettaxabytaxagroupid(_taxagroupid character varying)
- RETURNS TABLE(taxonid integer, taxoncode character varying, taxonname character varying, author character varying, valid smallint, highertaxonid integer, extinct smallint, taxagroupid character varying, publicationid integer, validatorid integer, validatedate character varying, notes character varying)
+ RETURNS TABLE(taxonid integer, taxoncode character varying, taxonname character varying, author character varying, valid boolean, highertaxonid integer, extinct boolean, taxagroupid character varying, publicationid integer, validatorid integer, validatedate character varying, notes character varying)
  LANGUAGE sql
 AS $function$
 select tx.taxonid, 

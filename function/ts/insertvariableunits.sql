@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.variableunits(variableunits)
   VALUES (_units)
   RETURNING variableunitsid
-$function$;
+$function$

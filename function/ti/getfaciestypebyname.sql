@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ti.getfaciestypebyname(_facies character varying)
 AS $function$
 SELECT faciesid, facies
 FROM ndb.faciestypes
-WHERE (facies = _facies);
-$function$
+WHERE facies ILIKE $1
+$function$;

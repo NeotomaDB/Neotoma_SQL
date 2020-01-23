@@ -4,4 +4,4 @@ CREATE OR REPLACE FUNCTION ts.insertelementtaxagroupsymmetry(_elementtaxagroupid
 AS $function$
   INSERT INTO ndb.elementtaxagroupsymmetries (elementtaxagroupid, symmetryid)
   VALUES (_elementtaxagroupid, _symmetryid)
-$function$;
+$function$

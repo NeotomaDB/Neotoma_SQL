@@ -7,7 +7,7 @@ AS
 (
   SELECT taxonid AS basetaxonid, taxonid, taxonname, author, highertaxonid, 0 AS level
   FROM ndb.taxa
-  WHERE taxonname = _taxonname
+  WHERE taxonname ILIKE $1
 
   UNION ALL
 

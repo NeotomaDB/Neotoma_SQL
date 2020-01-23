@@ -1,8 +1,8 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetsamples(_datasetid integer)
- RETURNS TABLE(sampleid integer, samplename character varying, analysisdate character varying, labnumber character varying, preparationmethod text, samplenotes text, analysisunitid integer, analysisunitname character varying, depth double precision, thickness double precision, faciesid integer, facies character varying, mixed smallint, igsn character varying, analunitnotes text)
+ RETURNS TABLE(sampleid integer, samplename character varying, sampledate character varying, analysisdate character varying, labnumber character varying, preparationmethod text, samplenotes text, analysisunitid integer, analysisunitname character varying, depth double precision, thickness double precision, faciesid integer, facies character varying, mixed boolean, igsn character varying, analunitnotes text)
  LANGUAGE sql
 AS $function$
-SELECT ndb.samples.sampleid, ndb.samples.samplename, ndb.samples.analysisdate::varchar(10) AS analysisdate, ndb.samples.labnumber, 
+SELECT ndb.samples.sampleid, ndb.samples.samplename, ndb.samples.sampledate::varchar(10) AS sampledate, ndb.samples.analysisdate::varchar(10) AS analysisdate, ndb.samples.labnumber, 
        ndb.samples.preparationmethod, ndb.samples.notes AS samplenotes, ndb.analysisunits.analysisunitid, ndb.analysisunits.analysisunitname, 
 	   ndb.analysisunits.depth, ndb.analysisunits.thickness, ndb.analysisunits.faciesid, ndb.faciestypes.facies, ndb.analysisunits.mixed, 
 	   ndb.analysisunits.igsn, ndb.analysisunits.notes AS analunitnotes

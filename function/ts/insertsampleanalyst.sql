@@ -5,4 +5,4 @@ AS $function$
   INSERT INTO ndb.sampleanalysts(sampleid, contactid, analystorder)
   VALUES (_sampleid, _contactid, _analystorder)
   RETURNING analystid
-$function$;
+$function$

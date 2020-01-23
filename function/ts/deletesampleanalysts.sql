@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deletesampleanalysts (_sampleid integer)
+CREATE OR REPLACE FUNCTION ts.deletesampleanalysts(_sampleid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

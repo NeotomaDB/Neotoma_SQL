@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.deletepublicationeditor (_editorid integer)
+CREATE OR REPLACE FUNCTION ts.deletepublicationeditor(_editorid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

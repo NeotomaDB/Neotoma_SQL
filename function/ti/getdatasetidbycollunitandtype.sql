@@ -1,10 +1,8 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetidbycollunitandtype(collunitid integer, datasettypeid integer)
+CREATE OR REPLACE FUNCTION ti.getdatasetidbycollunitandtype(_collunitid integer, _datasettypeid integer)
  RETURNS TABLE(datasetid integer)
  LANGUAGE sql
 AS $function$
-
-select    datasetid
-from      ndb.datasets
-where     (datasettypeid = $2) and (collectionunitid = $1)
-
+	SELECT ds.datasetid
+	FROM ndb.datasets AS ds
+	WHERE ds.datasettypeid = $2 AND ds.collectionunitid = $1;
 $function$
