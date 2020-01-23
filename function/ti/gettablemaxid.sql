@@ -4,9 +4,7 @@ CREATE OR REPLACE FUNCTION ti.gettablemaxid(_tablename character varying, _colum
 AS $function$
 DECLARE maxid int;
 BEGIN
-  RETURN QUERY
-  EXECUTE format(
-    'SELECT max(%s) as maxid FROM %s', _columnname, _tablename)
-	INTO maxid;
+  RETURN QUERY EXECUTE format(
+    'SELECT MAX(%s) as maxid FROM %s', _columnname, _tablename);
 END;
 $function$

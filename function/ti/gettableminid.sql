@@ -4,9 +4,7 @@ CREATE OR REPLACE FUNCTION ti.gettableminid(_tablename character varying, _colum
 AS $function$
 DECLARE minid int;
 BEGIN
-  RETURN QUERY
-  EXECUTE format(
-    'SELECT min(%s) as minid FROM %s', _columnname, _tablename)
-	INTO minid;
+  RETURN QUERY EXECUTE format(
+    'SELECT MIN(%s) as minid FROM %s', _columnname, _tablename);
 END;
 $function$
