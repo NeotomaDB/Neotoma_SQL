@@ -89,3 +89,5 @@ If other samples are assigned to the analysis unit then either
         WHERE (smp.sampleid = _geochronsampleid);
     END IF;
   END;
+
+$function$
