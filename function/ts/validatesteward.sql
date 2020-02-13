@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ts.validatesteward(_username character varying, _pwd character varying)
-	RETURNS integer
+	RETURNS TABLE (databaseid INTEGER)
 	LANGUAGE sql
 AS $function$
 	SELECT cds.databaseid
