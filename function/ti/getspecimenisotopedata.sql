@@ -73,7 +73,7 @@ WITH speciesiso AS (
     left outer join             ndb.elementtypes AS et   on spec.elementtypeid = et.elementtypeid
     left outer join        ndb.elementsymmetries AS es   on spec.symmetryid = es.symmetryid
     left outer join        ndb.elementmaturities AS em   on spec.maturityid = em.maturityid
-  where     (ds.datasetid = 21006)
+  where     (ds.datasetid = _datasetid)
   order by
     spec.specimenid,
     tx.taxonname
@@ -91,7 +91,7 @@ WITH speciesiso AS (
       INNER JOIN ndb.data AS dt ON isp.dataid = dt.dataid
       INNER JOIN ndb.samples AS smp ON smp.sampleid = dt.sampleid
       RIGHT OUTER JOIN ndb.datasets AS ds ON ds.datasetid = smp.datasetid
-    WHERE     (ds.datasetid = 21006)
+    WHERE     (ds.datasetid = _datasetid)
   GROUP BY dt.dataid
   )
 
