@@ -189,9 +189,10 @@ for schema in ['ti', 'ts', 'doi', 'ap']:
                 conn.commit()
                 rewrite.add(schema + "." + functs.split(".")[0])
                 z = z + 1
-            except:
+            except Exception as e:
                 conn.rollback()
-                print("Failed to push function.")
+                print("Failed to push function: ")
+                print(e)
                 failed.add(schema + "." + functs.split(".")[0])
                 z = z + 1
         if cur.rowcount > 1:
