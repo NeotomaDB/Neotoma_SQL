@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION getspecimenisotopedataset(_datasetid integer)
+CREATE OR REPLACE FUNCTION getspecimenisotopedata(_datasetid integer)
 RETURNS TABLE (
   specimenid integer,
   analysisunit character varying,
