@@ -23,7 +23,7 @@ from   ndb.sites               AS st
   JOIN ti.geopol1              AS gpa  ON        gpa.siteid = st.siteid
   JOIN ti.geopol2              AS gpb  ON        gpb.siteid = st.siteid
   WHERE
-  (_sitename       IS NULL OR LOWER(_sitename) LIKE LOWER(st.sitename)) AND
+  (_sitename       IS NULL OR LOWER(st.sitename) LIKE LOWER(_sitename)) AND
   (_datasettypeid  IS NULL OR ds.datasettypeid = _datasettypeid)        AND
   (_geopoliticalid IS NULL OR sgp.geopoliticalid = _geopoliticalid)     AND
   (_contactid      IS NULL OR dspi.contactid = _contactid)              AND
