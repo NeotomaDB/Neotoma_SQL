@@ -5,5 +5,5 @@ AS $function$
 SELECT      isopretreatmenttypeid, 
             isopretreatmenttype, 
             isopretreatmentqualifier
- FROM ndb.isopretratmenttypes;
+ FROM ndb.isopretreatmenttypes;
 $function$
