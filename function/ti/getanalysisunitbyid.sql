@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getanalysisunitbyid(_analyunitid integer)
+CREATE OR REPLACE FUNCTION ti.getanalysisunitbyid(_analunitid integer)
 RETURNS TABLE(collectionunitid integer, analysisunitname character varying, depth numeric, thickness numeric)
 LANGUAGE sql
 AS $function$
@@ -7,5 +7,5 @@ AS $function$
          au.depth::numeric,
          au.thickness::numeric
   FROM ndb.analysisunits AS au
-  WHERE analysisunitid = _analyunitid;
+  WHERE analysisunitid = _analunitid;
 $function$

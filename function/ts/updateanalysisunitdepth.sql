@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ts.updateanalysisunitdepth(_analysisunitid integer, _
 AS $function$
 	UPDATE ndb.analysisunits AS aus
 	SET   depth = _depth
-	WHERE aus.analysisunitid = analysisunitid
+	WHERE aus.analysisunitid = _analysisunitid
 $function$
