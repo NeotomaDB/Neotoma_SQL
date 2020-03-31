@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ts.updateanalysisunitname(_analysisunitid integer, _a
 AS $function$
 	UPDATE ndb.analysisunits AS aus
 	SET   analysisunitname = _analysisunitname
-	WHERE aus.analysisunitid = analysisunitid
+	WHERE aus.analysisunitid = _analysisunitid
 $function$
