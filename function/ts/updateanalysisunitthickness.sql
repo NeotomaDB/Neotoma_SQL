@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ts.updateanalysisunitthickness(_analysisunitid intege
 AS $function$
 	UPDATE ndb.analysisunits AS aus
 	SET   thickness = _thickness
-	WHERE aus.analysisunitid = analysisunitid
+	WHERE aus.analysisunitid = _analysisunitid
 $function$
