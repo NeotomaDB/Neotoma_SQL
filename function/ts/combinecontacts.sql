@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION ts.combinecontacts(_keepcontactid integer, _contactidlist character varying)
+CREATE OR REPLACE FUNCTION ts.combinecontacts(_keepcontactid integer,
+                                              _contactidlist character varying)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
