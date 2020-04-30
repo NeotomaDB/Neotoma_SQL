@@ -1,5 +1,7 @@
-CREATE OR REPLACE FUNCTION ts.checksteward(_username character varying, _pwd character varying)
- RETURNS TABLE(stewardid integer, authorized integer)
+CREATE OR REPLACE FUNCTION ts.checksteward(_username character varying,
+                                           _pwd character varying)
+ RETURNS TABLE(stewardid integer,
+               authorized integer)
  LANGUAGE sql
 AS $function$
 
