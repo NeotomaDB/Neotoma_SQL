@@ -158,7 +158,7 @@ for record in cur:
                     print('The function for ' + record[0] + '.' + record[1] + ' has not been updated in the `' + data['database'] + '` database.')
                     failed.add(record[0] + "." + record[1])
 
-for schema in ['ti', 'ts', 'doi', 'ap']:
+for schema in ['ti', 'ts', 'doi', 'ap', 'ndb']:
     # Now check all files to see if they are in the DB. . .
     for functs in os.listdir("./function/" + schema + "/"):
         #
