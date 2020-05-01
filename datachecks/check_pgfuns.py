@@ -1,33 +1,35 @@
+import os
 import json
 import psycopg2
 import re
 import datetime
+import uuid
 
-with open('connect_remote.json') as f:
+with open('../connect_remote.json') as f:
     data = json.load(f)
 
 conn = psycopg2.connect(**data)
 conn.autocommit = True
 cur = conn.cursor()
 
-with open('datachecks/neotoma_fun_raw.json') as f:
+with open('neotoma_fun_test.json') as f:
     functions = json.load(f)
 
 date = datetime.datetime.now().strftime("%Y%m%d")
-filename = 'datachecks/checks' + date + '.json'
+filename = 'checks' + uuid.uuid4().hex + '.json'
 
 for i in functions:
     params = ""
     if list(i[1].keys())[0] != '':
         for j in i[1].keys():
-            params = params + "" + j + ":=" + i[1].get(j) + ", "
+            params = params + "" + str(j) + ":=" + str(i[1].get(j)) + ", "
             params = re.sub(", $", "", params)
-            query = "SELECT * FROM " + i[0] + "(" + params + ")"
+            query = "SELECT * FROM " + i[0] + "(" + params + ") LIMIT 10"
     else:
         query = "SELECT * FROM " + i[0] + "()"
     try:
-        aa = cur.execute(query)
-        error = {'function': i[0], 'msg': 'Function Passed'}
+        cur.execute(query)
+        error = {'function': i[0], 'msg': str(cur.fetchall())}
         if os.stat(filename).st_size == 0:
             with open(filename, "a") as f:
                 input = [error]
@@ -40,7 +42,7 @@ for i in functions:
     except psycopg2.ProgrammingError as inst:
         errmsg = re.sub(r'\"', '\'', str(inst))
         error = {'function': i[0], 'msg': errmsg}
-        if os.stat(filename).st_size == 0:
+        if os.path.exists(filename) is False:
             with open(filename, "a") as f:
                 input = [error]
                 json.dump(input, f)
