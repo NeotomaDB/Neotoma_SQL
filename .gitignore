@@ -1,3 +1,4 @@
+datachecks/checks*
 connect_remote.json
 .DS_Store
 ignore/*

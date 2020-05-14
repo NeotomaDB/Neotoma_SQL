@@ -1,0 +1,3698 @@
+[
+  [
+    "ap.explorersearch",
+    {
+      "_subdate": "date DEFAULT NULL::date",
+      "_altmax": "integer DEFAULT NULL::integer",
+      "_coltypeid": "integer DEFAULT NULL::integer",
+      "_dbid": "integer DEFAULT NULL::integer",
+      "_sitename": "character varying DEFAULT NULL::character varying",
+      "_contactid": "integer DEFAULT NULL::integer",
+      "_ageold": "integer DEFAULT NULL::integer",
+      "_ageyoung": "integer DEFAULT NULL::integer",
+      "_agedocontain": "boolean DEFAULT true",
+      "_agedirectdate": "boolean DEFAULT false",
+      "_gpid": "integer DEFAULT NULL::integer",
+      "_altmin": "integer DEFAULT NULL::integer",
+      "_debug": "boolean DEFAULT false",
+      "_taxonids": "integer[] DEFAULT NULL::integer[]",
+      "_elemtypeids": "integer[] DEFAULT NULL::integer[]",
+      "_taphtypeids": "integer[] DEFAULT NULL::integer[]",
+      "_depenvids": "integer[] DEFAULT NULL::integer[]",
+      "_abundpct": "integer DEFAULT NULL::integer",
+      "_datasettypeid": "integer DEFAULT NULL::integer",
+      "_keywordid": "integer DEFAULT NULL::integer",
+      "_coords": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ap.getauthors",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ap.getcollectiontypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ap.getdatasettypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ap.getdeptenvtypes",
+    {
+      "_depenvtid": 1
+    }
+  ],
+  [
+    "ap.getdeptenvtypesroot",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ap.getelementtypes",
+    {
+      "_taxagroupid": "'bone'"
+    }
+  ],
+  [
+    "ap.getelementtypesbytaxonid",
+    {
+      "_taxonid": 100
+    }
+  ],
+  [
+    "ap.getgeochrondatasetbyassociateddatasetid",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ap.getkeywords",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ap.getpeople",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ap.gettaphonomicsystems",
+    {
+      "datasettypeid": 10
+    }
+  ],
+  [
+    "ap.gettaphonomictypes",
+    {
+      "_taphonomicsystemid": 1
+    }
+  ],
+  [
+    "ap.gettaxagrouptypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ap.gettaxaindatasets",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ap.searchsitename",
+    {
+      "_sitename": "'Louise%'"
+    }
+  ],
+  [
+    "da.chronologybyid",
+    {
+      "_chronid": 12
+    }
+  ],
+  [
+    "ti.getagetypeid",
+    {
+      "_agetype": "'Varve years BP'"
+    }
+  ],
+  [
+    "ti.getagetypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getaggregatedatasetbyname",
+    {
+      "_name": "'Roberts Creek'"
+    }
+  ],
+  [
+    "ti.getaggregateordertypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getaliascontactnames",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getalldatasetauthors",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getalldatasetpis",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getanalysisunit",
+    {
+      "_collectionuniid": 100,
+      "_depth": "NULL",
+      "_analunitname": "NULL",
+      "_thickness": "NULL"
+    }
+  ],
+  [
+    "ti.getanalysisunitbyid",
+    {
+      "_analunitid": 1001
+    }
+  ],
+  [
+    "ti.getanalysisunitsamplecount",
+    {
+      "_analunitid": 1001
+    }
+  ],
+  [
+    "ti.getanalysisunitsbycollunitid",
+    {
+      "_collunitid": 1001
+    }
+  ],
+  [
+    "ti.getbiochemdatasetbyid",
+    {
+      "_datasetid": 41516
+    }
+  ],
+  [
+    "ti.getcalibrationcurvestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getcalibrationprogramstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getchildtaxa",
+    {
+      "_taxonname": "'Abies'"
+    }
+  ],
+  [
+    "ti.getchildtaxacount",
+    {
+      "_highertaxonid": 1
+    }
+  ],
+  [
+    "ti.getchildtaxaforallsites",
+    {
+      "_taxonname": "'Abies'"
+    }
+  ],
+  [
+    "ti.getchronconroltypebyname",
+    {
+      "_chroncontroltype": "'Cosmogenic'"
+    }
+  ],
+  [
+    "ti.getchroncontrolsbychroncontrolid",
+    {
+      "_chroncontrolid": 123
+    }
+  ],
+  [
+    "ti.getchroncontroltypehighestid",
+    {
+      "_chroncontroltypeid": 31
+    }
+  ],
+  [
+    "ti.getchroncontroltypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getchronocontrolsbyanalysisunitid",
+    {
+      "_analunitid": 1000
+    }
+  ],
+  [
+    "ti.getchronocontrolsbychronologyid",
+    {
+      "_chronologyid": 200
+    }
+  ],
+  [
+    "ti.getchronologiesbycollunitid",
+    {
+      "_collectionunitid": "100"
+    }
+  ],
+  [
+    "ti.getcollectiontypebyid",
+    {
+      "_colltypeid": "3"
+    }
+  ],
+  [
+    "ti.getcollectiontypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getcollector",
+    {
+      "_collectionunitid": "100"
+    }
+  ],
+  [
+    "ti.getcollunitbyid",
+    {
+      "_collectionunitid": "100"
+    }
+  ],
+  [
+    "ti.getcollunitbyidv2",
+    {
+      "_collectionunitid": "100"
+    }
+  ],
+  [
+    "ti.getcollunithandlecount",
+    {
+      "_handle": "'3PINES'"
+    }
+  ],
+  [
+    "ti.getcollunitsbysiteid",
+    {
+      "_siteid": "125"
+    }
+  ],
+  [
+    "ti.getcollunitsummarybysiteid",
+    {
+      "_siteid": "125"
+    }
+  ],
+  [
+    "ti.getconstituentdatabasenamebyid",
+    {
+      "_databaseid": "3"
+    }
+  ],
+  [
+    "ti.getconstituentdatabases",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getcontactbycontactname",
+    {
+      "_contactname": "character varying"
+    }
+  ],
+  [
+    "ti.getcontactbyfamilyname",
+    {
+      "_familyname": "'Grimm'"
+    }
+  ],
+  [
+    "ti.getcontactbyfamilynameandinitials",
+    {
+      "_initials": "character varying",
+      "_familyname": "character varying"
+    }
+  ],
+  [
+    "ti.getcontactbyid",
+    {
+      "_contactid": "30"
+    }
+  ],
+  [
+    "ti.getcontactdatasets",
+    {
+      "_contactid": "30"
+    }
+  ],
+  [
+    "ti.getcontactlinks",
+    {
+      "_contactid": "30"
+    }
+  ],
+  [
+    "ti.getcontactpublications",
+    {
+      "_contactid": "30"
+    }
+  ],
+  [
+    "ti.getcontactstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getcontactstatusestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getcontextdatasettypecount",
+    {
+      "_datasettypeid": 3,
+      "_variablecontextid": "integer"
+    }
+  ],
+  [
+    "ti.getcontextsdatasettypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getdataprocessor",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetauthorsdatasettypes",
+    {
+      "_datasettypeidlist": "character varying"
+    }
+  ],
+  [
+    "ti.getdatasetchrons",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetcitations",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetcountbycollunittype",
+    {
+      "_collunittypeid": "integer"
+    }
+  ],
+  [
+    "ti.getdatasetdata",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetdatabase",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetidbycollunitandtype",
+    {
+      "_datasettypeid": 3,
+      "_collunitid": 7
+    }
+  ],
+  [
+    "ti.getdatasetidfordatasettypeidforgeochronanalunit",
+    {
+      "_geochronid": "integer",
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ti.getdatasetidsbytaxonid",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ti.getdatasetpis",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetpisdatasettypes",
+    {
+      "_datasettypeidlist": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ti.getdatasetpublicationids",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetpublications",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetpublicationstatus",
+    {
+      "_datasetid": 1001,
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ti.getdatasetpublicationstatusv2",
+    {
+      "_datasetid": 1001,
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ti.getdatasetrepository",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetrepositoryspecimennotes",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetsampleanalysts",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetsampledepagents",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetsampleids",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetsamplekeywords",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetsamples",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetsbycontactid",
+    {
+      "_contactid": "integer"
+    }
+  ],
+  [
+    "ti.getdatasetsbyid",
+    {
+      "_datasets": "text"
+    }
+  ],
+  [
+    "ti.getdatasetsbysiteid",
+    {
+      "_siteid": "integer"
+    }
+  ],
+  [
+    "ti.getdatasetsbysitename",
+    {
+      "_sitename": "character varying"
+    }
+  ],
+  [
+    "ti.getdatasetsbytaxon",
+    {
+      "_taxon": "character varying"
+    }
+  ],
+  [
+    "ti.getdatasetspecimendates",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetspecimengenbanknrs",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetspecimens",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetspecimentaphonomy",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetsynonyms",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasettaxonnotes",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasettaxonnotesbytaxonid",
+    {
+      "_taxonid": "integer",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasettypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getdatasettypesbyname",
+    {
+      "_datasettype": "character varying"
+    }
+  ],
+  [
+    "ti.getdatasettypesbytaxagroupid",
+    {
+      "_taxagroupid": "character varying"
+    }
+  ],
+  [
+    "ti.getdatasettypeshavingdata",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getdatasetvariables",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetvariablesynonyms",
+    {
+      "_variableid": "integer",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdatasetvariableunits",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getdepagentbyname",
+    {
+      "_depagent": "character varying"
+    }
+  ],
+  [
+    "ti.getdepagentstypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getdepenvtbyid",
+    {
+      "_depenvtid": "integer"
+    }
+  ],
+  [
+    "ti.getdepenvttypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getecolgroupsbyecolsetid",
+    {
+      "_ecolsetid": "integer"
+    }
+  ],
+  [
+    "ti.getecolgroupsbytaxagroupidlist",
+    {
+      "_taxagrouplist": "text"
+    }
+  ],
+  [
+    "ti.getecolgroupsbyvariableidlist",
+    {
+      "_variableids": "text"
+    }
+  ],
+  [
+    "ti.getecolgroupstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getecolgrouptypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getecolsetcountsbytaxagroupid",
+    {
+      "_taxagroupid": "character varying"
+    }
+  ],
+  [
+    "ti.getecolsetsgroupsbytaxonid",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ti.getecolsettypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getelementdatasettaxagroupcount",
+    {
+      "_datasettypeid": 3,
+      "_taxagroupid": "character varying",
+      "_elementtypeid": "integer"
+    }
+  ],
+  [
+    "ti.getelementdatasettaxagroupstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getelementmaturitiestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getelementmaturitybyname",
+    {
+      "_maturity": "character varying"
+    }
+  ],
+  [
+    "ti.getelementpartid",
+    {
+      "_partname": "character varying"
+    }
+  ],
+  [
+    "ti.getelementportionbyname",
+    {
+      "_portion": "character varying"
+    }
+  ],
+  [
+    "ti.getelementportionstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getelementsbytaxonid",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ti.getelementsymmetriestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getelementsymmetrybyname",
+    {
+      "_symmetry": "character varying"
+    }
+  ],
+  [
+    "ti.getelementtaxagroupid",
+    {
+      "_elementtypeid": "integer",
+      "_taxagroupid": "character varying"
+    }
+  ],
+  [
+    "ti.getelementtaxagroupmaturitiestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getelementtaxagroupportionstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getelementtaxagroupstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getelementtaxagroupsymmetriestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getelementtypebydatasettypeid",
+    {
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ti.getelementtypebyname",
+    {
+      "_elementtype": "character varying"
+    }
+  ],
+  [
+    "ti.getelementtypefromvariableelement",
+    {
+      "_variableelement": "character varying"
+    }
+  ],
+  [
+    "ti.getelementtypesbynamelist",
+    {
+      "_elementtypes": "character varying"
+    }
+  ],
+  [
+    "ti.getelementtypesbytaxagroupid",
+    {
+      "_taxagroupid": "character varying"
+    }
+  ],
+  [
+    "ti.getelementtypesfortaxontaxagroup",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ti.getelementtypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.geteventbyname",
+    {
+      "_eventname": "character varying"
+    }
+  ],
+  [
+    "ti.geteventchroncontroltypeid",
+    {
+      "_eventname": "character varying"
+    }
+  ],
+  [
+    "ti.geteventpublications",
+    {
+      "_eventid": "integer"
+    }
+  ],
+  [
+    "ti.geteventsbychronologyid",
+    {
+      "_chronologyid": "integer"
+    }
+  ],
+  [
+    "ti.geteventstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.geteventtypebyname",
+    {
+      "_eventtype": "character varying"
+    }
+  ],
+  [
+    "ti.geteventtypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getfaciestypebyname",
+    {
+      "_facies": "character varying"
+    }
+  ],
+  [
+    "ti.getfaciestypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getfaunmap1relativeagesbychroncontrolidlist",
+    {
+      "_chroncontrolids": "character varying"
+    }
+  ],
+  [
+    "ti.getfractiondatedbyname",
+    {
+      "_fraction": "character varying"
+    }
+  ],
+  [
+    "ti.getfractiondatedtable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getfractionsdatedbylist",
+    {
+      "_fractions": "character varying"
+    }
+  ],
+  [
+    "ti.getfunctioninputparams",
+    {
+      "_functionname": "character varying"
+    }
+  ],
+  [
+    "ti.getgeochronanalysisunit",
+    {
+      "_geochronid": "integer"
+    }
+  ],
+  [
+    "ti.getgeochronanalysisunitsbydatasetid",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getgeochronbydatasetid",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getgeochronbygeochronid",
+    {
+      "_geochronid": "integer"
+    }
+  ],
+  [
+    "ti.getgeochroncontrolcount",
+    {
+      "_geochronid": "integer"
+    }
+  ],
+  [
+    "ti.getgeochroncontrolsbychronologyid",
+    {
+      "_chronologyid": "integer"
+    }
+  ],
+  [
+    "ti.getgeochroncounts",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getgeochronidcount",
+    {
+      "_geochronid": "integer"
+    }
+  ],
+  [
+    "ti.getgeochrontypeid",
+    {
+      "_geochrontype": "character varying"
+    }
+  ],
+  [
+    "ti.getgeochrontypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getgeopolbysitename",
+    {
+      "_east": "double precision",
+      "_sitename": "character varying",
+      "_north": "double precision",
+      "_west": "double precision",
+      "_south": "double precision"
+    }
+  ],
+  [
+    "ti.getgeopoliticalunitstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getgeopolnumberofsubdivs",
+    {
+      "_highergeopolid": "integer"
+    }
+  ],
+  [
+    "ti.getgeopolunitbyhigherid",
+    {
+      "_highergeopolid": "integer"
+    }
+  ],
+  [
+    "ti.getgeopolunitbyid",
+    {
+      "_geopolid": "integer"
+    }
+  ],
+  [
+    "ti.getgeopolunitbynameandhigherid",
+    {
+      "_geopolname": "character varying",
+      "_highergeopolid": "integer"
+    }
+  ],
+  [
+    "ti.getgeopolunitbynameandrank",
+    {
+      "_rank": "integer",
+      "_geopolname": "character varying"
+    }
+  ],
+  [
+    "ti.getgeopolunitbyrank",
+    {
+      "_rank": "integer"
+    }
+  ],
+  [
+    "ti.getgeopolunitrank",
+    {
+      "_rank": "integer"
+    }
+  ],
+  [
+    "ti.getgeopolunitsbysiteid",
+    {
+      "_siteid": "integer"
+    }
+  ],
+  [
+    "ti.getinvalidtaxabytaxagroupid",
+    {
+      "_taxagroupid": "character varying"
+    }
+  ],
+  [
+    "ti.getinvalidtaxabytaxagroupidlist",
+    {
+      "_taxagrouplist": "text"
+    }
+  ],
+  [
+    "ti.getinvalidtaxonbyname",
+    {
+      "_taxonname": "character varying"
+    }
+  ],
+  [
+    "ti.getinvalidtaxonsynonymycount",
+    {
+      "_reftaxonid": "integer"
+    }
+  ],
+  [
+    "ti.getinvestigator",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getisobiomarkers",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getisoinstrumentationtypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getisomaterialanalyzedandsubstrate",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getisomaterialanalyzedtypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getisopretreatmenttypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getisosampleintrosystemtypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getisosampleorigintypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getisostandardtypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getisosubstrates",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getisovariablescaleids",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getisovariablescaletypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getkeywordstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getlakeparametertypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getlakeparamsbysiteid",
+    {
+      "_siteid": "integer"
+    }
+  ],
+  [
+    "ti.getlithologybycollunitid",
+    {
+      "_collunitid": 7
+    }
+  ],
+  [
+    "ti.getmaxpubidbypubidtype",
+    {
+      "_pubtypeid": "integer"
+    }
+  ],
+  [
+    "ti.getminpubidbypubidtype",
+    {
+      "_pubtypeid": "integer"
+    }
+  ],
+  [
+    "ti.getnearestsites",
+    {
+      "_north": "numeric",
+      "_south": "numeric",
+      "_distkm": "numeric",
+      "_east": "numeric",
+      "_west": "numeric"
+    }
+  ],
+  [
+    "ti.getnextlowergeopolcountbynames",
+    {
+      "_rank2": "integer",
+      "_rank1": "integer",
+      "_name1": "character varying",
+      "_name2": "character varying"
+    }
+  ],
+  [
+    "ti.getnextpublicationbyid",
+    {
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ti.getnextpublicationbyidandpubtypeid",
+    {
+      "_pubtypeid": "integer",
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ti.getpollensporehighertaxa",
+    {
+      "_taxaidlist": "character varying"
+    }
+  ],
+  [
+    "ti.getpredefinedtaxaecolgroupsbydatasettypelist",
+    {
+      "_datasettypeids": "character varying"
+    }
+  ],
+  [
+    "ti.getpreviouspublicationbyid",
+    {
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ti.getpreviouspublicationbyidandpubtypeid",
+    {
+      "_pubtypeid": "integer",
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ti.getprocedureinputparams",
+    {
+      "_procedurename": "character varying"
+    }
+  ],
+  [
+    "ti.getpublicationauthors",
+    {
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ti.getpublicationbycitation",
+    {
+      "_citation": "character varying"
+    }
+  ],
+  [
+    "ti.getpublicationbydatasetid",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getpublicationbyfamilyname",
+    {
+      "_familyname": "character varying"
+    }
+  ],
+  [
+    "ti.getpublicationbyid",
+    {
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ti.getpublicationbyidlist",
+    {
+      "_publicationidlist": "character varying"
+    }
+  ],
+  [
+    "ti.getpublicationeditors",
+    {
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ti.getpublicationsbycontactid",
+    {
+      "_contactid": "integer"
+    }
+  ],
+  [
+    "ti.getpublicationsbygeochronid",
+    {
+      "_geochronidlist": "character varying"
+    }
+  ],
+  [
+    "ti.getpublicationstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getpublicationtranslators",
+    {
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ti.getpublicationtypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getradiocarbonbygeochronid",
+    {
+      "_geochronidlist": "character varying"
+    }
+  ],
+  [
+    "ti.getradiocarbonmethodid",
+    {
+      "_radiocarbonmethod": "character varying"
+    }
+  ],
+  [
+    "ti.getradiocarbonmethodstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getrecentuploads",
+    {
+      "_databaseid": "integer DEFAULT NULL::integer",
+      "_datasettypeid": "integer DEFAULT NULL::integer",
+      "_limit": "integer DEFAULT 400",
+      "_months": "integer DEFAULT 1"
+    }
+  ],
+  [
+    "ti.getrelativeagebyname",
+    {
+      "_relativeage": "character varying"
+    }
+  ],
+  [
+    "ti.getrelativeagechroncontroltype",
+    {
+      "_relativeage": "character varying"
+    }
+  ],
+  [
+    "ti.getrelativeagepublications",
+    {
+      "_relativeageid": "integer"
+    }
+  ],
+  [
+    "ti.getrelativeagesbychronologyid",
+    {
+      "_chronologyid": "integer"
+    }
+  ],
+  [
+    "ti.getrelativeagescalebyname",
+    {
+      "_relativeagescale": "character varying"
+    }
+  ],
+  [
+    "ti.getrelativeagescalestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getrelativeagestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getrelativeageunitsbyagescale",
+    {
+      "_relativeagescale": "character varying"
+    }
+  ],
+  [
+    "ti.getrelativeageunitsbyname",
+    {
+      "_relativeagescale": "character varying"
+    }
+  ],
+  [
+    "ti.getrepositoryinstitution",
+    {
+      "_repository": "character varying DEFAULT NULL::character varying",
+      "_acronym": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ti.getrepositoryinstitutionstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getrocktypebyid",
+    {
+      "_rocktypeid": "integer"
+    }
+  ],
+  [
+    "ti.getrocktypebyname",
+    {
+      "_rocktype": "character varying"
+    }
+  ],
+  [
+    "ti.getrocktypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getsampleage",
+    {
+      "_sampleid": "integer",
+      "_chronologyid": "integer"
+    }
+  ],
+  [
+    "ti.getsampleagesbychronid",
+    {
+      "_chronologyid": "integer"
+    }
+  ],
+  [
+    "ti.getsampleidfordatasetidfromgeochronanalunit",
+    {
+      "_datasetid": 1001,
+      "_geochronid": "integer"
+    }
+  ],
+  [
+    "ti.getsampleidfordatasettypeidfromgeochronanalunit",
+    {
+      "_geochronid": "integer",
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ti.getsamplekeywords",
+    {
+      "_sampleid": "integer"
+    }
+  ],
+  [
+    "ti.getsampleparents",
+    {
+      "_sampleid": "integer"
+    }
+  ],
+  [
+    "ti.getsampletaxoncount",
+    {
+      "_sampleid": "integer",
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ti.getsitebyname",
+    {
+      "_sitename": "character varying"
+    }
+  ],
+  [
+    "ti.getsitemetadata",
+    {
+      "_siteid": "integer"
+    }
+  ],
+  [
+    "ti.getsites",
+    {
+      "_datasettypeid": "integer DEFAULT NULL::integer",
+      "_sitename": "character varying DEFAULT NULL::character varying",
+      "_geopoliticalid": "integer DEFAULT NULL::integer",
+      "_contactid": "integer DEFAULT NULL::integer",
+      "_authorid": "integer DEFAULT NULL::integer"
+    }
+  ],
+  [
+    "ti.getsitesbydatabaseanddatasettype",
+    {
+      "_datasettypeid": 3,
+      "_databaseid": "integer"
+    }
+  ],
+  [
+    "ti.getsitesbydatasettype",
+    {
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ti.getspecimenbyidcount",
+    {
+      "_specimenid": "integer"
+    }
+  ],
+  [
+    "ti.getspecimendatebyspecimendateid",
+    {
+      "_specimendateid": "integer"
+    }
+  ],
+  [
+    "ti.getspecimendatecalbyspecimendateid",
+    {
+      "_specimendateid": "integer"
+    }
+  ],
+  [
+    "ti.getspecimendatesbygeochrondatasetid",
+    {
+      "_geochrondatasetid": "integer"
+    }
+  ],
+  [
+    "ti.getspecimendatesbytaxonid",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ti.getspecimendomesticstatusbyname",
+    {
+      "_domesticstatus": "character varying"
+    }
+  ],
+  [
+    "ti.getspecimendomesticstatustypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getspecimenisotopedataset",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ti.getspecimensampleid",
+    {
+      "_specimenid": "integer"
+    }
+  ],
+  [
+    "ti.getspecimensexbyname",
+    {
+      "_sex": "character varying"
+    }
+  ],
+  [
+    "ti.getspecimensextypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getspecimentaxonid",
+    {
+      "_specimenid": "integer"
+    }
+  ],
+  [
+    "ti.getstatscolltypedatasetcount",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getsynonymsforinvalidtaxonid",
+    {
+      "_invalidtaxonid": "integer"
+    }
+  ],
+  [
+    "ti.getsynonymsforvalidtaxonid",
+    {
+      "_validtaxonid": "integer"
+    }
+  ],
+  [
+    "ti.getsynonymtype",
+    {
+      "_synonymtype": "character varying"
+    }
+  ],
+  [
+    "ti.getsynonymtypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.gettablecolumns",
+    {
+      "_tablename": "character varying"
+    }
+  ],
+  [
+    "ti.gettablemaxid",
+    {
+      "_tablename": "character varying",
+      "_columnname": "character varying"
+    }
+  ],
+  [
+    "ti.gettableminid",
+    {
+      "_tablename": "character varying",
+      "_columnname": "character varying"
+    }
+  ],
+  [
+    "ti.gettablerecordcount",
+    {
+      "_tablename": "character varying"
+    }
+  ],
+  [
+    "ti.gettablerecordcountbymonth",
+    {
+      "_tablename": "character varying"
+    }
+  ],
+  [
+    "ti.gettaphonomicsystembydatasettype",
+    {
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ti.gettaphonomicsystembyname",
+    {
+      "_taphonomicsystem": "character varying"
+    }
+  ],
+  [
+    "ti.gettaphonomicsystemsbydatasettype",
+    {
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ti.gettaphonomicsystemsdatasettypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.gettaphonomicsystemstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.gettaphonomictypeid",
+    {
+      "_taphonomictype": "character varying",
+      "_taphonomicsystemid": "integer"
+    }
+  ],
+  [
+    "ti.gettaphonomictypesbyidlist",
+    {
+      "_taphonomictypeids": "character varying"
+    }
+  ],
+  [
+    "ti.gettaphonomictypesbysystem",
+    {
+      "_taphonomicsystemid": "integer"
+    }
+  ],
+  [
+    "ti.gettaphonomictypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.gettaxabycodeandtaxagroupid",
+    {
+      "_taxagroupid": "character varying",
+      "_taxoncode": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxabynamelist",
+    {
+      "_taxanames": "text"
+    }
+  ],
+  [
+    "ti.gettaxabynamescount",
+    {
+      "_taxanames": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxabytaxagroupid",
+    {
+      "_taxagroupid": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxaecolgroupsbydatasettypelist",
+    {
+      "_datasettypeids": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxagroupbyid",
+    {
+      "_taxagroupid": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxagroupcodes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.gettaxagroupecolsetids",
+    {
+      "_taxagroupid": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxagroupelementtypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.gettaxagroupid",
+    {
+      "_taxagroup": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxagrouppublications",
+    {
+      "_taxagroupid": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxagroupsfordatasettype",
+    {
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ti.gettaxagrouptypes",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.gettaxalookupsynonymybytaxagroupidlist",
+    {
+      "_taxagrouplist": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxatable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.gettaxonbyid",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ti.gettaxonbyname",
+    {
+      "_taxonname": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxondatarecordscount",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ti.gettaxonhierarchy",
+    {
+      "_taxonname": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxonspecimendatescount",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ti.gettaxonsynonymscount",
+    {
+      "_validtaxonid": "integer"
+    }
+  ],
+  [
+    "ti.gettaxonsynonymycount",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ti.gettaxonvarelements",
+    {
+      "_taxonname": "character varying"
+    }
+  ],
+  [
+    "ti.gettaxonvarunits",
+    {
+      "_taxonname": "character varying"
+    }
+  ],
+  [
+    "ti.getunitsdatasettypecount",
+    {
+      "_datasettypeid": 3,
+      "_variableunitsid": "integer"
+    }
+  ],
+  [
+    "ti.getunitsdatasettypestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getvalidsynonymbyinvalidtaxonid",
+    {
+      "_invalidtaxonid": "integer"
+    }
+  ],
+  [
+    "ti.getvalidtaxabytaxagroupid",
+    {
+      "_taxagroupid": "character varying"
+    }
+  ],
+  [
+    "ti.getvalidtaxabytaxagroupidlist",
+    {
+      "_taxagrouplist": "character varying"
+    }
+  ],
+  [
+    "ti.getvalidtaxonbyname",
+    {
+      "_taxonname": "character varying"
+    }
+  ],
+  [
+    "ti.getvarelemsbydatasettypeandtaxaidlist",
+    {
+      "_datasettype": "character varying",
+      "_taxaids": "character varying"
+    }
+  ],
+  [
+    "ti.getvariablebycomponentnames",
+    {
+      "_context": "character varying DEFAULT NULL::character varying",
+      "_element": "character varying DEFAULT NULL::character varying",
+      "_taxon": "character varying",
+      "_units": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ti.getvariablebycomponents",
+    {
+      "_variableelementid": "integer DEFAULT NULL::integer",
+      "_taxonid": "integer",
+      "_variableunitsid": "integer DEFAULT NULL::integer",
+      "_variablecontextid": "integer DEFAULT NULL::integer"
+    }
+  ],
+  [
+    "ti.getvariablebyid",
+    {
+      "_variableid": "integer"
+    }
+  ],
+  [
+    "ti.getvariablecontextid",
+    {
+      "_variablecontext": "character varying"
+    }
+  ],
+  [
+    "ti.getvariablecontextstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getvariablecontextstablebydatasettypeid",
+    {
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ti.getvariabledatarecordscount",
+    {
+      "_variableid": "integer"
+    }
+  ],
+  [
+    "ti.getvariableelementbyname",
+    {
+      "_variableelement": "character varying"
+    }
+  ],
+  [
+    "ti.getvariableelementbypartids",
+    {
+      "_portionid": "integer",
+      "_maturityid": "integer",
+      "_elementtypeid": "integer",
+      "_symmetryid": "integer"
+    }
+  ],
+  [
+    "ti.getvariableelementsbydatasettypeid",
+    {
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ti.getvariableelementstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getvariablesbytaxagroupidlist",
+    {
+      "_taxagrouplist": "character varying"
+    }
+  ],
+  [
+    "ti.getvariablesbytaxonid",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ti.getvariablestable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getvariabletaxonid",
+    {
+      "_variableid": "integer"
+    }
+  ],
+  [
+    "ti.getvariabletextbyid",
+    {
+      "_variableid": "integer"
+    }
+  ],
+  [
+    "ti.getvariabletexybyid",
+    {
+      "variableid": "integer"
+    }
+  ],
+  [
+    "ti.getvariableunitsid",
+    {
+      "_variableunits": "character varying"
+    }
+  ],
+  [
+    "ti.getvariableunitstable",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ti.getvariableunitstablebydatasettypeid",
+    {
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ti.validateusername",
+    {
+      "_username": "character varying"
+    }
+  ],
+  [
+    "ts.checksteward",
+    {
+      "_pwd": "character varying",
+      "_username": "character varying"
+    }
+  ],
+  [
+    "ts.combinecontacts",
+    {
+      "_keepcontactid": "integer",
+      "_contactidlist": "character varying"
+    }
+  ],
+  [
+    "ts.deleteanalysisunit",
+    {
+      "_analunitid": "integer"
+    }
+  ],
+  [
+    "ts.deletechronology",
+    {
+      "_chronologyid": "integer"
+    }
+  ],
+  [
+    "ts.deletecollectionunit",
+    {
+      "_collectionunitid": "integer"
+    }
+  ],
+  [
+    "ts.deletecollectors",
+    {
+      "_collunitid": 7
+    }
+  ],
+  [
+    "ts.deletedata",
+    {
+      "_dataid": "integer"
+    }
+  ],
+  [
+    "ts.deletedataprocessor",
+    {
+      "_datasetid": 1001,
+      "_contactid": "integer"
+    }
+  ],
+  [
+    "ts.deletedataset",
+    {
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.deletedatasetpi",
+    {
+      "_contactid": "integer",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.deletedatasetpublication",
+    {
+      "_datasetid": 1001,
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ts.deletedatasettaxonnotes",
+    {
+      "_contactid": "integer",
+      "_datasetid": 1001,
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ts.deletedatasetvariable",
+    {
+      "_variableid": "integer",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.deletedepenvttype",
+    {
+      "_depenvtid": "integer"
+    }
+  ],
+  [
+    "ts.deleteecolgroup",
+    {
+      "_taxonid": "integer",
+      "_ecolsetid": "integer"
+    }
+  ],
+  [
+    "ts.deleteeventpublication",
+    {
+      "_publicationid": "integer",
+      "_eventid": "integer"
+    }
+  ],
+  [
+    "ts.deletegeochron",
+    {
+      "_geochronid": "integer"
+    }
+  ],
+  [
+    "ts.deletegeochroncontrol",
+    {
+      "_chroncontrolid": "integer"
+    }
+  ],
+  [
+    "ts.deletegeochronpublication",
+    {
+      "_publicationid": "integer",
+      "_geochronid": "integer"
+    }
+  ],
+  [
+    "ts.deletepublicationauthor",
+    {
+      "_authorid": "integer"
+    }
+  ],
+  [
+    "ts.deletepublicationeditor",
+    {
+      "_editorid": "integer"
+    }
+  ],
+  [
+    "ts.deletepublicationtranslator",
+    {
+      "_translatorid": "integer"
+    }
+  ],
+  [
+    "ts.deleterelativeagepublication",
+    {
+      "_relativeageid": "integer",
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ts.deleterepositoryspecimen",
+    {
+      "_repositoryid": "integer",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.deletesample",
+    {
+      "_sampleid": "integer"
+    }
+  ],
+  [
+    "ts.deletesampleanalysts",
+    {
+      "_sampleid": "integer"
+    }
+  ],
+  [
+    "ts.deletesite",
+    {
+      "_siteid": "integer"
+    }
+  ],
+  [
+    "ts.deletesynonymy",
+    {
+      "_contactid": "integer",
+      "_synonymyid": "integer"
+    }
+  ],
+  [
+    "ts.deletetaxon",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ts.deletevariablebyvariableid",
+    {
+      "_variableid": "integer"
+    }
+  ],
+  [
+    "ts.deletevariablecontext",
+    {
+      "_variablecontextid": "integer"
+    }
+  ],
+  [
+    "ts.deletevariablesbytaxonid",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ts.insertaggregatechronology",
+    {
+      "_ageboundolder": "integer",
+      "_aggregatedatasetid": "integer",
+      "_agetypeid": "integer",
+      "_isdefault": "boolean",
+      "_chronologyname": "character varying",
+      "_ageboundyounger": "integer",
+      "_notes": "character varying"
+    }
+  ],
+  [
+    "ts.insertaggregatedataset",
+    {
+      "_notes": "text DEFAULT NULL::text",
+      "_ordertypeid": "integer",
+      "_name": "character varying"
+    }
+  ],
+  [
+    "ts.insertaggregatesample",
+    {
+      "_sampleid": "integer",
+      "_aggregatedatasetid": "integer"
+    }
+  ],
+  [
+    "ts.insertaggregatesampleages",
+    {
+      "_aggregatechronid": "integer",
+      "_aggregatedatasetid": "integer"
+    }
+  ],
+  [
+    "ts.insertanalysisunit",
+    {
+      "_analysisunitname": "character varying DEFAULT NULL::character varying",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_igsn": "character varying DEFAULT NULL::character varying",
+      "_mixed": "boolean DEFAULT NULL::boolean",
+      "_faciesid": "integer DEFAULT NULL::integer",
+      "_thickness": "double precision DEFAULT NULL::double precision",
+      "_depth": "double precision DEFAULT NULL::double precision",
+      "_collectionunitid": "integer"
+    }
+  ],
+  [
+    "ts.insertanalysisunitaltdepth",
+    {
+      "_altdepthscaleid": "integer",
+      "_analysisunitid": "integer",
+      "_altdepth": "double precision"
+    }
+  ],
+  [
+    "ts.insertanalysisunitaltdepthscale",
+    {
+      "_variableunitsid": "integer",
+      "_altdepthname": "character varying",
+      "_altdepthid": "integer",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertcalibrationprogram",
+    {
+      "_calibrationprogram": "character varying",
+      "_version": "character varying"
+    }
+  ],
+  [
+    "ts.insertchroncontrol",
+    {
+      "_chronologyid": "integer",
+      "_chroncontroltypeid": "integer",
+      "_analysisunitid": "integer DEFAULT NULL::integer",
+      "_depth": "double precision DEFAULT NULL::double precision",
+      "_thickness": "double precision DEFAULT NULL::double precision",
+      "_agetypeid": "integer DEFAULT NULL::integer",
+      "_age": "double precision DEFAULT NULL::double precision",
+      "_agelimityounger": "double precision DEFAULT NULL::double precision",
+      "_agelimitolder": "double precision DEFAULT NULL::double precision",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertchroncontrolcal14c",
+    {
+      "_chroncontrolid": "integer",
+      "_calibrationcurveid": "integer",
+      "_calibrationprogramid": "integer"
+    }
+  ],
+  [
+    "ts.insertchroncontroltype",
+    {
+      "_higherchroncontroltypeid": "integer",
+      "_chroncontroltype": "character varying"
+    }
+  ],
+  [
+    "ts.insertchronology",
+    {
+      "_agetypeid": "integer DEFAULT NULL::integer",
+      "_contactid": "integer DEFAULT NULL::integer",
+      "_notes": "text DEFAULT NULL::text",
+      "_ageboundolder": "integer DEFAULT NULL::integer",
+      "_agemodel": "character varying DEFAULT NULL::character varying",
+      "_ageboundyounger": "integer DEFAULT NULL::integer",
+      "_dateprepared": "date DEFAULT NULL::date",
+      "_chronologyname": "character varying DEFAULT NULL::character varying",
+      "_isdefault": "boolean DEFAULT NULL::boolean",
+      "_collectionunitid": "integer"
+    }
+  ],
+  [
+    "ts.insertcollectionunit",
+    {
+      "_collunitname": "character varying DEFAULT NULL::character varying",
+      "_colldevice": "character varying DEFAULT NULL::character varying",
+      "_waterdepth": "double precision DEFAULT NULL::double precision",
+      "_gpserror": "double precision DEFAULT NULL::double precision",
+      "_gpsaltitude": "double precision DEFAULT NULL::double precision",
+      "_gpslongitude": "double precision DEFAULT NULL::double precision",
+      "_gpslatitude": "double precision DEFAULT NULL::double precision",
+      "_colltypeid": "integer DEFAULT NULL::integer",
+      "_depenvtid": "integer DEFAULT NULL::integer",
+      "_siteid": "integer",
+      "_handle": "character varying",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_colldate": "date DEFAULT NULL::date",
+      "_watertabledepth": "double precision DEFAULT NULL::double precision",
+      "_substrateid": "integer DEFAULT NULL::integer",
+      "_slopeaspect": "integer DEFAULT NULL::integer",
+      "_slopeangle": "integer DEFAULT NULL::integer",
+      "_location": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertcollector",
+    {
+      "_collectororder": "integer",
+      "_contactid": "integer",
+      "_collunitid": 7
+    }
+  ],
+  [
+    "ts.insertcontact",
+    {
+      "_givennames": "character varying DEFAULT NULL::character varying",
+      "_aliasid": "integer DEFAULT NULL::integer",
+      "_contactname": "character varying DEFAULT NULL::character varying",
+      "_statusid": "integer DEFAULT NULL::integer",
+      "_familyname": "character varying DEFAULT NULL::character varying",
+      "_initials": "character varying DEFAULT NULL::character varying",
+      "_suffix": "character varying DEFAULT NULL::character varying",
+      "_title": "character varying DEFAULT NULL::character varying",
+      "_phone": "character varying DEFAULT NULL::character varying",
+      "_fax": "character varying DEFAULT NULL::character varying",
+      "_email": "character varying DEFAULT NULL::character varying",
+      "_url": "character varying DEFAULT NULL::character varying",
+      "_address": "character varying DEFAULT NULL::character varying",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertcontextdatasettypes",
+    {
+      "_variablecontextid": "integer",
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ts.insertdata",
+    {
+      "_sampleid": "integer",
+      "_variableid": "integer",
+      "_value": "double precision"
+    }
+  ],
+  [
+    "ts.insertdataprocessor",
+    {
+      "_contactid": "integer",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.insertdataset",
+    {
+      "_datasetname": "character varying DEFAULT NULL::character varying",
+      "_collectionunitid": "integer",
+      "_datasettypeid": 3,
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertdatasetdatabase",
+    {
+      "_datasetid": 1001,
+      "_databaseid": "integer"
+    }
+  ],
+  [
+    "ts.insertdatasetpi",
+    {
+      "_contactid": "integer",
+      "_datasetid": 1001,
+      "_piorder": "integer"
+    }
+  ],
+  [
+    "ts.insertdatasetpublication",
+    {
+      "_primarypub": "boolean",
+      "_publicationid": "integer",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.insertdatasetrepository",
+    {
+      "_repositoryid": "integer",
+      "_datasetid": 1001,
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertdatasetsubmission",
+    {
+      "_submissiondate": "character varying",
+      "_datasetid": 1001,
+      "_databaseid": "integer",
+      "_contactid": "integer",
+      "_submissiontypeid": "integer",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertdatasettaxonnotes",
+    {
+      "_notes": "character varying",
+      "_update": "boolean",
+      "_date": "character varying",
+      "_contactid": "integer",
+      "_taxonid": "integer",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.insertdepagent",
+    {
+      "_depagentid": "integer",
+      "_analysisunitid": "integer"
+    }
+  ],
+  [
+    "ts.insertdepagenttypes",
+    {
+      "_depagent": "character varying"
+    }
+  ],
+  [
+    "ts.insertdepenvttype",
+    {
+      "_depenvthigherid": "integer DEFAULT NULL::integer",
+      "_depenvt": "character varying"
+    }
+  ],
+  [
+    "ts.insertecolgroup",
+    {
+      "_ecolsetid": "integer",
+      "_taxonid": "integer",
+      "_ecolgroupid": "character varying"
+    }
+  ],
+  [
+    "ts.insertecolgrouptype",
+    {
+      "_ecolgroupid": "character varying",
+      "_ecolgroup": "character varying"
+    }
+  ],
+  [
+    "ts.insertelementdatasettaxagroups",
+    {
+      "_taxagroupid": "character varying",
+      "_elementtypeid": "integer",
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ts.insertelementmaturity",
+    {
+      "_maturity": "character varying"
+    }
+  ],
+  [
+    "ts.insertelementportion",
+    {
+      "_portion": "character varying"
+    }
+  ],
+  [
+    "ts.insertelementsymmetry",
+    {
+      "_symmetry": "character varying"
+    }
+  ],
+  [
+    "ts.insertelementtaxagroupmaturity",
+    {
+      "_maturityid": "integer",
+      "_elementtaxagroupid": "integer"
+    }
+  ],
+  [
+    "ts.insertelementtaxagroupportion",
+    {
+      "_elementtaxagroupid": "integer",
+      "_portionid": "integer"
+    }
+  ],
+  [
+    "ts.insertelementtaxagroups",
+    {
+      "_taxagroupid": "character varying",
+      "_elementtypeid": "integer"
+    }
+  ],
+  [
+    "ts.insertelementtaxagroupsymmetry",
+    {
+      "_symmetryid": "integer",
+      "_elementtaxagroupid": "integer"
+    }
+  ],
+  [
+    "ts.insertelementtype",
+    {
+      "_elementtype": "character varying"
+    }
+  ],
+  [
+    "ts.insertevent",
+    {
+      "_eventname": "character varying",
+      "_c14age": "double precision DEFAULT NULL::double precision",
+      "_c14ageyounger": "double precision DEFAULT NULL::double precision",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_c14ageolder": "double precision DEFAULT NULL::double precision",
+      "_calage": "double precision DEFAULT NULL::double precision",
+      "_calageyounger": "double precision DEFAULT NULL::double precision",
+      "_calageolder": "double precision DEFAULT NULL::double precision",
+      "_eventtypeid": "integer"
+    }
+  ],
+  [
+    "ts.inserteventchronology",
+    {
+      "_eventid": "integer",
+      "_chroncontrolid": "integer",
+      "_analysisunitid": "integer",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.inserteventpublication",
+    {
+      "_publicationid": "integer",
+      "_eventid": "integer"
+    }
+  ],
+  [
+    "ts.insertfaciestypes",
+    {
+      "_facies": "character varying"
+    }
+  ],
+  [
+    "ts.insertformtaxon",
+    {
+      "_systematicdescription": "boolean",
+      "_publicationid": "integer",
+      "_affinityid": "integer",
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ts.insertfractiondated",
+    {
+      "_fraction": "character varying"
+    }
+  ],
+  [
+    "ts.insertgeochron",
+    {
+      "_erroryounger": "double precision DEFAULT NULL::double precision",
+      "_sampleid": "integer",
+      "_geochrontypeid": "integer",
+      "_agetypeid": "integer",
+      "_age": "double precision DEFAULT NULL::double precision",
+      "_errorolder": "double precision DEFAULT NULL::double precision",
+      "_infinite": "boolean DEFAULT false",
+      "_delta13c": "double precision DEFAULT NULL::double precision",
+      "_labnumber": "character varying DEFAULT NULL::character varying",
+      "_materialdated": "character varying DEFAULT NULL::character varying",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertgeochroncontrol",
+    {
+      "_chroncontrolid": "integer",
+      "_geochronid": "integer"
+    }
+  ],
+  [
+    "ts.insertgeochronpublication",
+    {
+      "_publicationid": "integer",
+      "_geochronid": "integer"
+    }
+  ],
+  [
+    "ts.insertgeopoliticalunit",
+    {
+      "_geopolname": "character varying",
+      "_higherid": "integer",
+      "_rank": "integer",
+      "_geopolunit": "character varying"
+    }
+  ],
+  [
+    "ts.insertisoinstrumention",
+    {
+      "_insterrorlongtermpercent": "double precision DEFAULT NULL::double precision",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_isosampleintrosystemtypeid": "integer DEFAULT NULL::integer",
+      "_isoinstrumentationtypeid": "integer DEFAULT NULL::integer",
+      "_variableid": "integer",
+      "_datasetid": 1001,
+      "_insterrorpercent": "double precision DEFAULT NULL::double precision",
+      "_insterrorrunsd": "double precision DEFAULT NULL::double precision"
+    }
+  ],
+  [
+    "ts.insertisometadata",
+    {
+      "_isosubstratetypeid": "integer DEFAULT NULL::integer",
+      "_dataid": "integer",
+      "_isomatanaltypeid": "integer DEFAULT NULL::integer",
+      "_lab": "character varying DEFAULT NULL::character varying",
+      "_reps": "integer DEFAULT NULL::integer",
+      "_massmg": "double precision DEFAULT NULL::double precision",
+      "_labnumber": "character varying DEFAULT NULL::character varying",
+      "_weightpercent": "double precision DEFAULT NULL::double precision",
+      "_analystid": "integer DEFAULT NULL::integer",
+      "_atomicpercent": "double precision DEFAULT NULL::double precision"
+    }
+  ],
+  [
+    "ts.insertisosamplepretreatments",
+    {
+      "_isopretreatmenttypeid": "integer",
+      "_order": "integer",
+      "_value": "double precision DEFAULT NULL::double precision",
+      "_dataid": "integer"
+    }
+  ],
+  [
+    "ts.insertisospecimendata",
+    {
+      "_specimenid": "integer",
+      "_dataid": "integer",
+      "_sd": "double precision DEFAULT NULL::double precision"
+    }
+  ],
+  [
+    "ts.insertisospecimentaphonomy",
+    {
+      "_specimenid": "integer",
+      "_taphonomictypeid": "integer"
+    }
+  ],
+  [
+    "ts.insertisosrmetadata",
+    {
+      "_srlocalvalue": "double precision DEFAULT NULL::double precision",
+      "_datasetid": 1001,
+      "_srlocalgeolcontext": "character varying DEFAULT NULL::character varying",
+      "_variableid": "integer"
+    }
+  ],
+  [
+    "ts.insertisostandards",
+    {
+      "_datasetid": 1001,
+      "_isostandardid": "integer",
+      "_value": "double precision",
+      "_variableid": "integer"
+    }
+  ],
+  [
+    "ts.insertisostratdata",
+    {
+      "_taxonid": "integer DEFAULT NULL::integer",
+      "_dataid": "integer",
+      "_elementtypeid": "integer DEFAULT NULL::integer",
+      "_sd": "double precision DEFAULT NULL::double precision"
+    }
+  ],
+  [
+    "ts.insertlakeparameter",
+    {
+      "_lakeparameterid": "integer",
+      "_value": "double precision",
+      "_siteid": "integer"
+    }
+  ],
+  [
+    "ts.insertlithology",
+    {
+      "_collectionunitid": "integer",
+      "_depthbottom": "double precision DEFAULT NULL::double precision",
+      "_lowerboundary": "character varying DEFAULT NULL::character varying",
+      "_description": "character varying DEFAULT NULL::character varying",
+      "_depthtop": "double precision DEFAULT NULL::double precision"
+    }
+  ],
+  [
+    "ts.insertnewdatasetpi",
+    {
+      "_contactid": "integer",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.insertpublication",
+    {
+      "_state": "character varying DEFAULT NULL::character varying",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_doi": "character varying DEFAULT NULL::character varying",
+      "_booktitle": "character varying DEFAULT NULL::character varying",
+      "_numvol": "character varying DEFAULT NULL::character varying",
+      "_edition": "character varying DEFAULT NULL::character varying",
+      "_voltitle": "character varying DEFAULT NULL::character varying",
+      "_sertitle": "character varying DEFAULT NULL::character varying",
+      "_servol": "character varying DEFAULT NULL::character varying",
+      "_publisher": "character varying DEFAULT NULL::character varying",
+      "_url": "character varying DEFAULT NULL::character varying",
+      "_city": "character varying DEFAULT NULL::character varying",
+      "_country": "character varying DEFAULT NULL::character varying",
+      "_origlang": "character varying DEFAULT NULL::character varying",
+      "_pubtypeid": "integer",
+      "_year": "character varying DEFAULT NULL::character varying",
+      "_citation": "character varying DEFAULT NULL::character varying",
+      "_title": "character varying DEFAULT NULL::character varying",
+      "_journal": "character varying DEFAULT NULL::character varying",
+      "_vol": "character varying DEFAULT NULL::character varying",
+      "_issue": "character varying DEFAULT NULL::character varying",
+      "_pages": "character varying DEFAULT NULL::character varying",
+      "_citnumber": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertpublicationauthors",
+    {
+      "_publicationid": "integer",
+      "_authororder": "integer",
+      "_familyname": "character varying",
+      "_initials": "character varying DEFAULT NULL::character varying",
+      "_suffix": "character varying DEFAULT NULL::character varying",
+      "_contactid": "integer DEFAULT NULL::integer"
+    }
+  ],
+  [
+    "ts.insertpublicationeditors",
+    {
+      "_publicationid": "integer",
+      "_editororder": "integer",
+      "_familyname": "character varying",
+      "_initials": "character varying DEFAULT NULL::character varying",
+      "_suffix": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertpublicationtranslators",
+    {
+      "_translatororder": "integer",
+      "_suffix": "character varying DEFAULT NULL::character varying",
+      "_initials": "character varying DEFAULT NULL::character varying",
+      "_familyname": "character varying",
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ts.insertradiocarbon",
+    {
+      "_geochronid": "integer",
+      "_reservoir": "double precision DEFAULT NULL::double precision",
+      "_percentcollagen": "double precision DEFAULT NULL::double precision",
+      "_masscmg": "double precision DEFAULT NULL::double precision",
+      "_cnratio": "double precision DEFAULT NULL::double precision",
+      "_delta15n": "double precision DEFAULT NULL::double precision",
+      "_delta13c": "double precision DEFAULT NULL::double precision",
+      "_percentn": "double precision DEFAULT NULL::double precision",
+      "_percentc": "double precision DEFAULT NULL::double precision",
+      "_radiocarbonmethodid": "integer DEFAULT NULL::integer"
+    }
+  ],
+  [
+    "ts.insertrelativeage",
+    {
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_relativeageunitid": "integer",
+      "_relativeagescaleid": "integer",
+      "_relativeage": "character varying",
+      "_c14ageyounger": "double precision DEFAULT NULL::double precision",
+      "_c14ageolder": "double precision DEFAULT NULL::double precision",
+      "_calageyounger": "double precision DEFAULT NULL::double precision",
+      "_calageolder": "double precision DEFAULT NULL::double precision"
+    }
+  ],
+  [
+    "ts.insertrelativeagepublication",
+    {
+      "_relativeageid": "integer",
+      "_publicationid": "integer"
+    }
+  ],
+  [
+    "ts.insertrelativechronology",
+    {
+      "_chroncontrolid": "integer",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_relativeageid": "integer",
+      "_analysisunitid": "integer"
+    }
+  ],
+  [
+    "ts.insertrepositoryinstitution",
+    {
+      "_acronym": "character varying",
+      "_repository": "character varying",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertsample",
+    {
+      "_labnumber": "character varying DEFAULT NULL::character varying",
+      "_prepmethod": "character varying DEFAULT NULL::character varying",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_samplename": "character varying DEFAULT NULL::character varying",
+      "_datasetid": 1001,
+      "_analysisunitid": "integer",
+      "_taxonid": "integer DEFAULT NULL::integer",
+      "_analysisdate": "character varying DEFAULT NULL::character varying",
+      "_sampledate": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertsampleage",
+    {
+      "_chronologyid": "integer",
+      "_sampleid": "integer",
+      "_ageyounger": "double precision DEFAULT NULL::double precision",
+      "_ageolder": "double precision DEFAULT NULL::double precision",
+      "_age": "double precision DEFAULT NULL::double precision"
+    }
+  ],
+  [
+    "ts.insertsampleanalyst",
+    {
+      "_sampleid": "integer",
+      "_contactid": "integer",
+      "_analystorder": "integer"
+    }
+  ],
+  [
+    "ts.insertsamplekeyword",
+    {
+      "_sampleid": "integer",
+      "_keywordid": "integer"
+    }
+  ],
+  [
+    "ts.insertsite",
+    {
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_descript": "character varying DEFAULT NULL::character varying",
+      "_area": "numeric DEFAULT NULL::numeric",
+      "_altitude": "integer DEFAULT NULL::integer",
+      "_south": "numeric",
+      "_west": "numeric",
+      "_north": "numeric",
+      "_east": "numeric",
+      "_sitename": "character varying"
+    }
+  ],
+  [
+    "ts.insertsitegeopol",
+    {
+      "_geopoliticalid": "integer",
+      "_siteid": "integer"
+    }
+  ],
+  [
+    "ts.insertspecimen",
+    {
+      "_preservative": "character varying DEFAULT NULL::character varying",
+      "_dataid": "integer",
+      "_elementtypeid": "integer DEFAULT NULL::integer",
+      "_symmetryid": "integer DEFAULT NULL::integer",
+      "_portionid": "integer DEFAULT NULL::integer",
+      "_maturityid": "integer DEFAULT NULL::integer",
+      "_sexid": "integer DEFAULT NULL::integer",
+      "_domesticstatusid": "integer DEFAULT NULL::integer",
+      "_nisp": "double precision DEFAULT NULL::double precision",
+      "_repositoryid": "integer DEFAULT NULL::integer",
+      "_specimennr": "character varying DEFAULT NULL::character varying",
+      "_fieldnr": "character varying DEFAULT NULL::character varying",
+      "_arctosnr": "character varying DEFAULT NULL::character varying",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertspecimendate",
+    {
+      "_sampleid": "integer DEFAULT NULL::integer",
+      "_fractionid": "integer DEFAULT NULL::integer",
+      "_elementtypeid": "integer DEFAULT NULL::integer",
+      "_taxonid": "integer DEFAULT NULL::integer",
+      "_specimenid": "integer DEFAULT NULL::integer",
+      "_geochronid": "integer",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.insertspecimendatecal",
+    {
+      "_datecalibrated": "character varying DEFAULT NULL::character varying",
+      "_calibrationcurveid": "integer DEFAULT NULL::integer",
+      "_calibrationprogramid": "integer DEFAULT NULL::integer",
+      "_calage": "double precision DEFAULT NULL::double precision",
+      "_calageolder": "double precision DEFAULT NULL::double precision",
+      "_calageyounger": "double precision DEFAULT NULL::double precision",
+      "_specimendatecalid": "integer"
+    }
+  ],
+  [
+    "ts.insertspecimengenbanknr",
+    {
+      "_genbanknr": "character varying",
+      "_specimenid": "integer"
+    }
+  ],
+  [
+    "ts.insertspecimentaphonomy",
+    {
+      "_taphonomictypeid": "integer",
+      "_specimenid": "integer"
+    }
+  ],
+  [
+    "ts.insertsteward",
+    {
+      "_taxonomyexpert": "boolean",
+      "_password": "character varying",
+      "_contactid": "integer",
+      "_username": "character varying",
+      "_databaseid": "integer"
+    }
+  ],
+  [
+    "ts.insertsummarydatataphonomy",
+    {
+      "_taphonomictypeid": "integer",
+      "_dataid": "integer"
+    }
+  ],
+  [
+    "ts.insertsynonym",
+    {
+      "_synonymtypeid": "integer DEFAULT NULL::integer",
+      "_invalidtaxonid": "integer",
+      "_validtaxonid": "integer"
+    }
+  ],
+  [
+    "ts.insertsynonymtype",
+    {
+      "_synonymtype": "character varying"
+    }
+  ],
+  [
+    "ts.insertsynonymy",
+    {
+      "_fromcontributor": "boolean DEFAULT false",
+      "_datesynoynmized": "character varying DEFAULT NULL::character varying",
+      "_contactid": "integer DEFAULT NULL::integer",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_publicationid": "integer DEFAULT NULL::integer",
+      "_reftaxonid": "integer",
+      "_taxonid": "integer",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.inserttaphonomicsystem",
+    {
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_taphonomicsystem": "character varying"
+    }
+  ],
+  [
+    "ts.inserttaphonomicsystemdatasettype",
+    {
+      "_datasettypeid": 3,
+      "_taphonomicsystemid": "integer"
+    }
+  ],
+  [
+    "ts.inserttaphonomictype",
+    {
+      "_taphonomicsystemid": "integer",
+      "_taphonomictype": "character varying",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.inserttaxagroup",
+    {
+      "_taxagroup": "character varying",
+      "_taxagroupid": "character varying"
+    }
+  ],
+  [
+    "ts.inserttaxon",
+    {
+      "_validatedate": "character varying DEFAULT NULL::character varying",
+      "_name": "character varying",
+      "_author": "character varying DEFAULT NULL::character varying",
+      "_valid": "boolean DEFAULT true",
+      "_higherid": "integer DEFAULT NULL::integer",
+      "_extinct": "boolean DEFAULT false",
+      "_groupid": "character DEFAULT NULL::bpchar",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_pubid": "integer DEFAULT NULL::integer",
+      "_validatorid": "integer DEFAULT NULL::integer",
+      "_code": "character varying"
+    }
+  ],
+  [
+    "ts.inserttephra",
+    {
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_eventid": "integer",
+      "_analysisunitid": "integer"
+    }
+  ],
+  [
+    "ts.insertunitsdatasettypes",
+    {
+      "_variableunitsid": "integer",
+      "_datasettypeid": 3
+    }
+  ],
+  [
+    "ts.insertvariable",
+    {
+      "_variablecontextid": "integer DEFAULT NULL::integer",
+      "_variableunitsid": "integer DEFAULT NULL::integer",
+      "_variableelementid": "integer",
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ts.insertvariablecontext",
+    {
+      "_context": "character varying"
+    }
+  ],
+  [
+    "ts.insertvariableelement",
+    {
+      "_maturityid": "integer DEFAULT NULL::integer",
+      "_variableelement": "character varying",
+      "_elementtype": "integer",
+      "_symmetryid": "integer DEFAULT NULL::integer",
+      "_portionid": "integer DEFAULT NULL::integer"
+    }
+  ],
+  [
+    "ts.insertvariableunits",
+    {
+      "_units": "character varying"
+    }
+  ],
+  [
+    "ts.linkhigher",
+    {
+      "": ""
+    }
+  ],
+  [
+    "ts.updateanalysisunitdepth",
+    {
+      "_analysisunitid": "integer",
+      "_depth": "double precision"
+    }
+  ],
+  [
+    "ts.updateanalysisunitname",
+    {
+      "_analysisunitid": "integer",
+      "_analysisunitname": "character varying"
+    }
+  ],
+  [
+    "ts.updateanalysisunitthickness",
+    {
+      "_thickness": "double precision",
+      "_analysisunitid": "integer"
+    }
+  ],
+  [
+    "ts.updatechroncontrolanalysisunit",
+    {
+      "_analunitid": "integer",
+      "_chroncontrolid": "integer"
+    }
+  ],
+  [
+    "ts.updatechroncontroltype",
+    {
+      "_chroncontroltypeid": "integer",
+      "_chroncontroltype": "character varying"
+    }
+  ],
+  [
+    "ts.updatechronology",
+    {
+      "_ageboundyounger": "integer DEFAULT NULL::integer",
+      "_ageboundolder": "integer DEFAULT NULL::integer",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_isdefault": "boolean DEFAULT NULL::boolean",
+      "_contactid": "integer DEFAULT NULL::integer",
+      "_agetype": "character varying",
+      "_chronologyid": "integer",
+      "_chronologyname": "character varying DEFAULT NULL::character varying",
+      "_dateprepared": "character varying DEFAULT NULL::character varying",
+      "_agemodel": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.updatecollectionunit",
+    {
+      "_handle": "character varying",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_location": "character varying DEFAULT NULL::character varying",
+      "_slopeangle": "integer DEFAULT NULL::integer",
+      "_slopeaspect": "integer DEFAULT NULL::integer",
+      "_substrateid": "integer DEFAULT NULL::integer",
+      "_waterdepth": "double precision DEFAULT NULL::double precision",
+      "_gpserror": "double precision DEFAULT NULL::double precision",
+      "_gpsaltitude": "double precision DEFAULT NULL::double precision",
+      "_gpslongitude": "double precision DEFAULT NULL::double precision",
+      "_gpslatitude": "double precision DEFAULT NULL::double precision",
+      "_colldevice": "character varying DEFAULT NULL::character varying",
+      "_colldate": "date DEFAULT NULL::date",
+      "_collunitname": "character varying DEFAULT NULL::character varying",
+      "_depenvtid": "integer DEFAULT NULL::integer",
+      "_colltypeid": "integer DEFAULT NULL::integer",
+      "_stewardcontactid": "integer",
+      "_collunitid": 7
+    }
+  ],
+  [
+    "ts.updatecontact",
+    {
+      "_email": "character varying DEFAULT NULL::character varying",
+      "_fax": "character varying DEFAULT NULL::character varying",
+      "_contactid": "integer",
+      "_phone": "character varying DEFAULT NULL::character varying",
+      "_aliasid": "integer DEFAULT NULL::integer",
+      "_contactname": "character varying DEFAULT NULL::character varying",
+      "_statusid": "integer DEFAULT NULL::integer",
+      "_familyname": "character varying DEFAULT NULL::character varying",
+      "_initials": "character varying DEFAULT NULL::character varying",
+      "_givennames": "character varying DEFAULT NULL::character varying",
+      "_suffix": "character varying DEFAULT NULL::character varying",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_address": "character varying DEFAULT NULL::character varying",
+      "_url": "character varying DEFAULT NULL::character varying",
+      "_title": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.updatecontactaliasid",
+    {
+      "_contactid": "integer",
+      "_aliasid": "integer"
+    }
+  ],
+  [
+    "ts.updatedata",
+    {
+      "_dataid": "integer",
+      "_value": "double precision"
+    }
+  ],
+  [
+    "ts.updatedatasetname",
+    {
+      "_datasetname": "character varying",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.updatedatasetnotes",
+    {
+      "_datasetid": 1001,
+      "_datasetnotes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.updatedatasetpubprimary",
+    {
+      "_primary": "boolean",
+      "_publicationid": "integer",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.updatedatasetrepositorynotes",
+    {
+      "_repositoryid": "integer",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.updatedatasettaxonnotes",
+    {
+      "_contactid": "integer",
+      "_datasetid": 1001,
+      "_taxonid": "integer",
+      "_date": "character varying",
+      "_notes": "character varying"
+    }
+  ],
+  [
+    "ts.updatedatasetvariable",
+    {
+      "_sampleid1": "integer",
+      "_newvariableid": "integer",
+      "_oldvariableid": "integer",
+      "_sampleid2": "integer"
+    }
+  ],
+  [
+    "ts.updatedatavariable",
+    {
+      "_datasetid": 1001,
+      "_contactid": "integer",
+      "_newvariableid": "integer",
+      "_oldvariableid": "integer"
+    }
+  ],
+  [
+    "ts.updatedatavariableid",
+    {
+      "_oldvariableid": "integer",
+      "_newvariableid": "integer"
+    }
+  ],
+  [
+    "ts.updatedatavariableid_deletevariable",
+    {
+      "_delvarid": "integer",
+      "_savevarid": "integer"
+    }
+  ],
+  [
+    "ts.updatedepenvthigherid",
+    {
+      "_depenvthigherid": "integer",
+      "_depenvtid": "integer"
+    }
+  ],
+  [
+    "ts.updatedepenvttype",
+    {
+      "_depenvthigherid": "integer",
+      "_depenvtid": "integer",
+      "_depenvt": "character varying"
+    }
+  ],
+  [
+    "ts.updateevent",
+    {
+      "_c14age": "double precision DEFAULT NULL::double precision",
+      "_c14ageyounger": "double precision DEFAULT NULL::double precision",
+      "_c14ageolder": "double precision DEFAULT NULL::double precision",
+      "_calage": "double precision DEFAULT NULL::double precision",
+      "_calageyounger": "double precision DEFAULT NULL::double precision",
+      "_calageolder": "double precision DEFAULT NULL::double precision",
+      "_eventname": "character varying",
+      "_eventtypeid": "integer",
+      "_eventid": "integer",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.updategeochron",
+    {
+      "_erroryounger": "double precision DEFAULT NULL::double precision",
+      "_geochronid": "integer",
+      "_geochrontypeid": "integer",
+      "_agetypeid": "integer",
+      "_age": "double precision DEFAULT NULL::double precision",
+      "_errorolder": "double precision DEFAULT NULL::double precision",
+      "_infinite": "boolean DEFAULT false",
+      "_labnumber": "character varying DEFAULT NULL::character varying",
+      "_materialdated": "character varying DEFAULT NULL::character varying",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.updategeochronanalysisunit",
+    {
+      "_analysisunitid": "integer",
+      "_thickness": "double precision DEFAULT NULL::double precision",
+      "_analysisunitname": "character varying DEFAULT NULL::character varying",
+      "_geochronid": "integer",
+      "_depth": "double precision DEFAULT NULL::double precision"
+    }
+  ],
+  [
+    "ts.updateissurfacesample",
+    {
+      "_issamp": "boolean",
+      "_datasetid": 1001
+    }
+  ],
+  [
+    "ts.updatelakeparam",
+    {
+      "_lakeparameter": "character varying",
+      "_siteid": "integer",
+      "_stewardcontactid": "integer",
+      "_value": "numeric DEFAULT NULL::numeric"
+    }
+  ],
+  [
+    "ts.updatepublication",
+    {
+      "_country": "character varying DEFAULT NULL::character varying",
+      "_state": "character varying DEFAULT NULL::character varying",
+      "_citation": "character varying DEFAULT NULL::character varying",
+      "_title": "character varying DEFAULT NULL::character varying",
+      "_journal": "character varying DEFAULT NULL::character varying",
+      "_vol": "character varying DEFAULT NULL::character varying",
+      "_year": "character varying DEFAULT NULL::character varying",
+      "_voltitle": "character varying DEFAULT NULL::character varying",
+      "_url": "character varying DEFAULT NULL::character varying",
+      "_publisher": "character varying DEFAULT NULL::character varying",
+      "_servol": "character varying DEFAULT NULL::character varying",
+      "_sertitle": "character varying DEFAULT NULL::character varying",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_origlang": "character varying DEFAULT NULL::character varying",
+      "_doi": "character varying DEFAULT NULL::character varying",
+      "_citnumber": "character varying DEFAULT NULL::character varying",
+      "_pages": "character varying DEFAULT NULL::character varying",
+      "_issue": "character varying DEFAULT NULL::character varying",
+      "_publicationid": "integer",
+      "_pubtypeid": "integer",
+      "_edition": "character varying DEFAULT NULL::character varying",
+      "_numvol": "character varying DEFAULT NULL::character varying",
+      "_booktitle": "character varying DEFAULT NULL::character varying",
+      "_city": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.updatepublicationauthor",
+    {
+      "_suffix": "character varying",
+      "_authorid": "integer",
+      "_contactid": "integer",
+      "_publicationid": "integer",
+      "_familyname": "character varying",
+      "_authororder": "integer",
+      "_initials": "character varying"
+    }
+  ],
+  [
+    "ts.updatepublicationeditor",
+    {
+      "_suffix": "character varying",
+      "_editorid": "integer",
+      "_publicationid": "integer",
+      "_editororder": "integer",
+      "_familyname": "character varying",
+      "_initials": "character varying"
+    }
+  ],
+  [
+    "ts.updatepublicationtranslator",
+    {
+      "_publicationid": "integer",
+      "_translatorid": "integer",
+      "_suffix": "character varying",
+      "_familyname": "character varying",
+      "_translatororder": "integer",
+      "_initials": "character varying"
+    }
+  ],
+  [
+    "ts.updateradiocarbon",
+    {
+      "_reservoir": "double precision DEFAULT NULL::double precision",
+      "_geochronid": "integer",
+      "_radiocarbonmethodid": "integer DEFAULT NULL::integer",
+      "_percentc": "double precision DEFAULT NULL::double precision",
+      "_percentn": "double precision DEFAULT NULL::double precision",
+      "_delta13c": "double precision DEFAULT NULL::double precision",
+      "_delta15n": "double precision DEFAULT NULL::double precision",
+      "_percentcollagen": "double precision DEFAULT NULL::double precision"
+    }
+  ],
+  [
+    "ts.updaterelativeage",
+    {
+      "_calageolder": "double precision DEFAULT NULL::double precision",
+      "_relativeageunitid": "integer",
+      "_c14ageolder": "double precision DEFAULT NULL::double precision",
+      "_calageyounger": "double precision DEFAULT NULL::double precision",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_relativeageid": "integer",
+      "_c14ageyounger": "double precision DEFAULT NULL::double precision",
+      "_relativeage": "character varying",
+      "_relativeagescaleid": "integer"
+    }
+  ],
+  [
+    "ts.updatesampleanalysisunit",
+    {
+      "_analunitid": "integer",
+      "_sampleid": "integer"
+    }
+  ],
+  [
+    "ts.updatesamplelabnumber",
+    {
+      "_sampleid": "integer",
+      "_labnumber": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.updatesite",
+    {
+      "_west": "numeric DEFAULT NULL::numeric",
+      "_siteid": "integer",
+      "_stewardcontactid": "integer",
+      "_sitename": "character varying DEFAULT NULL::character varying",
+      "_descript": "character varying DEFAULT NULL::character varying",
+      "_area": "numeric DEFAULT NULL::numeric",
+      "_altitude": "integer DEFAULT NULL::integer",
+      "_south": "numeric DEFAULT NULL::numeric",
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_north": "numeric DEFAULT NULL::numeric",
+      "_east": "numeric DEFAULT NULL::numeric"
+    }
+  ],
+  [
+    "ts.updatesitegeopol",
+    {
+      "_siteid": "integer",
+      "_stewardcontactid": "integer",
+      "_oldgeopolid": "integer",
+      "_newgeopolid": "integer"
+    }
+  ],
+  [
+    "ts.updatesitegeopoldelete",
+    {
+      "_stewardcontactid": "integer",
+      "_siteid": "integer",
+      "_geopoliticalid": "integer"
+    }
+  ],
+  [
+    "ts.updatesitegeopolinsert",
+    {
+      "_siteid": "integer",
+      "_stewardcontactid": "integer",
+      "_geopoliticalid": "integer"
+    }
+  ],
+  [
+    "ts.updatesitelatlon",
+    {
+      "_north": "numeric",
+      "_south": "numeric",
+      "_west": "numeric",
+      "_east": "numeric",
+      "_stewardcontactid": "integer",
+      "_siteid": "integer"
+    }
+  ],
+  [
+    "ts.updatespecimendatetaxonid",
+    {
+      "_newtaxonid": "integer",
+      "_oldtaxonid": "integer"
+    }
+  ],
+  [
+    "ts.updatespecimennisp",
+    {
+      "_contactid": "integer",
+      "_specimenid": "integer",
+      "_nisp": "double precision"
+    }
+  ],
+  [
+    "ts.updatesynonymtypeid",
+    {
+      "_synonymid": "integer",
+      "_synonymtypeid": "integer"
+    }
+  ],
+  [
+    "ts.updatesynonymy",
+    {
+      "_notes": "character varying DEFAULT NULL::character varying",
+      "_fromcontributor": "boolean DEFAULT false",
+      "_datesynonymized": "date DEFAULT NULL::date",
+      "_synonymyid": "integer",
+      "_reftaxonid": "integer",
+      "_contactid": "integer DEFAULT NULL::integer",
+      "_publicationid": "integer DEFAULT NULL::integer"
+    }
+  ],
+  [
+    "ts.updatetaphonomicsystemnotes",
+    {
+      "_notes": "character varying",
+      "_taphonomicsystemid": "integer"
+    }
+  ],
+  [
+    "ts.updatetaxonauthor",
+    {
+      "_taxonid": "integer",
+      "_author": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.updatetaxoncode",
+    {
+      "_taxoncode": "character varying",
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ts.updatetaxonextinct",
+    {
+      "_taxonid": "integer",
+      "_extinct": "boolean"
+    }
+  ],
+  [
+    "ts.updatetaxonhighertaxonid",
+    {
+      "_highertaxonid": "integer",
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ts.updatetaxonhighertaxonidtonull",
+    {
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ts.updatetaxonname",
+    {
+      "_taxonid": "integer",
+      "_taxonname": "character varying"
+    }
+  ],
+  [
+    "ts.updatetaxonnotes",
+    {
+      "_taxonid": "integer",
+      "_notes": "character varying DEFAULT NULL::character varying"
+    }
+  ],
+  [
+    "ts.updatetaxonpublicationid",
+    {
+      "_publicationid": "integer DEFAULT NULL::integer",
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ts.updatetaxonvalidation",
+    {
+      "_validatedate": "character varying",
+      "_validatorid": "integer",
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ts.updatetaxonvalidity",
+    {
+      "_valid": "boolean",
+      "_taxonid": "integer"
+    }
+  ],
+  [
+    "ts.updatevariabletaxonid",
+    {
+      "_newtaxonid": "integer",
+      "_variableid": "integer"
+    }
+  ],
+  [
+    "ts.validatesteward",
+    {
+      "_username": "character varying",
+      "_pwd": "character varying"
+    }
+  ],
+  [
+    "ts.validateusername",
+    {
+      "_username": "character varying"
+    }
+  ]
+]
