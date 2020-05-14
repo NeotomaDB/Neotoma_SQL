@@ -26,7 +26,7 @@ for i in functions:
             params = re.sub(", $", "", params)
             query = "SELECT * FROM " + i[0] + "(" + params + ") LIMIT 10"
     else:
-        query = "SELECT * FROM " + i[0] + "()"
+        query = "SELECT * FROM " + i[0] + "() LIMIT 10"
     try:
         cur.execute(query)
         error = {'function': i[0], 'msg': str(cur.fetchall())}
