@@ -20,13 +20,16 @@ filename = 'checks' + uuid.uuid4().hex + '.json'
 
 for i in functions:
     params = ""
+    printText = "testing %s" % i[0]
+    printText = printText + (79 - len(printText)) * " "
+    print(printText, end="\r", flush=True)
     if list(i[1].keys())[0] != '':
         for j in i[1].keys():
             params = params + "" + str(j) + ":=" + str(i[1].get(j)) + ", "
             params = re.sub(", $", "", params)
-            query = "SELECT * FROM " + i[0] + "(" + params + ") LIMIT 10"
+            query = "SELECT * FROM " + i[0] + "(" + params + ") LIMIT 3"
     else:
-        query = "SELECT * FROM " + i[0] + "() LIMIT 10"
+        query = "SELECT * FROM " + i[0] + "() LIMIT 3"
     try:
         cur.execute(query)
         error = {'function': i[0], 'msg': str(cur.fetchall())}
