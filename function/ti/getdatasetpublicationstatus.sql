@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ti.getdatasetpublicationstatus(_datasetid integer, _p
 AS $function$
 	SELECT dspub.primarypub
 	FROM ndb.datasetpublications AS dspub
-	WHERE dspub.datasetid = $1 AND dspub.publicationid = $2;
+	WHERE dspub.datasetid = _datasetid AND dspub.publicationid = _publicationid;
 $function$
