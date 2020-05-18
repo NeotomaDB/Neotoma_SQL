@@ -2,9 +2,7 @@ CREATE OR REPLACE FUNCTION ti.getdatasetpublicationstatusv2(_datasetid integer, 
  RETURNS TABLE(primarypub boolean)
  LANGUAGE sql
 AS $function$
-
-SELECT     primarypub
-FROM       ndb.datasetpublications
-WHERE      (datasetid = _datasetid) and (publicationid = _publicationid)
-
+  SELECT     primarypub
+  FROM       ndb.datasetpublications
+  WHERE      (datasetid = _datasetid) and (publicationid = _publicationid)
 $function$

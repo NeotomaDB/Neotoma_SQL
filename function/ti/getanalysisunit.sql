@@ -1,36 +1,11 @@
-CREATE OR REPLACE FUNCTION ti.getanalysisunit(_collectionuniid integer, _analunitname character varying DEFAULT NULL::character varying, _depth double precision DEFAULT NULL::double precision, _thickness double precision DEFAULT NULL::double precision)
+CREATE OR REPLACE FUNCTION ti.getanalysisunit(_collectionunitid integer, _analunitname character varying DEFAULT NULL::character varying, _depth double precision DEFAULT NULL::double precision, _thickness double precision DEFAULT NULL::double precision)
  RETURNS TABLE(analysisunitid integer)
- LANGUAGE plpgsql
+ LANGUAGE sql
 AS $function$
-	BEGIN
-	
-	IF _analunitname IS NULL AND _depth IS NOT NULL AND _thickness IS NOT NULL  THEN
-		  RETURN QUERY (SELECT analysisunits.analysisunitid
+	SELECT analysisunits.analysisunitid
 		  FROM   ndb.analysisunits
-		  WHERE  (collectionunitid = _collectionuniid) AND (analysisunitname IS NULL) AND (depth = _depth) AND (thickness = _thickness)); 
-	ELSIF _analunitname IS NULL AND _depth IS NOT NULL AND _thickness IS NULL THEN
-		  RETURN QUERY (SELECT analysisunits.analysisunitid
-		  FROM   ndb.analysisunits
-		  WHERE  (collectionunitid = _collectionuniid) AND (analysisunitname IS NULL) AND (depth = _depth) AND (thickness IS NULL));
-	ELSIF _analunitname IS NOT NULL AND _depth IS NOT NULL AND _thickness IS NULL THEN
-		  RETURN QUERY (SELECT analysisunits.analysisunitid
-		  FROM   ndb.analysisunits
-		  WHERE  (collectionunitid = _collectionuniid) AND (analysisunitname = _analunitname) AND (depth = _depth) AND (thickness IS NULL));
-	ELSIF _analunitname IS NOT NULL AND _depth IS NULL AND _thickness IS NULL THEN
-		  RETURN QUERY (SELECT analysisunits.analysisunitid
-		  FROM   ndb.analysisunits
-		  WHERE  (collectionunitid = _collectionuniid) AND (analysisunitname = _analunitname) AND (depth IS NULL) AND (thickness IS NULL)); 
-	ELSIF _analunitname IS NOT NULL AND _depth IS NULL AND _thickness IS NOT NULL THEN
-		  RETURN QUERY (SELECT analysisunits.analysisunitid
-		  FROM   ndb.analysisunits
-		  WHERE  (collectionunitid = _collectionuniid) AND (analysisunitname = _analunitname) AND (depth IS NULL) AND (thickness = _thickness)); 
-	ELSIF _analunitname IS NOT NULL AND _depth IS NOT NULL AND _thickness IS NOT NULL THEN
-		  RETURN QUERY (SELECT analysisunits.analysisunitid
-		  FROM   ndb.analysisunits
-		  WHERE  (collectionunitid = _collectionuniid) AND (analysisunitname = _analunitname) AND (depth = _depth) AND (thickness = _thickness));
-	ELSE
-		--do nothing
-	END IF;
-
-	END;
+		  WHERE  (collectionunitid = _collectionuniid)
+      AND (_analysisunitname IS NULL) OR (analysisunitname = _analunitname)
+      AND (_depth IS NULL) OR (depth = _depth)
+      AND (_thickness IS NULL) OR (thickness = _thickness);
 $function$

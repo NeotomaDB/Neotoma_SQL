@@ -166,7 +166,7 @@
   [
     "ti.getanalysisunit",
     {
-      "_collectionuniid": 100,
+      "_collectionunitid": 100,
       "_depth": "NULL",
       "_analunitname": "NULL",
       "_thickness": "NULL"
@@ -331,7 +331,7 @@
   [
     "ti.getcontactbycontactname",
     {
-      "_contactname": "character varying"
+      "_contactname": "Ashworth, Allan C."
     }
   ],
   [
@@ -343,8 +343,8 @@
   [
     "ti.getcontactbyfamilynameandinitials",
     {
-      "_initials": "character varying",
-      "_familyname": "character varying"
+      "_initials": "'A.C.'",
+      "_familyname": "'Ashworth'"
     }
   ],
   [
@@ -387,7 +387,7 @@
     "ti.getcontextdatasettypecount",
     {
       "_datasettypeid": 3,
-      "_variablecontextid": "integer"
+      "_variablecontextid": 1
     }
   ],
   [
@@ -405,7 +405,7 @@
   [
     "ti.getdatasetauthorsdatasettypes",
     {
-      "_datasettypeidlist": "character varying"
+      "_datasettypeidlist": "'1$2$3'"
     }
   ],
   [
@@ -423,7 +423,7 @@
   [
     "ti.getdatasetcountbycollunittype",
     {
-      "_collunittypeid": "integer"
+      "_collunittypeid": 6
     }
   ],
   [
@@ -441,21 +441,21 @@
   [
     "ti.getdatasetidbycollunitandtype",
     {
-      "_datasettypeid": 3,
-      "_collunitid": 7
+      "_datasettypeid": 7,
+      "_collunitid": 100
     }
   ],
   [
     "ti.getdatasetidfordatasettypeidforgeochronanalunit",
     {
-      "_geochronid": "integer",
-      "_datasettypeid": 3
+      "_geochronid": 9191,
+      "_datasettypeid": 1
     }
   ],
   [
     "ti.getdatasetidsbytaxonid",
     {
-      "_taxonid": "integer"
+      "_taxonid": 100
     }
   ],
   [
@@ -467,7 +467,7 @@
   [
     "ti.getdatasetpisdatasettypes",
     {
-      "_datasettypeidlist": "character varying DEFAULT NULL::character varying"
+      "_datasettypeidlist": "'1,2,3'"
     }
   ],
   [
@@ -486,14 +486,14 @@
     "ti.getdatasetpublicationstatus",
     {
       "_datasetid": 1001,
-      "_publicationid": "integer"
+      "_publicationid": 754
     }
   ],
   [
     "ti.getdatasetpublicationstatusv2",
     {
       "_datasetid": 1001,
-      "_publicationid": "integer"
+      "_publicationid": 754
     }
   ],
   [
@@ -541,7 +541,7 @@
   [
     "ti.getdatasetsbycontactid",
     {
-      "_contactid": "integer"
+      "_contactid": 53
     }
   ],
   [
@@ -553,7 +553,7 @@
   [
     "ti.getdatasetsbysiteid",
     {
-      "_siteid": "integer"
+      "_siteid": 956
     }
   ],
   [
@@ -1182,7 +1182,7 @@
   [
     "ti.getlakeparamsbysiteid",
     {
-      "_siteid": "integer"
+      "_siteid": 2034
     }
   ],
   [
@@ -1194,13 +1194,13 @@
   [
     "ti.getmaxpubidbypubidtype",
     {
-      "_pubtypeid": "integer"
+      "_pubtypeid": 5
     }
   ],
   [
     "ti.getminpubidbypubidtype",
     {
-      "_pubtypeid": "integer"
+      "_pubtypeid": 4
     }
   ],
   [

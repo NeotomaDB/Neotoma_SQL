@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ti.getdatasetidbycollunitandtype(_collunitid integer,
 AS $function$
 	SELECT ds.datasetid
 	FROM ndb.datasets AS ds
-	WHERE ds.datasettypeid = $2 AND ds.collectionunitid = $1;
+	WHERE ds.datasettypeid = _datasettypeid AND ds.collectionunitid = _collunitid;
 $function$
