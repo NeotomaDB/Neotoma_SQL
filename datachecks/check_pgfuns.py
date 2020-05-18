@@ -5,6 +5,7 @@ import re
 import datetime
 import uuid
 
+print("\nRunning database tests.")
 with open('../connect_remote.json') as f:
     data = json.load(f)
 
@@ -20,14 +21,14 @@ filename = 'checks' + uuid.uuid4().hex + '.json'
 
 for i in functions:
     params = ""
-    printText = "testing %s" % i[0]
+    printText = "Now testing %s" % i[0]
     printText = printText + (79 - len(printText)) * " "
     print(printText, end="\r", flush=True)
     if list(i[1].keys())[0] != '':
         for j in i[1].keys():
             params = params + "" + str(j) + ":=" + str(i[1].get(j)) + ", "
-            params = re.sub(", $", "", params)
-            query = "SELECT * FROM " + i[0] + "(" + params + ") LIMIT 3"
+        params = re.sub(", $", "", params)
+        query = "SELECT * FROM " + i[0] + "(" + params + ") LIMIT 3"
     else:
         query = "SELECT * FROM " + i[0] + "() LIMIT 3"
     try:
@@ -54,3 +55,29 @@ for i in functions:
                 input = json.load(f)
                 input.append(error)
                 json.dump(input, open(filename, "w"))
+    except psycopg2.errors.ForeignKeyViolation as inst:
+        errmsg = re.sub(r'\"', '\'', str(inst))
+        error = {'function': i[0], 'msg': errmsg}
+        if os.path.exists(filename) is False:
+            with open(filename, "a") as f:
+                input = [error]
+                json.dump(input, f)
+        else:
+            with open(filename, "r") as f:
+                input = json.load(f)
+                input.append(error)
+                json.dump(input, open(filename, "w"))
+    except psycopg2.errors.UniqueViolation as inst:
+        errmsg = re.sub(r'\"', '\'', str(inst))
+        error = {'function': i[0], 'msg': errmsg}
+        if os.path.exists(filename) is False:
+            with open(filename, "a") as f:
+                input = [error]
+                json.dump(input, f)
+        else:
+            with open(filename, "r") as f:
+                input = json.load(f)
+                input.append(error)
+                json.dump(input, open(filename, "w"))
+
+conn.close()
