@@ -4,6 +4,7 @@ import psycopg2
 import re
 import datetime
 import uuid
+import time
 
 print("\nRunning database tests.")
 with open('../connect_remote.json') as f:
@@ -32,8 +33,12 @@ for i in functions:
     else:
         query = "SELECT * FROM " + i[0] + "() LIMIT 3"
     try:
+        start = time.time()
         cur.execute(query)
-        error = {'function': i[0], 'msg': str(cur.fetchall())}
+        end = time.time()
+        error = {'function': i[0],
+                 'msg': str(cur.fetchall()),
+                 'timer': (end - start)}
         if os.stat(filename).st_size == 0:
             with open(filename, "a") as f:
                 input = [error]
@@ -44,8 +49,9 @@ for i in functions:
                 input.append(error)
                 json.dump(input, open(filename, "w"))
     except psycopg2.ProgrammingError as inst:
+        end = time.time()
         errmsg = re.sub(r'\"', '\'', str(inst))
-        error = {'function': i[0], 'msg': errmsg}
+        error = {'function': i[0], 'msg': errmsg, 'timer': (end - start)}
         if os.path.exists(filename) is False:
             with open(filename, "a") as f:
                 input = [error]
@@ -56,8 +62,9 @@ for i in functions:
                 input.append(error)
                 json.dump(input, open(filename, "w"))
     except psycopg2.errors.ForeignKeyViolation as inst:
+        end = time.time()
         errmsg = re.sub(r'\"', '\'', str(inst))
-        error = {'function': i[0], 'msg': errmsg}
+        error = {'function': i[0], 'msg': errmsg, 'timer': (end - start)}
         if os.path.exists(filename) is False:
             with open(filename, "a") as f:
                 input = [error]
@@ -68,8 +75,9 @@ for i in functions:
                 input.append(error)
                 json.dump(input, open(filename, "w"))
     except psycopg2.errors.UniqueViolation as inst:
+        end = time.time()
         errmsg = re.sub(r'\"', '\'', str(inst))
-        error = {'function': i[0], 'msg': errmsg}
+        error = {'function': i[0], 'msg': errmsg, 'timer': (end - start)}
         if os.path.exists(filename) is False:
             with open(filename, "a") as f:
                 input = [error]
