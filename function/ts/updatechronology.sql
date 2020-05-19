@@ -1,4 +1,13 @@
-CREATE OR REPLACE FUNCTION ts.updatechronology(_chronologyid integer, _agetype character varying, _contactid integer DEFAULT NULL::integer, _isdefault boolean DEFAULT NULL::boolean, _chronologyname character varying DEFAULT NULL::character varying, _dateprepared character varying DEFAULT NULL::character varying, _agemodel character varying DEFAULT NULL::character varying, _ageboundyounger integer DEFAULT NULL::integer, _ageboundolder integer DEFAULT NULL::integer, _notes character varying DEFAULT NULL::character varying)
+CREATE OR REPLACE FUNCTION ts.updatechronology(_chronologyid integer,
+                                               _agetype character varying,
+                                               _isdefault boolean,
+                                               _contactid integer DEFAULT NULL::integer,
+                                               _chronologyname character varying DEFAULT NULL::character varying,
+                                               _dateprepared character varying DEFAULT NULL::character varying,
+                                               _agemodel character varying DEFAULT NULL::character varying,
+                                               _ageboundyounger integer DEFAULT NULL::integer,
+                                               _ageboundolder integer DEFAULT NULL::integer,
+                                               _notes character varying DEFAULT NULL::character varying)
  RETURNS void
  LANGUAGE sql
 AS $function$

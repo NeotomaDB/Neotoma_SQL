@@ -38,7 +38,7 @@ for i in functions:
         end = time.time()
         error = {'function': i[0],
                  'msg': str(cur.fetchall()),
-                 'timer': (end - start)}
+                 'timer': round((end - start), 3)}
         if os.stat(filename).st_size == 0:
             with open(filename, "a") as f:
                 input = [error]
@@ -51,7 +51,24 @@ for i in functions:
     except psycopg2.ProgrammingError as inst:
         end = time.time()
         errmsg = re.sub(r'\"', '\'', str(inst))
-        error = {'function': i[0], 'msg': errmsg, 'timer': (end - start)}
+        error = {'function': i[0],
+                 'msg': errmsg,
+                 'timer': round((end - start), 3)}
+        if os.path.exists(filename) is False:
+            with open(filename, "a") as f:
+                input = [error]
+                json.dump(input, f)
+        else:
+            with open(filename, "r") as f:
+                input = json.load(f)
+                input.append(error)
+                json.dump(input, open(filename, "w"))
+    except psycopg2.errors.InvalidTextRepresentation as inst:
+        end = time.time()
+        errmsg = re.sub(r'\"', '\'', str(inst))
+        error = {'function': i[0],
+                 'msg': errmsg,
+                 'timer': round((end - start), 3)}
         if os.path.exists(filename) is False:
             with open(filename, "a") as f:
                 input = [error]
@@ -64,7 +81,9 @@ for i in functions:
     except psycopg2.errors.ForeignKeyViolation as inst:
         end = time.time()
         errmsg = re.sub(r'\"', '\'', str(inst))
-        error = {'function': i[0], 'msg': errmsg, 'timer': (end - start)}
+        error = {'function': i[0],
+                 'msg': errmsg,
+                 'timer': round((end - start), 3)}
         if os.path.exists(filename) is False:
             with open(filename, "a") as f:
                 input = [error]
@@ -77,7 +96,9 @@ for i in functions:
     except psycopg2.errors.UniqueViolation as inst:
         end = time.time()
         errmsg = re.sub(r'\"', '\'', str(inst))
-        error = {'function': i[0], 'msg': errmsg, 'timer': (end - start)}
+        error = {'function': i[0],
+                 'msg': errmsg,
+                 'timer': round((end - start), 3)}
         if os.path.exists(filename) is False:
             with open(filename, "a") as f:
                 input = [error]
