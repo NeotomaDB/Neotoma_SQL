@@ -7,4 +7,4 @@ SELECT geochrontypeid
 FROM ndb.geochrontypes
 WHERE geochrontype ILIKE $1
 
-$function$;
+$function$

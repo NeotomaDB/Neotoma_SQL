@@ -1,8 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getprocedureinputparams(_procedurename character varying)
- RETURNS TABLE(name character varying,
-               type character varying,
-               "isdefault" boolean,
-               "paramorder" bigint)
+ RETURNS TABLE(name character varying, type character varying, isdefault boolean, paramorder bigint)
  LANGUAGE sql
 AS $function$
 

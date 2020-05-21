@@ -5,4 +5,4 @@ AS $function$
 SELECT faciesid, facies
 FROM ndb.faciestypes
 WHERE facies ILIKE $1
-$function$;
+$function$

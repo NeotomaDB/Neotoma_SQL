@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.insertdatasetrepository(_datasetid integer, _repositoryid integer, _notes character varying DEFAULT NULL)
+CREATE OR REPLACE FUNCTION ts.insertdatasetrepository(_datasetid integer, _repositoryid integer, _notes character varying DEFAULT NULL::character varying)
  RETURNS void
  LANGUAGE sql
 AS $function$

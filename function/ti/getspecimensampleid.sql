@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getspecimensampleid(_specimenid INTEGER)
-RETURNS TABLE(sampleid INTEGER)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getspecimensampleid(_specimenid integer)
+ RETURNS TABLE(sampleid integer)
+ LANGUAGE sql
 AS $function$
 
 SELECT ndb.data.sampleid

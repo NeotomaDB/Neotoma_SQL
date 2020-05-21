@@ -1,13 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getvariablebycomponents(_taxonid integer,
-                                                      _variableelementid integer DEFAULT NULL,
-                                                      _variableunitsid integer DEFAULT NULL,
-                                                      _variablecontextid integer DEFAULT NULL)
-RETURNS TABLE(variableid integer,
-              taxonid integer,
-              variableelementid integer,
-              variableunitsid integer,
-              variablecontextid integer)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getvariablebycomponents(_taxonid integer, _variableelementid integer DEFAULT NULL::integer, _variableunitsid integer DEFAULT NULL::integer, _variablecontextid integer DEFAULT NULL::integer)
+ RETURNS TABLE(variableid integer, taxonid integer, variableelementid integer, variableunitsid integer, variablecontextid integer)
+ LANGUAGE sql
 AS $function$
   SELECT
            vr.variableid,

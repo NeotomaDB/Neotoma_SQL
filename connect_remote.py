@@ -35,12 +35,21 @@ import re
 import git
 import sys
 
-parser = argparse.ArgumentParser(description='Check Neotoma SQL functions against functions in the online database servers (`neotoma` and `neotomadev`).')
+parser = argparse.ArgumentParser(
+    description='Check Neotoma SQL functions against functions in the '
+                + 'online database servers (`neotoma` and `neotomadev`).')
 
-parser.add_argument('-dev', dest='isDev', default = False, help = 'Use the `dev` database? (`False` without the flag)', action = 'store_true')
-parser.add_argument('-push', dest='isPush', default = False, help = 'Assume that SQL functions in the repository are newer, push to the db server.', action = 'store_true')
-parser.add_argument('-g', dest='pullGit', nargs = '?', type = str, default = None, help = 'Pull from the remote git server before running?.')
-parser.add_argument('-tilia', dest='isTilia', default = False, help = 'Use the `dev` database? (`False` without the flag)', action = 'store_true')
+parser.add_argument('-dev', dest='isDev', default=False,
+                    help='Use the `dev` database? (`False` without the flag)',
+                    action='store_true')
+parser.add_argument('-push', dest='isPush', default=False,
+                    help='Assume that SQL functions in the repository are '
+                    + 'newer, push to the db server.', action='store_true')
+parser.add_argument('-g', dest='pullGit', nargs='?', type=str, default=None,
+                    help='Pull from the remote git server before running?.')
+parser.add_argument('-tilia', dest='isTilia', default=False,
+                    help='Use the `dev` database? (`False` without the flag)',
+                    action='store_true')
 
 args = parser.parse_args()
 
@@ -54,7 +63,8 @@ with open('.gitignore') as gi:
             break
 
 if good is False:
-    print("The connect_remote.json file is not in your .gitignore file.  Please add it!")
+    print("The connect_remote.json file is not in your .gitignore file.  "
+          + "Please add it!")
 
 with open('connect_remote.json') as f:
     data = json.load(f)
@@ -64,7 +74,8 @@ if args.pullGit is not None:
     try:
         repo.heads[args.pullGit].checkout()
     except git.exc.GitCommandError:
-        sys.exit("Stash or commit changes in the current branch before switching to " + args.pullGit + ".")
+        sys.exit("Stash or commit changes in the current branch before "
+                 + "switching to " + args.pullGit + ".")
 
     repo.remotes.origin.pull()
 
@@ -76,7 +87,7 @@ if args.isTilia:
 
 print("Using the " + data['database'] + ' Neotoma server.')
 
-conn = psycopg2.connect(**data)
+conn = psycopg2.connect(**data, connect_timeout=5)
 
 cur = conn.cursor()
 
@@ -91,7 +102,8 @@ pg_get_function_identity_arguments(f.oid) AS args,
   FROM            pg_catalog.pg_proc AS f
   INNER JOIN pg_catalog.pg_namespace AS n ON f.pronamespace = n.oid
   WHERE
-    n.nspname IN ('ti','ndb','ts', 'mca', 'ecg', 'ap', 'da', 'emb', 'gen', 'doi')
+    n.nspname IN ('ti','ndb','ts', 'mca', 'ecg', 'ap',
+                  'da', 'emb', 'gen', 'doi')
   ORDER BY n.nspname, proname""")
 
 # For each sql function in the named namespaces go in and write out the actual
@@ -105,6 +117,7 @@ failed = set()
 z = 0
 
 for record in cur:
+    print(record[1])
     # This checks each function in the database and then tests whether there
     # is a file associated with it.
     newFile = "./function/" + record[0] + "/" + record[1] + ".sql"
@@ -124,38 +137,55 @@ for record in cur:
         file = open(newFile)
         textCheck = copy.deepcopy(file.read())
         serverFun = copy.deepcopy(record[3])
-        textCheck = re.sub('[\s+\t+\n+\r+]','', textCheck)
-        serverFun = re.sub('[\s+\t+\n+\r+]','', serverFun)
+        textCheck = re.sub('[\s+\t+\n+\r+]', '', textCheck)
+        serverFun = re.sub('[\s+\t+\n+\r+]', '', serverFun)
         match = serverFun == textCheck
-        # Pushing (to the db) and pulling (from the db) are defined by the user.
-        if match == False:
-            if args.isPush == False:
-                print('The function ' + record[0] + '.' + record[1] + ' differs between the database and your local copy.\n *' + newFile + ' will be written locally.')
+        # Pushing (to the db) and pulling (from the db) are defined by the user
+        if match is False:
+            if args.isPush is False:
+                print('The function ' + record[0] + '.' + record[1]
+                      + ' differs between the database and your local copy.\n*'
+                      + newFile + ' will be written locally.')
                 file = open(newFile, 'w')
                 file.write(record[3])
                 file.close()
-                print('The file for ' + record[0] + '.' + record[1] + ' has been updated in the repository.')
+                print('The file for ' + record[0] + '.' + record[1]
+                      + ' has been updated in the repository.')
             else:
                 cur2 = conn.cursor()
                 try:
-                    cur2.execute("DROP FUNCTION " + record[0] + "." + record[1] + "(" + record[2] + ");")
+                    cur2.execute("DROP FUNCTION " + record[0] + "." + record[1]
+                                 + "(" + record[2] + ");")
                     conn.commit()
-                except:
+                    print("Dropped function.")
+                except Exception as e:
+                    print(e)
                     conn.rollback()
                     print("Could not delete " + record[0] + "." + record[1])
                     failed.add(record[0] + "." + record[1])
 
                 try:
-                    cur2.execute(open("./function/" + record[0] + "/" + record[1] + ".sql", "r").read())
+                    print("trying to execute")
+                    cur2 = conn.cursor()
+                    cur2.execute(
+                        open("./function/" + record[0] + "/" + record[1]
+                             + ".sql", "r").read())
                     conn.commit()
-                    print('The function for ' + record[0] + '.' + record[1] + ' has been updated in the `' + data['database'] + '` database.')
+                    print("executed")
                     cur2.execute("REASSIGN OWNED BY sug335 TO functionwriter;")
                     conn.commit()
+                    print("reassigned")
                     rewrite.add(record[0] + "." + record[1])
+                    print('The function for ' + record[0] + '.' + record[1]
+                          + ' has been updated in the `' + data['database']
+                          + '` database.')
                     z = z + 1
-                except:
+                except Exception as e:
                     conn.rollback()
-                    print('The function for ' + record[0] + '.' + record[1] + ' has not been updated in the `' + data['database'] + '` database.')
+                    print(e)
+                    print('The function for ' + record[0] + '.' + record[1]
+                          + ' has not been updated in the `' + data['database']
+                          + '` database.')
                     failed.add(record[0] + "." + record[1])
 
 for schema in ['ti', 'ts', 'doi', 'ap', 'ndb']:
@@ -175,15 +205,17 @@ for schema in ['ti', 'ts', 'doi', 'ap', 'ndb']:
         print(data)
         try:
             cur.execute(SQL, data)
-        except:
+        except Exception as e:
             conn.rollback()
             print("Failed to run. " + schema)
+            print(e)
 
         if cur.rowcount == 0:
             # Execute the new script if there is one.  Needs the commit.
             print("Executing " + schema + "." + functs.split(".")[0])
             try:
-                cur.execute(open("./function/" + schema + "/" + functs, "r").read())
+                cur.execute(open("./function/" + schema
+                                 + "/" + functs, "r").read())
                 conn.commit()
                 cur2.execute("REASSIGN OWNED BY sug335 TO functionwriter;")
                 conn.commit()
@@ -196,9 +228,13 @@ for schema in ['ti', 'ts', 'doi', 'ap', 'ndb']:
                 failed.add(schema + "." + functs.split(".")[0])
                 z = z + 1
         if cur.rowcount > 1:
-            # TODO:  Need to add a script to check that the definitions are the same.
-            print(schema + "." + functs.split(".")[0] + " has " +
-                  str(cur.rowcount) + " definitions.")
+            # TODO:  Need to add a script to check that the definitions are
+            #        the same.
+            print(schema + "." + functs.split(".")[0] + " has "
+                  + str(cur.rowcount) + " definitions.")
+
+conn.close()
+
 
 print("The script has rewritten:")
 

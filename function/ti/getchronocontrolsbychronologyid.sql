@@ -1,20 +1,7 @@
 CREATE OR REPLACE FUNCTION ti.getchronocontrolsbychronologyid(_chronologyid integer)
- RETURNS TABLE(chroncontrolid integer,
-               chroncontroltypeid integer,
-               chroncontroltype character varying,
-               depth double precision,
-               thickness double precision,
-               analysisunitid integer,
-               analysisunitname character varying,
-               age double precision,
-               agelimityounger double precision,
-               agelimitolder double precision,
-               agetypeid integer,
-               notes text,
-               calibrationcurve character varying,
-               calibrationprogram character varying,
-               version character varying)
-AS $$
+ RETURNS TABLE(chroncontrolid integer, chroncontroltypeid integer, chroncontroltype character varying, depth double precision, thickness double precision, analysisunitid integer, analysisunitname character varying, age double precision, agelimityounger double precision, agelimitolder double precision, agetypeid integer, notes text, calibrationcurve character varying, calibrationprogram character varying, version character varying)
+ LANGUAGE sql
+AS $function$
 SELECT chco.chroncontrolid,
        chco.chroncontroltypeid,
        cct.chroncontroltype,
@@ -38,4 +25,4 @@ FROM ndb.calibrationprograms AS cp
      cccal.chroncontrolid = chco.chroncontrolid
   LEFT OUTER JOIN ndb.analysisunits AS au ON chco.analysisunitid = au.analysisunitid
   WHERE chco.chronologyid = $1;
-$$ LANGUAGE SQL;
+$function$

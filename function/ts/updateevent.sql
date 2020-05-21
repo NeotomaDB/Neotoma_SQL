@@ -1,15 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.updateevent(_eventid integer,
-										  _eventtypeid integer,
-										  _eventname character varying,
-										  _c14age float = null,
-										  _c14ageyounger float = null,
-										  _c14ageolder float = null,
-										  _calage float = null,
-										  _calageyounger float = null,
-										  _calageolder float = null,
-										  _notes character varying = null)
-	RETURNS void
-	LANGUAGE sql
+CREATE OR REPLACE FUNCTION ts.updateevent(_eventid integer, _eventtypeid integer, _eventname character varying, _c14age double precision DEFAULT NULL::double precision, _c14ageyounger double precision DEFAULT NULL::double precision, _c14ageolder double precision DEFAULT NULL::double precision, _calage double precision DEFAULT NULL::double precision, _calageyounger double precision DEFAULT NULL::double precision, _calageolder double precision DEFAULT NULL::double precision, _notes character varying DEFAULT NULL::character varying)
+ RETURNS void
+ LANGUAGE sql
 AS $function$
 	UPDATE ndb.events AS es
 	SET    eventtypeid = _eventtypeid,
@@ -22,4 +13,4 @@ AS $function$
 			calageolder = _calageolder,
 			notes = _notes
 	WHERE  es.eventid = _eventid
-$function$;
+$function$

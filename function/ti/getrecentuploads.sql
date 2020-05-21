@@ -1,16 +1,6 @@
-create or replace function ti.getrecentuploads(_months integer DEFAULT 1,
-                                               _databaseid integer DEFAULT null,
-                                               _datasettypeid integer DEFAULT null,
-                                               _limit integer DEFAULT 400)
-RETURNS TABLE(datasetid integer,
-              datasettype character varying,
-              sitename character varying,
-              geopolitical character varying,
-              databasename character varying,
-              investigator character varying,
-              recdatecreated character varying,
-              steward character varying)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getrecentuploads(_months integer DEFAULT 1, _databaseid integer DEFAULT NULL::integer, _datasettypeid integer DEFAULT NULL::integer, _limit integer DEFAULT 400)
+ RETURNS TABLE(datasetid integer, datasettype character varying, sitename character varying, geopolitical character varying, databasename character varying, investigator character varying, recdatecreated character varying, steward character varying)
+ LANGUAGE sql
 AS $function$
   SELECT ds.datasetid,
          dst.datasettype,

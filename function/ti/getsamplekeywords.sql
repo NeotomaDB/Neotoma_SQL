@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getsamplekeywords(_sampleid int)
-RETURNS TABLE(keywordid integer, keyword varchar)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getsamplekeywords(_sampleid integer)
+ RETURNS TABLE(keywordid integer, keyword character varying)
+ LANGUAGE sql
 AS $function$
 
 SELECT ndb.samplekeywords.keywordid, ndb.keywords.keyword

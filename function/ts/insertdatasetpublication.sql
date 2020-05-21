@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.insertdatasetpublication(_datasetid int, _publicationid int, _primarypub boolean)
-RETURNS VOID
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ts.insertdatasetpublication(_datasetid integer, _publicationid integer, _primarypub boolean)
+ RETURNS void
+ LANGUAGE sql
 AS $function$
   INSERT INTO ndb.datasetpublications(datasetid, publicationid, primarypub)
   SELECT      _datasetid, _publicationid, _primarypub

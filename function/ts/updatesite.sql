@@ -1,14 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatesite(_siteid integer,
-                                         _stewardcontactid integer,
-                                         _sitename character varying DEFAULT NULL,
-                                         _east numeric DEFAULT NULL::numeric,
-                                         _north numeric DEFAULT NULL::numeric,
-                                         _west numeric DEFAULT NULL::numeric,
-                                         _south numeric DEFAULT NULL::numeric,
-                                         _altitude integer DEFAULT NULL::integer,
-                                         _area numeric DEFAULT NULL::numeric,
-                                         _descript character varying DEFAULT NULL::character varying,
-                                         _notes character varying DEFAULT NULL::character varying)
+CREATE OR REPLACE FUNCTION ts.updatesite(_siteid integer, _stewardcontactid integer, _sitename character varying DEFAULT NULL::character varying, _east numeric DEFAULT NULL::numeric, _north numeric DEFAULT NULL::numeric, _west numeric DEFAULT NULL::numeric, _south numeric DEFAULT NULL::numeric, _altitude integer DEFAULT NULL::integer, _area numeric DEFAULT NULL::numeric, _descript character varying DEFAULT NULL::character varying, _notes character varying DEFAULT NULL::character varying)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$

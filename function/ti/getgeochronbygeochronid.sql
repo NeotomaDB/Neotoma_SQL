@@ -7,4 +7,4 @@ select     sampleid, geochrontypeid, agetypeid, age, errorolder, erroryounger, i
 from       ndb.geochronology
 where     (geochronid = $1)
 
-$function$;
+$function$

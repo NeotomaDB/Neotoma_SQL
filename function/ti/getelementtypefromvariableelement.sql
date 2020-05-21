@@ -1,6 +1,7 @@
 CREATE OR REPLACE FUNCTION ti.getelementtypefromvariableelement(_variableelement character varying)
  RETURNS TABLE(elementtypeid integer, elementtype character varying)
-AS $$
+ LANGUAGE plpgsql
+AS $function$
 #variable_conflict use_column
 DECLARE
 	semicolon varchar(1) := ';';
@@ -17,4 +18,4 @@ ELSE
 	LIMIT 1;
 END IF;
 END;
-$$ LANGUAGE PLPGSQL;
+$function$

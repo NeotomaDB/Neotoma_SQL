@@ -1,9 +1,6 @@
 CREATE OR REPLACE FUNCTION ti.getchroncontrolsbychroncontrolid(_chroncontrolid integer)
-RETURNS TABLE(chroncontrolid integer , chroncontroltypeid integer , chroncontroltype character varying(64), depth double precision, 
-	thickness double precision, analysisunitid integer, analysisunitname character varying(80), agetypeid integer, age double precision, 
-	agelimityounger double precision, agelimitolder double precision, notes text, calibrationcurve character varying(24), 
-	calibrationprogram character varying(24), version character varying(24))
-LANGUAGE sql
+ RETURNS TABLE(chroncontrolid integer, chroncontroltypeid integer, chroncontroltype character varying, depth double precision, thickness double precision, analysisunitid integer, analysisunitname character varying, agetypeid integer, age double precision, agelimityounger double precision, agelimitolder double precision, notes text, calibrationcurve character varying, calibrationprogram character varying, version character varying)
+ LANGUAGE sql
 AS $function$
 SELECT ndb.chroncontrols.chroncontrolid, ndb.chroncontrols.chroncontroltypeid, ndb.chroncontroltypes.chroncontroltype, ndb.chroncontrols.depth, 
 	ndb.chroncontrols.thickness, ndb.chroncontrols.analysisunitid, ndb.analysisunits.analysisunitname, ndb.chroncontrols.agetypeid, ndb.chroncontrols.age, 

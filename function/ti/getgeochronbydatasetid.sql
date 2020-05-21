@@ -1,19 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getgeochronbydatasetid(_datasetid integer)
- RETURNS TABLE(geochronid integer,
-               geochrontypeid integer,
-               geochrontype character varying,
-               agetype character varying,
-               depth double precision,
-               thickness double precision,
-               analysisunitid integer,
-               analysisunitname character varying,
-               age double precision,
-               errorolder double precision,
-               erroryounger double precision,
-               infinite boolean,
-               labnumber character varying,
-               materialdated character varying,
-               notes text)
+ RETURNS TABLE(geochronid integer, geochrontypeid integer, geochrontype character varying, agetype character varying, depth double precision, thickness double precision, analysisunitid integer, analysisunitname character varying, age double precision, errorolder double precision, erroryounger double precision, infinite boolean, labnumber character varying, materialdated character varying, notes text)
  LANGUAGE sql
 AS $function$
   select gc.geochronid,
@@ -39,4 +25,4 @@ AS $function$
     inner join ndb.analysisunits AS au  on smp.analysisunitid = au.analysisunitid
   where (ds.datasetid = $1)
 
-$function$;
+$function$

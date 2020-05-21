@@ -1,19 +1,6 @@
 CREATE OR REPLACE FUNCTION ti.getspecimendatesbygeochrondatasetid(_geochrondatasetid integer)
- RETURNS TABLE(specimendateid integer,
-                    specimenid integer,
-    geochronid integer,
-    sampleid integer,
-    taxonname varchar,
-    elementtype varchar,
-    fraction varchar,
-    notes varchar,
-    calage double precision,
-    calageolder double precision,
-    calageyounger double precision,
-    calibrationcurve varchar,
-    calibrationprogram varchar,
-    version varchar)
-LANGUAGE sql
+ RETURNS TABLE(specimendateid integer, specimenid integer, geochronid integer, sampleid integer, taxonname character varying, elementtype character varying, fraction character varying, notes character varying, calage double precision, calageolder double precision, calageyounger double precision, calibrationcurve character varying, calibrationprogram character varying, version character varying)
+ LANGUAGE sql
 AS $function$
   SELECT sdt.specimendateid,
        sdt.specimenid,
