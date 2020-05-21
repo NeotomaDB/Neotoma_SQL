@@ -23,10 +23,10 @@ AS $function$
             SET    %2$s = $1
             WHERE  %2$s IN $2'
            ,rec.tbl, rec.col)
-        USING _keepcontactid, (SELECT UNNEST(_contactidlist))::int;
+        USING _keepcontactid, (SELECT UNNEST(STRING_TO_ARRAY(_contactidlist, '$')))::int;
       END LOOP;
 
     EXECUTE format('DELETE FROM %s WHERE %s IN $1', _tbl, _col)
-      USING (SELECT UNNEST(_contactidlist))::int;
+      USING (SELECT UNNEST(STRING_TO_ARRAY(_contactidlist,'$')))::int;
   END;
 $function$
