@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ts.linkhigher()
- RETURNS trigger
+ RETURNS void
  LANGUAGE plpgsql
 AS $function$
 BEGIN
