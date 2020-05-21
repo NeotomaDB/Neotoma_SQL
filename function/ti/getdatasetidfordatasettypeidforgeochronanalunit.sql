@@ -3,7 +3,7 @@ RETURNS TABLE(datasetid INTEGER)
 LANGUAGE sql
 AS $function$
 
-	SELECT ndb.datasets.datasetid
+	SELECT ds.datasetid
 	FROM   ndb.geochronology AS gc
 	  INNER JOIN ndb.samples AS samp ON gc.sampleid = samp.sampleid
 		INNER JOIN ndb.analysisunits AS au ON samp.analysisunitid = au.analysisunitid

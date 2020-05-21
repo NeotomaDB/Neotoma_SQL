@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION ti.getdatasettaxonnotesbytaxonid(_datasetid integer, 
  LANGUAGE sql
 AS $function$
   SELECT dtn.taxonid,
-         ndb.taxa.taxonname,
+         tx.taxonname,
          dtn.notes
   FROM ndb.datasettaxonnotes AS dtn
     INNER JOIN      ndb.taxa AS tx ON dtn.taxonid = tx.taxonid
