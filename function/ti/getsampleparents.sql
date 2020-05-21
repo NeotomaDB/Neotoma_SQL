@@ -1,7 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getsampleparents(_sampleid int)
-RETURNS TABLE(sampleid integer, siteid integer, sitename varchar, collectionunitid integer, handle varchar, 
-	analysisunitid integer, depth double precision)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getsampleparents(_sampleid integer)
+ RETURNS TABLE(sampleid integer, siteid integer, sitename character varying, collectionunitid integer, handle character varying, analysisunitid integer, depth double precision)
+ LANGUAGE sql
 AS $function$
 
 SELECT ndb.samples.sampleid, ndb.sites.siteid, ndb.sites.sitename, ndb.collectionunits.collectionunitid, ndb.collectionunits.handle, 
@@ -13,4 +12,3 @@ FROM ndb.samples INNER JOIN
 WHERE ndb.samples.sampleid = _sampleid
 
 $function$
-

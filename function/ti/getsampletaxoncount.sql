@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getsampletaxoncount(_sampleid int, _taxonid int)
-RETURNS TABLE(count integer)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getsampletaxoncount(_sampleid integer, _taxonid integer)
+ RETURNS TABLE(count integer)
+ LANGUAGE sql
 AS $function$
 
 SELECT COUNT(*)::integer AS count FROM (
@@ -12,5 +12,3 @@ SELECT COUNT(*)::integer AS count FROM (
 ) x
 
 $function$
-
-

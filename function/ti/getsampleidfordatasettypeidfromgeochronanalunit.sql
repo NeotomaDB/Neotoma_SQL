@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getsampleidfordatasettypeidfromgeochronanalunit(_geochronid int, _datasettypeid int)
-RETURNS TABLE(sampleid integer)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getsampleidfordatasettypeidfromgeochronanalunit(_geochronid integer, _datasettypeid integer)
+ RETURNS TABLE(sampleid integer)
+ LANGUAGE sql
 AS $function$
 
 SELECT samples_1.sampleid

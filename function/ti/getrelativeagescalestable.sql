@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getrelativeagescalestable()
- RETURNS TABLE(relativeagescaleid int, relativeagescale character varying) 
+ RETURNS TABLE(relativeagescaleid integer, relativeagescale character varying)
  LANGUAGE sql
 AS $function$
 SELECT relativeagescaleid, relativeagescale

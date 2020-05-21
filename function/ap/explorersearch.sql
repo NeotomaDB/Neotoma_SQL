@@ -1,35 +1,6 @@
--- FUNCTION: ap.explorersearch(integer[], integer[], integer[], integer[], integer, integer, integer, character varying, integer, integer, integer, integer, integer, character varying, integer, integer, integer, boolean, boolean, date, boolean)
-
--- DROP FUNCTION ap.explorersearch(integer[], integer[], integer[], integer[], integer, integer, integer, character varying, integer, integer, integer, integer, integer, character varying, integer, integer, integer, boolean, boolean, date, boolean);
-
-CREATE OR REPLACE FUNCTION ap.explorersearch(
-	_taxonids integer[] DEFAULT NULL::integer[],
-	_elemtypeids integer[] DEFAULT NULL::integer[],
-	_taphtypeids integer[] DEFAULT NULL::integer[],
-	_depenvids integer[] DEFAULT NULL::integer[],
-	_abundpct integer DEFAULT NULL::integer,
-	_datasettypeid integer DEFAULT NULL::integer,
-	_keywordid integer DEFAULT NULL::integer,
-	_coords character varying DEFAULT NULL::character varying,
-	_gpid integer DEFAULT NULL::integer,
-	_altmin integer DEFAULT NULL::integer,
-	_altmax integer DEFAULT NULL::integer,
-	_coltypeid integer DEFAULT NULL::integer,
-	_dbid integer DEFAULT NULL::integer,
-	_sitename character varying DEFAULT NULL::character varying,
-	_contactid integer DEFAULT NULL::integer,
-	_ageold integer DEFAULT NULL::integer,
-	_ageyoung integer DEFAULT NULL::integer,
-	_agedocontain boolean DEFAULT true,
-	_agedirectdate boolean DEFAULT false,
-	_subdate date DEFAULT NULL::date,
-	_debug boolean DEFAULT false)
-    RETURNS TABLE(datasetid integer, datasettype character varying, databasename character varying, minage integer, maxage integer, ageyoungest integer, ageoldest integer, siteid integer, sitename character varying, sitedescription text, notes text, collunithandle character varying, collunitname character varying, latitudenorth double precision, latitudesouth double precision, longitudeeast double precision, longitudewest double precision) 
-    LANGUAGE 'plpgsql'
-
-    COST 100
-    VOLATILE 
-    ROWS 1000
+CREATE OR REPLACE FUNCTION ap.explorersearch(_taxonids integer[] DEFAULT NULL::integer[], _elemtypeids integer[] DEFAULT NULL::integer[], _taphtypeids integer[] DEFAULT NULL::integer[], _depenvids integer[] DEFAULT NULL::integer[], _abundpct integer DEFAULT NULL::integer, _datasettypeid integer DEFAULT NULL::integer, _keywordid integer DEFAULT NULL::integer, _coords character varying DEFAULT NULL::character varying, _gpid integer DEFAULT NULL::integer, _altmin integer DEFAULT NULL::integer, _altmax integer DEFAULT NULL::integer, _coltypeid integer DEFAULT NULL::integer, _dbid integer DEFAULT NULL::integer, _sitename character varying DEFAULT NULL::character varying, _contactid integer DEFAULT NULL::integer, _ageold integer DEFAULT NULL::integer, _ageyoung integer DEFAULT NULL::integer, _agedocontain boolean DEFAULT true, _agedirectdate boolean DEFAULT false, _subdate date DEFAULT NULL::date, _debug boolean DEFAULT false)
+ RETURNS TABLE(datasetid integer, datasettype character varying, databasename character varying, minage integer, maxage integer, ageyoungest integer, ageoldest integer, siteid integer, sitename character varying, sitedescription text, notes text, collunithandle character varying, collunitname character varying, latitudenorth double precision, latitudesouth double precision, longitudeeast double precision, longitudewest double precision)
+ LANGUAGE plpgsql
 AS $function$
 
 DECLARE thesql varchar;
@@ -492,4 +463,4 @@ RAISE NOTICE '%', thesql;
 
 END;
 
-$function$;
+$function$

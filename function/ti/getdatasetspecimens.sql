@@ -1,9 +1,7 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetspecimens(_datasetid int)
-RETURNS TABLE(specimenid int, dataid int, elementtype varchar(64), symmetry varchar(24), portion varchar(48),
-				maturity varchar(36), sex varchar(24), domesticstatus varchar(24), preservative varchar(256),
-				nisp double precision, repository varchar(128), specimennr varchar(50), fieldnr varchar(50), arctosnr varchar(50),
-				notes text, taxonname varchar(80), taxagroup varchar(64))
-AS $$
+CREATE OR REPLACE FUNCTION ti.getdatasetspecimens(_datasetid integer)
+ RETURNS TABLE(specimenid integer, dataid integer, elementtype character varying, symmetry character varying, portion character varying, maturity character varying, sex character varying, domesticstatus character varying, preservative character varying, nisp double precision, repository character varying, specimennr character varying, fieldnr character varying, arctosnr character varying, notes text, taxonname character varying, taxagroup character varying)
+ LANGUAGE sql
+AS $function$
 
 SELECT ndb.specimens.specimenid, ndb.specimens.dataid, ndb.elementtypes.elementtype, ndb.elementsymmetries.symmetry, ndb.elementportions.portion,
 		ndb.elementmaturities.maturity, ndb.specimensextypes.sex, ndb.specimendomesticstatustypes.domesticstatus, ndb.specimens.preservative,
@@ -24,4 +22,4 @@ FROM ndb.samples INNER JOIN
 		ndb.elementportions on ndb.specimens.portionid = ndb.elementportions.portionid
 WHERE ndb.samples.datasetid = $1;
 
-$$ LANGUAGE SQL;
+$function$

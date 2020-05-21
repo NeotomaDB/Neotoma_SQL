@@ -1,7 +1,6 @@
 CREATE OR REPLACE FUNCTION ti.getpollensporehighertaxa(_taxaidlist character varying)
-RETURNS TABLE (taxonid integer,
-               highertaxonid integer)
-LANGUAGE sql
+ RETURNS TABLE(taxonid integer, highertaxonid integer)
+ LANGUAGE sql
 AS $function$
   WITH RECURSIVE txtable (oid, taxonid, highertaxonid) AS (
   (SELECT tx.taxonid AS oid, tx.taxonid, tx.highertaxonid
@@ -20,4 +19,4 @@ AS $function$
       highertaxonid IN (5480, 9534, 33038)
   GROUP BY oid
   ORDER BY taxonid
-$function$;
+$function$

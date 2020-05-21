@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getspecimentaxonid(_specimenid INTEGER)
-RETURNS TABLE(taxonid INTEGER)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getspecimentaxonid(_specimenid integer)
+ RETURNS TABLE(taxonid integer)
+ LANGUAGE sql
 AS $function$
 
 SELECT 	ndb.variables.taxonid 

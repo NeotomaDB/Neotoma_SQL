@@ -1,10 +1,10 @@
-CREATE OR REPLACE FUNCTION ti.getfractiondatedbyname(_fraction varchar(80))
-RETURNS TABLE(fractionid integer, fraction varchar(80))
-AS $$
+CREATE OR REPLACE FUNCTION ti.getfractiondatedbyname(_fraction character varying)
+ RETURNS TABLE(fractionid integer, fraction character varying)
+ LANGUAGE sql
+AS $function$
 
 SELECT fractionid, fraction
 FROM ndb.fractiondated
 WHERE fraction ILIKE $1 
 
-$$ LANGUAGE SQL;
-
+$function$

@@ -1,11 +1,6 @@
-CREATE OR REPLACE FUNCTION ts.updategeochronanalysisunit(
-  _geochronid integer,
-  _analysisunitid integer,
-  _depth float DEFAULT NULL,
-  _thickness float DEFAULT NULL,
-  _analysisunitname character varying DEFAULT NULL)
-RETURNS void
-LANGUAGE plpgsql
+CREATE OR REPLACE FUNCTION ts.updategeochronanalysisunit(_geochronid integer, _analysisunitid integer, _depth double precision DEFAULT NULL::double precision, _thickness double precision DEFAULT NULL::double precision, _analysisunitname character varying DEFAULT NULL::character varying)
+ RETURNS void
+ LANGUAGE plpgsql
 AS $function$
 
 DECLARE

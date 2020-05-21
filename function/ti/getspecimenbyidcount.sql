@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getspecimenbyidcount(_specimenid int)
-RETURNS TABLE(count bigint)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getspecimenbyidcount(_specimenid integer)
+ RETURNS TABLE(count bigint)
+ LANGUAGE sql
 AS $function$
 
 	SELECT COUNT(*) AS count
