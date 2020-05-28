@@ -6,12 +6,12 @@ AS $function$
   BEGIN
    IF _datasetnotes IS NOT NULL THEN
         UPDATE     ndb.datasets
-        SET        ndb.datasets.notes = _datasetnotes
-        WHERE     (ndb.datasets.datasetid = _datasetid);
+        SET        notes = _datasetnotes
+        WHERE     (datasetid = _datasetid);
    ELSE
         UPDATE     ndb.datasets
-        SET        ndb.datasets.notes = NULL
-        WHERE     (ndb.datasets.datasetid = _datasetid);
+        SET        notes = NULL
+        WHERE     (datasetid = _datasetid);
     END IF;
   END;
 $function$

@@ -1,16 +1,8 @@
--- FUNCTION: doi.ndbdata(integer)
-
--- DROP FUNCTION doi.ndbdata(integer);
-
 CREATE OR REPLACE FUNCTION doi.ndbdata(
 	dsid integer)
     RETURNS TABLE(datasetid integer, data jsonb)
-    LANGUAGE 'sql'
-
-    COST 100
-    VOLATILE
-    ROWS 1000
-AS $BODY$
+    LANGUAGE sql
+AS $function$
 WITH dssamples AS (
 	SELECT
 	  ds.datasetid,
@@ -71,17 +63,13 @@ WITH dssamples AS (
 	WHERE ds.datasetid = dsid
 	GROUP BY ds.datasetid, dsinfo.dataset
 
-$BODY$;
+$function$;
 
 CREATE OR REPLACE FUNCTION doi.ndbdata(
 	dsid integer[])
     RETURNS TABLE(datasetid integer, data jsonb)
-    LANGUAGE 'sql'
-
-    COST 100
-    VOLATILE
-    ROWS 1000
-AS $BODY$
+    LANGUAGE sql
+AS $function$
 WITH dssamples AS (
 	SELECT
 	  ds.datasetid,
@@ -142,7 +130,4 @@ WITH dssamples AS (
 	WHERE ds.datasetid = ANY(dsid)
 	GROUP BY ds.datasetid, dsinfo.dataset
 
-$BODY$;
-
-ALTER FUNCTION doi.ndbdata(integer)
-    OWNER TO sug335;
+$function$;

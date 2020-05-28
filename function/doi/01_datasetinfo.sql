@@ -1,16 +1,7 @@
--- FUNCTION: doi.datasetinfo(integer)
-
--- DROP FUNCTION doi.datasetinfo(integer);
-
-CREATE OR REPLACE FUNCTION doi.datasetinfo(
-	dsid INT[])
+CREATE OR REPLACE FUNCTION doi.datasetinfo(dsid INT[])
     RETURNS TABLE(datasetid integer, dataset json)
-    LANGUAGE 'sql'
-
-    COST 100
-    VOLATILE
-    ROWS 1000
-AS $BODY$
+    LANGUAGE sql
+AS $function$
 
 SELECT dts.datasetid,
        json_build_object('site', json_build_object('siteid', sts.siteid,
@@ -43,21 +34,13 @@ ndb.constituentdatabases AS cstdb ON dsdb.databaseid = cstdb.databaseid LEFT OUT
 (SELECT * FROM doi.datasetauthors(dsid)) AS dsau ON dsau.datasetid = dts.datasetid
 WHERE dts.datasetid = ANY(dsid)
 
-$BODY$;
-
--- FUNCTION: doi.datasetinfo(integer)
-
--- DROP FUNCTION doi.datasetinfo(integer);
+$function$;
 
 CREATE OR REPLACE FUNCTION doi.datasetinfo(
 	dsid integer)
     RETURNS TABLE(datasetid integer, dataset json)
     LANGUAGE 'sql'
-
-    COST 100
-    VOLATILE
-    ROWS 1000
-AS $BODY$
+AS $function$
 
 SELECT dts.datasetid,
        json_build_object('site', json_build_object('siteid', sts.siteid,
@@ -90,10 +73,4 @@ ndb.constituentdatabases AS cstdb ON dsdb.databaseid = cstdb.databaseid LEFT OUT
 (SELECT * FROM doi.datasetauthors(dsid)) AS dsau ON dsau.datasetid = dts.datasetid
 WHERE dts.datasetid = dsid
 
-$BODY$;
-
-ALTER FUNCTION doi.datasetinfo(integer)
-    OWNER TO sug335;
-
-ALTER FUNCTION doi.datasetinfo(integer[])
-    OWNER TO sug335;
+$function$;
