@@ -1,7 +1,4 @@
-CREATE OR REPLACE FUNCTION ti.getrecentuploads(_months integer DEFAULT 1, _databaseid integer DEFAULT NULL::integer, _datasettypeid integer DEFAULT NULL::integer, _limit integer DEFAULT 400)
- RETURNS TABLE(datasetid integer, datasettype character varying, sitename character varying, geopolitical character varying, databasename character varying, investigator character varying, recdatecreated character varying, steward character varying)
- LANGUAGE sql
-AS $function$
+CREATE OR REPLACE FUNCTION ti.getrecentuploads(_months integer DEFAULT 1, _databaseid integer DEFAULT NULL::integer, _datasettypeid integer DEFAULT NULL::integer, _limit integer DEFAULT 400) RETURNS TABLE(datasetid integer, datasettype CHARACTER varying, sitename CHARACTER varying, geopolitical CHARACTER varying, databasename CHARACTER varying, investigator CHARACTER varying, recdatecreated CHARACTER varying, steward CHARACTER varying) LANGUAGE SQL AS $function$
   SELECT ds.datasetid,
          dst.datasettype,
          sts.sitename,
@@ -33,4 +30,4 @@ AS $function$
     order by ds.recdatecreated desc
 
   LIMIT _limit
-$function$
+$function$;
