@@ -10,8 +10,8 @@ AS $function$
     WHERE ch.chronologyid = _chronologyid
   )
   DELETE FROM ndb.geochroncontrols AS gcc
-  WHERE (SELECT gccs.chroncontrolid FROM gccs) = gcc.chroncontrolid AND
-        (SELECT gccs.geochronid FROM gccs) = gcc.geochronid;
+  WHERE gcc.chroncontrolid IN (SELECT chroncontrolid FROM gccs)
+    AND gcc.geochronid IN (SELECT geochronid FROM gccs);
 
   DELETE FROM ndb.chronologies AS ch
   WHERE ch.chronologyid = _chronologyid;
