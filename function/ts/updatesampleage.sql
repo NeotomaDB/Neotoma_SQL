@@ -12,9 +12,4 @@ AS $function$
   	    ageolder = _ageolder
   WHERE sampleageid = _sampleageid;
 
-
-  INSERT INTO ti.stewardupdates(contactid, tablename, pk1, operation)
-  VALUES (_contactid, 'sampleages', _sampleageid, 'update')
-
-
 $function$
