@@ -20,13 +20,13 @@ AS $function$
     	LOOP
           EXECUTE format('
             UPDATE %1$s
-            SET    %2$s = $1
-            WHERE  %2$s IN $2'
+            SET    %2$s = _keepcontactid
+            WHERE  %2$s IN _contactidlist'
            ,rec.tbl, rec.col)
         USING _keepcontactid, (SELECT UNNEST(STRING_TO_ARRAY(_contactidlist, '$')))::int;
       END LOOP;
 
-    EXECUTE format('DELETE FROM %s WHERE %s IN $1', _tbl, _col)
+    EXECUTE format('DELETE FROM %s WHERE %s IN _keepcontactid', _tbl, _col)
       USING (SELECT UNNEST(STRING_TO_ARRAY(_contactidlist,'$')))::int;
   END;
 $function$
