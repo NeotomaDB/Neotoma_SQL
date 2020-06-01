@@ -51,72 +51,23 @@ AS $function$
 	  AND table_name   = 'collectionunits'
     AND (SELECT val FROM goods) IS True;
 
-  WITH collunit AS (
-    SELECT * FROM ndb.collectionunits WHERE collectionunitid = _collunitid
-  )
-
   UPDATE ndb.collectionunits
     SET
-      handle = CASE WHEN
-        (_handle <> (SELECT handle FROM collunit) AND
-        (_handle <> (SELECT handle FROM collunit)) IS NULL) THEN
-        handle ELSE _handle END,
-      colltypeid = CASE WHEN
-        (_colltypeid <> (SELECT colltypeid FROM collunit) AND
-        (_colltypeid <> (SELECT colltypeid FROM collunit)) IS NULL) THEN
-        colltypeid ELSE _colltypeid END,
-      depenvtid = CASE WHEN
-        (_depenvtid <> (SELECT depenvtid FROM collunit) AND
-        (_depenvtid <> (SELECT depenvtid FROM collunit)) IS NULL) THEN
-        depenvtid ELSE _depenvtid END,
-      collunitname = CASE WHEN
-        (_collunitname <> (SELECT collunitname FROM collunit) AND
-        (_collunitname <> (SELECT collunitname FROM collunit)) IS NULL) THEN
-        collunitname ELSE _collunitname END,
-      colldate = CASE WHEN
-        (_colldate <> (SELECT colldate FROM collunit) AND
-        (_colldate <> (SELECT colldate FROM collunit)) IS NULL) THEN
-        colldate ELSE _colldate END,
-      colldevice = CASE WHEN
-        (_colldevice <> (SELECT colldevice FROM collunit) AND
-        (_colldevice <> (SELECT colldevice FROM collunit)) IS NULL) THEN
-        colldevice ELSE _colldevice END,
-      gpslatitude = CASE WHEN
-        (_gpslatitude <> (SELECT gpslatitude FROM collunit) AND
-        (_gpslatitude <> (SELECT gpslatitude FROM collunit)) IS NULL) THEN
-        gpslatitude ELSE _gpslatitude END,
-      gpslongitude = CASE WHEN
-        (_gpslongitude <> (SELECT gpslongitude FROM collunit) AND
-        (_gpslongitude <> (SELECT gpslongitude FROM collunit)) IS NULL) THEN
-        gpslongitude ELSE _gpslongitude END,
-      gpsaltitude = CASE WHEN
-        (_gpsaltitude <> (SELECT gpsaltitude FROM collunit) AND
-        (_gpsaltitude <> (SELECT gpsaltitude FROM collunit)) IS NULL) THEN
-        gpsaltitude ELSE _gpsaltitude END,
-      waterdepth = CASE WHEN
-        (_waterdepth <> (SELECT waterdepth FROM collunit) AND
-        (_waterdepth <> (SELECT waterdepth FROM collunit)) IS NULL) THEN
-        waterdepth ELSE _waterdepth END,
-      substrateid = CASE WHEN
-        (_substrateid <> (SELECT substrateid FROM collunit) AND
-        (_substrateid <> (SELECT substrateid FROM collunit)) IS NULL) THEN
-        substrateid ELSE _substrateid END,
-      slopeaspect = CASE WHEN
-        (_slopeaspect <> (SELECT slopeaspect FROM collunit) AND
-        (_slopeaspect <> (SELECT slopeaspect FROM collunit)) IS NULL) THEN
-        slopeaspect ELSE _slopeaspect END,
-      slopeangle = CASE WHEN
-        (_slopeangle <> (SELECT slopeangle FROM collunit) AND
-        (_slopeangle <> (SELECT slopeangle FROM collunit)) IS NULL) THEN
-        slopeangle ELSE _slopeangle END,
-      location = CASE WHEN
-        (_location <> (SELECT location FROM collunit) AND
-        (_location <> (SELECT location FROM collunit)) IS NULL) THEN
-        location ELSE _location END,
-      notes = CASE WHEN
-        (_notes <> (SELECT notes FROM collunit) AND
-        (_notes <> (SELECT notes FROM collunit)) IS NULL) THEN
-        notes ELSE _notes END;
-
+      handle = COALESCE(_handle, handle),
+      colltypeid = COALESCE(_colltypeid, colltypeid),
+      depenvtid = COALESCE(_depenvtid, depenvtid),
+      collunitname = COALESCE(_collunitname, collunitname),
+      colldate = COALESCE(_colldate, colldate),
+      colldevice = COALESCE(_colldevice, colldevice),
+      gpslatitude = COALESCE(_gpslatitude, gpslatitude),
+      gpslongitude = COALESCE(_gpslongitude, gpslongitude),
+      gpsaltitude = COALESCE(_gpsaltitude, gpsaltitude),
+      waterdepth = COALESCE(_waterdepth, waterdepth),
+      substrateid = COALESCE(_substrateid, substrateid),
+      slopeaspect = COALESCE(_slopeaspect, slopeaspect),
+      slopeangle = COALESCE(_slopeangle, slopeangle),
+      location = COALESCE(_location, location),
+      notes = COALESCE(_notes, notes)
+  WHERE collectionunitid = _collunitid;
 
 $function$
