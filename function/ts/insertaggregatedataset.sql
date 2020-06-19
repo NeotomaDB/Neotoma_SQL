@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION ts.insertaggregatedataset(_name character varying, _o
  LANGUAGE sql
 AS $function$
 
-INSERT INTO ndb.aggregatedatasets(aggregatedatasetname, aggregateordertypeid, notes, recdatecreated, recdatemodified)
-VALUES      (_name, _ordertypeid, _notes, now(), now()) returning aggregatedatasetid;
-
+  INSERT INTO ndb.aggregatedatasets (aggregatedatasetname, aggregateordertypeid, notes, recdatecreated, recdatemodified)
+  VALUES      (_name, _ordertypeid, _notes, now(), now())
+  RETURNING aggregatedatasetid;
 $function$

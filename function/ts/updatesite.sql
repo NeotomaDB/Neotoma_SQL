@@ -76,7 +76,7 @@ BEGIN
 			UPDATE ndb.sites
 			SET notes = NULL WHERE siteid = siteid;
 		END IF;
-	ELSIF (oldnotes IS NULL) OR (_notest <> oldnotes) THEN
+	ELSIF (oldnotes IS NULL) OR (_notes <> oldnotes) THEN
 		UPDATE ndb.sites
 		SET notes = _notes WHERE siteid = siteid;
 	END IF;

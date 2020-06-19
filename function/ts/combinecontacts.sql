@@ -21,7 +21,7 @@ AS $function$
           EXECUTE format('
             UPDATE %1$s
             SET    %2$s = _keepcontactid
-            WHERE  %2$s IN _contactidlist'
+            WHERE  %2$s IN (SELECT UNNEST(STRING_TO_ARRAY(_contactidlist,'$')))::int'
            ,rec.tbl, rec.col)
         USING _keepcontactid, (SELECT UNNEST(STRING_TO_ARRAY(_contactidlist, '$')))::int;
       END LOOP;
