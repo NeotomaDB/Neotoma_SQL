@@ -9,7 +9,7 @@ AS $function$
         FROM ndb.samples AS smp
         INNER JOIN ndb.analysisunits AS au ON smp.analysisunitid = au.analysisunitid
         WHERE (au.depth is null) AND (smp.datasetid = _datasetid)) AND
-       (SELECT COUNT(*)
+       (SELECT COUNT(*) = 0
         FROM ndb.samples AS smp
         JOIN ndb.analysisunits AS au ON smp.analysisunitid = au.analysisunitid
 		    JOIN ndb.samplekeywords AS sk ON sk.sampleid = smp.sampleid

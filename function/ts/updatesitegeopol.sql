@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION ts.updatesitegeopol(_siteid integer, _stewardcontacti
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
-DECLARE	
+DECLARE
 	_sitegeopolid int := (SELECT sitegeopoliticalid FROM ndb.sitegeopolitical WHERE (siteid = _siteid AND geopoliticalid = _oldgeopolid));
 
 BEGIN
@@ -10,7 +10,7 @@ BEGIN
 		UPDATE ndb.sitegeopolitical
 		SET geopoliticalid = _newgeopolid WHERE sitegeopoliticalid = _sitegeopolid;
 		INSERT INTO ti.stewardupdates(contactid, tablename, pk1, operation, columnname)
-		VALUES  (_stewardcontactid, 'sitegeopolitical', sitegeopolid, 'update', geopoliticalid);
+		VALUES  (_stewardcontactid, 'sitegeopolitical', _sitegeopolid, 'update', _newgeopolid);
 	END IF;
 
 END;

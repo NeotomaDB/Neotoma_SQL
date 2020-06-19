@@ -117,7 +117,6 @@ failed = set()
 z = 0
 
 for record in cur:
-    print(record[1])
     # This checks each function in the database and then tests whether there
     # is a file associated with it.
     newFile = "./function/" + record[0] + "/" + record[1] + ".sql"
@@ -157,24 +156,21 @@ for record in cur:
                     cur2.execute("DROP FUNCTION " + record[0] + "." + record[1]
                                  + "(" + record[2] + ");")
                     conn.commit()
-                    print("Dropped function.")
                 except Exception as e:
+                    print("Failed for " + record[1])
                     print(e)
                     conn.rollback()
                     print("Could not delete " + record[0] + "." + record[1])
                     failed.add(record[0] + "." + record[1])
 
                 try:
-                    print("trying to execute")
                     cur2 = conn.cursor()
                     cur2.execute(
                         open("./function/" + record[0] + "/" + record[1]
                              + ".sql", "r").read())
                     conn.commit()
-                    print("executed")
                     cur2.execute("REASSIGN OWNED BY sug335 TO functionwriter;")
                     conn.commit()
-                    print("reassigned")
                     rewrite.add(record[0] + "." + record[1])
                     print('The function for ' + record[0] + '.' + record[1]
                           + ' has been updated in the `' + data['database']
@@ -202,7 +198,6 @@ for schema in ['ti', 'ts', 'doi', 'ap', 'ndb']:
           WHERE
             n.nspname = %s AND proname = %s"""
         data = (schema, functs.split(".")[0])
-        print(data)
         try:
             cur.execute(SQL, data)
         except Exception as e:

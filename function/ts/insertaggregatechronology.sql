@@ -5,11 +5,11 @@ CREATE OR REPLACE FUNCTION ts.insertaggregatechronology(_aggregatedatasetid inte
   _ageboundyounger integer,
   _ageboundolder integer,
   _notes character varying)
- RETURNS integer
+ RETURNS TABLE(aggregatechronid integer)
  LANGUAGE sql
 AS $function$
-INSERT INTO ndb.aggregatechronologies
+  INSERT INTO ndb.aggregatechronologies
 	(aggregatedatasetid, agetypeid, isdefault, chronologyname, ageboundyounger, ageboundolder, notes)
-VALUES (_aggregatedatasetid, _agetypeid, _isdefault, _chronologyname, _ageboundyounger, _ageboundolder, _notes)
-RETURNING aggregatechronid
+  VALUES (_aggregatedatasetid, _agetypeid, _isdefault, _chronologyname, _ageboundyounger, _ageboundolder, _notes)
+  RETURNING aggregatechronid
 $function$
