@@ -1,11 +1,14 @@
-CREATE OR REPLACE FUNCTION ts.updatelakeparam(_siteid integer, _stewardcontactid integer, _lakeparameter character varying, _value numeric DEFAULT NULL::numeric)
+CREATE OR REPLACE FUNCTION ts.updatelakeparam(_siteid integer,
+     _stewardcontactid integer,
+     _lakeparameter character varying,
+     _value numeric DEFAULT NULL::numeric)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
 DECLARE
 
 	_lakeparameterid int := (SELECT lp.lakeparameterid FROM ndb.lakeparametertypes AS lp WHERE lp.lakeparameter = _lakeparameter);
-	nparam int := (SELECT COUNT(*) AS count FROM ndb.lakeparameters AS lp WHERE lp.siteid = _siteid GROUP BY lp.lakeparameterid HAVING lp.lakeparameterid = lakeparameterid);
+	_nparam int := (SELECT COUNT(*) AS count FROM ndb.lakeparameters AS lp WHERE lp.siteid = _siteid GROUP BY lp.lakeparameterid HAVING lp.lakeparameterid = lakeparameterid);
 	/* If nparam is not null, then the LakeParameter is already in Neotoma */
 
 BEGIN
