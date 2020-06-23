@@ -13,12 +13,8 @@ AS $function$
   WITH newstew AS (
     SELECT stewardid,
       _databaseid AS dbid
-    FROM ti.stewards AS stw WHERE (stw.contactid = _contactid)) AS stewardid
-    WHERE NOT (stewardid =
-
-
-  )
+    FROM ti.stewards AS stw WHERE (stw.contactid = _contactid))
   insert into ti.stewarddatabases(stewardid, databaseid)
-  values      ((select stewardid from ti.stewards AS stw where (stw.contactid IN _contactid)), _databaseid)
+  values      ((select stewardid from ti.stewards AS stw where (stw.contactid = _contactid)), _databaseid)
   RETURNING stewardid
 $function$
