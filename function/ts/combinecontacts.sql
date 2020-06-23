@@ -5,6 +5,7 @@ CREATE OR REPLACE FUNCTION ts.combinecontacts(_keepcontactid integer,
 AS $function$
   DECLARE
     rec RECORD;
+    _contlist INTEGER[] := (SELECT STRING_TO_ARRAY(_contactidlist,'$'))::int[];
 	BEGIN
     FOR rec IN
     	SELECT
@@ -18,15 +19,15 @@ AS $function$
     		WHERE quote_ident(a2.attname) = 'contactid'
     		AND    c.contype   = 'f'
     	LOOP
-          EXECUTE format('
-            UPDATE %1$s
-            SET    %2$s = _keepcontactid
-            WHERE  %2$s IN (SELECT UNNEST(STRING_TO_ARRAY(_contactidlist,'$')))::int'
-           ,rec.tbl, rec.col)
-        USING _keepcontactid, (SELECT UNNEST(STRING_TO_ARRAY(_contactidlist, '$')))::int;
-      END LOOP;
+			EXECUTE format('
+				UPDATE %1$s
+				SET    %2$s = %3$s
+				WHERE  %2$s = ANY(%4$s::int[]);'
+			,rec.tbl, rec.col, _keepcontactid, quote_literal(_contlist));
 
-    EXECUTE format('DELETE FROM %s WHERE %s IN _keepcontactid', _tbl, _col)
-      USING (SELECT UNNEST(STRING_TO_ARRAY(_contactidlist,'$')))::int;
-  END;
+			EXECUTE format('
+				DELETE FROM %1$s WHERE %2$s = ANY(%3$s::int[]);'
+				,rec.tbl, rec.col, quote_literal(_contlist));
+    	END LOOP;
+	END;
 $function$
