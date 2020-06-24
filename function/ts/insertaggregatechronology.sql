@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION ts.insertaggregatechronology(_aggregatedatasetid inte
   _chronologyname character varying,
   _ageboundyounger integer,
   _ageboundolder integer,
-  _notes character varying)
+  _notes character varying DEFAULT NULL::character varying)
  RETURNS TABLE(aggregatechronid integer)
  LANGUAGE sql
 AS $function$
