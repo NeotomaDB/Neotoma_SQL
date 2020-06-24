@@ -1,109 +1,47 @@
 CREATE OR REPLACE FUNCTION updatereplacepublicationid(_keeppubid integer, _deposepubid integer)
 RETURNS TABLE(id integer,
               result character varying)
-LANGUAGE SQL
+LANGUAGE plpgsql
 AS $function$
-
-/* Replace @DEPOSEPUBID with @KEEPPUBID and delete @DEPOSEPUBID */
-
-
-WITH goodpub AS (
-  SELECT pub.publicationid, 'keep'
-  FROM ndb.publications AS pub WHERE (pub.publicationid = _keeppubid)
-  UNION
-  SELECT pub.publicationid, 'drop'
-  FROM ndb.publications AS pub WHERE (pub.publicationid = _deposepubid)
-
-)
-DECLARE @N int
-
-SET @N = (SELECT COUNT(*) FROM NDB.Publications WHERE (PublicationID = @KEEPPUBID))
-IF (@N = 0)
+  DECLARE
+    rec RECORD;
   BEGIN
-    INSERT INTO @RESULTS SELECT (CONCAT(N'KEEPPUBID ' ,CAST(@KEEPPUBID AS nvarchar), N' does not exist. Procedure aborted.'))
-	SELECT Result FROM @RESULTS
-	RETURN
-END
+    CREATE TEMP TABLE resulting AS (
+      SELECT c.conrelid::regclass::varchar AS tbl,
+        NULL::varchar AS updated
+          FROM pg_catalog.pg_attribute  AS a1
+          JOIN pg_catalog.pg_constraint AS c  ON c.confrelid = a1.attrelid
+                          AND c.confkey   = ARRAY[a1.attnum]
+          JOIN pg_catalog.pg_attribute  AS a2 ON a2.attrelid = c.conrelid
+                          AND a2.attnum   = c.conkey[1]
+        WHERE quote_ident(a2.attname) = 'publicationid'
+        AND    c.contype   = 'f');
 
-SET @N = (SELECT COUNT(*) FROM NDB.Publications WHERE (PublicationID = @DEPOSEPUBID))
-IF (@N = 0)
-  BEGIN
-    INSERT INTO @RESULTS SELECT (CONCAT(N'DEPOSEPUBID ' ,CAST(@DEPOSEPUBID AS nvarchar), N' does not exist. Procedure aborted.'))
-	SELECT Result FROM @RESULTS
-	RETURN
-  END
-
-
-SET @N = (SELECT COUNT(*) FROM NDB.Publications WHERE (PublicationID = @DEPOSEPUBID))
-
-SET @N = (SELECT COUNT(*) FROM NDB.CalibrationCurves WHERE (PublicationID = @DEPOSEPUBID))
-IF (@N > 0)
-  BEGIN
-    UPDATE NDB.CalibrationCurves
-    SET    NDB.CalibrationCurves.PublicationID = @KEEPPUBID
-    WHERE  (NDB.CalibrationCurves.PublicationID = @DEPOSEPUBID)
-  END
-INSERT INTO @RESULTS SELECT (CONCAT(N'Records updated from CalibrationCurves = .' ,CAST(@N AS nvarchar)))
-
-SET @N = (SELECT COUNT(*) FROM NDB.DatasetPublications WHERE (PublicationID = @DEPOSEPUBID))
-IF (@N > 0)
-  BEGIN
-    UPDATE NDB.DatasetPublications
-    SET    NDB.DatasetPublications.PublicationID = @KEEPPUBID
-    WHERE  (NDB.DatasetPublications.PublicationID = @DEPOSEPUBID)
-  END
-INSERT INTO @RESULTS SELECT (CONCAT(N'Records updated from DatasetPublications = .' ,CAST(@N AS nvarchar)))
-
-SET @N = (SELECT COUNT(*) FROM NDB.EventPublications WHERE (PublicationID = @DEPOSEPUBID))
-IF (@N > 0)
-  BEGIN
-    UPDATE NDB.EventPublications
-    SET    NDB.EventPublications.PublicationID = @KEEPPUBID
-    WHERE  (NDB.EventPublications.PublicationID = @DEPOSEPUBID)
-  END
-INSERT INTO @RESULTS SELECT (CONCAT(N'Records updated from EventPublications = .' ,CAST(@N AS nvarchar)))
-
-SET @N = (SELECT COUNT(*) FROM NDB.ExternalPublications WHERE (PublicationID = @DEPOSEPUBID))
-IF (@N > 0)
-  BEGIN
-    UPDATE NDB.ExternalPublications
-    SET    NDB.ExternalPublications.PublicationID = @KEEPPUBID
-    WHERE  (NDB.ExternalPublications.PublicationID = @DEPOSEPUBID)
-  END
-INSERT INTO @RESULTS SELECT (CONCAT(N'Records updated from ExternalPublications = .' ,CAST(@N AS nvarchar)))
-
-SET @N = (SELECT COUNT(*) FROM NDB.FormTaxa WHERE (PublicationID = @DEPOSEPUBID))
-IF (@N > 0)
-  BEGIN
-    UPDATE NDB.FormTaxa
-    SET    NDB.FormTaxa.PublicationID = @KEEPPUBID
-    WHERE  (NDB.FormTaxa.PublicationID = @DEPOSEPUBID)
-  END
-INSERT INTO @RESULTS SELECT (CONCAT(N'Records updated from FormTaxa = .' ,CAST(@N AS nvarchar)))
-
-SET @N = (SELECT COUNT(*) FROM NDB.GeochronPublications WHERE (PublicationID = @DEPOSEPUBID))
-IF (@N > 0)
-  BEGIN
-    UPDATE NDB.GeochronPublications
-    SET    NDB.GeochronPublications.PublicationID = @KEEPPUBID
-    WHERE  (NDB.GeochronPublications.PublicationID = @DEPOSEPUBID)
-  END
-INSERT INTO @RESULTS SELECT (CONCAT(N'Records updated from GeochronPublications = .' ,CAST(@N AS nvarchar)))
-
-SET @N = (SELECT COUNT(*) FROM NDB.RelativeAgePublications WHERE (PublicationID = @DEPOSEPUBID))
-IF (@N > 0)
-  BEGIN
-    UPDATE NDB.RelativeAgePublications
-    SET    NDB.RelativeAgePublications.PublicationID = @KEEPPUBID
-    WHERE  (NDB.RelativeAgePublications.PublicationID = @DEPOSEPUBID)
-  END
-INSERT INTO @RESULTS SELECT (CONCAT(N'Records updated from RelativeAgePublications = .' ,CAST(@N AS nvarchar)))
-
-DELETE FROM NDB.Publications
-WHERE PublicationID = @DEPOSEPUBID
-INSERT INTO @RESULTS SELECT (CONCAT(N'PublicationdID ', CAST(@DEPOSEPUBID AS nvarchar), N' deleted from Publications table.'))
-
-SELECT Result FROM @RESULTS
-
-
-GO
+    FOR rec IN
+        SELECT
+          c.conrelid::regclass AS tbl,
+          quote_ident(a2.attname) AS col
+            FROM pg_catalog.pg_attribute  AS a1
+            JOIN pg_catalog.pg_constraint AS c  ON c.confrelid = a1.attrelid
+                            AND c.confkey   = ARRAY[a1.attnum]
+            JOIN pg_catalog.pg_attribute  AS a2 ON a2.attrelid = c.conrelid
+                            AND a2.attnum   = c.conkey[1]
+          WHERE quote_ident(a2.attname) = 'publicationid'
+          AND    c.contype   = 'f'
+      LOOP
+        EXECUTE format('
+          UPDATE resulting
+          SET    updated = (SELECT ''Replaced ''|| COUNT(*) || '' to %1$s'' AS result FROM %1$s WHERE %2$s = %4$s)
+          WHERE  tbl::varchar = %3$s;'
+        ,rec.tbl, rec.col, quote_literal(rec.tbl), _deposepubid);
+        EXECUTE format('
+          UPDATE %1$s
+          SET    %2$s = %3$s
+          WHERE  %2$s = %4$s;'
+        ,rec.tbl, rec.col, _keeppubid, _deposepubid);
+      END LOOP;
+      RETURN QUERY
+      SELECT NULL::int AS id, updated AS result
+      FROM resulting;
+  END;
+$function$
