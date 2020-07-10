@@ -18,5 +18,4 @@ AS $function$
   WHERE highertaxonid = taxonid OR
       highertaxonid IN (5480, 9534, 33038)
   GROUP BY oid
-  ORDER BY taxonid
 $function$
