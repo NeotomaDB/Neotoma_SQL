@@ -18,7 +18,7 @@ BEGIN
 			UPDATE ndb.lakeparameters AS lp
 			SET value = value WHERE (siteid = _siteid) AND (lp.lakeparameterid = _lakeparameterid);
 			INSERT INTO ti.stewardupdates(contactid, tablename, pk1, pk2, operation, columnname)
-            VALUES (_stewardcontactid, 'lakeparameters',_siteid, lakeparameterid, 'update', 'value');
+            VALUES (_stewardcontactid, 'lakeparameters',_siteid, _lakeparameterid, 'update', 'value');
 		ELSE
 			INSERT INTO ndb.lakeparameters (siteid, lakeparameterid, value)
 			VALUES (_siteid, _lakeparameterid, _value);
