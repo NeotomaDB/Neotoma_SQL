@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ts.insertaggregatedataset(_name character varying, _ordertypeid integer, _notes text DEFAULT NULL::text)
- RETURNS TABLE(aggregatedatasetid integer)
+ RETURNS  integer
  LANGUAGE sql
 AS $function$
 
