@@ -5,4 +5,4 @@ AS $function$
 SELECT eventtypeid, eventtype
 FROM ndb.eventtypes
 WHERE eventtype ILIKE $1
-$function$;
+$function$
