@@ -1,15 +1,50 @@
 CREATE OR REPLACE FUNCTION da.chronologybyid(_chronid integer)
- RETURNS TABLE(chronologyid integer, agetype character varying, isdefault boolean, chronologyname character varying, dateprepared date, agemodel character varying, ageboundyounger integer, ageboundolder integer, datasetidnotes character varying, chroncontrolid integer, controldepth double precision, controlthickness double precision, controlage double precision, controlageyounger double precision, controlageolder double precision, chroncontroltype character varying)
+ RETURNS TABLE(controls json,
+               "Default" boolean,
+               ChronologyName character varying,
+               AgeType character varying,
+               AgeModel character varying,
+               AgeOlder integer,
+               ChronologyID integer,
+               AgeYounger integer,
+               datasets json,
+               notes character varying,
+               dateprepared date)
  LANGUAGE sql
 AS $function$
 
-SELECT ndb.chronologies.chronologyid, ndb.agetypes.agetype, ndb.chronologies.isdefault, ndb.chronologies.chronologyname, ndb.chronologies.dateprepared,
-ndb.chronologies.agemodel, ndb.chronologies.ageboundyounger, ndb.chronologies.ageboundolder,ndb.chronologies.notes, ndb.chroncontrols.chroncontrolid,
-ndb.chroncontrols.depth AS controldepth, ndb.chroncontrols.thickness AS controlthickness, ndb.chroncontrols.age AS controlage, ndb.chroncontrols.agelimityounger AS controlageyounger,
-ndb.chroncontrols.agelimitolder AS controlageolder, ndb.chroncontroltypes.chroncontroltype
-FROM ndb.chronologies INNER JOIN ndb.agetypes ON ndb.chronologies.agetypeid = ndb.agetypes.agetypeid LEFT JOIN
-ndb.chroncontrols ON ndb.chronologies.chronologyid = ndb.chroncontrols.chronologyid LEFT JOIN
-ndb.chroncontroltypes ON ndb.chroncontrols.chroncontroltypeid = ndb.chroncontroltypes.chroncontroltypeid
-WHERE ndb.chronologies.chronologyid =  _chronid;
-
+  SELECT json_agg(json_build_object('AgeYoungest', ccr.agelimityounger,
+                                            'Age', ccr.age,
+                                    'ControlType', ccrt.chroncontroltype,
+                  'ChronControlID', ccr.chroncontrolid,
+                  'Depth', ccr.depth,
+                  'AgeOldest', ccr.agelimitolder,
+                  'Thickness', ccr.thickness)) AS controls,
+        chr.isdefault AS Default,
+        chr.chronologyname AS ChronologyName,
+        aty.agetype AS AgeType,
+        chr.agemodel AS AgeModel,
+        chr.ageboundolder AS AgeOlder,
+        chr.chronologyid AS ChronologyID,
+        chr.ageboundyounger AS AgeYounger,
+        json_agg(json_build_object('DatasetType', dst.datasettype,
+                                     'DatasetID', ds.datasetid)) AS datasets,
+        chr.notes AS Notes,
+        chr.dateprepared AS DatePrepared
+  FROM ndb.chronologies AS chr
+  INNER JOIN ndb.agetypes AS aty ON chr.agetypeid = aty.agetypeid
+  LEFT JOIN ndb.chroncontrols AS ccr ON chr.chronologyid = ccr.chronologyid
+  LEFT JOIN ndb.chroncontroltypes AS ccrt ON ccr.chroncontroltypeid = ccrt.chroncontroltypeid
+  LEFT JOIN ndb.datasets AS ds ON  ds.collectionunitid = chr.collectionunitid
+  LEFT JOIN ndb.datasettypes AS dst ON dst.datasettypeid = ds.datasettypeid
+  WHERE chr.chronologyid = 123
+  GROUP BY chr.isdefault,
+        chr.chronologyname,
+        aty.agetype,
+        chr.ageboundolder,
+        chr.ageboundyounger,
+		chr.agemodel,
+    chr.notes,
+	chr.chronologyid,
+    chr.dateprepared
 $function$
