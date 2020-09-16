@@ -27,7 +27,7 @@ AS $function$
         chr.ageboundolder AS AgeOlder,
         chr.chronologyid AS ChronologyID,
         chr.ageboundyounger AS AgeYounger,
-        json_agg(DISTINCT json_build_object('DatasetType', dst.datasettype,
+        json_agg(DISTINCT jsonb_build_object('DatasetType', dst.datasettype,
                                      'DatasetID', ds.datasetid)) AS datasets,
         chr.notes AS Notes,
         chr.dateprepared AS DatePrepared
