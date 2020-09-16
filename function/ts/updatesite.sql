@@ -48,7 +48,7 @@ BEGIN
 		END IF;
 	ELSIF (oldaltitude IS NULL) OR (_altitude <> oldaltitude) THEN
 		UPDATE ndb.sites
-		SET altitude = _altitude WHERE siteid = siteid;
+		SET altitude = _altitude WHERE siteid = _siteid;
 	END IF;
 
 	IF _area IS NULL THEN
@@ -58,27 +58,27 @@ BEGIN
 		END IF;
 	ELSIF (oldarea IS NULL) OR (_area <> oldarea) THEN
 		UPDATE ndb.sites
-		SET area = _area WHERE siteid = siteid;
+		SET area = _area WHERE siteid = _siteid;
 	END IF;
 
 	IF _descript IS NULL THEN
 		IF oldsitedescription IS NOT NULL THEN
 			UPDATE ndb.sites
-			SET sitedescription = NULL WHERE siteid = siteid;
+			SET sitedescription = NULL WHERE siteid = _siteid;
 		END IF;
 	ELSIF (oldsitedescription IS NULL) OR (_descript <> oldsitedescription) THEN
 		UPDATE ndb.sites
-		SET sitedescription = _descript WHERE siteid = siteid;
+		SET sitedescription = _descript WHERE siteid = _siteid;
 	END IF;
 
 	IF _notes IS NULL THEN
 		IF oldnotes IS NOT NULL THEN
 			UPDATE ndb.sites
-			SET notes = NULL WHERE siteid = siteid;
+			SET notes = NULL WHERE siteid = _siteid;
 		END IF;
 	ELSIF (oldnotes IS NULL) OR (_notes <> oldnotes) THEN
 		UPDATE ndb.sites
-		SET notes = _notes WHERE siteid = siteid;
+		SET notes = _notes WHERE siteid = _siteid;
 	END IF;
 
 END;
