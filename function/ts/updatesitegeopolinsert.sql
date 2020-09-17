@@ -2,9 +2,8 @@ CREATE OR REPLACE FUNCTION ts.updatesitegeopolinsert(_siteid integer, _stewardco
  RETURNS void
  LANGUAGE sql
 AS $function$
-BEGIN
+
 	INSERT INTO ndb.sitegeopolitical(siteid, geopoliticalid)
 	VALUES  (_siteid, _geopoliticalid);
-END;
 
 $function$
