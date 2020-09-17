@@ -43,8 +43,8 @@ AS $function$
         aty.agetype,
         chr.ageboundolder,
         chr.ageboundyounger,
-		chr.agemodel,
-    chr.notes,
-	chr.chronologyid,
-    chr.dateprepared
+		    chr.agemodel,
+        chr.notes,
+	      chr.chronologyid,
+        chr.dateprepared
 $function$
