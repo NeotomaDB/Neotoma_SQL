@@ -16,7 +16,7 @@ AS $function$
       FROM ndb.lakeparameters AS lp
       WHERE lp.siteid = _siteid
       GROUP BY lp.lakeparameterid
-      HAVING lp.lakeparameterid = lakeparameterid);
+      HAVING lp.lakeparameterid = _lakeparameterid);
 
     /* If nparam is not null, then the LakeParameter is already in Neotoma */
 
