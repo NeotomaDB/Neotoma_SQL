@@ -9,8 +9,6 @@ BEGIN
 	IF _sitegeopolid IS NOT NULL THEN
 		UPDATE ndb.sitegeopolitical
 		SET geopoliticalid = _newgeopolid WHERE sitegeopoliticalid = _sitegeopolid;
-		INSERT INTO ti.stewardupdates(contactid, tablename, pk1, operation, columnname)
-		VALUES  (_stewardcontactid, 'sitegeopolitical', _sitegeopolid, 'update', _newgeopolid);
 	END IF;
 
 END;

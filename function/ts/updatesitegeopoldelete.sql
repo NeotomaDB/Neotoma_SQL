@@ -9,8 +9,6 @@ DECLARE
 BEGIN
 	IF _sitegeopolid IS NOT NULL THEN
     	DELETE FROM ndb.sitegeopolitical WHERE (sitegeopoliticalid = _sitegeopolid);
-    	INSERT INTO ti.stewardupdates(contactid, tablename, pk1, operation)
-    	VALUES  (_stewardcontactid, 'sitegeopolitical', _sitegeopolid, 'delete');
 	END IF;
 
 END;

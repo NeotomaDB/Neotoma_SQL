@@ -19,8 +19,6 @@ BEGIN
 	IF oldsitename <> _sitename	THEN
 		UPDATE ndb.sites
 		SET sitename = _sitename WHERE siteid = _siteid;
-		INSERT INTO ti.stewardupdates(contactid, tablename, pk1, operation, columnname)
-		VALUES      (_stewardcontactid, 'sites', _siteid, 'Update', 'sitename');
   	END IF;
 
 	IF ((_north > _south) AND (_east > _west)) THEN
