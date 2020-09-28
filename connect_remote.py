@@ -136,8 +136,8 @@ for record in cur:
         file = open(newFile)
         textCheck = copy.deepcopy(file.read())
         serverFun = copy.deepcopy(record[3])
-        textCheck = re.sub('[\s+\t+\n+\r+]', '', textCheck)
-        serverFun = re.sub('[\s+\t+\n+\r+]', '', serverFun)
+        textCheck = re.sub(r'[\s+\t+\n+\r+]', '', textCheck)
+        serverFun = re.sub(r'[\s+\t+\n+\r+]', '', serverFun)
         match = serverFun == textCheck
         # Pushing (to the db) and pulling (from the db) are defined by the user
         if match is False:
@@ -228,8 +228,22 @@ for schema in ['ti', 'ts', 'doi', 'ap', 'ndb']:
             print(schema + "." + functs.split(".")[0] + " has "
                   + str(cur.rowcount) + " definitions.")
 
-conn.close()
+print('Running the indexes:')
 
+# This section makes sure that the sequences are reset properly.  We ran into
+# this issue unintentionally during a re-load of the Neotoma data.
+cur.execute(open('helpers/reset_sequences.sql', 'r').read())
+cur2 = conn.cursor()
+
+for res in cur.fetchall():
+    try:
+        cur2.execute(res[0])
+        conn.commit()
+    except Exception as e:
+        print('skipped: ' + res[0])
+        print(e)
+
+conn.close()
 
 print("The script has rewritten:")
 
