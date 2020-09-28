@@ -24,8 +24,6 @@ BEGIN
 	IF (ST_Equals(geo,oldgeo) IS FALSE) THEN
 	    UPDATE ndb.sites
 	    SET    geog = geo::geography WHERE siteid = _siteid;
-	    INSERT INTO ti.stewardupdates(contactid, tablename, pk1, operation, columnname)
-     	VALUES (_stewardcontactid, 'Sites', _siteid, 'Update', 'geog');
 	END IF;
 
 END;

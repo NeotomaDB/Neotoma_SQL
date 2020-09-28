@@ -11,12 +11,4 @@ AS $function$
   SET variableid = _newvariableid
   WHERE dataid = (SELECT dataid FROM dataids);
 
-  WITH dataids AS (
-	SELECT    dsds.dataid
-	FROM      ndb.dsdatasample AS dsds
-	WHERE     (dsds.datasetid = _datasetid) AND (dsds.variableid = _oldvariableid)
-  )
-  INSERT INTO ti.stewardupdates(contactid, tablename,pk1, operation, columnname)
-  SELECT _contactid, 'Data', dids.dataid, 'Update', 'variableid'
-  FROM (SELECT * FROM dataids) AS dids
 $function$

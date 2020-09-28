@@ -232,6 +232,7 @@ print('Running the indexes:')
 
 # This section makes sure that the sequences are reset properly.  We ran into
 # this issue unintentionally during a re-load of the Neotoma data.
+
 cur.execute(open('helpers/reset_sequences.sql', 'r').read())
 cur2 = conn.cursor()
 

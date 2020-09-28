@@ -18,7 +18,4 @@ SET      reftaxonid = _reftaxonid,
 	  datesynonymized = _datesynonymized
 WHERE synonymyid = _synonymyid;
 
-INSERT INTO ti.stewardupdates(contactid, tablename, pk1, operation)
-VALUES (_contactid, 'synonymy', _synonymyid, 'update')
-
 $function$
