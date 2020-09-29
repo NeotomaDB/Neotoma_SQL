@@ -184,7 +184,7 @@ for record in cur:
                           + '` database.')
                     failed.add(record[0] + "." + record[1])
 
-for schema in ['ti', 'ts', 'doi', 'ap', 'ndb']:
+for schema in ['ti', 'ts', 'doi', 'ap', 'ndb', 'da']:
     # Now check all files to see if they are in the DB. . .
     for functs in os.listdir("./function/" + schema + "/"):
         #
