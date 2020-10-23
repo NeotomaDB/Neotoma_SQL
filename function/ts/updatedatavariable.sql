@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatedatavariable(_datasetid integer, _oldvariableid integer, _newvariableid integer, _contactid integer)
+CREATE OR REPLACE FUNCTION ts.updatedatavariable(_datasetid integer, _oldvariableid integer, _newvariableid integer)
  RETURNS void
  LANGUAGE sql
 AS $function$
@@ -9,6 +9,6 @@ AS $function$
   )
   UPDATE ndb.data
   SET variableid = _newvariableid
-  WHERE dataid = (SELECT dataid FROM dataids);
+  WHERE dataid IN (SELECT dataid FROM dataids);
 
 $function$
