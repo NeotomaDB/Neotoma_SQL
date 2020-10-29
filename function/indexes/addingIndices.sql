@@ -16,3 +16,6 @@ CREATE INDEX IF NOT EXISTS smpageold_idx ON ndb.sampleages USING btree(ageolder)
 CREATE INDEX IF NOT EXISTS smpageyoung_idx ON ndb.sampleages USING btree(ageyounger);
 
 CREATE INDEX IF NOT EXISTS geoage_idx ON ndb.geochronology USING btree(age);
+
+ALTER TABLE ndb.eventchronology DROP CONSTRAINT IF EXISTS uniqueeventset;
+ALTER TABLE ndb.eventchronology ADD CONSTRAINT uniqueeventset UNIQUE(analysisunitid,eventid,chroncontrolid);
