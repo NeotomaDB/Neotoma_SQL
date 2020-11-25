@@ -37,7 +37,7 @@ AS $function$
   LEFT JOIN ndb.chroncontroltypes AS ccrt ON ccr.chroncontroltypeid = ccrt.chroncontroltypeid
   LEFT JOIN ndb.datasets AS ds ON  ds.collectionunitid = chr.collectionunitid
   LEFT JOIN ndb.datasettypes AS dst ON dst.datasettypeid = ds.datasettypeid
-  WHERE chr.chronologyid = 123
+  WHERE chr.chronologyid = _chronid
   GROUP BY chr.isdefault,
         chr.chronologyname,
         aty.agetype,
