@@ -91,6 +91,13 @@ conn = psycopg2.connect(**data, connect_timeout=5)
 
 cur = conn.cursor()
 
+print('Building indices:')
+
+with open('function/indexes/addingIndices.sql') as file:
+    lines = filter(None, (line.rstrip() for line in file))
+    for line in lines:
+        cur.execute(line)
+
 # This query uses the catalog to find all functions and definitions within the
 # neotomadev database.
 
@@ -228,11 +235,10 @@ for schema in ['ti', 'ts', 'doi', 'ap', 'ndb', 'da']:
             print(schema + "." + functs.split(".")[0] + " has "
                   + str(cur.rowcount) + " definitions.")
 
-print('Running the indexes:')
-
 # This section makes sure that the sequences are reset properly.  We ran into
 # this issue unintentionally during a re-load of the Neotoma data.
 
+print('Fixing sequences')
 cur.execute(open('helpers/reset_sequences.sql', 'r').read())
 cur2 = conn.cursor()
 
