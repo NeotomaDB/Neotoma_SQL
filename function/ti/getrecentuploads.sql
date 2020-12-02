@@ -11,7 +11,7 @@ AS $function$
         	end as geopolitical,
           cdb.databasename,
           STRING_AGG(pic.contactname, '; ') AS investigator,
-          to_CHAR(ds.recdatecreated, 'text') AS recdatecreated,
+          to_CHAR(ds.recdatecreated, 'YYYY/MM/DD') AS recdatecreated,
    		    STRING_AGG(ct.contactname, '; ') as steward
   FROM ndb.datasets AS ds
     INNER JOIN         ndb.datasettypes AS dst ON dst.datasettypeid = ds.datasettypeid
