@@ -193,7 +193,7 @@ BEGIN
                   _ageyoung := -250;
                 END IF;
 
-                IF _ageDoContain = true THEN
+                IF _agedocontain = true THEN
                   cteAgesWhere := cteAgesWhere || '
                       AND (
                         (' || _ageyoung || '<= sa.age AND sa.age <= ' || _ageold || ') OR
@@ -250,7 +250,7 @@ BEGIN
                 AND sd.elementtypeid IN (array_to_string(' || _elemtypeids || ','',''))';
         END IF;
 
-        IF ageDoContain = false THEN
+        IF agedocontain = false THEN
             cteAges := cteAges || '
             AND NOT (c.calageolder < ' || _ageyoung || ' OR ' || _ageold || ' < c.calageyounger)';
         ELSE
