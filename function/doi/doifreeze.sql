@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION doi.doifreeze(dsid integer[])
- RETURNS TABLE(datasetid integer, frozendata json)
+ RETURNS TABLE(datasetid integer, record json)
  LANGUAGE sql
 AS $function$
 WITH chronmeta AS (
@@ -17,7 +17,7 @@ SELECT * FROM doi.ndbdata(dsid)
 
 SELECT ids.dsid AS datasetid,
 			 json_strip_nulls(json_build_object('chronologies', jsonb_build_object('chronologies', chr.chronologies),
-															'data', dt.data)) AS download
+															'data', dt.data)) AS record
 FROM
 	datameta  AS dt
 	JOIN chronmeta AS chr ON dt.datasetid = chr.datasetid
