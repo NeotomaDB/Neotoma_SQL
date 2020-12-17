@@ -193,7 +193,7 @@ BEGIN
                   _ageyoung := -250;
                 END IF;
 
-                IF _ageDoContain = true THEN
+                IF _agedocontain = true THEN
                   cteAgesWhere := cteAgesWhere || '
                       AND (
                         (' || _ageyoung || '<= sa.age AND sa.age <= ' || _ageold || ') OR
@@ -250,7 +250,7 @@ BEGIN
                 AND sd.elementtypeid IN (array_to_string(' || _elemtypeids || ','',''))';
         END IF;
 
-        IF ageDoContain = false THEN
+        IF _agedocontain = false THEN
             cteAges := cteAges || '
             AND NOT (c.calageolder < ' || _ageyoung || ' OR ' || _ageold || ' < c.calageyounger)';
         ELSE
@@ -409,7 +409,7 @@ BEGIN
     IF noTaxa = true AND NOT (_ageold IS NULL AND _ageyoung IS NULL) THEN
       BEGIN
         IF _ageold IS NULL THEN
-          _ageold:= 10000000;
+          _ageold := 10000000;
         END IF;
         IF _ageyoung IS NULL THEN
           _ageyoung := -250;
@@ -423,8 +423,8 @@ BEGIN
         ELSE
             cteDsWhere := cteDsWhere || '
               AND (
-                NOT (ages.ageyoungest < ' || _ageold || ' OR ages.ageoldest > ' || _ageyoung ' ) OR
-                NOT (ages.agemin < ' || _ageold || ' OR ages.agemax > ' || _ageyoung || ')
+                (' || _ageyoung || ' <= ages.ageyoungest AND ages.ageoldest <= ' || _ageold || ' ) OR
+            	  NOT (ages.maxage < ' || _ageyoung || ' OR ' || _ageold || ' < ages.minage)
               )';
         END IF;
       END;
