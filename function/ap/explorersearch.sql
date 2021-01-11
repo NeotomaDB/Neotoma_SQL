@@ -346,7 +346,7 @@ BEGIN
 
     IF _subdate IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
-          AND ds.recdatecreated >= ' || _subdate;
+          AND ds.recdatecreated >= ''%' || _subdate || '%''';
     END IF;
 
     IF _gpid IS NOT NULL THEN
