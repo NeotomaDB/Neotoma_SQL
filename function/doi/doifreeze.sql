@@ -9,12 +9,11 @@ WITH chronmeta AS (
 	GROUP BY datasetid
 ),
 ids AS (
-SELECT * FROM UNNEST(dsid) AS dsid
+  SELECT * FROM UNNEST(dsid) AS dsid
 ),
 datameta AS (
-SELECT * FROM doi.ndbdata(dsid)
+  SELECT * FROM doi.ndbdata(dsid)
 )
-
 SELECT ids.dsid AS datasetid,
 			 json_strip_nulls(json_build_object('chronologies', jsonb_build_object('chronologies', chr.chronologies),
 															'data', dt.data)) AS record
