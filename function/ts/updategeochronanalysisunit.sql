@@ -1,4 +1,8 @@
-CREATE OR REPLACE FUNCTION ts.updategeochronanalysisunit(_geochronid integer, _analysisunitid integer, _depth double precision DEFAULT NULL::double precision, _thickness double precision DEFAULT NULL::double precision, _analysisunitname CHARACTER varying DEFAULT NULL::CHARACTER varying) RETURNS void LANGUAGE PLPGSQL AS $function$
+CREATE OR REPLACE FUNCTION ts.updategeochronanalysisunit(_geochronid integer,
+     _analysisunitid integer,
+     _depth double precision DEFAULT NULL::double precision,
+     _thickness double precision DEFAULT NULL::double precision,
+     _analysisunitname CHARACTER varying DEFAULT NULL::CHARACTER varying) RETURNS void LANGUAGE PLPGSQL AS $function$
 
 DECLARE
   _collunitid integer[] := (SELECT au.collectionunitid
