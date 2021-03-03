@@ -73,8 +73,8 @@ BEGIN
     RAISE NOTICE 'doTaph is %', doTaph;
     END IF;
 
-    IF ( _abundPct IS NOT NULL AND noTaxa = false ) THEN
-    RAISE NOTICE '_abundPct is % and noTaxa is %', doTaph, noTaxa;
+    IF ( _abundpct IS NOT NULL AND noTaxa = false ) THEN
+    RAISE NOTICE '_abundpct is % and noTaxa is %', doTaph, noTaxa;
         BEGIN
             -- get SumGroupID of the first (or only) taxon id
             sumGroupId := (
@@ -82,7 +82,7 @@ BEGIN
                 FROM    ndb.ecolgroups eg
                         JOIN ap.pollensumgroups sg ON eg.ecolgroupid = sg.ecolgroupid
                 WHERE
-                    eg.taxonid IN (array_to_string( _taxonids[0],','))
+                    eg.taxonid IN (_taxonids[0])
                 );
             IF sumGroupId > 0 THEN
                 doAbund := true;
@@ -176,7 +176,7 @@ BEGIN
 
         IF doAbund THEN
           cteAgesWhere := cteAgesWhere || '
-              AND base.abundance > ' || _abundPct ||
+              AND base.abundance > ' || _abundpct ||
               ' AND base.taxonid IN (' || array_to_string( _taxonids ,',') || '))';
         END IF;
 
