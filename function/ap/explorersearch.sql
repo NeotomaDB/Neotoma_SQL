@@ -145,7 +145,7 @@ BEGIN
                 cteBaseFrom := cteBaseFrom || '
                     JOIN ndb.samplekeywords k on s.sampleid = k.sampleid';
                 cteBaseWhere := cteBaseWhere || '
-                    AND k.KeywordID = _keywordId';
+                    AND k.keywordid = _keywordid';
               END;
             END IF;
 
@@ -398,7 +398,7 @@ BEGIN
           AND EXISTS (SELECT k.datasetid, k.keywordid
                       FROM   ap.datasetkeywords k
                       WHERE  k.datasetid = ds.datasetid
-                      AND    k.keywordid = ' || _keywordid ' )';
+                      AND    k.keywordid = ' || _keywordid || ' )';
     END IF;
 
     IF _datasettypeid IS NOT NULL THEN
