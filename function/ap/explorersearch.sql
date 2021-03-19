@@ -82,7 +82,7 @@ BEGIN
                 FROM    ndb.ecolgroups eg
                         JOIN ap.pollensumgroups sg ON eg.ecolgroupid = sg.ecolgroupid
                 WHERE
-                    eg.taxonid IN (_taxonids[0])
+                    eg.taxonid IN (_taxonids[1])
                 );
             IF sumGroupId > 0 THEN
                 doAbund := true;
@@ -108,7 +108,12 @@ BEGIN
               BEGIN
                 cteBaseSelect := cteBaseSelect || ',
                     v.taxonid,
-                    CAST(d.value / SUM(d.value) OVER(PARTITION BY s.sampleid) * 100 AS DECIMAL(5,2)) AS abundance';
+                    (CASE WHEN (SUM(d.value) OVER(PARTITION BY s.sampleid)) IS NOT NULL AND 
+					          (SUM(d.value) OVER(PARTITION BY s.sampleid)) <>0 THEN
+						            (CAST(d.value / SUM(d.value) OVER (PARTITION BY s.sampleid) * 100 AS DECIMAL(5,2))) 
+					          ELSE
+						            NULL END
+   					        ) AS abundance';
                 cteBaseFrom := cteBaseFrom || '
                     JOIN ndb.taxa t ON v.taxonid = t.taxonid
                     JOIN ndb.ecolgroups e ON t.taxonid = e.taxonid
@@ -177,7 +182,7 @@ BEGIN
         IF doAbund THEN
           cteAgesWhere := cteAgesWhere || '
               AND base.abundance > ' || _abundpct ||
-              ' AND base.taxonid IN (' || array_to_string( _taxonids ,',') || '))';
+              ' AND base.taxonid IN (' || array_to_string( _taxonids ,',') || ')';
         END IF;
 
         IF NOT (_ageold IS NULL AND _ageyoung IS NULL  AND noTaxa = false) THEN
