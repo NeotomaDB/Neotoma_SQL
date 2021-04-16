@@ -11,17 +11,20 @@ SELECT dts.datasetid,
                                                 'sitenotes', sts.notes,
                                                 'geography', ST_AsGeoJSON(sts.geog,5,2),
                                                  'altitude', sts.altitude,
-                                         'collectionunitid', clu.collectionunitid,
+                          'collectionunit', json_build_object('collectionunitid', clu.collectionunitid,
                                            'collectionunit', clu.collunitname,
-                                                  'handle', clu.handle,
-                                                'unittype', cts.colltype),
+                                                   'handle', clu.handle,
+                                             'collunittype', cts.colltype,
+                                             'colldate', clu.colldate,
+                                             'notes', clu.notes,
+                                             'location', clu.location,
 							       'dataset', json_build_object(  'datasetid', dts.datasetid,
 							                                    'datasettype', dst.datasettype,
 							                                   'datasetnotes', dts.notes,
 							                                       'database', cstdb.databasename,
 							                                            'doi', doi.dois,
 																                    'datasetpi', dsau.authors,
-																                      'agerange', agerange.ages))
+																                     'agerange', agerange.ages))))
 FROM
          ndb.datasets AS dts LEFT OUTER JOIN
   ndb.collectionunits AS clu ON clu.collectionunitid = dts.collectionunitid LEFT OUTER JOIN
