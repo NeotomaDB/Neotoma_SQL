@@ -73,8 +73,8 @@ BEGIN
     RAISE NOTICE 'doTaph is %', doTaph;
     END IF;
 
-    IF ( _abundPct IS NOT NULL AND noTaxa = false ) THEN
-    RAISE NOTICE '_abundPct is % and noTaxa is %', doTaph, noTaxa;
+    IF ( _abundpct IS NOT NULL AND noTaxa = false ) THEN
+    RAISE NOTICE '_abundpct is % and noTaxa is %', doTaph, noTaxa;
         BEGIN
             -- get SumGroupID of the first (or only) taxon id
             sumGroupId := (
@@ -82,7 +82,7 @@ BEGIN
                 FROM    ndb.ecolgroups eg
                         JOIN ap.pollensumgroups sg ON eg.ecolgroupid = sg.ecolgroupid
                 WHERE
-                    eg.taxonid IN (array_to_string( _taxonids[0],','))
+                    eg.taxonid IN (_taxonids[1])
                 );
             IF sumGroupId > 0 THEN
                 doAbund := true;
@@ -108,7 +108,12 @@ BEGIN
               BEGIN
                 cteBaseSelect := cteBaseSelect || ',
                     v.taxonid,
-                    CAST(d.value / SUM(d.value) OVER(PARTITION BY s.sampleid) * 100 AS DECIMAL(5,2)) AS abundance';
+                    (CASE WHEN (SUM(d.value) OVER(PARTITION BY s.sampleid)) IS NOT NULL AND 
+					          (SUM(d.value) OVER(PARTITION BY s.sampleid)) <>0 THEN
+						            (CAST(d.value / SUM(d.value) OVER (PARTITION BY s.sampleid) * 100 AS DECIMAL(5,2))) 
+					          ELSE
+						            NULL END
+   					        ) AS abundance';
                 cteBaseFrom := cteBaseFrom || '
                     JOIN ndb.taxa t ON v.taxonid = t.taxonid
                     JOIN ndb.ecolgroups e ON t.taxonid = e.taxonid
@@ -145,7 +150,7 @@ BEGIN
                 cteBaseFrom := cteBaseFrom || '
                     JOIN ndb.samplekeywords k on s.sampleid = k.sampleid';
                 cteBaseWhere := cteBaseWhere || '
-                    AND k.KeywordID = _keywordId';
+                    AND k.keywordid = _keywordid';
               END;
             END IF;
 
@@ -176,8 +181,8 @@ BEGIN
 
         IF doAbund THEN
           cteAgesWhere := cteAgesWhere || '
-              AND base.abundance > ' || _abundPct ||
-              ' AND base.taxonid IN (' || array_to_string( _taxonids ,',') || '))';
+              AND base.abundance > ' || _abundpct ||
+              ' AND base.taxonid IN (' || array_to_string( _taxonids ,',') || ')';
         END IF;
 
         IF NOT (_ageold IS NULL AND _ageyoung IS NULL  AND noTaxa = false) THEN
@@ -346,7 +351,7 @@ BEGIN
 
     IF _subdate IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
-          AND ds.recdatecreated >= ' || _subdate;
+          AND ds.recdatecreated >= ''%' || _subdate || '%''';
     END IF;
 
     IF _gpid IS NOT NULL THEN
@@ -398,7 +403,7 @@ BEGIN
           AND EXISTS (SELECT k.datasetid, k.keywordid
                       FROM   ap.datasetkeywords k
                       WHERE  k.datasetid = ds.datasetid
-                      AND    k.keywordid = ' || _keywordid ' )';
+                      AND    k.keywordid = ' || _keywordid || ' )';
     END IF;
 
     IF _datasettypeid IS NOT NULL THEN
