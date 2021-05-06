@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION ti.getdatasetidfordatasettypeidforgeochronanalunit(_geochronid int, _datasettypeid int)
-RETURNS TABLE(datasetid INTEGER)
-LANGUAGE sql
+CREATE OR REPLACE FUNCTION ti.getdatasetidfordatasettypeidforgeochronanalunit(_geochronid integer, _datasettypeid integer)
+ RETURNS TABLE(datasetid integer)
+ LANGUAGE sql
 AS $function$
 
 	SELECT ds.datasetid

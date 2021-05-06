@@ -4,5 +4,5 @@ CREATE OR REPLACE FUNCTION ts.updatespecimennumber(_specimenid integer, _specime
 AS $function$
   UPDATE ndb.specimens
   SET specimennr = _specimennr
-  WHERE specimentid = _specimenid
+  WHERE specimenid = _specimenid
 $function$

@@ -6,6 +6,7 @@ AS $function$
   FROM ndb.datasets AS ds
   JOIN ndb.datasetsubmissions AS dss on dss.datasetid = ds.datasetid
   JOIN ndb.constituentdatabases AS cdb ON cdb.databaseid = dss.databaseid
-  WHERE EXTRACT(month from AGE(NOW(), dss.submissiondate)) BETWEEN startperiod and endperiod
+  WHERE EXTRACT(year from AGE(NOW(), dss.submissiondate))*12 +
+   EXTRACT(month from AGE(NOW(), dss.submissiondate)) BETWEEN startperiod and endperiod
   GROUP BY cdb.databasename
 $function$

@@ -1,15 +1,5 @@
 CREATE OR REPLACE FUNCTION da.chronologybyid(_chronid integer)
- RETURNS TABLE(controls json,
-               "Default" boolean,
-               ChronologyName character varying,
-               AgeType character varying,
-               AgeModel character varying,
-               AgeOlder integer,
-               ChronologyID integer,
-               AgeYounger integer,
-               datasets json,
-               notes character varying,
-               dateprepared date)
+ RETURNS TABLE(controls json, "Default" boolean, chronologyname character varying, agetype character varying, agemodel character varying, ageolder integer, chronologyid integer, ageyounger integer, datasets json, notes character varying, dateprepared date)
  LANGUAGE sql
 AS $function$
 

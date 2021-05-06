@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatechroncontrolnotes(_chroncontrolid integer, _notes CHARACTER VARYING DEFAULT NULL)
+CREATE OR REPLACE FUNCTION ts.updatechroncontrolnotes(_chroncontrolid integer, _notes character varying DEFAULT NULL::character varying)
  RETURNS void
  LANGUAGE sql
 AS $function$

@@ -1,8 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.insertsteward(_contactid integer,
-                                            _username character varying,
-                                            _password character varying,
-                                            _taxonomyexpert boolean,
-                                            _databaseid integer)
+CREATE OR REPLACE FUNCTION ts.insertsteward(_contactid integer, _username character varying, _password character varying, _taxonomyexpert boolean, _databaseid integer)
  RETURNS integer
  LANGUAGE sql
 AS $function$

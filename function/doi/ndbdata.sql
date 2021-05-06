@@ -9,10 +9,13 @@ WITH dssamples AS (
 						'depth', anu.depth,
 							 'datum', jsonb_agg(DISTINCT jsonb_strip_nulls(jsonb_build_object('value', dt.value,
 										 'variablename', tx.taxonname,
-										 'element', ve.variableelement,
-										 'elementtype', vt.elementtype,
-										 'symmetry', vs.symmetry,
-										 'context', vc.variablecontext,
+										      'taxonid', tx.taxonid,
+										   'taxongroup', txg.taxagroup,
+									'ecologicalgroup', ecg.ecolgroupid,
+										      'element', ve.variableelement,
+									 	  'elementtype', vt.elementtype,
+										     'symmetry', vs.symmetry,
+										      'context', vc.variablecontext,
 										 'units', vru.variableunits))),
 							 'sampleanalyst', json_agg(DISTINCT jsonb_strip_nulls(jsonb_build_object('contactid', cnt.contactid,
 																							'contactname', cnt.contactname,
@@ -32,6 +35,8 @@ WITH dssamples AS (
 	  LEFT OUTER JOIN ndb.data AS dt ON dt.dataid = dsd.dataid
 	  LEFT OUTER JOIN ndb.variables as var ON var.variableid = dsd.variableid
 	  LEFT OUTER JOIN ndb.taxa AS tx ON tx.taxonid = var.taxonid
+		LEFT OUTER JOIN ndb.taxagrouptypes AS txg ON txg.taxagroupid = tx.taxagroupid
+		LEFT OUTER JOIN ndb.ecolgroups AS ecg ON ecg.taxonid = tx.taxonid
 	  LEFT OUTER JOIN ndb.variableunits AS vru ON vru.variableunitsid = var.variableunitsid
 	  LEFT OUTER JOIN ndb.samples AS smp ON smp.sampleid = dsd.sampleid
 		LEFT OUTER JOIN ndb.sampleanalysts AS san ON san.sampleid = smp.sampleid
@@ -54,11 +59,12 @@ WITH dssamples AS (
 	  ds.datasetid,
 		jsonb_build_object('dataset', dsinfo.dataset,
 	                    'samples', json_agg(dss.sampledata)) AS data
-
 	FROM
 	  ndb.datasets AS ds
 	  JOIN dssamples AS dss ON ds.datasetid = dss.datasetid
-		JOIN (SELECT datasetid, dataset::jsonb FROM doi.datasetinfo(dsid)) AS dsinfo ON dsinfo.datasetid = ds.datasetid
+		JOIN (SELECT datasetid,
+			           dataset::jsonb
+					FROM doi.datasetinfo(dsid)) AS dsinfo ON dsinfo.datasetid = ds.datasetid
 	WHERE ds.datasetid = dsid
 	GROUP BY ds.datasetid, dsinfo.dataset
 

@@ -1,5 +1,7 @@
-CREATE OR REPLACE FUNCTION ti.site_bounding() RETURNS TRIGGER
-AS $$
+CREATE OR REPLACE FUNCTION ti.site_bounding()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
 BEGIN
    IF NEW.latitudenorth IS NULL AND NEW.geog IS NOT NULL THEN
    UPDATE ndb.sites
@@ -12,4 +14,4 @@ BEGIN
    RETURN NEW;
 END;
 
-$$ LANGUAGE plpgsql;
+$function$

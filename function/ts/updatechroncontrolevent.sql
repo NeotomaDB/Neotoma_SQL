@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatechroncontrolevent(_chroncontrolid int, _eventid int, _analysisunitid int = null)
+CREATE OR REPLACE FUNCTION ts.updatechroncontrolevent(_chroncontrolid integer, _eventid integer, _analysisunitid integer DEFAULT NULL::integer)
  RETURNS void
  LANGUAGE sql
 AS $function$

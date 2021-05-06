@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatechroncontrolageolder(_chroncontrolid integer, _agelimitolder float DEFAULT NULL)
+CREATE OR REPLACE FUNCTION ts.updatechroncontrolageolder(_chroncontrolid integer, _agelimitolder double precision DEFAULT NULL::double precision)
  RETURNS void
  LANGUAGE sql
 AS $function$
