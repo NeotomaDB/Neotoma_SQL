@@ -6,3 +6,15 @@ ignore/*
 *.R
 
 helpers/dumps/
+
+.vscode/settings.json
+
+helpers/dumps2021-06-07/
+
+helpers/figshareUpload/lib/__pycache__/
+
+helpers/figshareUpload/settings.yaml
+
+helpers/settings.yaml
+
+fixGeorge.sh

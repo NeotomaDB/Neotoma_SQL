@@ -18,6 +18,10 @@ display_help() {
     echo "   -t taxonomyexpert      Is the steward a taxonomy expert? [true|false]"
     echo "   -d database            Which database is the steward associate with?"
     echo
+    echo " The script assumes that you have a ~/.pgpass file that contains your password"
+    echo " information.  The file is described in detail on the Postgres documentation:"
+    echo " https://www.postgresql.org/docs/current/libpq-pgpass.html"
+    echo
     # echo some stuff here for the -a or --add-options
     exit 1
 }

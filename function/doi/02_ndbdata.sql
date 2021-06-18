@@ -58,8 +58,8 @@ WITH dssamples AS (
 	)
 	SELECT
 	  ds.datasetid,
-		jsonb_build_object('dataset', dsinfo.dataset,
-	                    'samples', json_agg(dss.sampledata)) AS data
+	  dsinfo.dataset,
+		jsonb_build_object('samples', json_agg(dss.sampledata)) AS data
 	FROM
 	  ndb.datasets AS ds
 	  JOIN dssamples AS dss ON ds.datasetid = dss.datasetid

@@ -1,7 +1,6 @@
-CREATE TABLE ndb.taxonpaths (
+CREATE TABLE IF NOT EXISTS ndb.taxonpaths (
   taxonout INTEGER[] NOT NULL,
   taxonid BIGINT NOT NULL,
-  PRIMARY KEY (taxonout, taxonid),
   FOREIGN KEY (taxonid) REFERENCES ndb.taxa(taxonid)
 );
 
