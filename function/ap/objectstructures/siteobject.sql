@@ -5,7 +5,8 @@ CREATE OR REPLACE FUNCTION ap.siteobject(_siteid integer)
  LANGUAGE sql
 AS $function$
     SELECT sts.siteid,
-        jsonb_build_object('sitename', sts.sitename,
+        jsonb_build_object(  'siteid', sts.siteid,
+                           'sitename', sts.sitename,
                     'sitedescription', sts.sitedescription,
                           'geography', ST_AsGeoJSON(sts.geog,5,2),
                                'area', sts.area,
@@ -28,7 +29,8 @@ CREATE OR REPLACE FUNCTION ap.siteobject(_siteid integer[])
  LANGUAGE sql
 AS $function$
     SELECT sts.siteid,
-        jsonb_build_object('sitename', sts.sitename,
+        jsonb_build_object(  'siteid', sts.siteid,
+                           'sitename', sts.sitename,
                     'sitedescription', sts.sitedescription,
                           'geography', ST_AsGeoJSON(sts.geog,5,2),
                                'area', sts.area,
