@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION ts.updatechroncontrolanalysisunit(_chroncontrolid integer, _depth integer, _thickness integer, _analunitid integer)
+CREATE OR REPLACE FUNCTION ts.updatechroncontroldepththickness({_chroncontrolid integer,_depth integer,_thickness integer,_analunitid integer})
  RETURNS void
  LANGUAGE sql
 AS $function$

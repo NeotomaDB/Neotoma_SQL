@@ -6,12 +6,11 @@ This is a repository to store the functions used within the Neotoma Database for
 
 All individuals are welcome to contribute to this repository.  Contributions are subject to the [Code of Conduct](https://github.com/neotomadb/Neotoma_SQL/blob/master/code_of_conduct.md) for this repository.
 
-* Steve Crawford  - [Penn State](http://www.ems.psu.edu/node/147)
-* Simon Goring    - [University of Wisconsin](http://goring.org)
-* Mike Stryker    - [Penn State](http://www.ems.psu.edu/node/2892)
-* Jonathan Nelson - Penn State
-* Adrian George   - University of Wisconsin
-* Jack Williams   - University of Wisconsin
+* Steve Crawford - [Penn State](http://www.ems.psu.edu/node/147)
+* Simon Goring   - [University of Wisconsin](http://goring.org)
+* Mike Stryker   - [Penn State](http://www.ems.psu.edu/node/2892)
+* Anna George    - University of Wisconsin
+* Jack Williams  - University of Wisconsin
 
 ## Description
 

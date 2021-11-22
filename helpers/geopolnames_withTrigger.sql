@@ -10,7 +10,7 @@ SELECT DISTINCT siteid, array_agg(geopoliticalname) AS names FROM
     ORDER BY p.siteid, gpu.rank ASC) AS sq
     GROUP BY sq.siteid);
 
-CREATE INDEX gpsiteidindex ON ap.geopolnames(siteid);
+CREATE UNIQUE INDEX gpsiteidindex ON ap.geopolnames(siteid);
 
 CREATE OR REPLACE FUNCTION ap.updategpsites()
 RETURNS TRIGGER LANGUAGE plpgsql
@@ -25,3 +25,5 @@ AFTER INSERT OR DELETE
 ON ndb.sites
 FOR EACH STATEMENT
 EXECUTE PROCEDURE ap.updategpsites();
+
+REASSIGN OWNED BY sug335 TO functionwriter;

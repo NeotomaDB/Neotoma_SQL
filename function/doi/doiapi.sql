@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION doi.doiapi(dsid integer[])
- RETURNS TABLE(dataset jsonb)
+ RETURNS TABLE(site jsonb)
  LANGUAGE sql
 AS $function$
 WITH chronmeta AS (
@@ -16,7 +16,7 @@ datameta AS (
 )
 SELECT jsonb_build_object(   'datasetid', ids.dsid,
 	                      'chronologies', chr.chronologies,
-	                              'data', dt.data) AS dataset
+	                              'data', dt.data) AS site
 FROM
 	datameta  AS dt
 	JOIN chronmeta AS chr ON dt.datasetid = chr.datasetid

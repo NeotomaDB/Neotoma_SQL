@@ -1,17 +1,22 @@
 DROP MATERIALIZED VIEW ap.querytable CASCADE;
-CREATE MATERIALIZED VIEW ap.querytable AS (
-    WITH sgp AS (
+CREATE MATERIALIZED VIEW ap.querytable WITH (autovacuum_enabled = false) AS (
+WITH allids AS (
         SELECT st.siteid,
-        array_append(gp.geoout, gp.geoin::int) AS geopol,
-        rank() OVER (partition by st.siteid order by st.siteid, array_length(gp.geoout,1) ASC) AS rank
+        unnest(array_append(gp.geoout, gp.geoin::int)) AS geopol
         FROM ndb.sites AS st
         INNER JOIN ndb.sitegeopolitical AS sgp ON st.siteid = sgp.siteid
         INNER JOIN ndb.geopoliticalunits AS gpu ON gpu.geopoliticalid = sgp.geopoliticalid
         INNER JOIN ndb.geopaths AS gp ON gp.geoin = sgp.geopoliticalid
+    ),
+    sgp AS (
+        SELECT siteid, array_agg(DISTINCT geopol) AS geopol
+        FROM allids
+        GROUP BY siteid
     )
     SELECT st.siteid,
         st.sitename,
         ds.datasetid,
+        chron.chronologyid,
         st.altitude,
         dst.datasettype,
         dsdb.databaseid,
@@ -22,9 +27,15 @@ CREATE MATERIALIZED VIEW ap.querytable AS (
         arg.older,
         arg.younger,
         agetypes.agetype,
-        array_agg(DISTINCT var.taxonid) AS taxa,
-        array_agg(DISTINCT smpkw.keywordid) AS keywords,
-        array_agg(DISTINCT dpi.contactid) AS contacts,
+        array_remove(array_agg(DISTINCT var.taxonid), NULL) AS taxa,
+        array_remove(array_agg(DISTINCT smpkw.keywordid), NULL) AS keywords,
+        array_remove(array_agg(DISTINCT dpi.contactid), NULL) AS contacts,
+        jsonb_build_object('collectionunitid', cu.collectionunitid,
+							 'collectionunit', cu.collunitname,
+									 'handle', cu.handle,
+						 'collectionunittype', cut.colltype,
+								   'datasets', json_agg(DISTINCT jsonb_build_object('datasetid', ds.datasetid,
+																		'datasettype', dst.datasettype))) AS collectionunit,
         sgp.geopol
     FROM ndb.sites AS st
     INNER JOIN ndb.collectionunits AS cu ON cu.siteid = st.siteid
@@ -34,19 +45,20 @@ CREATE MATERIALIZED VIEW ap.querytable AS (
     INNER JOIN ndb.datasetpis AS dpi ON dpi.datasetid = ds.datasetid
     INNER JOIN ndb.datasettypes AS dst ON dst.datasettypeid = ds.datasettypeid
     INNER JOIN ndb.datasetdatabases AS dsdb ON ds.datasetid = dsdb.datasetid
-    LEFT OUTER JOIN ndb.dsageranges AS arg ON ds.datasetid = arg.datasetid
+    LEFT OUTER JOIN ndb.chronologies AS chron ON chron.collectionunitid = ds.collectionunitid
+    LEFT OUTER JOIN ndb.dsageranges AS arg ON ds.datasetid = arg.datasetid AND chron.agetypeid = arg.agetypeid
     LEFT OUTER JOIN ndb.agetypes  AS agetypes ON agetypes.agetypeid = arg.agetypeid
     INNER JOIN ndb.samples AS smp ON smp.datasetid = ds.datasetid 
     LEFT OUTER JOIN ndb.samplekeywords AS smpkw ON smpkw.sampleid = smp.sampleid
     INNER JOIN ndb.data AS dt ON dt.sampleid = smp.sampleid
     INNER JOIN ndb.variables AS var ON var.variableid = dt.variableid
     INNER JOIN sgp AS sgp ON st.siteid = sgp.siteid
-    WHERE sgp.rank = 1
     GROUP BY st.siteid,
         cu.collectionunitid,
         st.sitename,
         ds.datasetid,
         cut.colltype,
+        chron.chronologyid,
         dsdb.databaseid,
         st.altitude,
         dst.datasettype,
@@ -58,6 +70,7 @@ CREATE MATERIALIZED VIEW ap.querytable AS (
         dvt.depenvt
 );
 
+CREATE UNIQUE INDEX distinctrows ON ap.querytable(datasetid, chronologyid);
 CREATE INDEX spatialgeom ON ap.querytable USING GIST(geog);
 CREATE INDEX dstindex ON ap.querytable(datasettype);
 CREATE INDEX depenvindex ON ap.querytable(depenvt);
@@ -85,10 +98,12 @@ CREATE TRIGGER updatewidequeryst
 AFTER INSERT OR DELETE
 ON ndb.sites
 FOR EACH STATEMENT
-EXECUTE PROCEDURE ap.updategpsites();
+EXECUTE PROCEDURE ap.updatequery();
 
 CREATE TRIGGER updatewidequeryds
 AFTER INSERT OR DELETE
 ON ndb.datasets
 FOR EACH STATEMENT
-EXECUTE PROCEDURE ap.updategpsites();
+EXECUTE PROCEDURE ap.updatequery();
+
+REASSIGN OWNED BY sug335 TO functionwriter;

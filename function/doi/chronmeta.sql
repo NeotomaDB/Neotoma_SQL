@@ -38,7 +38,7 @@ AS $function$
 	)
 	SELECT
 	  dts.datasetid,
-	  json_strip_nulls(json_build_object('chronologyid', cmet.chronologyid,
+	  json_build_object('chronologyid', cmet.chronologyid,
 						'chronology', cmet.meta,
 	  'chroncontrols',
 		  json_agg(json_build_object('chroncontrolid', chctrl.chroncontrolid,
@@ -65,7 +65,7 @@ AS $function$
 						      'delta13c', rcb.delta13c,
 					        'delta15n', rcb.delta15n,
 				          'percentcollagen', rcb.percentcollagen,
-			            'reservoir', rcb.reservoir))))) AS meta
+			            'reservoir', rcb.reservoir)))) AS meta
 	FROM            ndb.dslinks AS dsl
 		  LEFT OUTER JOIN     ndb.chronologies AS chrs          ON chrs.collectionunitid = dsl.collectionunitid
 	  LEFT OUTER JOIN     ndb.chroncontrols AS chctrl ON chrs.chronologyid = chctrl.chronologyid
