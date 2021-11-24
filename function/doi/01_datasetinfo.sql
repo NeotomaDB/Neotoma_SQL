@@ -12,7 +12,7 @@ WITH siteid AS (
 siteobj AS (
     SELECT * 
     FROM
-        ap.siteobject((SELECT siteid FROM siteid))
+         ap.siteobject((SELECT array_agg(siteid) FROM siteid))
 )
 SELECT dts.datasetid,
        sts.site || 
