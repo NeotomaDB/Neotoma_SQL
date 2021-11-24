@@ -15,4 +15,4 @@ AS $function$
 
   DELETE FROM ndb.chronologies AS ch
   WHERE ch.chronologyid = _chronologyid;
-$function$
+$function$;
