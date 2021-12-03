@@ -19,7 +19,7 @@ CREATE OR REPLACE FUNCTION ap.explorersearch(_taxonids integer[] DEFAULT NULL::i
                                              _agedirectdate boolean DEFAULT false,
                                              _subdate date DEFAULT NULL::date,
                                              _debug boolean DEFAULT false)
- RETURNS TABLE(datasetid integer, datasettype character varying, databasename character varying, minage integer, maxage integer, ageyoungest integer, ageoldest integer, siteid integer, sitename character varying, sitedescription text, notes text, collunithandle character varying, collunitname character varying, latitudenorth double precision, latitudesouth double precision, longitudeeast double precision, longitudewest double precision)
+ RETURNS TABLE(datasetid integer, datasettype character varying, databasename character varying, minage double precision, maxage double precision, ageyoungest double precision, ageoldest double precision, siteid integer, sitename character varying, sitedescription text, notes text, collunithandle character varying, collunitname character varying, latitudenorth double precision, latitudesouth double precision, longitudeeast double precision, longitudewest double precision)
  LANGUAGE plpgsql
 AS $function$
 
@@ -408,7 +408,7 @@ BEGIN
 
     IF _datasettypeid IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
-          AND ds.DatasetTypeID = ' || _datasettypeid;
+          AND ds.datasettypeid = ' || _datasettypeid;
     END IF;
 
     IF noTaxa = true AND NOT (_ageold IS NULL AND _ageyoung IS NULL) THEN
@@ -459,10 +459,10 @@ BEGIN
             ds.datasetid,
             dt.datasettype,
             cdb.databasename,
-            ds.minage::integer,
-            ds.maxage::integer,
-            ds.ageyoungest::integer,
-            ds.ageoldest::integer,
+            ds.minage,
+            ds.maxage,
+            ds.ageyoungest,
+            ds.ageoldest,
             ds.siteid,
             ds.sitename,
             ds.sitedescription,
