@@ -63,8 +63,8 @@ AS $function$
 				anu.analysisunitid
 		)
 		SELECT
-		ds.datasetid,
-			jsonb_build_object('samples', json_agg(dss.sampledata)) AS data
+		  ds.datasetid,
+		  jsonb_build_object('samples', jsonb_agg(DISTINCT dss.sampledata)) AS data
 		FROM
 		ndb.datasets AS ds
 		JOIN dssamples AS dss ON ds.datasetid = dss.datasetid
@@ -143,7 +143,7 @@ WITH dssamples AS (
 	SELECT
 	  ds.datasetid,
 		jsonb_build_object('site', dsinfo.site,
-	                    'samples', json_agg(dss.sampledata)) AS data
+	                    'samples', jsonb_agg(DISTINCT dss.sampledata)) AS data
 
 	FROM
 	  ndb.datasets AS ds

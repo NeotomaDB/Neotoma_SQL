@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION doi.doiapi(dsid integer[])
 AS $function$
 WITH chronmeta AS (
 	SELECT datasetid,
-				json_agg(json_build_object('chronology', chronologies)) AS chronologies
+				jsonb_agg(jsonb_build_object('chronology', chronologies)) AS chronologies
 	FROM doi.chronmeta(dsid)
 	GROUP BY datasetid
 ),
@@ -12,7 +12,7 @@ ids AS (
   SELECT * FROM UNNEST(dsid) AS dsid
 ),
 datameta AS (
-  SELECT * FROM doi.ndbdata(dsid)
+  SELECT DISTINCT * FROM doi.ndbdata(dsid)
 )
 SELECT jsonb_build_object(   'datasetid', ids.dsid,
 	                      'chronologies', chr.chronologies,
