@@ -9,4 +9,4 @@ AS $function$
   WHERE EXTRACT(year from AGE(NOW(), dss.submissiondate))*12 +
    EXTRACT(month from AGE(NOW(), dss.submissiondate)) BETWEEN startperiod and endperiod
   GROUP BY cdb.databasename
-$function$
+$function$;

@@ -21,5 +21,4 @@ FROM
 	datameta  AS dt
 	JOIN chronmeta AS chr ON dt.datasetid = chr.datasetid
 											JOIN ids AS ids ON ids.dsid = dt.datasetid
-
 $function$

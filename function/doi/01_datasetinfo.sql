@@ -14,7 +14,7 @@ siteobj AS (
     FROM
          ap.siteobject((SELECT array_agg(siteid) FROM siteid))
 )
-SELECT dts.datasetid,
+SELECT DISTINCT dts.datasetid,
        sts.site || 
        jsonb_build_object('collectionunit', json_build_object('collectionunitid', clu.collectionunitid,
                                                        'depositionalenvironment', dvt.depenvt,
@@ -73,7 +73,7 @@ siteobj AS (
     FROM
         ap.siteobject((SELECT siteid FROM siteid))
 )
-SELECT dts.datasetid,
+SELECT DISTINCT dts.datasetid,
        sts.site || 
        jsonb_build_object('collectionunit', json_build_object('collectionunitid', clu.collectionunitid,
                                                        'depositionalenvironment', dvt.depenvt,
