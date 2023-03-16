@@ -18,3 +18,5 @@ helpers/figshareUpload/settings.yaml
 helpers/settings.yaml
 
 fixGeorge.sh
+
+helpers/localDup.sh
