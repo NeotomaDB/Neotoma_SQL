@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetspecimens(_datasetid integer)
- RETURNS TABLE(specimenid integer, dataid integer, elementtype character varying, symmetry character varying, portion character varying, maturity character varying, sex character varying, domesticstatus character varying, preservative character varying, nisp double precision, repository character varying, specimennr character varying, fieldnr character varying, arctosnr character varying, notes text, taxonname character varying, taxagroup character varying)
+ RETURNS TABLE(specimenid integer, dataid integer, elementtype character varying, symmetry character varying, portion character varying, maturity character varying, sex character varying, domesticstatus character varying, preservative character varying, nisp double precision, repository character varying, specimennr character varying, fieldnr character varying, arctosnr character varying, notes text, taxonname text, taxagroup character varying)
  LANGUAGE sql
 AS $function$
 

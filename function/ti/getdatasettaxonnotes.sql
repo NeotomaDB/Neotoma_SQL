@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getdatasettaxonnotes(_datasetid integer)
- RETURNS TABLE(taxonid integer, taxonname character varying, notes text)
+ RETURNS TABLE(taxonid integer, taxonname text, notes text)
  LANGUAGE sql
 AS $function$ 
 SELECT ndb.datasettaxonnotes.taxonid, ndb.taxa.taxonname, ndb.datasettaxonnotes.notes

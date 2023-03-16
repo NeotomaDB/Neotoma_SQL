@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getchildtaxaforallsites(_taxonname character varying)
- RETURNS TABLE(taxonid integer, taxonname character varying, sitename character varying)
+ RETURNS TABLE(taxonid integer, taxonname text, sitename character varying)
  LANGUAGE sql
 AS $function$
 WITH RECURSIVE taxacte

@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getspecimendatebyspecimendateid(_specimendateid integer)
-RETURNS TABLE(specimenid integer, taxonid integer, taxonname character varying, elementtypeid integer,
+RETURNS TABLE(specimenid integer, taxonid integer, taxonname text, elementtypeid integer,
 	elementtype character varying, fractionid integer, fraction character varying, sampleid integer, notes character varying)
 LANGUAGE sql
 AS $function$

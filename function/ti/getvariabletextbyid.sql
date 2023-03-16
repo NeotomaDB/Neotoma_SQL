@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getvariabletextbyid(_variableid integer)
- RETURNS TABLE(taxonname character varying, variableelement character varying, variableunits character varying, variablecontext character varying)
+ RETURNS TABLE(taxonname text, variableelement character varying, variableunits character varying, variablecontext character varying)
  LANGUAGE sql
 AS $function$
 SELECT tx.taxonname,

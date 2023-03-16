@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getbiochemdatasetbyid(_datasetid integer)
- RETURNS TABLE(sampleid integer, analysisunitname character varying, samplename character varying, sampledate character varying, taxonname character varying, variable character varying, variableelement character varying, variableunits character varying, value double precision)
+ RETURNS TABLE(sampleid integer, analysisunitname character varying, samplename character varying, sampledate character varying, taxonname text, variable character varying, variableelement character varying, variableunits character varying, value double precision)
  LANGUAGE plpgsql
 AS $function$
 DECLARE

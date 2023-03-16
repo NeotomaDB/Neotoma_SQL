@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetvariablesynonyms(_datasetid integer, _variableid integer)
- RETURNS TABLE(synonymyid integer, reftaxonname character varying, fromcontributor boolean, publicationid integer, notes text)
+ RETURNS TABLE(synonymyid integer, reftaxonname text, fromcontributor boolean, publicationid integer, notes text)
  LANGUAGE sql
 AS $function$
 SELECT ndb.synonymy.synonymyid, ndb.taxa.taxonname as reftaxonname, ndb.synonymy.fromcontributor, ndb.synonymy.publicationid,

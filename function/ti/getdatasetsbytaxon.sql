@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetsbytaxon(_taxon character varying)
- RETURNS TABLE(taxonname character varying, variableelement character varying, datasetid integer, datasettype character varying, collectionunitid integer, siteid integer, sitename character varying)
+ RETURNS TABLE(taxonname text, variableelement character varying, datasetid integer, datasettype character varying, collectionunitid integer, siteid integer, sitename character varying)
  LANGUAGE sql
 AS $function$
 SELECT ndb.taxa.taxonname, ndb.variableelements.variableelement, ndb.datasets.datasetid, ndb.datasettypes.datasettype, ndb.collectionunits.collectionunitid, 

@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION ti.getdatasetvariables(_datasetid integer)
- RETURNS TABLE(variableid integer, taxoncode character varying, taxonname character varying, author character varying, variableelement character varying, variableunits character varying, variablecontext character varying)
+ RETURNS TABLE(variableid integer, taxoncode character varying, taxonname text, author character varying, variableelement character varying, variableunits character varying, variablecontext character varying)
  LANGUAGE sql
 AS $function$ 
 SELECT ndb.data.variableid, ndb.taxa.taxoncode, ndb.taxa.taxonname, ndb.taxa.author, ndb.variableelements.variableelement,
@@ -15,4 +15,4 @@ FROM ndb.variableelements RIGHT OUTER JOIN
 WHERE ndb.samples.datasetid = _datasetid
 GROUP BY ndb.data.variableid, ndb.taxa.taxoncode, ndb.taxa.taxonname, ndb.taxa.author, ndb.variableelements.variableelement,
 	ndb.variableunits.variableunits, ndb.variablecontexts.variablecontext
-$function$
+$function$;
