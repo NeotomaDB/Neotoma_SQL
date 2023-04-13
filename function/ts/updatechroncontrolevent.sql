@@ -5,7 +5,7 @@ AS $function$
   INSERT INTO ndb.eventchronology
     (analysisunitid, eventid, chroncontrolid)
   VALUES (_analysisunitid, _eventid, _chroncontrolid)
-  ON CONFLICT ON CONSTRAINT uniqueeventset
+  ON CONFLICT (analysisunitid, eventid, chroncontrolid)
   DO UPDATE
     SET   analysisunitid = _analysisunitid, eventid = _eventid, chroncontrolid = _chroncontrolid, notes = null
   WHERE ndb.eventchronology.eventchronologyid = (SELECT ec.eventchronologyid FROM ndb.eventchronology AS ec WHERE (chroncontrolid = _chroncontrolid))

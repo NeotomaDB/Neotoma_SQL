@@ -14,4 +14,3 @@ AS $function$
   values      ((select stewardid from ti.stewards AS stw where (stw.contactid = _contactid)), _databaseid)
   RETURNING stewardid
 $function$
-
