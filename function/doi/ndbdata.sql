@@ -68,7 +68,7 @@ WITH dssamples AS (
 	WHERE ds.datasetid = dsid
 	GROUP BY ds.datasetid, dsinfo.dataset
 
-$function$
+$function$;
 
 CREATE OR REPLACE FUNCTION doi.ndbdata(dsid integer[])
  RETURNS TABLE(datasetid integer, data jsonb)

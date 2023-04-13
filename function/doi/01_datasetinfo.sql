@@ -37,7 +37,7 @@ SELECT DISTINCT dts.datasetid,
 							                            'database', cstdb.databasename,
 							                                 'doi', doi.dois,
 													   'datasetpi', dsau.authors,
-														'agerange', agerange.ages))
+														'agerange', agerange.ages)) AS site
 FROM
          ndb.datasets AS dts
   LEFT OUTER JOIN                      ndb.collectionunits AS clu      ON clu.collectionunitid = dts.collectionunitid
@@ -96,7 +96,7 @@ SELECT DISTINCT dts.datasetid,
 							                                       'database', cstdb.databasename,
 							                                            'doi', doi.dois,
 																                    'datasetpi', dsau.authors,
-																                     'agerange', agerange.ages))
+																                     'agerange', agerange.ages)) AS site
 FROM
 ndb.datasets AS dts LEFT OUTER JOIN
 ndb.collectionunits AS clu ON clu.collectionunitid = dts.collectionunitid LEFT OUTER JOIN
