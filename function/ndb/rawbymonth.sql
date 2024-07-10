@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION ndb.rawbymonth(startperiod integer DEFAULT 0, endperi
 AS $function$
 WITH rsum AS (
   SELECT ds.datasetid,
-         dsl.siteid,
+         tb.siteid,
          array_agg(DISTINCT dsp.publicationid) AS publications,
          array_agg(DISTINCT pua.contactid) AS authors,
          gpd.path[1] AS countrygpid

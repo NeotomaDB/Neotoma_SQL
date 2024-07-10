@@ -50,24 +50,16 @@ BEGIN
     IF array_length(_depenvids,1) > 0 THEN
       doDepEnv := true;
     END IF;
-
-
     debugLenTaxonids := array_length(_taxonids,1);
-
     RAISE NOTICE '_taxonids length is %', debugLenTaxonids;
-
     IF array_length(_taxonids,1) < 1 OR _taxonids is null THEN
       noTaxa := true;
       RAISE NOTICE 'noTaxa is %', noTaxa;
-
     END IF;
-
-
     IF ( (array_length(_elemtypeids,1) > 0 OR _elemtypeids IS NOT NULL) AND noTaxa = false ) THEN
         doElem := true;
     RAISE NOTICE 'doElem is %', doElem;
     END IF;
-
     IF ( (array_length(_taphtypeids,1) > 0 OR _taphtypeids IS NOT NULL )AND noTaxa = false ) THEN
         doTaph := true;
     RAISE NOTICE 'doTaph is %', doTaph;
@@ -89,7 +81,6 @@ BEGIN
             END IF;
         END;
     END IF;
-
     RAISE NOTICE '_agedirectdate is % and noTaxa is %', _agedirectdate, noTaxa;
     -- START building standard base CTE, skip if noTaxa = true
     IF ( (_agedirectdate = false OR _agedirectdate IS NULL) AND noTaxa = false ) THEN
@@ -103,7 +94,6 @@ BEGIN
                 JOIN ndb.variables v ON d.variableid = v.variableid ';
             cteBaseWhere := '
                 WHERE';
-
             IF doAbund = true THEN
               BEGIN
                 cteBaseSelect := cteBaseSelect || ',
@@ -144,7 +134,6 @@ BEGIN
                 END IF;
               END;
             END IF;
-
             IF _keywordid IS NOT NULL THEN
               BEGIN
                 cteBaseFrom := cteBaseFrom || '
@@ -153,13 +142,11 @@ BEGIN
                     AND k.keywordid = _keywordid';
               END;
             END IF;
-
             cteBase := cteBase || cteBaseSelect || cteBaseFrom || cteBaseWhere || '
                 )';
         END;
     END IF;
     -- END building base CTE
-
     -- START building standard ages CTE
     IF ( (_agedirectdate = false OR _agedirectdate IS NULL) AND noTaxa = false ) THEN
       BEGIN
@@ -178,22 +165,18 @@ BEGIN
         cteAgesWhere := '
             WHERE
               1=1';
-
         IF doAbund THEN
           cteAgesWhere := cteAgesWhere || '
               AND base.abundance > ' || _abundpct ||
               ' AND base.taxonid IN (' || array_to_string( _taxonids ,',') || ')';
         END IF;
-
         IF NOT (_ageold IS NULL AND _ageyoung IS NULL  AND noTaxa = false) THEN
             BEGIN
                 cteAgesFrom := cteAgesFrom || '
                     JOIN da.vsampagesstd sa ON base.sampleid = sa.sampleid';
-
                 IF _ageold IS NULL THEN
                   _ageold := 10000000;
                 END IF;
-
                 IF _ageyoung IS NULL THEN
                   _ageyoung := -250;
                 END IF;
@@ -215,25 +198,20 @@ BEGIN
         ELSE
             cteAgesFrom := cteAgesFrom || ' LEFT JOIN da.vsampagesstd sa ON base.sampleid = sa.sampleid';
         END IF;
-
         cteAges := cteAges || cteAgesSelect || cteAgesFrom || cteAgesWhere || ' GROUP BY base.datasetid)';
       END;
     END IF;
     -- END building ages CTE
-
     -- START alternative combined base/ages CTE for directly dated specimens
     IF ( _agedirectdate = true and noTaxa = false ) THEN
       BEGIN
         cteBase := '';
-
         IF _ageold IS NULL THEN
             _ageold := 10000000;
         END IF;
-
         IF _ageyoung IS NULL THEN
             _ageyoung := -250;
         END IF;
-
         cteAges := '
             WITH ages AS (
                 SELECT
@@ -249,7 +227,6 @@ BEGIN
                 WHERE
                   sd.taxonid IN (' || array_to_string( _taxonids ,',') || ')
         ';
-
         IF doElem = true THEN
             cteAges := cteAges || '
                 AND sd.elementtypeid IN (array_to_string(' || _elemtypeids || ','',''))';
@@ -262,17 +239,13 @@ BEGIN
             cteAges := cteAges || '
             AND NOT (' || _ageyoung || ' <= c.calageyounger AND c.calageolder <= ' || _ageold || ' )';
         END IF;
-
         cteAges := cteAges || '
             GROUP BY s.datasetid
             )';
         END;
     END IF;
     -- END alternative ages CTE for directly dated specimens
-
     -- START building ds (dataset) CTE
-
-
     IF noTaxa = true THEN
       BEGIN
         cteBase := '';
@@ -283,9 +256,7 @@ BEGIN
       cteDs := ',
       ';
     END IF;
-
     cteDs := cteDs || 'ds AS (';
-
     cteDsSelect := '
         SELECT
           ds.datasetid,
@@ -309,20 +280,16 @@ BEGIN
           ages.ageyoungest,
           ages.maxage,
           ages.minage ';
-
     cteDsFrom := '
           join ndb.collectionunits cu on ds.collectionunitid = cu.collectionunitid
           join ndb.sites s on cu.siteid = s.siteid';
-
     IF noTaxa = true THEN
       BEGIN
         cteBase := '';
         cteAges := '';
-
         cteDsFrom := '
             FROM
               ndb.datasets ds' || cteDsFrom ;
-
         IF NOT (_ageold IS NULL AND _ageyoung IS NULL) THEN
           cteDsFrom := cteDsFrom || '
             JOIN da.vbestdatasetages ages ON ds.datasetid = ages.datasetid';
@@ -339,21 +306,17 @@ BEGIN
               JOIN ndb.datasets ds ON ages.datasetid = ds.datasetid ' || cteDsFrom;
       END;
     END IF;
-
     cteDsWhere := '
         WHERE
           1=1 ';
-
     IF _sitename IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
           AND s.sitename ILIKE ''%' || _sitename || '%''' ;
     END IF;
-
     IF _subdate IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
           AND ds.recdatecreated >= ''%' || _subdate || '%''';
     END IF;
-
     IF _gpid IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
           AND EXISTS (SELECT *
@@ -361,27 +324,22 @@ BEGIN
                       WHERE  gp.siteid = s.siteid
                       AND    gp.geopoliticalid = ' || _gpid || ' )';
     END IF;
-
     IF doDepEnv = true THEN
       cteDsWhere := cteDsWhere || '
           AND cu.depenvtid IN (array_to_string(' || depEnvIds || ','',''))';
     END IF;
-
     IF _coltypeid IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
           AND cu.CollTypeID = ' || _coltypeid;
     END IF;
-
     IF _altmin IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
           AND s.Altitude >= ' || _altmin;
     END IF;
-
     IF _altmax IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
           AND s.Altitude <= ' || _altmax;
     END IF;
-
     IF _dbid IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
           AND EXISTS (SELECT *
@@ -389,7 +347,6 @@ BEGIN
                       WHERE  db.datasetid = ds.datasetid
                       AND    db.databaseid = ' || _dbid || ' )';
     END IF;
-
     IF _contactid IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
           AND EXISTS (SELECT *
@@ -397,7 +354,6 @@ BEGIN
                       WHERE  p.datasetid = ds.datasetid
                       AND    p.contactid = ' || _contactid || ' )';
     END IF;
-
     IF _keywordid IS NOT NULL AND noTaxa = true THEN
       cteDsWhere := cteDsWhere || '
           AND EXISTS (SELECT k.datasetid, k.keywordid
@@ -405,12 +361,10 @@ BEGIN
                       WHERE  k.datasetid = ds.datasetid
                       AND    k.keywordid = ' || _keywordid || ' )';
     END IF;
-
     IF _datasettypeid IS NOT NULL THEN
       cteDsWhere := cteDsWhere || '
           AND ds.datasettypeid = ' || _datasettypeid;
     END IF;
-
     IF noTaxa = true AND NOT (_ageold IS NULL AND _ageyoung IS NULL) THEN
       BEGIN
         IF _ageold IS NULL THEN
@@ -436,23 +390,18 @@ BEGIN
     END IF;
 
 --todo review postgis syntax ---
-
     RAISE NOTICE '_coords value %', _coords;
     IF _coords IS NOT NULL THEN
       BEGIN
         poly := ST_GeogFromText(_coords)::geography;
-
         cteDsWhere := format( '%s' || '
           AND ST_Intersects(s.geog,' || '%L' || ') = true', cteDsWhere, poly);
       END;
     END IF;
-
     cteDs := cteDs || cteDsSelect || cteDsFrom || cteDsWhere || '
       )';
     -- END building ds (dataset) CTE
     --call CTEs
-
-
     thesql := format(
         '%s' || '%s' || '%s' ||
           ' SELECT
@@ -481,11 +430,7 @@ BEGIN
         , cteBase, cteAges, cteDs);
 
 RAISE NOTICE '%', thesql;
-
     RETURN QUERY EXECUTE thesql;
-
-
-
 END;
 
 $function$
