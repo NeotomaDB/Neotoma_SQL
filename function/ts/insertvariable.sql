@@ -5,5 +5,7 @@ AS $function$
   INSERT INTO ndb.variables (taxonid, variableelementid, variableunitsid,
     variablecontextid)
   VALUES (_taxonid, _variableelementid, _variableunitsid, _variablecontextid)
+  ON CONFLICT (taxonid, variableelementid, variableunitsid, variablecontextid)
+  DO NOTHING
   RETURNING variableid
 $function$

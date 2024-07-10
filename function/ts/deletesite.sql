@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION ts.deletesite(:_siteid integer)
 AS $function$
 
   WITH gccs AS (
-    SELECT  gcc.chroncontrolid,
+    SELECT  gcc.chroncntrolid,
                 gcc.geochronid
     FROM    ndb.sites            AS sts
     LEFT JOIN    ndb.collectionunits  AS cu  ON sts.siteid = cu.siteid

@@ -26,3 +26,15 @@ CREATE INDEX IF NOT EXISTS sample_taxon_idx ON ndb.samples USING btree(taxonid);
 
 CREATE INDEX IF NOT EXISTS analysisunits_collunit_idx ON ndb.analysisunits USING btree(collectionunitid);
 CREATE INDEX IF NOT EXISTS analysisunits_facies_idx ON ndb.analysisunits USING btree(faciesid);
+
+CREATE INDEX IF NOT EXISTS isometadata_data_idx ON ndb.isometadata USING btree(dataid);
+CREATE INDEX IF NOT EXISTS isospecimendata_data_idx ON ndb.isospecimendata USING btree(dataid);
+CREATE INDEX IF NOT EXISTS specimendata_data_idx ON ndb.specimens USING btree(dataid);
+CREATE INDEX IF NOT EXISTS chroncontrol_anun_idx ON ndb.chroncontrols USING btree(analysisunitid);
+CREATE INDEX IF NOT EXISTS chroncontrol_chron_idx ON ndb.chroncontrols USING btree(chronologyid);
+CREATE INDEX IF NOT EXISTS analysisunitaltdepths_analysisunits_idx ON ndb.analysisunitaltdepths USING btree(analysisunitid);
+CREATE INDEX IF NOT EXISTS fk_relcc_chroncontrol_idx ON ndb.relativechronology USING btree(chroncontrolid);
+CREATE INDEX IF NOT EXISTS collectors_collunit_idx ON ndb.collectors USING btree(collectionunitid);
+
+ALTER TABLE ndb.eventchronology DROP CONSTRAINT IF EXISTS uniqueeventset;
+ALTER TABLE ndb.eventchronology ADD CONSTRAINT uniqueeventset UNIQUE(analysisunitid,eventid,chroncontrolid);

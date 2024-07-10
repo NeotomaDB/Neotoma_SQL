@@ -1,0 +1,34 @@
+---
+title: "Untitled"
+format: html
+---
+
+# Adding Uncertainty to Neotoma
+
+The use of uncertainty is critical. We need it directly associated with individual measurements, and we need to identify the type of uncertainty.
+
+## Table modifications
+
+The table `ndb.data` needs two new columns: `uncertaintyvalue` and `uncertaintytype`.
+
+They will inherit information from the `ndb.variables` row, so the assumption is that the uncertainty is reported in the same units (and for the same taxon) as the `ndb.data.value`. 
+
+![Overall structure of the tables](uncertainty.svg)
+
+### Proposed `ndb.data` structure:
+
+| dataid | sampleid | variableid | value | uncertaintyvalue | uncertaintybasisid | . . . |
+
+### Proposed `ndb.uncertaintybasis` structure:
+
+| uncertaintybasisid | uncertaintybasis | . . . |
+
+#### Proposed `ndb.uncertaintybasis.uncertaintybasis` values:
+
+Proposed values for uncertainty tables will come from standard reporting of uncertainty.
+
+* 1 Standard Deviation
+* 2 Standard Deviations
+* 3 Standard Deviations
+* Mean square error
+

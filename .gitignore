@@ -20,3 +20,15 @@ helpers/settings.yaml
 fixGeorge.sh
 
 helpers/localDup.sh
+
+*.tar
+
+helpers/archives/
+
+*.gz
+
+.vscode/
+
+helpers/figshareUpload/settings.yaml
+
+helpers/figshareUpload/lib/__pycache__/
