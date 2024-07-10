@@ -20,3 +20,9 @@ helpers/settings.yaml
 fixGeorge.sh
 
 helpers/localDup.sh
+
+*.tar
+
+helpers/archives/
+
+*.gz
