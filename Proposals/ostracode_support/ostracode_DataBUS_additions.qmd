@@ -1,0 +1,64 @@
+---
+title: "Managing Ostracode Elements"
+format: html
+---
+
+```{r read_tables, echo = FALSE}
+library(readr)
+library(dplyr)
+library(httr)
+library(jsonlite)
+
+node <- readr::read_csv('NODEdatabase22May2024.csv')
+eanode <- readr::read_csv('EANODpublisheddataJune2024.csv')
+```
+
+## Table Additions
+
+The following tables need new information to manage the data:
+
+* `ndb.publications` (Publication data)
+* `ndb.depenvttypes` (New depositional environments)
+* `ndb.lakeparametertypes` (Add lake water type/quality)
+
+## Publications
+
+For publications we will search all publications using CrossRef, and add them if we can find them. Otherwise, we will simply add the citation string.
+
+```{r extract_publications}
+unique_pubs <- eanode$bibliographicCitation |> unique()
+node_pubs <- c(readr::read_lines('node_publications.txt') |> unique(), unique_pubs)
+new_pubs = list()
+
+fetch_url = "https://api.crossref.org/works"
+for (i in unique_pubs) {
+    cross_result <- httr::GET(url = fetch_url, query=list(query=i), 
+        httr::add_headers(`User-Agent`="NeotomaDataScraper;mailto:goring@wisc.edu"))
+    data <- content(cross_result)['message'][[1]]
+    scores <- sapply(data$items, function(j){j$score})
+    if (diff(scores)[1] < diff(scores)[2] * 10) {
+        ref = data$items[1]
+        new_pubs[[length(new_pubs) + 1]] <- list(citation = i,
+                                                 json = toJSON(ref[[1]]),
+                                                 doi = ref[[1]]$DOI)
+        cat("Positive hit for pub.\n")
+    } else {
+        new_pubs[[length(new_pubs) + 1]] <- list(citation = i,
+                                                 json = NA)
+    }
+}
+
+```
+
+## Lake Parameters
+
+We need to add the following critical `lakeparametertypes` to Neotoma. We need to account for the values "Lentic", "lotic", Subterranean", and "estuarine".
+
+```{sql}
+INSERT INTO ndb.lakeparametertypes (lakeparametershortname, lakeparameter)
+VALUES('AquaticSystem', 'Aquatic System');
+
+```
+
+## Depositional Environments
+
