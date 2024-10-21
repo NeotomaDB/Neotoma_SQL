@@ -11,27 +11,53 @@ import urllib
 import re
 import subprocess
 import json
+from time import sleep
 from crossref.restful import Works, Etiquette
 
 csv.field_size_limit(sys.maxsize)
 
+
 def clean_doi(doi_string:str):
+    """_Clean a DOI string_
+
+    Args:
+        doi_string (str): _A text string that purportedly contains a DOI._
+
+    Raises:
+        Exception: _Raises a TypeError if the object passed is not a string._
+
+    Returns:
+        _str_: _A cleaned DOI string._
+    """
     if type(doi_string) is not str:
-        raise Exception('TypeError', f'The doi passed -- {doi_string} -- is not a string.')
+        raise Exception('TypeError', f'The doi passed is not a string.')
     outcome = re.match(r'.*(\b10\.\d{4,9}/[-.;()/:\w]+)', doi_string)
     if outcome is None:
         return None
     else:
         return outcome.group(1)
 
+
 def break_citation(citation:str):
-    with open('temp.txt', 'w') as wr:
+    """_Break Citation String Apart_
+
+    Args:
+        citation (str): _A citation string from the Neotoma Database._
+
+    Raises:
+        Exception: _A ValueError exception if the object could not be parsed._
+
+    Returns:
+        _dict_: _A dict representation of the anystyle output._
+    """    
+    with open('/tmp/temp.txt', 'w') as wr:
         wr.write(citation)
-    outcome = subprocess.run(['anystyle', '-f', 'json', 'parse', 'temp.txt'], capture_output = True)
+    outcome = subprocess.run(['anystyle', '-f', 'json', 'parse', '/tmp/temp.txt'], capture_output = True)
     if outcome.stdout == b'':
         raise Exception('ValueError', f'Could not perform extraction from: {citation}')
     else:
         return json.loads(outcome.stdout)
+
 
 def return_bibtex(doi_string:str):
     url = 'https://doi.org/' + urllib.request.quote(doi_string)
@@ -41,6 +67,7 @@ def return_bibtex(doi_string:str):
     }
     response = requests.get(url, headers=header)
     return response.text.strip()
+
 
 def check_crossref(cite_object:str):
     url = 'https://api.crossref.org/works'
@@ -60,14 +87,26 @@ def check_crossref(cite_object:str):
     else:
         return None
 
-with open('data/neotoma_publications_202410071440.csv') as file:
-    db_data = list(csv.DictReader(file))
+
+def call_publications():
+    """_Get Publications from Neotoma_
+
+    Returns:
+        _dict_: _A dictionary of Neotoma Publications_
+    """    
+    result = requests.get("https://api.neotomadb.org/v2.0/data/publications?limit=100000")
+    if result.status_code == 200:
+        pubs = json.loads(result.content).get('data').get('result')
+    return pubs
+
+db_data = [i.get('publication') for i in call_publications()]
 
 # For each row
 for i in db_data:
+    print(f'publicationid: {i.get('publicationid')}')
     if any([j in ['bibtex', 'newdoi', 'json'] for j in i.keys()]):
         continue
-    if i.get('doi', '') != '':
+    if i.get('doi', '') or '' != '':
         try:
             outcome = clean_doi(i.get('doi'))
             if outcome != i.get('doi'):
@@ -93,8 +132,12 @@ for i in db_data:
             print('New match found.')
             i['newdoi'] = outcome.get('DOI')
             i['json'] = json.dumps(outcome)
+            bibtex = return_bibtex(outcome.get('DOI'))
+            i['bibtex'] = i.get('bibtex', '') + bibtex
         else:
             print('No new match.')
+    sleep(2)
+
 
 with open('output.csv', 'w') as file:
     writer = csv.DictWriter(file, fieldnames=['publicationid', 'citation', 'doi', 'notes', 'newdoi', 'json', 'bibtex'])

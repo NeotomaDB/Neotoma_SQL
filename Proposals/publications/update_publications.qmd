@@ -1,0 +1,61 @@
+---
+title: Updating neotoma Publications
+---
+
+## Goals
+
+* We want to update all publications without DOIs.
+* We want to ensure that publications with DOIs have valid metadata.
+* We want to transition to a publication system that uses Bibtex as the primary citation format.
+
+## Existing Issues
+
+Among the more than 13,000 Neotoma publication records only about 2,700 have DOIs. DOIs are critical identifiers since they provide support for publication discovery through various API services (OpenAlex, CrossRef), and since they can help resolve citation formatting using various tools such as `citation.js` or packages in R and Python. Some records in Neotoma likely have no DOI because they are either grey literature, or are simply too old to be minted through a publication service.
+
+Of the publications, approximately 7,000 are listed as journal articles, most of which should have identifiable DOIs. The workflow detailled is intended to search for the article entry in CrossRef, find the match, and then assign the DOI and associated metadata to the publication entry in Neotoma.
+
+## Preliminary Work Required
+
+To undertake this work we must:
+
+1. Ensure all publication validation is correct.
+2. Add a valid BibTeX column to the publications table.
+3. Add a valid CrossRef Metadata column to the publications table.
+4. Identify rows without valid DOIs
+5. Search for publications using CrossRef
+6. Validate search results
+7. Submit publication metadata to Neotoma
+
+## Summary of Work
+
+### Updating Constraints
+
+For publications the primary concern is that DOIs are unique. This is the nature of DOIs. To create the constraint we:
+
+```sql
+ALTER TABLE ndb.publications ADD CONSTRAINT publications_doi_unique UNIQUE(doi);
+```
+
+### Adding a BibTeX column to Neotoma
+
+We want to add a column to the `ndb.publications` table to ensure that the BibTex column can be supported. Although BibTex looks like JSON, it is not. A BibTex entry looks like this:
+
+```bibtex
+@Manual{,
+  title = {bibtex: Bibtex Parser},
+  author = {Romain Francois and Diego Hernangómez},
+  year = {2024},
+  note = {R package version 0.5.1, https://docs.ropensci.org/bibtex/},
+  url = {https://github.com/ropensci/bibtex},
+}
+```
+
+All BibTex entries begin with [an entry type](https://www.bibtex.com/e/entry-types/), prepended by the `@` symbol:
+
+* article, book, booklet, conference, inbook, incollection, inproceedings, manual, mastersthesis, misc, phdthesis, proceedings, techreport, unpublished
+
+Within the BibTeX entry, each field has the format `field = {text},` so we can build a general regex that looks something like this:
+
+```regex
+^@[article|book|booklet|conference|inbook|incollection|inproceedings|manual|mastersthesis|misc|phdthesis|proceedings|techreport|unpublished]{(.*={.*},)*}$
+```
