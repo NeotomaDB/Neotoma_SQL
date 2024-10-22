@@ -1,0 +1,81 @@
+# Update Geopolitical Functions
+
+## Entities that need to be addressed
+
+### Tables Referencing Geopolitical Units
+
+* geopaths (used in the API `sitesbygeopol`, or the geopolitical/XXXX/sites call)
+    * ./ndb/geopol_ancestors.sql (the file used to create geopaths)
+    * ./ti/getsites.sql (passes in a geopoliticalid integer and returns the country/provice names)
+    * ./ap/dailyquerytable.sql ()
+* geopoldepth (used in the ndb query rawbymonth)
+* sitegeopolitical (used throughout)
+
+### Database Functions Using Geopolitical Data
+
+./ts/updatesitegeopol.sql
+./ts/insertsitegeopol.sql
+./ts/updatesitegeopoldelete.sql
+./ts/insertgeopoliticalunit.sql
+./ts/updatesitegeopolinsert.sql
+./ndb/rawbymonth.sql
+./ndb/geopoldepth.sql
+./ndb/geopol_ancestors.sql
+./da/geopoliticalunits.sql
+./ti/getsites.sql
+./ti/getgeopolunitrank.sql
+./ti/getgeopolunitbynameandhigherid.sql
+./ti/getgeopolunitbyrank.sql
+./ti/getgeopolunitsbysiteid.sql
+./ti/getgeopolnumberofsubdivs.sql
+./ti/getgeopolunitbynameandrank.sql
+./ti/getgeopolunitbyhigherid.sql
+./ti/getnextlowergeopolcountbynames.sql
+./ti/getgeopolunitbyid.sql
+./longgeoname_view.sql
+./ap/dailyquerytable.sql
+./ap/explorersearch.sql
+
+### API Functions Using Geopolitical Data
+
+./test/geopolitical.js
+./swagger.yaml
+./v1.5/helpers/sites/sitebygpid.sql
+./v1.5/helpers/sites/sitequery.sql
+./v1.5/helpers/recentuploads/recentuploadsquery.sql
+./v1.5/helpers/geopoliticalunits/gpubyid.sql
+./v1.5/helpers/geopoliticalunits/gpuQuery.sql
+./v1.5/helpers/geopoliticalunits/geopoliticalunits.js
+./v1.5/helpers/occurrence/occurrencequery.sql
+./v1.5/routes/data.js
+./public/tests.json
+./public/tests.html
+./v2.0/helpers/datasets/datasetbygpid.sql
+./v2.0/helpers/datasets/datasets.js
+./v2.0/helpers/sites/sites.js
+./v2.0/helpers/sites/sitebygpid.sql
+./v2.0/helpers/geopoliticalunits/gpubyid.sql
+./v2.0/helpers/geopoliticalunits/geopolbysiteid.sql
+./v2.0/helpers/geopoliticalunits/gpuQuery.sql
+./v2.0/helpers/geopoliticalunits/geopoliticalunits.js
+
+## Legacy Issues
+
+R code that uses geopoliticalid as a code may be impacted. For this reason, we likely want to support both the "old" method and slowly integrate the new method.
+To do this, first we want to add a column to the "sitegeopolitical" that includes the `objectid` from `ap.gadm`:
+
+```sql
+alter table ndb.sitegeopolitical 
+add column objectid int
+constraint fk_objectid references ap.gadm(objectid);
+```
+
+From this, we can then add a call to first populate the `ndb.sitegeopolitical.objectid` column using the postgis overlay:
+
+```sql
+update ndb.sitegeopolitical
+set objectid = (
+    SELECT objectid 
+    FROM ap.gadm
+    WHERE )
+```
