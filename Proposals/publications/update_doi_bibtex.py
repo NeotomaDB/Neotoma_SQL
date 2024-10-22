@@ -40,13 +40,10 @@ def clean_doi(doi_string:str):
 
 def break_citation(citation:str):
     """_Break Citation String Apart_
-
     Args:
         citation (str): _A citation string from the Neotoma Database._
-
     Raises:
         Exception: _A ValueError exception if the object could not be parsed._
-
     Returns:
         _dict_: _A dict representation of the anystyle output._
     """    
@@ -65,19 +62,28 @@ def return_bibtex(doi_string:str):
         'Accept': 'application/x-bibtex',
         'User-Agent': 'Neotoma Publication Augmenter; mailto:goring@wisc.edu'
     }
-    response = requests.get(url, headers=header)
-    return response.text.strip()
+    try:
+        response = requests.get(url, headers=header, timeout = 10)
+    except requests.exceptions.ReadTimeout as e:
+        return None
+    if response.status_code == 200:
+        return response.text.strip()
+    else:
+        return None
 
 
 def check_crossref(cite_object:str):
     url = 'https://api.crossref.org/works'
-    url_call = requests.get(url,
+    try:
+        url_call = requests.get(url,
                             headers = {'Accept': 'application/json',
                                        'User-Agent': 'Neotoma Publication Augmenter; mailto:goring@wisc.edu'},
                             params = {'rows':1,
                                     'mailto':'goring@wisc.edu',
                                     'select':'DOI,title,container-title,published',
-                                    'query':f'query.title={cite_object}'})
+                                    'query':f'query.title={cite_object}'}, timeout = 10)
+    except requests.exceptions.ReadTimeout as e:
+        return None
     if url_call.status_code == 200:
         cross_ref = json.loads(url_call.content)
         if cross_ref.get('message').get('total-results') > 0:
@@ -90,14 +96,19 @@ def check_crossref(cite_object:str):
 
 def call_publications():
     """_Get Publications from Neotoma_
-
     Returns:
         _dict_: _A dictionary of Neotoma Publications_
     """    
-    result = requests.get("https://api.neotomadb.org/v2.0/data/publications?limit=100000")
+    try:
+        result = requests.get("https://api.neotomadb.org/v2.0/data/publications?limit=100000", timeout = 10)
+    except requests.exceptions.ReadTimeout as e:
+        return None
     if result.status_code == 200:
         pubs = json.loads(result.content).get('data').get('result')
-    return pubs
+        return pubs
+    else:
+        return None
+
 
 db_data = [i.get('publication') for i in call_publications()]
 
@@ -115,7 +126,11 @@ for i in db_data:
             else:
                 print('DOI match:')
                 bibtex = return_bibtex(outcome)
-                i['bibtex'] = i.get('bibtex', '') + bibtex
+                if bibtex is None:
+                    print(f'Issue with DOI {outcome}')
+                    i['notes'] = (i.get('notes', '') or '') + f' CrossRef DOI does not exists; '
+                else:
+                    i['bibtex'] = bibtex
         except TypeError as e:
             print('DOI present but not of the correct type.')
     else:
@@ -136,7 +151,6 @@ for i in db_data:
             i['bibtex'] = i.get('bibtex', '') + bibtex
         else:
             print('No new match.')
-    sleep(2)
 
 
 with open('output.csv', 'w') as file:
@@ -145,3 +159,4 @@ with open('output.csv', 'w') as file:
     for i in db_data:
         row = {j: i.get(j) for j in ['publicationid', 'citation', 'doi', 'notes', 'newdoi', 'json', 'bibtex']}
         writer.writerow(row)
+

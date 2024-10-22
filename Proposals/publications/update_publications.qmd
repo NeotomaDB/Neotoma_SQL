@@ -36,6 +36,34 @@ For publications the primary concern is that DOIs are unique. This is the nature
 ALTER TABLE ndb.publications ADD CONSTRAINT publications_doi_unique UNIQUE(doi);
 ```
 
+### Ensuring Proper Metadata
+
+The CrossRef API provides a source of publisher "validated" metadata. We put validated in quotes because the validation is up to the publisher. We have found instances in the past where publishers provide incomplete metadata, or alternate formatting for test strings (for example, failing to capitalize specific epithets). Regardless, the CrossRef metadata form the basis for updating and improving our internal metadata.
+
+In the script `add_bibtex.py` in this folder we see the function `check_crossref()` which calls out using the title string for a paper. By calling the `works` endpoint of the CrossRef API we can either call for a DOI or call with a `title` query. Here we have pulled the title from the citation string and passed it into the `cite_object` variable:
+
+```py
+def check_crossref(cite_object:str):
+    url = 'https://api.crossref.org/works'
+    url_call = requests.get(url,
+                            headers = {'Accept': 'application/json',
+                                       'User-Agent': 'Neotoma Publication Augmenter; mailto:goring@wisc.edu'},
+                            params = {'rows':1,
+                                    'mailto':'goring@wisc.edu',
+                                    'select':'DOI,title,container-title,published',
+                                    'query':f'query.title={cite_object}'})
+    if url_call.status_code == 200:
+        cross_ref = json.loads(url_call.content)
+        if cross_ref.get('message').get('total-results') > 0:
+            return cross_ref.get('message').get('items', '')[0]
+        else:
+            return None
+    else:
+        return None
+```
+
+
+
 ### Adding a BibTeX column to Neotoma
 
 We want to add a column to the `ndb.publications` table to ensure that the BibTex column can be supported. Although BibTex looks like JSON, it is not. A BibTex entry looks like this:
@@ -59,3 +87,12 @@ Within the BibTeX entry, each field has the format `field = {text},` so we can b
 ```regex
 ^@[article|book|booklet|conference|inbook|incollection|inproceedings|manual|mastersthesis|misc|phdthesis|proceedings|techreport|unpublished]{(.*={.*},)*}$
 ```
+
+The problem is that ultimately, bibtex is very hard to parse with Regex because of the nested brackets and various formats for different fields. For now we will put the processing of the Bibtex at the application layer.
+
+The SQL to add the column then is simply:
+
+```sql
+ALTER TABLE ndb.publications ADD COLUMN IF NOT EXISTS bibtex TEXT;
+```
+
