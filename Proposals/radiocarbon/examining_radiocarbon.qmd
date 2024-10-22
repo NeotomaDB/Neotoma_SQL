@@ -1,0 +1,271 @@
+---
+title: "Radiocarbon Data Formats"
+format: html
+---
+
+## Reporting Standards
+
+### Standards from Millard (2014)
+
+1. The laboratory measurement should be reported as a conventional 14C age in 14C yr BP or a
+fractionation-corrected fraction modern (the F14C value of Reimer et al. 2004) according to
+the amended conventions of Stuiver and Polach (Stuiver and Polach 1977; Stuiver 1980, 1983;
+Reimer et al. 2004).
+2. The laboratory code for the determination should be included.
+3. The sample material dated, the pretreatment method applied, and quality control measurements
+should be reported.
+4. The calibration curve and any reservoir offset used.
+5. The software used for calibration, including version number, the options and/or models used,
+and wherever possible a citation of a published description of the software. 
+6. The calibrated date given as a range (or ranges) with an associated probability on a clearly
+identifiable calendar timescale.
+
+
+## Data Souces
+
+* [Cross-References p3k14c Data Table](https://opencontext.org/tables/e7fce3cb-eb78-4a36-8b70-da0323da23b3)
+* [Neotoma Radiocarbon Data](https://www.neotomadb.org)
+* [East African Radiocarbon Database](https://openquaternary.com/articles/10.5334/oq.22)
+* [IntCal aalen Record](https://intchron.org/schema.html)
+* [DarwinCore Chronometric Extension](https://www.tdwg.org/community/esp/chrono/)
+* [UC Irvine Records]()
+* [Nerd Database](https://openarchaeologydata.metajnl.com/articles/10.5334/joad.90#T1)
+
+## Data Columns
+
+### CARD
+
+Lab Number
+Field Number
+Material Dated
+Taxa Dated
+Type of Date
+Locality
+Latitude
+Longitude
+Map Sheet
+Elevation (m ASL)
+Submitter
+Date Submitted
+Collector
+Date Collected
+Updater
+Date Updated
+Measured Age
+MA Sigma
+Normalized Age
+NA Sigma
+Delta 13C (per mil)
+Delta 13 C Source
+Significance
+Site Identifier
+Site Name
+Stratigraphic Component
+Context
+Associated Taxa
+Additional Information
+Comments
+References
+
+### NERD
+
+DateID
+LabID
+OthLabID
+Problems
+CRA
+Error
+DC13
+Material
+Species
+SiteID
+SiteName
+SiteContext
+SiteType
+Country
+Longitude
+Latitude
+LocQual
+Source
+Comments
+
+### IntCAL Standard Reporting
+
+* Standards are reported on the [IntCal Instructions](https://intchron.org/tools/integrate/help_IntCal.html) page and in the [schema](https://intchron.org/schema.html)
+
+Record Metadata
+* site: the site name
+* country (blank if marine)
+* longitude (optional but desirable)
+* latitude (optional but desirable)
+* elevation (optional but desirable)
+* site_type (optional but desirable)
+* record: the record name
+* changed (optional - if set implies file_data is different from the original file)
+* refs: DOIs
+
+Key Intcal parameters
+    * z (Depth/Ring): general depth or ring measurement (see below)
+    * z_range (z range):  range in z (see below)
+    * t (Date): general date parameter - the timescale is defined at the record level; internally this is stored as fractional astronomical years but can be displayed in a number of different formats (calBP, fractional years, BC/AD etc)
+    * t_sigma (±1σ): one sigma uncertainty in t
+    * sample (Sample): the sample name (see below)
+    * ring_segment (Seg.): the segment of a ring measured (EW, LW, EW/LW, EW1, EW2, LW1, LW2 etc.)
+    * labcode (Lab code): the radiocarbon lab code in standard format
+    * batch (Batch): the measurement batch (magzine/wheel) in which the measurements were made
+    * r_date (R_Date): the uncalibrated radiocarbon date in 14C years BP
+    * r_date_sigma (±1σ): the one sigma uncertainty in r_date
+
+Special IntCal parameters
+    * calage (CalAge): required for all data - this is the age of the sample in years calBP;  in normal circumstances t will be 1950.5 - calage
+    * calage_range (CalSpan): this is the range of the sample material (see below); the default value is 1
+    * calage_sigmaI (±1σ): this is the one sigma independent uncertainty in the age (0 for dendrochronologically dated material)
+    * calage_sigmaD (±1σ): this is the one sigma systematic uncertainty in the age of the entire dataset (typically for tree ring series)
+    * calage_sigmaC (±1σ): correlated uncertainty (used for example in the Cariaco Basin varved sediments)
+    * intcal_reservoir (Reservoir): the marine reservoir offset (relative to the atmosphere) of this sample set
+    * intcal_reservoir_sigma (±1σ): the one sigma uncertainty in intcal_reservoir_sigma
+
+The following parameters are used internally in the IntCal curve process and are typically not set on submission of data
+    * intcal_data_id (Id): the unique ID number for this data point in IntCal
+    * intcal_seq_no (Seq): the sequence number (for series with multiple sequences)
+    * r_date_sigma_extra (+ ±1σ): extra uncertainty in the radiocarbon value
+    * r_date_sigma_mult (× ±1σ): an error multiplier (typically 1 as a default)
+
+### Chronometric Reporting (DWC)
+
+* chronometricAgeID: URL or unique id for the record.
+* verbatimChronometricAge: The verbatim age for a specimen, whether reported by a dating assay, associated references, or legacy information.
+* chronometricAgeProtocol: A description of or reference to the methods used to determine the chronometric age.
+* uncalibratedChronometricAge: The output of a dating assay before it is calibrated into an age using a specific conversion protocol.
+* chronometricAgeConversionProtocol: The method used for converting the uncalibratedChronometricAge into a chronometric age in years, as captured in the earliestChronometricAge, earliestChronometricAgeReferenceSystem, latestChronometricAge, and latestChronometricAgeReferenceSystem fields.
+* earliestChronometricAge: The maximum/earliest/oldest possible age of a specimen as determined by a dating method.
+* earliestChronometricAgeReferenceSystem: The reference system associated with the earliestChronometricAge.
+* latestChronometricAge: The minimum/latest/youngest possible age of a specimen as determined by a dating method.
+* latestChronometricAgeReferenceSystem: The reference system associated with the latestChronometricAge.
+* chronometricAgeUncertaintyInYears: The temporal uncertainty of the earliestChronometricAge and latestChronometicAge in years.
+* chronometricAgeUncertaintyMethod: 	The method used to generate the value of chronometricAgeUncertaintyInYears.
+* materialDated: 	A description of the material on which the chronometricAgeProtocol was actually performed, if known.
+* materialDatedID: An identifier for the MaterialSample on which the chronometricAgeProtocol was performed, if applicable.
+* materialDatedRelationship: The relationship of the materialDated to the subject of the ChronometricAge record, from which the ChronometricAge of the subject is inferred.
+* chronometricAgeDeterminedBy: A list (concatenated and separated) of names of people, groups, or organizations who determined the ChronometricAge.
+* chronometricAgeDeterminedDate: The date on which the ChronometricAge was determined.
+* chronometricAgeReferences: A list (concatenated and separated) of identifiers (publication, bibliographic reference, global unique identifier, URI) of literature associated with the ChronometricAge.
+* chronometricAgeRemarks: Notes or comments about the ChronometricAge.
+
+### Neotoma Reporting
+
+See JSON (we need to do this better though)
+
+
+### p2k21 [in OpenContext]
+
+Item URI
+Item Label
+Persistent ID (ARK)
+Item Category
+Project Label
+Project URI
+Item Context URI
+Site Wikidata URI
+Site Pleiades URI
+Latitude (WGS-84)
+Longitude (WGS-84)
+Geospatial Note
+Geospatial Inference
+Earliest Year (-BCE/+CE)
+Latest Year (-BCE/+CE)
+Chronology Inference
+Context (1)
+Context (2)
+Context (3)
+Context (4)
+Context (5)
+Authors and Contributors
+Material Type [https://opencontext.org/predicates/b342d8f3-c47c-4ab0-a6dc-39413e373c7d]
+LabID [https://opencontext.org/predicates/ac06a96f-a41d-4fd8-be1f-86642336f375]
+Consists of [https://erlangen-crm.org/current/P45_consists_of]
+Age [https://opencontext.org/predicates/3101d7ea-b28c-4262-adf1-12c609ed5e7a]
+Has taxonomic identifier [https://purl.obolibrary.org/obo/FOODON_00001303]
+Error [https://opencontext.org/predicates/25858351-ff6b-4b59-877f-b2cfe020caa2]
+Longitude (WGS84, sample) [https://opencontext.org/predicates/6c6a6ae0-cb7d-4558-bb82-3a5e85152cf1]
+Longitude (WGS84, sample) [Note] [https://opencontext.org/predicates/6dbdd6c1-7dbf-4b66-bf50-485c9044e5b9]
+Latitude  (WGS84, sample) [https://opencontext.org/predicates/2f24017e-1b5c-4554-8908-5d7107412099]
+Material (original) [https://opencontext.org/predicates/2d4fd385-12e6-429a-a965-9d401d15c80f]
+Taxa [https://opencontext.org/predicates/63b5403a-41fc-471c-97f7-c36789398217]
+d13C [Note] [https://opencontext.org/predicates/e3f16d13-91d3-499d-afcd-6c41d7ec7451]
+d13C [https://opencontext.org/predicates/84d688d1-1fd3-433d-9e69-b1b8547bf248]
+Method [https://opencontext.org/predicates/07717fe1-6b85-4bf5-a378-9027a2c578b3]
+Location Note [https://opencontext.org/predicates/894aa7a2-27cb-4c7e-a1a3-855e4a841a40]
+LocAccuracy [https://opencontext.org/predicates/9615a4a5-8075-4f5b-a056-1ecf3fc416a2]
+Period [https://opencontext.org/predicates/1d48f6f4-7006-4a20-a785-bc12fa671a52]
+SiteID [https://opencontext.org/predicates/4060cc11-9a31-4dfd-a85e-652b5d0ef186]
+SiteName [https://opencontext.org/predicates/1b857265-f7e7-4bc9-bf71-e01c9e50425b]
+Country [https://opencontext.org/predicates/6c4f05b3-3f67-4c72-bb09-f4487bfcf514]
+Province [https://opencontext.org/predicates/3a58765e-dc57-4b58-9cf7-8bebdf3c5546]
+Continent [https://opencontext.org/predicates/9a5ef89f-3ca8-4e42-be97-340eccbdf23b]
+Source [https://opencontext.org/predicates/d6bdccfe-0609-486d-918e-3242f8b1465c]
+Reference [https://opencontext.org/predicates/1d319fd8-0a5d-4318-81dd-6658a9098eea]
+
+
+## Aligned Records
+
+CARD Field | Neotoma Fields | DwC | IntCal |
+----------| ------- |
+Lab Number | ndb.geochronology.labnumber | | |
+Field Number | | | |
+Material Dated | ndb.geochronology.materialdated | materialDated | |
+Taxa Dated | | | |
+Type of Date | ndb.geochronology.agetypeid | | | 
+Locality | ndb.collectionunits. |
+Latitude | ndb.sites.geog | 
+Longitude | ndb.sites.geog |
+Map Sheet | API? |
+Elevation (m ASL) | ndb.sites.altitude |
+Submitter | ndb.datasets.datasetsubmitter |
+Date Submitted | ndb.datasets.redatecreated |
+Collector | ndb.collectionunits |
+Date Collected | ndb.collectionunits |
+Updater | ndb.??? |
+Date Updated | ndb.datasets.recdateupdated |
+Measured Age | ndb.geochronology.geochronage | uncalibratedChronometricAge
+MA Sigma | ndb.geochronology.errorolder |
+Normalized Age | |
+NA Sigma |  |
+Delta 13C (per mil) |  |
+Delta 13 C Source |  |
+Significance |  |
+Site Identifier | ndb.sites.siteid |
+Site Name | ndb.sites.sitename |
+Stratigraphic Component |  |
+Context | ndb.sites.sitedescription |
+Associated Taxa | ndb.variables |
+Additional Information |  |
+Comments |  ndb.geochronology.notes | chronometricAgeRemarks |
+References | ndb.datasetpublications | chronometricAgeReferences |
+ | geochrontype | 
+ | infinite | 
+ | percentc | 
+ | percentcollagen |
+ | percentn | 
+ | radiocarbonmethod | chronometricAgeProtocol
+ | reservoir | 
+ | geochronologyid | chronometricAgeID | 
+  |  | earliestChronometricAge |
+  |  | latestChronometricAge |
+  |  | chronometricAgeConversionProtocol |
+  | ndb.chroncontrols.recdatecreated | chronometricAgeDeterminedDate |
+  | ndb.chronologies.contactid | chronometricAgeDeterminedBy |
+  | ndb.analysisunit.analysisunitd | materialDatedID
+
+
+* verbatimChronometricAge: The verbatim age for a specimen, whether reported by a dating assay, associated references, or legacy information.
+* : The method used for converting the uncalibratedChronometricAge into a chronometric age in years, as captured in the earliestChronometricAge, earliestChronometricAgeReferenceSystem, latestChronometricAge, and latestChronometricAgeReferenceSystem fields.
+* earliestChronometricAge: The maximum/earliest/oldest possible age of a specimen as determined by a dating method.
+* earliestChronometricAgeReferenceSystem: The reference system associated with the earliestChronometricAge.
+* latestChronometricAge: The minimum/latest/youngest possible age of a specimen as determined by a dating method.
+* latestChronometricAgeReferenceSystem: The reference system associated with the latestChronometricAge.
+* chronometricAgeUncertaintyInYears: The temporal uncertainty of the earliestChronometricAge and latestChronometicAge in years.
+* chronometricAgeUncertaintyMethod: 	The method used to generate the value of chronometricAgeUncertaintyInYears.
+* materialDatedID: An identifier for the MaterialSample on which the chronometricAgeProtocol was performed, if applicable.
+* materialDatedRelationship: The relationship of the materialDated to the subject of the ChronometricAge record, from which the ChronometricAge of the subject is inferred.
+

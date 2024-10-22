@@ -1,0 +1,62 @@
+# Loading in the data
+
+We want to pull in the full compliment of columns, add new publications where neccessary, and reassign dates & cetera.
+
+```{r loadtsv}
+raw_data <- readr::read_tsv('data/syverson_14c.tsv')
+```
+
+# Fields & Considerations
+
+Most columns directly map onto existing Neotoma columns, overwriting some data, or adding additional information to the records.
+
+Some considerations:
+* We don't have the dataset ID. 
+
+
+We can build a SQL Query to access this data as a flat file in the following way:
+
+```
+SELECT st.siteid,
+    st.sitename,
+    cu.collectionunitid,
+    cu.handle,
+    au.analysisunitid,
+    au.analysisunitname,
+    gc.geochronid,
+    gc.materialdated,
+    gc.labnumber,
+    gc.age,
+    gc.errorolder,
+    gc.erroryounger,
+    gc.infinite,
+    gc.agetypeid,
+    gc.geochrontypeid,
+    gc.notes,
+    rc.radiocarbonmethodid,
+    rc.delta13c,
+    rc.delta15n,
+    rc.cnratio,
+    tx.taxonname,
+    spd.elementtypeid,
+    pub.publicationid,
+    pub.doi,
+    pub.isbn,
+    pub.citation,
+    pub.pubtypeid
+FROM ndb.sites AS st
+INNER JOIN ndb.collectionunits AS cu ON cu.siteid = st.siteid
+INNER JOIN ndb.analysisunits AS au ON au.collecitonunitid = cu.collectionunitid
+INNER JOIN ndb.samples AS smp ON smp.analysisunitid = au.analysisunitid
+INNER JOIN ndb.geochronology AS gc ON gc.sampleid = smp.sampleid
+LEFT JOIN ndb.radiocarbon AS rc ON rc.geochronid = gc.geochronid
+LEFT JOIN ndb.specimendates AS spd ON spd.sampleid = smp.sampleid AND spd.geochronid = gc.geochronid
+LEFT JOIN ndb.taxa AS tx ON spd.taxonid = tx.taxonid
+LEFT JOIN ndb.specimens AS spc ON spc.specimenid = spd.specimenid
+LEFT JOIN ndb.repositoryinstitutions AS ri ON ri.repositoryid = spc.repositoryid
+INNER JOIN ndb.datasets AS ds ON ds.collectionunitid = cu.collectionunitid
+LEFT JOIN ndb.datasetpublications AS dspb ON dspb.datasetid = ds.datasetid
+LEFT JOIN ndb.publications AS pub ON pub.publicationid = dspb.publicationid;
+```
+
+This results in row duplication for some fields, particularly as a result of multiple datasets associated with a single sampleid, or multiple publications associated with a datasetid.

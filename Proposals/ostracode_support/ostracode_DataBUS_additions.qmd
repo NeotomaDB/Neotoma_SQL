@@ -62,3 +62,12 @@ VALUES('AquaticSystem', 'Aquatic System');
 
 ## Depositional Environments
 
+We need to check the following parameters against Neotoma:
+
+```{r depositionalenvts}
+habitats <- c(eanode$habitat, node$`NATURAL HABITAT`, node$`ARTIFICIAL HABITAT`) |> 
+    unique() |>
+    na.omit() |>
+    write.csv('habitat_equiv.csv')
+
+```
